@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B2F0E300-06A5-4933-B05A-7D463A24E3C5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MedicalManagement</RootNamespace>
+    <AssemblyName>MedicalManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Agenda.aspx" />
+    <Content Include="AgendaElegirFicha.aspx" />
+    <Content Include="Aseguradora.aspx" />
+    <Content Include="Bitacora.aspx" />
+    <Content Include="Categoria.aspx" />
+    <Content Include="ConsultaDiagnostico.aspx" />
+    <Content Include="ConsultaMenu.aspx" />
+    <Content Include="ConsultaReceta.aspx" />
+    <Content Include="Consultas.aspx" />
+    <Content Include="ConsultasAnteriores.aspx" />
+    <Content Include="Diagnosticos.aspx" />
+    <Content Include="EmpresaConvenio.aspx" />
+    <Content Include="Empresas.aspx" />
+    <Content Include="Escolaridad.aspx" />
+    <Content Include="EstadoCivil.aspx" />
+    <Content Include="FichaIdentificacion.aspx" />
+    <Content Include="FichaIdentificacion2.aspx" />
+    <Content Include="IMG\Logotipo_i.jpg" />
+    <Content Include="IMG\Logotipo_iCh.jpg" />
+    <Content Include="login.aspx" />
+    <Content Include="login2.aspx" />
+    <Content Include="Medicamento.aspx" />
+    <Content Include="MenuInicial.aspx" />
+    <Content Include="Modulos.aspx" />
+    <Content Include="Ocupacion.aspx" />
+    <Content Include="Perfles.aspx" />
+    <Content Include="PermisoPerfil2.aspx" />
+    <Content Include="Permisos.aspx" />
+    <Content Include="PermisosPerfil.aspx" />
+    <Content Include="Procedimiento.aspx" />
+    <Content Include="ReferidoPor.aspx" />
+    <Content Include="RegistroAgenda.aspx" />
+    <Content Include="RegistroAseguradora.aspx" />
+    <Content Include="RegistroCategoria.aspx" />
+    <Content Include="RegistroConsulta.aspx" />
+    <Content Include="RegistroDiagnostico.aspx" />
+    <Content Include="RegistroEmpresaConvenio.aspx" />
+    <Content Include="RegistroEmpresas.aspx" />
+    <Content Include="RegistroEscolaridad.aspx" />
+    <Content Include="RegistroEstadoCivil.aspx" />
+    <Content Include="RegistroFichaIdentificacion.aspx" />
+    <Content Include="RegistroMedicamento.aspx" />
+    <Content Include="RegistroModulos.aspx" />
+    <Content Include="RegistroOcupacion.aspx" />
+    <Content Include="RegistroPerfiles.aspx" />
+    <Content Include="RegistroProcedimiento.aspx" />
+    <Content Include="RegistroReferidoPor.aspx" />
+    <Content Include="RegistroSexo.aspx" />
+    <Content Include="RegistroSucursales.aspx" />
+    <Content Include="RegistroTerritorios.aspx" />
+    <Content Include="RegistroUsuarioEmpresaSucursal.aspx" />
+    <Content Include="RegistroUsuarios.aspx" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.8.3.js" />
+    <Content Include="Scripts\jquery-ui-1.9.2.custom.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Sexo.aspx" />
+    <Content Include="Styles\bootstrap-theme.css" />
+    <Content Include="Styles\bootstrap-theme.min.css" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\bootstrap.min.css" />
+    <Content Include="Styles\jquery-ui-1.9.2.custom.css" />
+    <Content Include="Styles\jquery.datetimepicker.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Sucursales.aspx" />
+    <Content Include="Usuarios.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Agenda.aspx.cs">
+      <DependentUpon>Agenda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Agenda.aspx.designer.cs">
+      <DependentUpon>Agenda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgendaElegirFicha.aspx.cs">
+      <DependentUpon>AgendaElegirFicha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgendaElegirFicha.aspx.designer.cs">
+      <DependentUpon>AgendaElegirFicha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aseguradora.aspx.cs">
+      <DependentUpon>Aseguradora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aseguradora.aspx.designer.cs">
+      <DependentUpon>Aseguradora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bitacora.aspx.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bitacora.aspx.designer.cs">
+      <DependentUpon>Bitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Categoria.aspx.cs">
+      <DependentUpon>Categoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Categoria.aspx.designer.cs">
+      <DependentUpon>Categoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaDiagnostico.aspx.cs">
+      <DependentUpon>ConsultaDiagnostico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaDiagnostico.aspx.designer.cs">
+      <DependentUpon>ConsultaDiagnostico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaMenu.aspx.cs">
+      <DependentUpon>ConsultaMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaMenu.aspx.designer.cs">
+      <DependentUpon>ConsultaMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaReceta.aspx.cs">
+      <DependentUpon>ConsultaReceta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaReceta.aspx.designer.cs">
+      <DependentUpon>ConsultaReceta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas.aspx.cs">
+      <DependentUpon>Consultas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consultas.aspx.designer.cs">
+      <DependentUpon>Consultas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultasAnteriores.aspx.cs">
+      <DependentUpon>ConsultasAnteriores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultasAnteriores.aspx.designer.cs">
+      <DependentUpon>ConsultasAnteriores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Diagnosticos.aspx.cs">
+      <DependentUpon>Diagnosticos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Diagnosticos.aspx.designer.cs">
+      <DependentUpon>Diagnosticos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresaConvenio.aspx.cs">
+      <DependentUpon>EmpresaConvenio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmpresaConvenio.aspx.designer.cs">
+      <DependentUpon>EmpresaConvenio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Empresas.aspx.cs">
+      <DependentUpon>Empresas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Empresas.aspx.designer.cs">
+      <DependentUpon>Empresas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Escolaridad.aspx.cs">
+      <DependentUpon>Escolaridad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Escolaridad.aspx.designer.cs">
+      <DependentUpon>Escolaridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EstadoCivil.aspx.cs">
+      <DependentUpon>EstadoCivil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EstadoCivil.aspx.designer.cs">
+      <DependentUpon>EstadoCivil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FichaIdentificacion.aspx.cs">
+      <DependentUpon>FichaIdentificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FichaIdentificacion.aspx.designer.cs">
+      <DependentUpon>FichaIdentificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FichaIdentificacion2.aspx.cs">
+      <DependentUpon>FichaIdentificacion2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FichaIdentificacion2.aspx.designer.cs">
+      <DependentUpon>FichaIdentificacion2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login2.aspx.cs">
+      <DependentUpon>login2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login2.aspx.designer.cs">
+      <DependentUpon>login2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medicamento.aspx.cs">
+      <DependentUpon>Medicamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medicamento.aspx.designer.cs">
+      <DependentUpon>Medicamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuInicial.aspx.cs">
+      <DependentUpon>MenuInicial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuInicial.aspx.designer.cs">
+      <DependentUpon>MenuInicial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos.aspx.cs">
+      <DependentUpon>Modulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modulos.aspx.designer.cs">
+      <DependentUpon>Modulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ocupacion.aspx.cs">
+      <DependentUpon>Ocupacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ocupacion.aspx.designer.cs">
+      <DependentUpon>Ocupacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Perfles.aspx.cs">
+      <DependentUpon>Perfles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfles.aspx.designer.cs">
+      <DependentUpon>Perfles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PermisoPerfil2.aspx.cs">
+      <DependentUpon>PermisoPerfil2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PermisoPerfil2.aspx.designer.cs">
+      <DependentUpon>PermisoPerfil2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Permisos.aspx.cs">
+      <DependentUpon>Permisos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Permisos.aspx.designer.cs">
+      <DependentUpon>Permisos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PermisosPerfil.aspx.cs">
+      <DependentUpon>PermisosPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PermisosPerfil.aspx.designer.cs">
+      <DependentUpon>PermisosPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Procedimiento.aspx.cs">
+      <DependentUpon>Procedimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Procedimiento.aspx.designer.cs">
+      <DependentUpon>Procedimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferidoPor.aspx.cs">
+      <DependentUpon>ReferidoPor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReferidoPor.aspx.designer.cs">
+      <DependentUpon>ReferidoPor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroAgenda.aspx.cs">
+      <DependentUpon>RegistroAgenda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroAgenda.aspx.designer.cs">
+      <DependentUpon>RegistroAgenda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroAseguradora.aspx.cs">
+      <DependentUpon>RegistroAseguradora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroAseguradora.aspx.designer.cs">
+      <DependentUpon>RegistroAseguradora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroCategoria.aspx.cs">
+      <DependentUpon>RegistroCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroCategoria.aspx.designer.cs">
+      <DependentUpon>RegistroCategoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroConsulta.aspx.cs">
+      <DependentUpon>RegistroConsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroConsulta.aspx.designer.cs">
+      <DependentUpon>RegistroConsulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroDiagnostico.aspx.cs">
+      <DependentUpon>RegistroDiagnostico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroDiagnostico.aspx.designer.cs">
+      <DependentUpon>RegistroDiagnostico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroEmpresaConvenio.aspx.cs">
+      <DependentUpon>RegistroEmpresaConvenio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroEmpresaConvenio.aspx.designer.cs">
+      <DependentUpon>RegistroEmpresaConvenio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroEmpresas.aspx.cs">
+      <DependentUpon>RegistroEmpresas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroEmpresas.aspx.designer.cs">
+      <DependentUpon>RegistroEmpresas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroEscolaridad.aspx.cs">
+      <DependentUpon>RegistroEscolaridad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroEscolaridad.aspx.designer.cs">
+      <DependentUpon>RegistroEscolaridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroEstadoCivil.aspx.cs">
+      <DependentUpon>RegistroEstadoCivil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroEstadoCivil.aspx.designer.cs">
+      <DependentUpon>RegistroEstadoCivil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroFichaIdentificacion.aspx.cs">
+      <DependentUpon>RegistroFichaIdentificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroFichaIdentificacion.aspx.designer.cs">
+      <DependentUpon>RegistroFichaIdentificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroMedicamento.aspx.cs">
+      <DependentUpon>RegistroMedicamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroMedicamento.aspx.designer.cs">
+      <DependentUpon>RegistroMedicamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroModulos.aspx.cs">
+      <DependentUpon>RegistroModulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroModulos.aspx.designer.cs">
+      <DependentUpon>RegistroModulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroOcupacion.aspx.cs">
+      <DependentUpon>RegistroOcupacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroOcupacion.aspx.designer.cs">
+      <DependentUpon>RegistroOcupacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroPerfiles.aspx.cs">
+      <DependentUpon>RegistroPerfiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroPerfiles.aspx.designer.cs">
+      <DependentUpon>RegistroPerfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroProcedimiento.aspx.cs">
+      <DependentUpon>RegistroProcedimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroProcedimiento.aspx.designer.cs">
+      <DependentUpon>RegistroProcedimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroReferidoPor.aspx.cs">
+      <DependentUpon>RegistroReferidoPor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroReferidoPor.aspx.designer.cs">
+      <DependentUpon>RegistroReferidoPor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroSexo.aspx.cs">
+      <DependentUpon>RegistroSexo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroSexo.aspx.designer.cs">
+      <DependentUpon>RegistroSexo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroSucursales.aspx.cs">
+      <DependentUpon>RegistroSucursales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroSucursales.aspx.designer.cs">
+      <DependentUpon>RegistroSucursales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroTerritorios.aspx.cs">
+      <DependentUpon>RegistroTerritorios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroTerritorios.aspx.designer.cs">
+      <DependentUpon>RegistroTerritorios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroUsuarioEmpresaSucursal.aspx.cs">
+      <DependentUpon>RegistroUsuarioEmpresaSucursal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroUsuarioEmpresaSucursal.aspx.designer.cs">
+      <DependentUpon>RegistroUsuarioEmpresaSucursal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroUsuarios.aspx.cs">
+      <DependentUpon>RegistroUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroUsuarios.aspx.designer.cs">
+      <DependentUpon>RegistroUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sexo.aspx.cs">
+      <DependentUpon>Sexo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sexo.aspx.designer.cs">
+      <DependentUpon>Sexo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Sucursales.aspx.cs">
+      <DependentUpon>Sucursales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sucursales.aspx.designer.cs">
+      <DependentUpon>Sucursales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="ImagenesFicha\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\bootstrap-theme.css.map" />
+    <Content Include="Styles\bootstrap.css.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55131</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
