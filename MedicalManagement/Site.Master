@@ -27,7 +27,7 @@
                     </h1>
                 </div>
                 <div class="loginDisplay">
-                   <h2 class="label label-info">Usuario:<asp:Label ID="lblUsuario" runat="server"></asp:Label></h2>
+                   <h2 class="label label-info">Usuardddddddddddddddddddddddddddddddddddddddddddddddio:<asp:Label ID="lblUsuario" runat="server"></asp:Label></h2>
                 </div>
                 <div class="clear">
                     <nav class="navbar navbar-default">
