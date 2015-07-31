@@ -65,7 +65,9 @@
                           <li><a href="Aseguradora.aspx">Aseguradora</a></li>
                           <li><a href="ReferidoPor.aspx">Referido Por </a></li>              
               <li><a href="Categoria.aspx">Categoria</a></li>
-              <li><a href="AnalisisClinico.aspx">Analisis Clinico</a></li>
+              <li><a href="Diagnosticos.aspx">Diagnosticos</a></li>
+              <li><a href="Procedimiento.aspx">Procedimiento</a></li>
+              <li><a href="Medicamento.aspx">Medicamento</a></li>
           </ul>
         </li>
           <li class="dropdown">
