@@ -71,13 +71,13 @@ namespace MedicalManagement
             }
         }
 
-        protected void btnRegresar_FichaIdentificacion_Click(object sender, EventArgs e)
+        protected void btnRegresar_Consulta_Click(object sender, EventArgs e)
         {
             Response.Redirect("Consultas.aspx");
         }
                 
 
-        protected void btnGuardar_FichaIdentificacion_Click(object sender, EventArgs e)
+        protected void btnGuardar_Consulta_Click(object sender, EventArgs e)
         {
             GrabarConsulta();
             Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");

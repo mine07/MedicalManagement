@@ -8,8 +8,8 @@
 
     <tr><td align="left"><font color="red">Configuración\Consulta\Agregar</font></td>
         <td align="right">
-        <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar EstadoCivil" onclick="btnGuardar_FichaIdentificacion_Click"></asp:ImageButton>&nbsp;
-        <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_FichaIdentificacion_Click"></asp:ImageButton>
+        <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar EstadoCivil" onclick="btnGuardar_Consulta_Click"></asp:ImageButton>&nbsp;
+        <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_Consulta_Click"></asp:ImageButton>
         </td>
     </tr>
 </table>
