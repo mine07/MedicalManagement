@@ -92,10 +92,13 @@
                      SortExpression="Id_Diagnostico" />
 
                      <asp:BoundField DataField="Descripcion_Diagnostico" HeaderText="Activo              " 
-                     SortExpression="Descripcion_Diagnostico" />
+                     SortExpression="Descripcion_Diagnostico" />                     
 
                      <asp:BoundField DataField="Estatus_ConsultaDiagnostico" HeaderText="Estatus.ConsultaDiagnostico" 
                      SortExpression="Estatus_ConsultaDiagnostico" />
+
+                     <asp:BoundField DataField="Fecha_ConsultaDiagnostico" HeaderText="Fecha" 
+                     SortExpression="Fecha_Diagnostico" />
 
                     
 
@@ -124,10 +127,13 @@
                      SortExpression="Id_Diagnostico" />
 
                      <asp:BoundField DataField="Descripcion_Diagnostico" HeaderText="Inactivo            " 
-                     SortExpression="Descripcion_Diagnostico" />
+                     SortExpression="Descripcion_Diagnostico" />                     
 
                      <asp:BoundField DataField="Estatus_ConsultaDiagnostico" HeaderText="Estatus.ConsultaDiagnostico" 
                      SortExpression="Estatus_ConsultaDiagnostico" />
+
+                     <asp:BoundField DataField="Fecha_ConsultaDiagnostico" HeaderText="Fecha" 
+                     SortExpression="Fecha_Diagnostico0" />
 
                      <asp:TemplateField  HeaderText="Elegir">
                      <HeaderTemplate>

@@ -54,7 +54,9 @@ namespace MedicalManagement
                         txtdiagnostico.Text = reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim();
                         txtanalisis.Text = reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
                         txtplan.Text = reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
-                        
+                        LinkDiagnostico.Visible = true;
+
+                        Session["Fechaconsulta"] = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                     }
                 }
                 else
@@ -64,7 +66,7 @@ namespace MedicalManagement
                     fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
                     txtfechaconsulta.Text = fecha_actual;
                     txtnombre.Text = NombreCompleto;
-
+                    Session["Fechaconsulta"] = fecha_actual;
                 }
                 cnn.Close();
                 
@@ -97,6 +99,7 @@ namespace MedicalManagement
             DateTime hoy = DateTime.Now;
             fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
             DateTime fecha_actual1 = Convert.ToDateTime(fecha_actual);
+            Session["Fechaconsulta"] = fecha_actual;
 
             Id_Consulta =Convert.ToInt32( Session["Id_Consultas"]);
                         
@@ -163,23 +166,31 @@ namespace MedicalManagement
             */
             cnn.Close();
 
-            Response.Redirect("ConsultasMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
+            LinkDiagnostico.Visible = true;
+            Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
             
         }
 
-        protected void btnreceta_Click(object sender, EventArgs e)
+        protected void LinkDiagnostico_Click(object sender, EventArgs e)
         {
             Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
-
-            Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "");
-            //Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + "");
+            fecha_actual = Convert.ToString(Session["Fechaconsulta"]);
+            Response.Redirect("ConsultaDiagnostico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "&Fecha_Consulta="+fecha_actual+"");
         }
 
-        protected void btnanalisis_Click(object sender, EventArgs e)
-        {
-            Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
-            Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
-        }
+        //protected void btnreceta_Click(object sender, EventArgs e)
+        //{
+        //    Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
+
+        //    Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "");
+        //    //Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + "");
+        //}
+
+        //protected void btnanalisis_Click(object sender, EventArgs e)
+        //{
+        //    Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
+        //    Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
+        //}
 
               
     }

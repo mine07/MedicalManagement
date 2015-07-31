@@ -465,7 +465,7 @@ namespace MedicalManagement
             cnn.Open();
                                     
 
-            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
+            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
                                where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=1";
 
@@ -517,7 +517,7 @@ namespace MedicalManagement
 
             cnn.Open();
 
-            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
+            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
                                where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=0";
 

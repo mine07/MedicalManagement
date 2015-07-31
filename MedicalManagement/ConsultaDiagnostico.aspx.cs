@@ -15,6 +15,7 @@ namespace MedicalManagement
         int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
+        string Fecha_Consulta = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["Fecha_Consulta"]);
 
         int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
 
@@ -91,7 +92,7 @@ namespace MedicalManagement
 
                     int numeroiddiagnostico = Convert.ToInt32(row.Cells[0].Text);
 
-                    SqlCommand comando2 = new SqlCommand("select Id_consulta,Id_Diagnostico,Id_FichaIdentificacion from Tabla_Registro_ConsultaDiagnostico", cnn);
+                    SqlCommand comando2 = new SqlCommand("select Id_consulta,Id_Diagnostico,Id_FichaIdentificacion,Fecha_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico", cnn);
                     DataTable datos = new DataTable();
                     SqlDataAdapter adaptador = new SqlDataAdapter(comando2);
                     adaptador.Fill(datos);
@@ -103,6 +104,8 @@ namespace MedicalManagement
                         comando.Parameters.AddWithValue("@Id_Diagnostico", numeroiddiagnostico);
                         comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
                         comando.Parameters.AddWithValue("@Estatus_ConsultaDiagnostico", varlorcheck);
+                        comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico",Convert.ToDateTime( Fecha_Consulta));
+                        
                         comando.ExecuteNonQuery();
                     }
                     else
@@ -130,6 +133,7 @@ namespace MedicalManagement
                                 comando.Parameters.AddWithValue("@Id_Diagnostico", numeroiddiagnostico);
                                 comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
                                 comando.Parameters.AddWithValue("@Estatus_diagnostico", varlorcheck);
+                                comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico", Convert.ToDateTime(Fecha_Consulta));
                                 comando.ExecuteNonQuery();
                                 break;
                             }
@@ -148,6 +152,7 @@ namespace MedicalManagement
                             comando.Parameters.AddWithValue("@Id_Diagnostico", numeroiddiagnostico);
                             comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
                             comando.Parameters.AddWithValue("@Estatus_ConsultaDiagnostico", varlorcheck);
+                            comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico", Convert.ToDateTime(Fecha_Consulta));
                             comando.ExecuteNonQuery();
                         }
                     }
