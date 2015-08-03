@@ -41,6 +41,9 @@
     </tr>
     <tr>
             <td>
+                <asp:Button ID="btnantecedentes" runat="server" Text="antecedentes" 
+                    onclick="btnantecedentes_Click" />
+
             </td>
     </tr>
     <tr>

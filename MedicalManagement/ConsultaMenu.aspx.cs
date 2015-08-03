@@ -31,6 +31,7 @@ namespace MedicalManagement
                 GridViewActivos();
                 GridViewInactivos();
                 GridViewFechaConsulta();
+                llenartxtantecedentesnotas();
                                 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -595,7 +596,80 @@ namespace MedicalManagement
             da.Dispose();
             cnn.Close();
         }
+
+        
         /////////////////////////////////////////////////////////////////////
-            
+
+        protected void llenartxtantecedentesnotas()
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+            SqlCommand comando = new SqlCommand("SP_Registro_ConsultasAntecedentesNotas", cnn);
+            comando.Parameters.AddWithValue("@Opcion", "ENCONTRAR");
+            comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
+            comando.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader = comando.ExecuteReader();
+
+            if (reader.Read())
+            {
+                txtantecedentes.Text = reader.GetString(reader.GetOrdinal("Antecedentes_Relevantes")).ToString();
+                txtnotasrelevantes.Text = reader.GetString(reader.GetOrdinal("Notas_Relevantes")).ToString();
+            }
+
+            reader.Close();
+            comando = null;
+            cnn.Close();
+
+        }
+
+
+        protected void btnantecedentes_Click(object sender, EventArgs e)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+            SqlCommand comando = new SqlCommand(@"select count (Id_ConsultaAntecedentesNotas)from Tabla_Registro_ConsultaAntecedentesNotas
+                                                  where Id_FichaIdentificacion="+Id_FichaIdentificacion+"", cnn);
+
+
+            comando.CommandType = CommandType.Text;
+            int numerocount = Convert.ToInt32(comando.ExecuteScalar());
+            comando = null;
+            cnn.Close();
+
+            cnn.Open();
+            SqlCommand comando2 = new SqlCommand("SP_Registro_ConsultasAntecedentesNotas", cnn);
+            comando2.CommandType = CommandType.StoredProcedure;
+
+            if (numerocount ==0)
+            {
+                comando2.Parameters.AddWithValue("@Opcion", "INSERTAR");
+                comando2.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
+            }
+            else
+            {
+                comando2.Parameters.AddWithValue("@Opcion", "ACTUALIZAR");
+                comando2.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
+            }
+
+
+            comando2.Parameters.AddWithValue("@Antecedentes_Relevantes", txtantecedentes.Text.Trim());
+            comando2.Parameters.AddWithValue("@Notas_Relevantes", txtnotasrelevantes.Text.Trim());
+
+
+            SqlDataReader reader = comando2.ExecuteReader();
+            reader.Read();
+            comando2 = null;
+            cnn.Close();
+
+            llenartxtantecedentesnotas();
+        }  
     }
 }
