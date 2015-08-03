@@ -53,7 +53,7 @@ namespace MedicalManagement
             }
         }
 
-        //////////////////////////////////////////////////////////////////////////////////
+        /////////////LINKS DEL MENU CONSULTAS/////////////////////////////////////////////////////////////////////
         
         protected void LinkNotaClinica_Click(object sender, EventArgs e)
         {
@@ -73,6 +73,8 @@ namespace MedicalManagement
             Response.Redirect("ConsultaDiagnostico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto +"&Id_Consulta="+Id_Consulta+"");
         }
 
+
+        ////////////CHECKBOXS DEL MENU CONSULTAS///////////////////////////////////////////
         protected void CheckBoxactivo_CheckedChanged(object sender, EventArgs e)
         {
             //int numeroidperfil = Convert.ToInt32(ddl_Id_Perfil.SelectedValue);
@@ -239,7 +241,7 @@ namespace MedicalManagement
         //////////////////////////////////////////////////////////////////////////////////
        
 
-        public void llenarconsultas()
+        public void llenarconsultas()//REFERENTE AL HISTORIAL DEL PACIENTE
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
@@ -455,6 +457,10 @@ namespace MedicalManagement
 //            cnn.Close();
 //        }
 
+
+        
+         ////////////GRIDS DEL MENU CONSULTAS///////////////////////////////////////////
+        
         public void GridViewActivos()
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -589,7 +595,7 @@ namespace MedicalManagement
             da.Dispose();
             cnn.Close();
         }
-
+        /////////////////////////////////////////////////////////////////////
             
     }
 }
