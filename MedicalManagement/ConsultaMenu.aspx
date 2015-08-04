@@ -72,8 +72,7 @@
     <tr>
         
         <td>
-            <asp:LinkButton ID="LinkDiagnostico" runat="server"  onclick="LinkDiagnostico_Click"
-                Visible="False" >Diagnostico</asp:LinkButton>
+            
         </td>
     </tr>
            

@@ -44,8 +44,7 @@ namespace MedicalManagement
 
                 if (Id_Consulta != 0)
                 {                    
-                    LinkReceta.Visible = true; 
-                    LinkDiagnostico.Visible = true;
+                    LinkReceta.Visible = true;                     
                     llenarconsultas();
                 }
                 else
@@ -68,13 +67,7 @@ namespace MedicalManagement
             Response.Redirect("ConsultaReceta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
         }
 
-        protected void LinkDiagnostico_Click(object sender, EventArgs e)
-        {
-            Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
-            Response.Redirect("ConsultaDiagnostico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto +"&Id_Consulta="+Id_Consulta+"");
-        }
-
-
+       
         ////////////CHECKBOXS DEL MENU CONSULTAS///////////////////////////////////////////
         protected void CheckBoxactivo_CheckedChanged(object sender, EventArgs e)
         {
