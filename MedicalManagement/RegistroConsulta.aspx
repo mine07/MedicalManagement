@@ -67,9 +67,7 @@
         </td>
     </tr>
     <tr>
-        <td>
-            <asp:TextBox ID="txtdiagnostico" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
-        </td>
+        
         <td>
             <asp:LinkButton ID="LinkDiagnostico" runat="server"  onclick="LinkDiagnostico_Click"
                 Visible="False" >Diagnostico</asp:LinkButton>

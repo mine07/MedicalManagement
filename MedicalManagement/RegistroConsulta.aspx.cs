@@ -51,7 +51,7 @@ namespace MedicalManagement
                         txtfechaconsulta.Text = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                         txtsubjetivo.Text = reader.GetString(reader.GetOrdinal("Subjetivo_Consulta")).ToString().Trim();
                         txtobjetivo.Text = reader.GetString(reader.GetOrdinal("Objetivo_Consulta")).ToString().Trim();
-                        txtdiagnostico.Text = reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim();
+                        //txtdiagnostico.Text = reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim(); Se elimino el txtdiagnostico
                         txtanalisis.Text = reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
                         txtplan.Text = reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
                         LinkDiagnostico.Visible = true;
@@ -122,7 +122,7 @@ namespace MedicalManagement
             
             comando.Parameters.AddWithValue("@Subjetivo_Consulta", txtsubjetivo.Text.Trim());
             comando.Parameters.AddWithValue("@Objetivo_Consulta", txtobjetivo.Text.Trim());
-            comando.Parameters.AddWithValue("@Diagnostico_Consulta", txtdiagnostico.Text.Trim());
+            //comando.Parameters.AddWithValue("@Diagnostico_Consulta", txtdiagnostico.Text.Trim());  Se elimino el txtdiagnostico
             comando.Parameters.AddWithValue("@Analisis_Consulta", txtanalisis.Text.Trim());
             comando.Parameters.AddWithValue("@Plan_Consulta", txtplan.Text.Trim());
 
