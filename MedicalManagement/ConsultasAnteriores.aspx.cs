@@ -82,43 +82,43 @@ namespace MedicalManagement
                 cantidad = Convert.ToString(row["Cantidad_ConsultaReceta"]);
                 cada = Convert.ToString(row["Cada_ConsultaReceta"]);
                 observaciones = Convert.ToString(row["Observaciones_ConsultaAnalisisClinico"]);
-                cadena = cadena + "<Tr><td>---FechaConsulta---</Td>";                
+                cadena = cadena + "<Tr><td><strong>FechaConsulta:</strong></Td>";                
                 cadena = cadena + "<td>" + fechaconsulta + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>______Subjetivo______</Td></Tr>";                
+                cadena = cadena + "<Tr><td><strong>Subjetivo:</strong></Td></Tr>";                
                 cadena = cadena + "<Tr><td>" + subjetivo + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>______Objetivo_______</Td></Tr>";
+                cadena = cadena + "<Tr><td><strong>Objetivo:</strong></Td></Tr>";
                 cadena = cadena + "<Tr><td>"+objetivo+"</Td></Tr>";
                 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>______Diagnostico_______</Td></Tr>";
+                cadena = cadena + "<Tr><td><strong>Diagnostico:</strong></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + diagnostico + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>_______Analisis_______</Td></Tr>";
+                cadena = cadena + "<Tr><td><strong>Analisis:</strong></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + analisis + "</Td></Tr>";
                 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>______Plan______</Td></Tr>";
+                cadena = cadena + "<Tr><td><strong>Plan:</strong></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + plan + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Medicamento---</Td></Tr>";
+                cadena = cadena + "<Tr><td><strong>Medicamento:</strong></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + medicamento + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>______Cantidad_______</Td></Tr>";
+                cadena = cadena + "<Tr><td><strong>Cantidad:</strong></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + cantidad + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>______Cada cuando______</Td></Tr>";
+                cadena = cadena + "<Tr><td><strong>Cada cuando:</strong></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + cada + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>______Observaciones______</Td></Tr>";
+                cadena = cadena + "<Tr><td><strong>Observaciones:</strong></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + observaciones + "</Td></Tr>";
 
                 cadena = cadena + "<Tr><td>___________________________________________________________</Td></Tr>";
