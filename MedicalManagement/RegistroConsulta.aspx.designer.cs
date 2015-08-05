@@ -40,6 +40,15 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.TextBox txtfechaconsulta;
         
         /// <summary>
+        /// LinkDiagnostico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkDiagnostico;
+        
+        /// <summary>
         /// txtnombre control.
         /// </summary>
         /// <remarks>
@@ -65,15 +74,6 @@ namespace MedicalManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtobjetivo;
-        
-        /// <summary>
-        /// LinkDiagnostico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkDiagnostico;
         
         /// <summary>
         /// txtanalisis control.

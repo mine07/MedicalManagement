@@ -29,6 +29,10 @@
             <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC" 
                 ReadOnly="True" ></asp:TextBox>
         </td>
+        <td>
+            <asp:LinkButton ID="LinkDiagnostico" runat="server"  onclick="LinkDiagnostico_Click"
+                Visible="False" >Diagnostico</asp:LinkButton>
+        </td>
     </tr>
     <tr>
         <td>
@@ -69,8 +73,7 @@
     <tr>
         
         <td>
-            <asp:LinkButton ID="LinkDiagnostico" runat="server"  onclick="LinkDiagnostico_Click"
-                Visible="False" >Diagnostico</asp:LinkButton>
+            
         </td>
     </tr>
     <tr>
