@@ -8,9 +8,10 @@
 
     <table>
     <tr>
-        <td>
+        <td><font color="blue"><strong>
         Paciente:<asp:Label ID="lblNombre" runat="server" Text=""></asp:Label>
-        </td>
+
+        </strong></font></td>
         
     </tr>
 
@@ -164,7 +165,7 @@
 </div>
 <p>_____
     </p>
-<p>Historial</p>
+<p><strong><font color="blue">Historial</font></strong></p>
 <p>_____</p>
 <div id="consultasanteriores" runat="server"  >
     

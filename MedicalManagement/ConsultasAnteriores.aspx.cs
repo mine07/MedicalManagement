@@ -67,7 +67,7 @@ namespace MedicalManagement
             string cada="";
             string observaciones = "";
             string cadena = "<table >";
-            cadena = cadena +"<tr><td>" + NombreCompleto + "</td></tr>";
+            cadena = cadena + "<tr><td><strong>" + NombreCompleto + "</strong></td></tr>";
             cadena = cadena + "<tr><td><br></Td></tr>";
 
             foreach (DataRow row in ds.Rows)
@@ -82,43 +82,43 @@ namespace MedicalManagement
                 cantidad = Convert.ToString(row["Cantidad_ConsultaReceta"]);
                 cada = Convert.ToString(row["Cada_ConsultaReceta"]);
                 observaciones = Convert.ToString(row["Observaciones_ConsultaAnalisisClinico"]);
-                cadena = cadena + "<Tr><td><strong>FechaConsulta:</strong></Td>";                
+                cadena = cadena + "<Tr><td><font color=Blue><strong>FechaConsulta:</strong></font></Td>";                
                 cadena = cadena + "<td>" + fechaconsulta + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Subjetivo:</strong></Td></Tr>";                
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Subjetivo:</strong><font></Td></Tr>";                
                 cadena = cadena + "<Tr><td>" + subjetivo + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Objetivo:</strong></Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Objetivo:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>"+objetivo+"</Td></Tr>";
                 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Diagnostico:</strong></Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Diagnostico:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + diagnostico + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Analisis:</strong></Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Analisis:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + analisis + "</Td></Tr>";
                 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Plan:</strong></Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Plan:</strong></Font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + plan + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Medicamento:</strong></Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Medicamento:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + medicamento + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Cantidad:</strong></Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Cantidad:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + cantidad + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Cada cuando:</strong></Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Cada cuando:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + cada + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><strong>Observaciones:</strong></Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Observaciones:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + observaciones + "</Td></Tr>";
 
                 cadena = cadena + "<Tr><td>___________________________________________________________</Td></Tr>";
