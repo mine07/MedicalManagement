@@ -9,9 +9,9 @@
     <table>
     <tr>
         <td><font color="blue"><strong>
-        Paciente:<asp:Label ID="lblNombre" runat="server" Text=""></asp:Label>
+        Paciente:</strong><asp:Label ID="lblNombre" runat="server" Text=""></asp:Label>
 
-        </strong></font></td>
+        </font></td>
         
     </tr>
 
