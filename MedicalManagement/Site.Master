@@ -71,7 +71,9 @@
                           <li><a href="Aseguradora.aspx">Aseguradora</a></li>
                           <li><a href="ReferidoPor.aspx">Referido Por </a></li>              
               <li><a href="Categoria.aspx">Categoria</a></li>
-              <li><a href="AnalisisClinico.aspx">Analisis Clinico</a></li>
+              <li><a href="Diagnosticos.aspx">Diagnosticos</a></li>
+              <li><a href="Procedimiento.aspx">Procedimiento</a></li>
+              <li><a href="Medicamento.aspx">Medicamento</a></li>
           </ul>
         </li>
           <li class="dropdown">
@@ -111,7 +113,13 @@
                                 <asp:MenuItem NavigateUrl="~/Aseguradora.aspx" Text="Aseguradora" Value="Aseguradora"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/ReferidoPor.aspx" Text="Referido por" Value="Referido por"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Categoria.aspx" Text="Categoria" Value="Categoria"></asp:MenuItem>
+
                                 <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="AnalisisClinico" Value="AnalisisClinico"></asp:MenuItem>
+
+                                <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="Diagnostico" Value="Diagnostico"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Procedimiento.aspx" Text="Procedimiento" Value="Procedimiento"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Medicamento.aspx" Text="Medicamento" Value="Medicamento"></asp:MenuItem>
+
                             </asp:MenuItem>
                             <asp:MenuItem Text="Configuración" Value="Configuración">
                                 <asp:MenuItem NavigateUrl="~/Empresas.aspx" Text="Empresas" Value="Empresas.aspx"></asp:MenuItem>

@@ -30,7 +30,7 @@
             Medicamento_Consulta
         </td>
         <td> 
-            <asp:TextBox ID="txtmedicamento" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtmedicamento" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>            
         </td>       
     
     </tr>
@@ -39,7 +39,7 @@
             Cantidad_ConsultaReceta
         </td>
         <td> 
-            <asp:TextBox ID="txtcantidad" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtcantidad" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
         </td>       
     
     </tr>
@@ -48,7 +48,7 @@
             Cada_ConsultaReceta 
         </td>
         <td> 
-            <asp:TextBox ID="txtcadacuando" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtcadacuando" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
         </td>       
     
     </tr>

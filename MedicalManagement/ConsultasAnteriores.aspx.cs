@@ -36,13 +36,14 @@ namespace MedicalManagement
             //SqlCommand comando = new SqlCommand("SP_Registro_Agenda", cnn);select * from Tabla_Registro_Consulta
             //comando.CommandType = CommandType.StoredProcedure;
             SqlCommand comando = new SqlCommand(@"select distinct a.Fecha_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
-a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,b.Cantidad_ConsultaReceta,b.Cada_ConsultaReceta,
-c.Observaciones_ConsultaAnalisisClinico 
-from Tabla_Registro_Consulta a left join Tabla_Registro_ConsultaReceta b
-on (a.Id_Consulta=b.Id_Consulta) left join Tabla_Registro_ConsultaAnalisisClinico c
-on (c.Id_Consulta=a.Id_Consulta)
+                                                a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,
+                                                b.Cantidad_ConsultaReceta,b.Cada_ConsultaReceta,
+                                                c.Observaciones_ConsultaAnalisisClinico 
+                                                from Tabla_Registro_Consulta a left join Tabla_Registro_ConsultaReceta b
+                                                on (a.Id_Consulta=b.Id_Consulta) left join Tabla_Registro_ConsultaAnalisisClinico c
+                                                on (c.Id_Consulta=a.Id_Consulta)
 
-where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion+"order by Fecha_Consulta desc",cnn);            
+                                                where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion+"order by Fecha_Consulta desc",cnn);            
 
            
 
@@ -66,7 +67,7 @@ where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion+"order by Fecha_Consul
             string cada="";
             string observaciones = "";
             string cadena = "<table >";
-            cadena = cadena +"<tr><td>" + NombreCompleto + "</td></tr>";
+            cadena = cadena + "<tr><td><strong>" + NombreCompleto + "</strong></td></tr>";
             cadena = cadena + "<tr><td><br></Td></tr>";
 
             foreach (DataRow row in ds.Rows)
@@ -81,43 +82,43 @@ where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion+"order by Fecha_Consul
                 cantidad = Convert.ToString(row["Cantidad_ConsultaReceta"]);
                 cada = Convert.ToString(row["Cada_ConsultaReceta"]);
                 observaciones = Convert.ToString(row["Observaciones_ConsultaAnalisisClinico"]);
-                cadena = cadena + "<Tr><td>---FechaConsulta---</Td>";                
+                cadena = cadena + "<Tr><td><font color=Blue><strong>FechaConsulta:</strong></font></Td>";                
                 cadena = cadena + "<td>" + fechaconsulta + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Subjetivo---</Td></Tr>";                
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Subjetivo:</strong><font></Td></Tr>";                
                 cadena = cadena + "<Tr><td>" + subjetivo + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Objetivo---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Objetivo:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>"+objetivo+"</Td></Tr>";
                 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>--Diagnostico</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Diagnostico:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + diagnostico + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Analisis---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Analisis:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + analisis + "</Td></Tr>";
                 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Plan---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Plan:</strong></Font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + plan + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Medicamento---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Medicamento:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + medicamento + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>--Cantidad</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Cantidad:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + cantidad + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Cada cuando---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Cada cuando:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + cada + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Observaciones---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Observaciones:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + observaciones + "</Td></Tr>";
 
                 cadena = cadena + "<Tr><td>___________________________________________________________</Td></Tr>";

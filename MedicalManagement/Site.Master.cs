@@ -15,7 +15,10 @@ namespace MedicalManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblUsuario.Text = Convert.ToString(Session["NombreUsuario"]);            
+            if (!IsPostBack)
+            {
+                lblUsuario.Text = Convert.ToString(Session["NombreUsuario"]);
+            }
         }
 
         protected void menuclick(object sender, MenuEventArgs e)

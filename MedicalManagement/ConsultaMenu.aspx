@@ -8,9 +8,10 @@
 
     <table>
     <tr>
-        <td>
-        Paciente:<asp:Label ID="lblNombre" runat="server" Text=""></asp:Label>
-        </td>
+        <td><font color="blue"><strong>
+        Paciente:</strong><asp:Label ID="lblNombre" runat="server" Text=""></asp:Label>
+
+        </font></td>
         
     </tr>
 
@@ -41,6 +42,9 @@
     </tr>
     <tr>
             <td>
+                <asp:Button ID="btnantecedentes" runat="server" Text="antecedentes" 
+                    onclick="btnantecedentes_Click" />
+
             </td>
     </tr>
     <tr>
@@ -69,8 +73,7 @@
     <tr>
         
         <td>
-            <asp:LinkButton ID="LinkDiagnostico" runat="server"  onclick="LinkDiagnostico_Click"
-                Visible="False" >Diagnostico</asp:LinkButton>
+            
         </td>
     </tr>
            
@@ -92,10 +95,13 @@
                      SortExpression="Id_Diagnostico" />
 
                      <asp:BoundField DataField="Descripcion_Diagnostico" HeaderText="Activo              " 
-                     SortExpression="Descripcion_Diagnostico" />
+                     SortExpression="Descripcion_Diagnostico" />                     
 
                      <asp:BoundField DataField="Estatus_ConsultaDiagnostico" HeaderText="Estatus.ConsultaDiagnostico" 
                      SortExpression="Estatus_ConsultaDiagnostico" />
+
+                     <asp:BoundField DataField="Fecha_ConsultaDiagnostico" HeaderText="Fecha" 
+                     SortExpression="Fecha_Diagnostico" />
 
                     
 
@@ -124,10 +130,13 @@
                      SortExpression="Id_Diagnostico" />
 
                      <asp:BoundField DataField="Descripcion_Diagnostico" HeaderText="Inactivo            " 
-                     SortExpression="Descripcion_Diagnostico" />
+                     SortExpression="Descripcion_Diagnostico" />                     
 
                      <asp:BoundField DataField="Estatus_ConsultaDiagnostico" HeaderText="Estatus.ConsultaDiagnostico" 
                      SortExpression="Estatus_ConsultaDiagnostico" />
+
+                     <asp:BoundField DataField="Fecha_ConsultaDiagnostico" HeaderText="Fecha" 
+                     SortExpression="Fecha_Diagnostico0" />
 
                      <asp:TemplateField  HeaderText="Elegir">
                      <HeaderTemplate>
@@ -149,14 +158,29 @@
                 <asp:TextBox ID="txtnotasrelevantes" runat="server" Width="120" TextMode="MultiLine" Rows="6"  ></asp:TextBox>
             </td>
         </tr>
-        
+         <tr>
+            <td>
+                <asp:GridView ID="GridViewProcedimientos" runat="server" AutoGenerateColumns="false">
+                    <Columns>
+            
+                        <asp:BoundField DataField="Id_Procedimiento" HeaderText="Id.Procedimiento" 
+                        SortExpression="Id_Procedimiento" />
+
+                        <asp:BoundField DataField="Fecha_Consulta" HeaderText="Fecha de Consultas" 
+                        SortExpression="Fecha_Consulta" />
+                    </Columns>
+
+                </asp:GridView>
+            </td>
+            
+    </tr>
                
     </table>    
     </div>    
 </div>
 <p>_____
     </p>
-<p>Historial</p>
+<p><strong><font color="blue">Historial</font></strong></p>
 <p>_____</p>
 <div id="consultasanteriores" runat="server"  >
     

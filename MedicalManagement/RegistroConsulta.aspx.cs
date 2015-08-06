@@ -51,10 +51,12 @@ namespace MedicalManagement
                         txtfechaconsulta.Text = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                         txtsubjetivo.Text = reader.GetString(reader.GetOrdinal("Subjetivo_Consulta")).ToString().Trim();
                         txtobjetivo.Text = reader.GetString(reader.GetOrdinal("Objetivo_Consulta")).ToString().Trim();
-                        txtdiagnostico.Text = reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim();
+                        //txtdiagnostico.Text = reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim(); Se elimino el txtdiagnostico
                         txtanalisis.Text = reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
                         txtplan.Text = reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
-                        
+                        LinkDiagnostico.Visible = true;
+
+                        Session["Fechaconsulta"] = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                     }
                 }
                 else
@@ -64,20 +66,20 @@ namespace MedicalManagement
                     fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
                     txtfechaconsulta.Text = fecha_actual;
                     txtnombre.Text = NombreCompleto;
-
+                    Session["Fechaconsulta"] = fecha_actual;
                 }
                 cnn.Close();
                 
             }
         }
 
-        protected void btnRegresar_FichaIdentificacion_Click(object sender, EventArgs e)
+        protected void btnRegresar_Consulta_Click(object sender, EventArgs e)
         {
             Response.Redirect("Consultas.aspx");
         }
                 
 
-        protected void btnGuardar_FichaIdentificacion_Click(object sender, EventArgs e)
+        protected void btnGuardar_Consulta_Click(object sender, EventArgs e)
         {
             GrabarConsulta();
             Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
@@ -97,6 +99,7 @@ namespace MedicalManagement
             DateTime hoy = DateTime.Now;
             fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
             DateTime fecha_actual1 = Convert.ToDateTime(fecha_actual);
+            Session["Fechaconsulta"] = fecha_actual;
 
             Id_Consulta =Convert.ToInt32( Session["Id_Consultas"]);
                         
@@ -119,7 +122,7 @@ namespace MedicalManagement
             
             comando.Parameters.AddWithValue("@Subjetivo_Consulta", txtsubjetivo.Text.Trim());
             comando.Parameters.AddWithValue("@Objetivo_Consulta", txtobjetivo.Text.Trim());
-            comando.Parameters.AddWithValue("@Diagnostico_Consulta", txtdiagnostico.Text.Trim());
+            //comando.Parameters.AddWithValue("@Diagnostico_Consulta", txtdiagnostico.Text.Trim());  Se elimino el txtdiagnostico
             comando.Parameters.AddWithValue("@Analisis_Consulta", txtanalisis.Text.Trim());
             comando.Parameters.AddWithValue("@Plan_Consulta", txtplan.Text.Trim());
 
@@ -163,23 +166,31 @@ namespace MedicalManagement
             */
             cnn.Close();
 
-            Response.Redirect("ConsultasMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
+            LinkDiagnostico.Visible = true;
+            Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
             
         }
 
-        protected void btnreceta_Click(object sender, EventArgs e)
+        protected void LinkDiagnostico_Click(object sender, EventArgs e)
         {
             Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
-
-            Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "");
-            //Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + "");
+            fecha_actual = Convert.ToString(Session["Fechaconsulta"]);
+            Response.Redirect("ConsultaDiagnostico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "&Fecha_Consulta="+fecha_actual+"");
         }
 
-        protected void btnanalisis_Click(object sender, EventArgs e)
-        {
-            Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
-            Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
-        }
+        //protected void btnreceta_Click(object sender, EventArgs e)
+        //{
+        //    Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
+
+        //    Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "");
+        //    //Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + "");
+        //}
+
+        //protected void btnanalisis_Click(object sender, EventArgs e)
+        //{
+        //    Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
+        //    Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
+        //}
 
               
     }

@@ -31,6 +31,7 @@ namespace MedicalManagement
                 GridViewActivos();
                 GridViewInactivos();
                 GridViewFechaConsulta();
+                llenartxtantecedentesnotas();
                                 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -43,8 +44,7 @@ namespace MedicalManagement
 
                 if (Id_Consulta != 0)
                 {                    
-                    LinkReceta.Visible = true; 
-                    LinkDiagnostico.Visible = true;
+                    LinkReceta.Visible = true;                     
                     llenarconsultas();
                 }
                 else
@@ -53,7 +53,7 @@ namespace MedicalManagement
             }
         }
 
-        //////////////////////////////////////////////////////////////////////////////////
+        /////////////LINKS DEL MENU CONSULTAS/////////////////////////////////////////////////////////////////////
         
         protected void LinkNotaClinica_Click(object sender, EventArgs e)
         {
@@ -67,12 +67,8 @@ namespace MedicalManagement
             Response.Redirect("ConsultaReceta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
         }
 
-        protected void LinkDiagnostico_Click(object sender, EventArgs e)
-        {
-            Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
-            Response.Redirect("ConsultaDiagnostico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto +"&Id_Consulta="+Id_Consulta+"");
-        }
-
+       
+        ////////////CHECKBOXS DEL MENU CONSULTAS///////////////////////////////////////////
         protected void CheckBoxactivo_CheckedChanged(object sender, EventArgs e)
         {
             //int numeroidperfil = Convert.ToInt32(ddl_Id_Perfil.SelectedValue);
@@ -166,7 +162,7 @@ namespace MedicalManagement
             cnn = new SqlConnection(conexion);
             cnn.Open();
 
-            foreach (GridViewRow row in GridViewDiagnosticosActivos.Rows)
+            foreach (GridViewRow row in GridViewDiagnosticosActivos.Rows )
             {
 
                 int valorIddiagnostico = Convert.ToInt32(row.Cells[0].Text);
@@ -239,7 +235,7 @@ namespace MedicalManagement
         //////////////////////////////////////////////////////////////////////////////////
        
 
-        public void llenarconsultas()
+        public void llenarconsultas()//REFERENTE AL HISTORIAL DEL PACIENTE
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
@@ -282,8 +278,8 @@ namespace MedicalManagement
             string cada = "";
             string observaciones = "";
 
-            string cadena = "<table >";            
-            cadena = cadena + "<tr><td>" + NombreCompleto + "</td></tr>";
+            string cadena = "<table >";
+            cadena = cadena + "<tr><td><strong>" + NombreCompleto + "</strong></td></tr>";
             cadena = cadena + "<tr><td><br></Td></tr>";
 
             foreach (DataRow row in ds.Rows)
@@ -299,43 +295,43 @@ namespace MedicalManagement
                 cada = Convert.ToString(row["Cada_ConsultaReceta"]);
                 observaciones = Convert.ToString(row["Observaciones_ConsultaDiagnostico"]);
 
-                cadena = cadena + "<Tr><td>---FechaConsulta---</Td></tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>FechaConsulta:</strong></font></Td></tr>";
                 cadena = cadena + "<tr><td>" + fechaconsulta + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Subjetivo---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Subjetivo:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + subjetivo + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Objetivo---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Objetivo:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + objetivo + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>--Diagnostico</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Diagnostico:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + diagnostico + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Analisis---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Analisis:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + analisis + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Plan---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Plan:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + plan + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Medicamento---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Medicamento:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + medicamento + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>--Cantidad</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Cantidad:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + cantidad + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Cada cuando---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Cada cuando:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + cada + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td>---Observaciones---</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Observaciones:</strong></font></Td></Tr>";
                 cadena = cadena + "<Tr><td>" + observaciones + "</Td></Tr>";
 
                 cadena = cadena + "<Tr><td>___________________________________________________________</Td></Tr>";
@@ -455,6 +451,10 @@ namespace MedicalManagement
 //            cnn.Close();
 //        }
 
+
+        
+         ////////////GRIDS DEL MENU CONSULTAS///////////////////////////////////////////
+        
         public void GridViewActivos()
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -465,7 +465,7 @@ namespace MedicalManagement
             cnn.Open();
                                     
 
-            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
+            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
                                where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=1";
 
@@ -517,7 +517,7 @@ namespace MedicalManagement
 
             cnn.Open();
 
-            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
+            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
                                where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=0";
 
@@ -590,6 +590,79 @@ namespace MedicalManagement
             cnn.Close();
         }
 
-            
+        
+        /////////////////////////////////////////////////////////////////////
+
+        protected void llenartxtantecedentesnotas()
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+            SqlCommand comando = new SqlCommand("SP_Registro_ConsultasAntecedentesNotas", cnn);
+            comando.Parameters.AddWithValue("@Opcion", "ENCONTRAR");
+            comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
+            comando.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader = comando.ExecuteReader();
+
+            if (reader.Read())
+            {
+                txtantecedentes.Text = reader.GetString(reader.GetOrdinal("Antecedentes_Relevantes")).ToString();
+                txtnotasrelevantes.Text = reader.GetString(reader.GetOrdinal("Notas_Relevantes")).ToString();
+            }
+
+            reader.Close();
+            comando = null;
+            cnn.Close();
+
+        }
+
+
+        protected void btnantecedentes_Click(object sender, EventArgs e)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+            SqlCommand comando = new SqlCommand(@"select count (Id_ConsultaAntecedentesNotas)from Tabla_Registro_ConsultaAntecedentesNotas
+                                                  where Id_FichaIdentificacion="+Id_FichaIdentificacion+"", cnn);
+
+
+            comando.CommandType = CommandType.Text;
+            int numerocount = Convert.ToInt32(comando.ExecuteScalar());
+            comando = null;
+            cnn.Close();
+
+            cnn.Open();
+            SqlCommand comando2 = new SqlCommand("SP_Registro_ConsultasAntecedentesNotas", cnn);
+            comando2.CommandType = CommandType.StoredProcedure;
+
+            if (numerocount ==0)
+            {
+                comando2.Parameters.AddWithValue("@Opcion", "INSERTAR");
+                comando2.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
+            }
+            else
+            {
+                comando2.Parameters.AddWithValue("@Opcion", "ACTUALIZAR");
+                comando2.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
+            }
+
+
+            comando2.Parameters.AddWithValue("@Antecedentes_Relevantes", txtantecedentes.Text.Trim());
+            comando2.Parameters.AddWithValue("@Notas_Relevantes", txtnotasrelevantes.Text.Trim());
+
+
+            SqlDataReader reader = comando2.ExecuteReader();
+            reader.Read();
+            comando2 = null;
+            cnn.Close();
+
+            llenartxtantecedentesnotas();
+        }  
     }
 }

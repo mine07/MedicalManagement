@@ -8,8 +8,8 @@
 
     <tr><td align="left"><font color="red">Configuración\Consulta\Agregar</font></td>
         <td align="right">
-        <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar EstadoCivil" onclick="btnGuardar_FichaIdentificacion_Click"></asp:ImageButton>&nbsp;
-        <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_FichaIdentificacion_Click"></asp:ImageButton>
+        <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar EstadoCivil" onclick="btnGuardar_Consulta_Click"></asp:ImageButton>&nbsp;
+        <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_Consulta_Click"></asp:ImageButton>
         </td>
     </tr>
 </table>
@@ -28,6 +28,10 @@
         <td>
             <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC" 
                 ReadOnly="True" ></asp:TextBox>
+        </td>
+        <td>
+            <asp:LinkButton ID="LinkDiagnostico" runat="server"  onclick="LinkDiagnostico_Click"
+                Visible="False" >Diagnostico</asp:LinkButton>
         </td>
     </tr>
     <tr>
@@ -67,8 +71,9 @@
         </td>
     </tr>
     <tr>
+        
         <td>
-            <asp:TextBox ID="txtdiagnostico" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
+            
         </td>
     </tr>
     <tr>
