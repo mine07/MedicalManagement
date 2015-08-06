@@ -10,16 +10,16 @@
 namespace MedicalManagement {
     
     
-    public partial class ConsultaDiagnostico {
+    public partial class ConsultaProcedimiento {
         
         /// <summary>
-        /// txtBuscar_Diagnostico control.
+        /// txtBuscar_Procedimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Diagnostico;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Procedimiento;
         
         /// <summary>
         /// ImageRegresar control.
@@ -49,12 +49,12 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.ImageButton ImageGrabar;
         
         /// <summary>
-        /// Grid_Diagnostico control.
+        /// Grid_Procedimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Grid_Diagnostico;
+        protected global::System.Web.UI.WebControls.GridView Grid_Procedimiento;
     }
 }

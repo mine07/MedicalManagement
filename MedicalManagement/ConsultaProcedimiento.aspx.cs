@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace MedicalManagement
 {
-    public partial class ConsultaDiagnostico : System.Web.UI.Page
+    public partial class ConsultaProcedimiento : System.Web.UI.Page
     {
         int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
@@ -21,9 +21,10 @@ namespace MedicalManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
-                LlenarGridDiagnostico();
+                LlenarGridProcedimiento();
             }
 
         }
@@ -33,7 +34,7 @@ namespace MedicalManagement
 
         protected void txt_OnTextChanged(object sender, EventArgs e)
         {
-            LlenarGridDiagnostico();
+            LlenarGridProcedimiento();
         }
 
 
@@ -43,22 +44,22 @@ namespace MedicalManagement
 
         }
 
-        protected void Grid_Diagnostico_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void Grid_Procedimiento_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            LlenarGridDiagnostico();
+            LlenarGridProcedimiento();
 
-            Grid_Diagnostico.PageIndex = e.NewPageIndex;
-            Grid_Diagnostico.DataBind();
+            Grid_Procedimiento.PageIndex = e.NewPageIndex;
+            Grid_Procedimiento.DataBind();
         }
 
-        protected void Grid_Diagnostico_PageIndexChanged(object sender, EventArgs e)//EventArgs
+        protected void Grid_Procedimiento_PageIndexChanged(object sender, EventArgs e)//EventArgs
         {
 
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        protected void btnRegresar_ConsultasDiagnostico_Click(object sender, ImageClickEventArgs e)
+        protected void btnRegresar_ConsultasProcedimiento_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Consultas.aspx");
         }
@@ -68,7 +69,7 @@ namespace MedicalManagement
         }
 
 
-        protected void btnGuardar_ConsultaDiagnostico_Click(object sender, EventArgs e)
+        protected void btnGuardar_ConsultaProcedimiento_Click(object sender, EventArgs e)
         {
             CheckBox chseleccionado;
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -79,7 +80,7 @@ namespace MedicalManagement
 
             bool varlorcheck;
 
-            foreach (GridViewRow row in Grid_Diagnostico.Rows)
+            foreach (GridViewRow row in Grid_Procedimiento.Rows)
             {
                 varlorcheck = false;
                 chseleccionado = row.FindControl("CheckBoxelegir") as CheckBox;
@@ -87,12 +88,12 @@ namespace MedicalManagement
                 if (chseleccionado.Checked == true)
                 {
                     varlorcheck = true;
-                    SqlCommand comando = new SqlCommand("SP_Registro_ConsultasDiagnostico", cnn);
+                    SqlCommand comando = new SqlCommand("SP_Registro_ConsultasProcedimiento", cnn);
                     comando.CommandType = CommandType.StoredProcedure;
 
-                    int numeroiddiagnostico = Convert.ToInt32(row.Cells[0].Text);
+                    int numeroidprocedimiento = Convert.ToInt32(row.Cells[0].Text);
 
-                    SqlCommand comando2 = new SqlCommand("select Id_consulta,Id_Diagnostico,Id_FichaIdentificacion,Fecha_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico", cnn);
+                    SqlCommand comando2 = new SqlCommand("select Id_consulta,Id_Procedimiento,Id_FichaIdentificacion,Fecha_ConsultaProcedimiento from Tabla_Registro_ConsultaProcedimiento", cnn);
                     DataTable datos = new DataTable();
                     SqlDataAdapter adaptador = new SqlDataAdapter(comando2);
                     adaptador.Fill(datos);
@@ -101,11 +102,11 @@ namespace MedicalManagement
                     {
                         comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
                         comando.Parameters.AddWithValue("@Id_Consulta", Id_Consulta);
-                        comando.Parameters.AddWithValue("@Id_Diagnostico", numeroiddiagnostico);
+                        comando.Parameters.AddWithValue("@Id_Procedimiento", numeroidprocedimiento);
                         comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
-                        comando.Parameters.AddWithValue("@Estatus_ConsultaDiagnostico", varlorcheck);
-                        comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico",Convert.ToDateTime( Fecha_Consulta));
-                        
+                        comando.Parameters.AddWithValue("@Estatus_ConsultaProcedimiento", varlorcheck);
+                        comando.Parameters.AddWithValue("@Fecha_ConsultaProcedimiento", Convert.ToDateTime(Fecha_Consulta));
+
                         comando.ExecuteNonQuery();
                     }
                     else
@@ -117,23 +118,23 @@ namespace MedicalManagement
                             int valoridconsulta = 0;
                             valoridconsulta = Convert.ToInt32(dtRow["Id_consulta"]);
 
-                            int valoriddiagnostico = 0;
-                            valoriddiagnostico = Convert.ToInt32(dtRow["Id_Diagnostico"]);
+                            int valoridprocedimiento = 0;
+                            valoridprocedimiento = Convert.ToInt32(dtRow["Id_Procedimiento"]);
 
                             int valoridfichaidentificacion = 0;
                             valoridfichaidentificacion = Convert.ToInt32(dtRow["Id_FichaIdentificacion"]);
 
                             insertar = true;
 
-                            if ((valoriddiagnostico == numeroiddiagnostico) && (valoridconsulta == Id_Consulta) && (valoridfichaidentificacion == Id_FichaIdentificacion))
+                            if ((valoridprocedimiento == numeroidprocedimiento) && (valoridconsulta == Id_Consulta) && (valoridfichaidentificacion == Id_FichaIdentificacion))
                             {
                                 insertar = false;
                                 comando.Parameters.AddWithValue("@Opcion", "ACTUALIZAR");
                                 comando.Parameters.AddWithValue("@Id_Consulta", Id_Consulta);
-                                comando.Parameters.AddWithValue("@Id_Diagnostico", numeroiddiagnostico);
+                                comando.Parameters.AddWithValue("@Id_Procedimiento", numeroidprocedimiento);
                                 comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
-                                comando.Parameters.AddWithValue("@Estatus_diagnostico", varlorcheck);
-                                comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico", Convert.ToDateTime(Fecha_Consulta));
+                                comando.Parameters.AddWithValue("@Estatus_procedimiento", varlorcheck);
+                                comando.Parameters.AddWithValue("@Fecha_ConsultaProcedimiento", Convert.ToDateTime(Fecha_Consulta));
                                 comando.ExecuteNonQuery();
                                 break;
                             }
@@ -149,10 +150,10 @@ namespace MedicalManagement
 
                             comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
                             comando.Parameters.AddWithValue("@Id_Consulta", Id_Consulta);
-                            comando.Parameters.AddWithValue("@Id_Diagnostico", numeroiddiagnostico);
+                            comando.Parameters.AddWithValue("@Id_Procedimiento", numeroidprocedimiento);
                             comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
-                            comando.Parameters.AddWithValue("@Estatus_ConsultaDiagnostico", varlorcheck);
-                            comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico", Convert.ToDateTime(Fecha_Consulta));
+                            comando.Parameters.AddWithValue("@Estatus_ConsultaProcedimiento", varlorcheck);
+                            comando.Parameters.AddWithValue("@Fecha_ConsultaProcedimiento", Convert.ToDateTime(Fecha_Consulta));
                             comando.ExecuteNonQuery();
                         }
                     }
@@ -170,7 +171,7 @@ namespace MedicalManagement
 
         }
 
-        public void LlenarGridDiagnostico()
+        public void LlenarGridProcedimiento()
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
@@ -179,16 +180,16 @@ namespace MedicalManagement
 
             cnn.Open();
 
-            SqlCommand comando = new SqlCommand("SP_Catalogo_Diagnostico", cnn);
+            SqlCommand comando = new SqlCommand("SP_Catalogo_Procedimiento", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-            if (txtBuscar_Diagnostico.Text == "")
+            if (txtBuscar_Procedimiento.Text == "")
             {
-                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", "");
+                comando.Parameters.AddWithValue("@Descripcion_Procedimiento", "");
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", txtBuscar_Diagnostico.Text);
+                comando.Parameters.AddWithValue("@Descripcion_Procedimiento", txtBuscar_Procedimiento.Text);
             }
             /*
                 0  Id_Empresa
@@ -198,11 +199,11 @@ namespace MedicalManagement
             SqlDataAdapter da = new SqlDataAdapter(comando);
             DataTable ds = new DataTable();
             da.Fill(ds);
-            Grid_Diagnostico.Visible = true;
-            Grid_Diagnostico.DataSource = ds;
-            Grid_Diagnostico.Columns[0].Visible = true;
-            Grid_Diagnostico.Columns[1].Visible = true;
-            Grid_Diagnostico.DataBind();
+            Grid_Procedimiento.Visible = true;
+            Grid_Procedimiento.DataSource = ds;
+            Grid_Procedimiento.Columns[0].Visible = true;
+            Grid_Procedimiento.Columns[1].Visible = true;
+            Grid_Procedimiento.DataBind();
             ds.Dispose();
             da.Dispose();
         }

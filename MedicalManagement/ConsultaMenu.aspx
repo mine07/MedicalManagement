@@ -166,8 +166,11 @@
                         <asp:BoundField DataField="Id_Procedimiento" HeaderText="Id.Procedimiento" 
                         SortExpression="Id_Procedimiento" />
 
-                        <asp:BoundField DataField="Fecha_Consulta" HeaderText="Fecha de Consultas" 
-                        SortExpression="Fecha_Consulta" />
+                        <asp:BoundField DataField="Descripcion_Procedimiento" HeaderText="Procedimiento" 
+                        SortExpression="Descripcion_Procedimiento" />
+
+                        <asp:BoundField DataField="Fecha_ConsultaProcedimiento" HeaderText="Fecha Procedimientos" 
+                        SortExpression="Fecha_ConsultaProcedimiento" />
                     </Columns>
 
                 </asp:GridView>

@@ -33,6 +33,10 @@
             <asp:LinkButton ID="LinkDiagnostico" runat="server"  onclick="LinkDiagnostico_Click"
                 Visible="False" >Diagnostico</asp:LinkButton>
         </td>
+        <td>
+            <asp:LinkButton ID="LinkProcedimiento" runat="server"  onclick="LinkProcedimiento_Click"
+                Visible="False" >Procedimiento</asp:LinkButton>
+        </td>
     </tr>
     <tr>
         <td>

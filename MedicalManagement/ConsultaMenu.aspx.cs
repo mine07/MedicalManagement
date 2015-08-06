@@ -32,6 +32,7 @@ namespace MedicalManagement
                 GridViewInactivos();
                 GridViewFechaConsulta();
                 llenartxtantecedentesnotas();
+                GridViewProcedimiento();
                                 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -558,7 +559,7 @@ namespace MedicalManagement
             cnn.Close();
         }
 
-        public void GridViewFechaConsulta()
+        public void GridViewProcedimiento()
         {
 
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -568,8 +569,40 @@ namespace MedicalManagement
 
             cnn.Open();
 
+            string sentencia = @"select a.Id_Procedimiento, b.Descripcion_Procedimiento,a.Fecha_ConsultaProcedimiento,a.Estatus_ConsultaProcedimiento from Tabla_Registro_ConsultaProcedimiento a join Tabla_Catalogo_Procedimiento b 
+                               on a.Id_Procedimiento=b.Id_Procedimiento
+                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaProcedimiento=1";
+
+            SqlCommand comando = new SqlCommand(sentencia, cnn);
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            DataTable ds = new DataTable();
+            da.Fill(ds);
+            GridViewProcedimientos.Visible = true;
+            GridViewProcedimientos.DataSource = ds;
+
+            GridViewProcedimientos.Columns[0].Visible = true;
+
+            GridViewProcedimientos.DataBind();         
+
+            GridViewProcedimientos.Columns[0].Visible = false;
+            
+            ds.Dispose();
+            da.Dispose();
+            cnn.Close();
+        }
+
+        public void GridViewFechaConsulta()
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+
             string sentencia = @"select Id_Consulta,Fecha_Consulta from Tabla_Registro_Consulta
-                               where Id_FichaIdentificacion="+Id_FichaIdentificacion+"";
+                               where Id_FichaIdentificacion=" + Id_FichaIdentificacion + "";
 
             SqlCommand comando = new SqlCommand(sentencia, cnn);
 
@@ -584,12 +617,12 @@ namespace MedicalManagement
             GridViewFecha.DataBind();
 
             GridViewFecha.Columns[0].Visible = false;
-            
+
             ds.Dispose();
             da.Dispose();
             cnn.Close();
-        }
 
+        }
         
         /////////////////////////////////////////////////////////////////////
 
