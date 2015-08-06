@@ -166,6 +166,9 @@ namespace MedicalManagement
             Grid_FichaIdentificacion.Columns[0].Visible = true;
             Grid_FichaIdentificacion.Columns[1].Visible = true;
             Grid_FichaIdentificacion.DataBind();
+            Grid_FichaIdentificacion.HeaderRow.Cells[0].Attributes["data-class"] = "expand";
+            Grid_FichaIdentificacion.HeaderRow.Cells[2].Attributes["data-hide"] = "phone";
+            Grid_FichaIdentificacion.HeaderRow.TableSection = TableRowSection.TableHeader;
             ds.Dispose();
             da.Dispose();
             cnn.Close();
