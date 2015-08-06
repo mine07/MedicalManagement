@@ -162,7 +162,7 @@ namespace MedicalManagement
             cnn = new SqlConnection(conexion);
             cnn.Open();
 
-            foreach (GridViewRow row in GridViewDiagnosticosActivos.Rows)
+            foreach (GridViewRow row in GridViewDiagnosticosActivos.Rows )
             {
 
                 int valorIddiagnostico = Convert.ToInt32(row.Cells[0].Text);

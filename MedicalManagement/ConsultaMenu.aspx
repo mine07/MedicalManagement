@@ -158,7 +158,22 @@
                 <asp:TextBox ID="txtnotasrelevantes" runat="server" Width="120" TextMode="MultiLine" Rows="6"  ></asp:TextBox>
             </td>
         </tr>
-        
+         <tr>
+            <td>
+                <asp:GridView ID="GridViewProcedimientos" runat="server" AutoGenerateColumns="false">
+                    <Columns>
+            
+                        <asp:BoundField DataField="Id_Procedimiento" HeaderText="Id.Procedimiento" 
+                        SortExpression="Id_Procedimiento" />
+
+                        <asp:BoundField DataField="Fecha_Consulta" HeaderText="Fecha de Consultas" 
+                        SortExpression="Fecha_Consulta" />
+                    </Columns>
+
+                </asp:GridView>
+            </td>
+            
+    </tr>
                
     </table>    
     </div>    
