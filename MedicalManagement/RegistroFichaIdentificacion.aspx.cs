@@ -105,30 +105,19 @@ namespace MedicalManagement
                     if (reader.Read())
                     {
                         txtClaveIdent.Text = reader.GetInt32(reader.GetOrdinal("Id_FichaIdentificacion")).ToString();
-                        txtFechaIdent.Text = reader.GetDateTime(reader.GetOrdinal("Fecha_FichaIdentificacion")).ToString("dd/MM/yyyy");
+                        txtFechaIdent.Value = reader.GetDateTime(reader.GetOrdinal("Fecha_FichaIdentificacion")).ToString("dd/MM/yyyy");
                         string fechaficha = reader.GetDateTime(reader.GetOrdinal("Fecha_FichaIdentificacion")).ToShortDateString();
                         DateTime fechaficha1 = Convert.ToDateTime(fechaficha);
-                        DropDownDia.SelectedValue = fechaficha1.Day.ToString();
-                        DropDownMes.SelectedIndex = (fechaficha1.Month)-1;
-                        DropDownAnio.SelectedValue = fechaficha1.Year.ToString();
-
                         txtNombreIdent.Text = reader.GetString(reader.GetOrdinal("Nombre_FichaIdentificacion")).Trim();
                         txtApPaIdent.Text = reader.GetString(reader.GetOrdinal("ApPaterno_FichaIdentificacion")).Trim();
                         txtApMaIdent.Text = reader.GetString(reader.GetOrdinal("ApMaterno_FichaIdentificacion")).Trim();
                         txtLugarNaIdent.Text = reader.GetString(reader.GetOrdinal("LugarNacimiento_FichaIdentificacion")).Trim();
-                        txtFechaNaIdent.Text = reader.GetDateTime(reader.GetOrdinal("FechaNacimiento_FichaIdentificacion")).ToString("dd/MM/yyyy");
+                        txtFechaNaIdent.Value = reader.GetDateTime(reader.GetOrdinal("FechaNacimiento_FichaIdentificacion")).ToString("dd/MM/yyyy");
                         string fechanaci = reader.GetDateTime(reader.GetOrdinal("FechaNacimiento_FichaIdentificacion")).ToShortDateString();
                         DateTime fechanaci1 = Convert.ToDateTime(fechanaci);
-                        DropDownDiaNa.SelectedValue = fechanaci1.Day.ToString();
-                        DropDownMesNa.SelectedIndex = (fechanaci1.Month)-1;
-                        DropDownAnioNa.SelectedValue = fechanaci1.Year.ToString();
-
-                        txtFechaPriIdent.Text = reader.GetDateTime(reader.GetOrdinal("FechaPrimeraVisita_FichaIdentificacion")).ToString("dd/MM/yyyy");
+                        txtFechaPriIdent.Value = reader.GetDateTime(reader.GetOrdinal("FechaPrimeraVisita_FichaIdentificacion")).ToString("dd/MM/yyyy");
                         string fechaPrimera = reader.GetDateTime(reader.GetOrdinal("FechaPrimeraVisita_FichaIdentificacion")).ToShortDateString();
                         DateTime fechaPrimera1 = Convert.ToDateTime(fechaPrimera);
-                        DropDownDiaPri.SelectedValue = fechaPrimera1.Day.ToString();
-                        DropDownMesPri.SelectedIndex = (fechaPrimera1.Month)-1;
-                        DropDownAnioPri.SelectedValue = fechaPrimera1.Year.ToString();
 
                         txtTelCaIdent.Text = reader.GetString(reader.GetOrdinal("TelefonoCasa_FichaIdentificacion")).Trim();
                         txtTelOfiIdent.Text = reader.GetString(reader.GetOrdinal("TelefonoOfinica_FichaIdentificacion")).Trim();
@@ -377,9 +366,7 @@ namespace MedicalManagement
                 comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
             }
 
-            string fechafichaidentificacion = Convert.ToDateTime(DropDownAnio.SelectedValue + "/" + DropDownMes.SelectedValue + "/" + DropDownDia.SelectedValue).ToString("yyyy/MM/dd");
-            string fechanacimiento = Convert.ToDateTime(DropDownAnioNa.SelectedValue + "/" + DropDownMesNa.SelectedValue + "/" + DropDownDiaNa.SelectedValue).ToString("yyyy/MM/dd");
-            string fechaprimeravista = Convert.ToDateTime(DropDownAnioPri.SelectedValue + "/" + DropDownMesPri.SelectedValue + "/" + DropDownDiaPri.SelectedValue).ToString("yyyy/MM/dd");
+            string fechafichaidentificacion = txtFechaIdent.Value;
 
 
 
@@ -390,8 +377,8 @@ namespace MedicalManagement
             comando.Parameters.AddWithValue("@ApPaterno_FichaIdentificacion", txtApPaIdent.Text.Trim());
             comando.Parameters.AddWithValue("@ApMaterno_FichaIdentificacion", txtApMaIdent.Text.Trim());
             comando.Parameters.AddWithValue("@LugarNacimiento_FichaIdentificacion", txtLugarNaIdent.Text.Trim());
-            comando.Parameters.AddWithValue("@FechaNacimiento_FichaIdentificacion", Convert.ToDateTime(fechanacimiento).ToString("yyyy/MM/dd"));
-            comando.Parameters.AddWithValue("@FechaPrimeraVisita_FichaIdentificacion", Convert.ToDateTime(fechaprimeravista).ToString("yyyy/MM/dd"));
+            comando.Parameters.AddWithValue("@FechaNacimiento_FichaIdentificacion", Convert.ToDateTime(txtFechaNaIdent.Value).ToString("yyyy/MM/dd"));
+            comando.Parameters.AddWithValue("@FechaPrimeraVisita_FichaIdentificacion", Convert.ToDateTime(txtFechaPriIdent.Value).ToString("yyyy/MM/dd"));
 
             comando.Parameters.AddWithValue("@TelefonoCasa_FichaIdentificacion", txtTelCaIdent.Text.Trim());
             comando.Parameters.AddWithValue("@TelefonoOfinica_FichaIdentificacion", txtTelOfiIdent.Text.Trim());
@@ -695,8 +682,7 @@ namespace MedicalManagement
                 listadia.Add(i);
                 
             }
-            DropDownDia.DataSource=listadia;
-            DropDownDia.DataBind();
+          
 
             //var listames = new List<Int32>();
             //for (int i = 1; i <= 12; i++)
@@ -716,30 +702,7 @@ namespace MedicalManagement
 
             DateTime hoy = DateTime.Today;
 
-            DropDownAnio.DataSource = listaanio;
-            DropDownAnio.DataBind();            
-            DropDownAnio.SelectedValue = hoy.Year.ToString();
-            DropDownMes.SelectedIndex = (hoy.Month)-1;            
-            DropDownDia.SelectedValue = hoy.Day.ToString();
-
-            DropDownDiaNa.DataSource = listadia;
-            //DropDownMesNa.DataSource = listames;
-            DropDownAnioNa.DataSource = listaanio;
-            DropDownAnioNa.SelectedValue = hoy.Year.ToString();
-            DropDownDiaNa.DataBind();
-            //DropDownMesNa.DataBind();
-            DropDownAnioNa.DataBind();
-
-            DropDownDiaPri.DataSource = listadia;
-            //DropDownMesPri.DataSource = listames;
-            DropDownAnioPri.SelectedValue = hoy.Year.ToString();
-            DropDownMesPri.SelectedIndex = (hoy.Month) - 1;
-            DropDownDiaPri.SelectedValue = hoy.Day.ToString();
-            DropDownAnioPri.DataSource = listaanio;
-            
-            DropDownDiaPri.DataBind();
-            //DropDownMesPri.DataBind();
-            DropDownAnioPri.DataBind();
+           
             
         }
 

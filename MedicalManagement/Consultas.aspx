@@ -12,7 +12,6 @@
             <asp:ImageButton ID="AgregarAgenda" runat="Server" ImageUrl="IMG/agregar.png" OnClick="btnAgregarAgenda_Click" ToolTip = "Agregar Agenda"></asp:ImageButton>                
             </td>
         </tr>
-
         <tr>
             <td>
                 <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="OnSelectionChanged"></asp:Calendar>

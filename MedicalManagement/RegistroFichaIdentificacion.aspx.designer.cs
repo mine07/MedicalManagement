@@ -55,34 +55,7 @@ namespace MedicalManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaIdent;
-        
-        /// <summary>
-        /// DropDownDia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownDia;
-        
-        /// <summary>
-        /// DropDownMes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownMes;
-        
-        /// <summary>
-        /// DropDownAnio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownAnio;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaIdent;
         
         /// <summary>
         /// txtNombreIdent control.
@@ -127,34 +100,7 @@ namespace MedicalManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaNaIdent;
-        
-        /// <summary>
-        /// DropDownDiaNa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownDiaNa;
-        
-        /// <summary>
-        /// DropDownMesNa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownMesNa;
-        
-        /// <summary>
-        /// DropDownAnioNa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownAnioNa;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaNaIdent;
         
         /// <summary>
         /// txtFechaPriIdent control.
@@ -163,34 +109,7 @@ namespace MedicalManagement {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaPriIdent;
-        
-        /// <summary>
-        /// DropDownDiaPri control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownDiaPri;
-        
-        /// <summary>
-        /// DropDownMesPri control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownMesPri;
-        
-        /// <summary>
-        /// DropDownAnioPri control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownAnioPri;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaPriIdent;
         
         /// <summary>
         /// Alerta2 control.
