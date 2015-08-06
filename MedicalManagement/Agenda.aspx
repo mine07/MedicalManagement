@@ -29,9 +29,7 @@
             
                  <asp:RadioButton ID="rdbnormal" runat="server" Text="Normal" AutoPostBack="true"
                      OnCheckedChanged="rdbnormal_CheckedChanged" />
-
                 &nbsp;&nbsp;
-               
                  <asp:RadioButton ID="rdburgente" runat="server" Text="Urgente" AutoPostBack="true"
                      OnCheckedChanged="rdburgente_CheckedChanged" />
             </td>

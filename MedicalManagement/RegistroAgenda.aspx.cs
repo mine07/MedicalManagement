@@ -79,7 +79,7 @@ namespace MedicalManagement
             {
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
-                txtaltaagenda.Text = fecha_actual;
+                txtaltaagenda.Value = fecha_actual;
 
                 DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
                 DropDownMesComienzo.SelectedIndex = (hoy.Month)-1;                
@@ -109,11 +109,10 @@ namespace MedicalManagement
                     SqlDataReader reader = comando.ExecuteReader();
                     if (reader.Read())
                     {
-                        txtaltaagenda.Text = reader.GetDateTime(reader.GetOrdinal("Fecha_Agenda")).ToString();
+                        txtaltaagenda.Value = reader.GetDateTime(reader.GetOrdinal("Fecha_Agenda")).ToString();
                         
                         DateTime inicioagenda = reader.GetDateTime(reader.GetOrdinal("Inicio_Agenda"));
-                        
-                        
+                        txtDiaComienzo.Value = inicioagenda.ToString();
                         DropDownDiaComienzo.SelectedValue = inicioagenda.Day.ToString();
                         DropDownMesComienzo.SelectedIndex = (inicioagenda.Month)-1;                        
                         DropDownAnioComienzo.SelectedValue = inicioagenda.Year.ToString();
@@ -137,7 +136,7 @@ namespace MedicalManagement
                         DropDownEstadoCitas.SelectedValue = reader.GetString(reader.GetOrdinal("EstadoCitas_Agenda")).ToString().Trim();
 
                         DateTime finagenda = reader.GetDateTime(reader.GetOrdinal("Fin_Agenda"));
-                        
+                        txtDiaFinal.Value = finagenda.ToString();
                         DropDownDiaFinal.SelectedValue = finagenda.Day.ToString();
                         DropDownMesFinal.SelectedIndex = (finagenda.Month)-1;
                         DropDownAnioFinal.SelectedValue = finagenda.Year.ToString();
@@ -214,10 +213,10 @@ namespace MedicalManagement
             }
 
             
-            string fechaAgendaComienzo = Convert.ToDateTime(DropDownAnioComienzo.SelectedValue + "/" + DropDownMesComienzo.SelectedValue + "/" + DropDownDiaComienzo.SelectedValue+" "+DropDownHoraComienzo.SelectedValue+":"+DropDownMinutoComienzo.SelectedValue+" "+DropDowndiatardeComienzo.SelectedValue).ToString("yyyy/MM/dd hh:mm tt");
-            DateTime fechaAgendaComienzo1 = Convert.ToDateTime(fechaAgendaComienzo);
-            string fechaAgendaFinal = Convert.ToDateTime(DropDownAnioFinal.SelectedValue + "/" + DropDownMesFinal.SelectedValue + "/" + DropDownDiaFinal.SelectedValue+" "+DropDownHoraFinal.SelectedValue+":"+DropDownMinutoFinal.SelectedValue+" "+DropDowndiatardeFinal.SelectedValue).ToString("yyyy/MM/dd hh:mm tt");
-            DateTime fechaAgendaFinal1 =Convert.ToDateTime(fechaAgendaFinal);
+            //string fechaAgendaComienzo = DropDownAnioComienzo.SelectedValue + "/" + DropDownMesComienzo.SelectedValue + "/" + DropDownDiaComienzo.SelectedValue+" "+DropDownHoraComienzo.SelectedValue+":"+DropDownMinutoComienzo.SelectedValue+" "+DropDowndiatardeComienzo.SelectedValue;
+            DateTime fechaAgendaComienzo1 = Convert.ToDateTime(txtDiaComienzo.Value);
+            //string fechaAgendaFinal = Convert.ToDateTime(DropDownAnioFinal.SelectedValue + "/" + DropDownMesFinal.SelectedValue + "/" + DropDownDiaFinal.SelectedValue+" "+DropDownHoraFinal.SelectedValue+":"+DropDownMinutoFinal.SelectedValue+" "+DropDowndiatardeFinal.SelectedValue).ToString("yyyy/MM/dd hh:mm tt");
+            DateTime fechaAgendaFinal1 =Convert.ToDateTime(txtDiaFinal.Value);
             string prioridad = "";
 
             if (rbNormal.Checked == true)

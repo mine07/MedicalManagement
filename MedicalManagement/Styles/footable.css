@@ -1,0 +1,84 @@
+﻿.footable > thead > tr > th, .footable > thead > tr > td {
+    position: relative;
+}
+
+.footable {
+    border-spacing: 0;
+    width: 100%;
+    border: solid #ccc 1px;
+    font-family: 'trebuchet MS', 'Lucida sans', Arial;
+    font-size: 14px;
+    color: #444;
+}
+
+.footableB {
+    border: 0;
+}
+
+.footableB > tbody > tr > td, .footable > thead > tr > th {
+    border-left: 0px solid #ccc !important;
+    border-top: 0px solid #ccc !important;
+    border-bottom:1px solid #ccc;
+}
+
+.footableB > tbody > tr > td:hover, .footableB > thead > tr:hover {
+    background:white;
+}
+    .footable.breakpoint > tbody > tr > td.expand {
+        background: url('https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/css/img/plus.png') no-repeat 5px center;
+        padding-left: 40px;
+    }
+
+    .footable.breakpoint > tbody > tr.footable-detail-show > td.expand {
+        background: url('https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/css/img/minus.png') no-repeat 5px center;
+    }
+
+    .footable.breakpoint > tbody > tr.footable-row-detail {
+        background: #eee;
+    }
+
+    .footable-row-detail-inner {
+        text-align:center;
+    }
+
+    .footable-row-detail-inner div{
+        margin:5px;
+    }
+
+    .footable > tbody > tr:hover {
+        background: #fbf8e9;
+    }
+
+    .footableB > tbody > tr:hover {
+        background: #eee;
+    }
+
+    .footable.breakpoint > tbody > tr:hover:not(.footable-row-detail) {
+        cursor: pointer;
+    }
+
+    .footable > tbody > tr > td, .footable > thead > tr > th {
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .footable > thead > tr > th, .footable > thead > tr > td {
+        background-color: #3A4F63;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#3A4F63, #3e566e));
+        background-image: -webkit-linear-gradient(top, #3A4F63, #3e566e);
+        background-image: -moz-linear-gradient(top, #3A4F63, #3e566e);
+        background-image: -ms-linear-gradient(top, #3A4F63, #3e566e);
+        background-image: -o-linear-gradient(top, #3A4F63, #3e566e);
+        background-image: linear-gradient(to bottom, #3A4F63, #3e566e);
+        border-top: 1px solid #ccc;
+    }
+
+    .footable tr:hover {
+        background:#e8e8e8 !important;
+    }
+
+    .footable > tbody img {
+        vertical-align: middle;
+    }
