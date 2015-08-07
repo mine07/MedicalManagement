@@ -50,7 +50,7 @@ Temporary Items
 .aps
 .suo
 .cache
-
+.config
 /build/
 .suo
 .user
