@@ -33,12 +33,7 @@ namespace MedicalManagement
                 GridViewFechaConsulta();
                 llenartxtantecedentesnotas();
                 GridViewProcedimiento();
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
                 llenarconsultas();
-                                
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
                 cnn.Open();
