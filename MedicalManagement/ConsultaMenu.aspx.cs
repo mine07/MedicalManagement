@@ -33,7 +33,10 @@ namespace MedicalManagement
                 GridViewFechaConsulta();
                 llenartxtantecedentesnotas();
                 GridViewProcedimiento();
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
                 llenarconsultas();
                                 
                 SqlConnection cnn;
