@@ -33,6 +33,7 @@ namespace MedicalManagement
                 GridViewFechaConsulta();
                 llenartxtantecedentesnotas();
                 GridViewProcedimiento();
+                llenarconsultas();
                                 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -46,7 +47,6 @@ namespace MedicalManagement
                 if (Id_Consulta != 0)
                 {                    
                     LinkReceta.Visible = true;                     
-                    llenarconsultas();
                 }
                 else
                 {                    

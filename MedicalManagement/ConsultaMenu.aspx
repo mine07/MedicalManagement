@@ -6,26 +6,18 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <table>
-    <tr>
-        <td><font color="blue"><strong>
+    <div>
+        <font color="blue"><strong>
         Paciente:</strong><asp:Label ID="lblNombre" runat="server" Text=""></asp:Label>
 
-        </font></td>
+        </font>
         
-    </tr>
-
-</table>
-<p>_____</p>
-
-<div id="contenedor">
-<div id="seccion1">
-
-<table >
+    </div>
+    <div>
+        <p>_____</p>
+    </div>    
+    <div>
     
-    
-    <tr>
-            <td>
                 <asp:GridView ID="GridViewFecha" runat="server" AutoGenerateColumns="false">
                     <Columns>
             
@@ -37,54 +29,35 @@
                     </Columns>
 
                 </asp:GridView>
-            </td>
-            
-    </tr>
-    <tr>
-            <td>
+     </div>      
+        <div>
                 <asp:Button ID="btnantecedentes" runat="server" Text="antecedentes" 
                     onclick="btnantecedentes_Click" />
 
-            </td>
-    </tr>
-    <tr>
-        <td>
+        </div>   
+        <div>
             <asp:TextBox ID="txtantecedentes" runat="server" Width="120" TextMode="MultiLine" Rows="6"  ></asp:TextBox>
-        </td>
-    </tr>
-    <tr>
-            <td>
-            </td>
-    </tr>
-    <tr >
-        <td>
+        </div>   
+        <div>
+        
+        </div>
+        <div>
             <asp:LinkButton ID="LinkNotaClinica" runat="server" 
             onclick="LinkNotaClinica_Click">Nota Clinica</asp:LinkButton>
-        </td>
-    </tr>
+        </div>
     
-    <tr>
-        
-        <td>
+        <div>
             <asp:LinkButton ID="LinkReceta" runat="server" onclick="LinkReceta_Click" 
                 Visible="False">Receta Medica</asp:LinkButton>
-    </td>
-    </tr>
-    <tr>
-        
-        <td>
-            
-        </td>
-    </tr>
+        </div>
+        <div>
+    
+        </div>
            
-</table>
-</div>
-<div id="seccion2">
 
-    <table>
-        
-        <tr>
-            <td>
+
+
+        <div>
                 <asp:GridView ID="GridViewDiagnosticosActivos" runat="server" 
                     AutoGenerateColumns="False" >
                     
@@ -116,13 +89,10 @@
 
                 </Columns>
                 </asp:GridView>
-            </td>
-         </tr>
+          </div>  
         
    
-    <tr>
-            <td>
-           
+          <div>
                     <asp:GridView ID="GridViewDiagnosticosInactivos" runat="server" AutoGenerateColumns="False">
                     <Columns>
             
@@ -150,16 +120,11 @@
                     </Columns>
 
                     </asp:GridView>
-            </td>               
-            
-        </tr>
-        <tr>
-            <td>
+        </div>  
+        <div>
                 <asp:TextBox ID="txtnotasrelevantes" runat="server" Width="120" TextMode="MultiLine" Rows="6"  ></asp:TextBox>
-            </td>
-        </tr>
-         <tr>
-            <td>
+        </div>
+        <div>
                 <asp:GridView ID="GridViewProcedimientos" runat="server" AutoGenerateColumns="false">
                     <Columns>
             
@@ -174,19 +139,17 @@
                     </Columns>
 
                 </asp:GridView>
-            </td>
-            
-    </tr>
+        </div>
                
-    </table>    
-    </div>    
-</div>
+      
+        <div>
 <p>_____
     </p>
 <p><strong><font color="blue">Historial</font></strong></p>
 <p>_____</p>
-<div id="consultasanteriores" runat="server"  >
+        </div>
+        <div id="consultasanteriores" runat="server"  >
     
-   </div> 
+        </div> 
 
 </asp:Content>
