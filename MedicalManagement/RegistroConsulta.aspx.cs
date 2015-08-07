@@ -55,6 +55,7 @@ namespace MedicalManagement
                         txtanalisis.Text = reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
                         txtplan.Text = reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
                         LinkDiagnostico.Visible = true;
+                        LinkProcedimiento.Visible = true;
 
                         Session["Fechaconsulta"] = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                     }
@@ -176,6 +177,13 @@ namespace MedicalManagement
             Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
             fecha_actual = Convert.ToString(Session["Fechaconsulta"]);
             Response.Redirect("ConsultaDiagnostico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "&Fecha_Consulta="+fecha_actual+"");
+        }
+
+        protected void LinkProcedimiento_Click(object sender, EventArgs e)
+        {
+            Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
+            fecha_actual = Convert.ToString(Session["Fechaconsulta"]);
+            Response.Redirect("ConsultaProcedimiento.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "&Fecha_Consulta=" + fecha_actual + "");
         }
 
         //protected void btnreceta_Click(object sender, EventArgs e)

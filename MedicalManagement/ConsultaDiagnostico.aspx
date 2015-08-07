@@ -7,11 +7,11 @@
 
 <table width="100%">
         <tr>
-            <td align="left"colspan="6">Diagnostico&nbsp;:&nbsp;<asp:TextBox ID="txtBuscar_Sexo" runat="server" Columns="85" OnTextChanged="txt_OnTextChanged"  AutoPostBack=true></asp:TextBox>&nbsp;&nbsp;
-            <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_ConsultasRecetas_Click"></asp:ImageButton>
+            <td align="left"colspan="6">Diagnostico&nbsp;:&nbsp;<asp:TextBox ID="txtBuscar_Diagnostico" runat="server" Columns="85" OnTextChanged="txt_OnTextChanged"  AutoPostBack=true></asp:TextBox>&nbsp;&nbsp;
+            <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_ConsultasDiagnostico_Click"></asp:ImageButton>
             &nbsp;&nbsp;
             <asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip = "Buscar Perfil"></asp:ImageButton>&nbsp;&nbsp;&nbsp;            
-            <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar AnalisisClinico" onclick="btnGuardar_ConsultaAnalisisClinico_Click"></asp:ImageButton>
+            <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar Diagnostico" onclick="btnGuardar_ConsultaDiagnostico_Click"></asp:ImageButton>
             
             </td>
         </tr>

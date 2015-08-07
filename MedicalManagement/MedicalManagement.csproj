@@ -79,6 +79,7 @@
     <Content Include="Categoria.aspx" />
     <Content Include="ConsultaDiagnostico.aspx" />
     <Content Include="ConsultaMenu.aspx" />
+    <Content Include="ConsultaProcedimiento.aspx" />
     <Content Include="ConsultaReceta.aspx" />
     <Content Include="Consultas.aspx" />
     <Content Include="ConsultasAnteriores.aspx" />
@@ -256,6 +257,13 @@
     </Compile>
     <Compile Include="ConsultaMenu.aspx.designer.cs">
       <DependentUpon>ConsultaMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaProcedimiento.aspx.cs">
+      <DependentUpon>ConsultaProcedimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaProcedimiento.aspx.designer.cs">
+      <DependentUpon>ConsultaProcedimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConsultaReceta.aspx.cs">
       <DependentUpon>ConsultaReceta.aspx</DependentUpon>

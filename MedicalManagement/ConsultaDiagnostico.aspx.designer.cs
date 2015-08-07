@@ -13,13 +13,13 @@ namespace MedicalManagement {
     public partial class ConsultaDiagnostico {
         
         /// <summary>
-        /// txtBuscar_Sexo control.
+        /// txtBuscar_Diagnostico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Sexo;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Diagnostico;
         
         /// <summary>
         /// ImageRegresar control.

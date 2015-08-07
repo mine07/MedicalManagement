@@ -58,7 +58,7 @@ namespace MedicalManagement
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        protected void btnRegresar_ConsultasRecetas_Click(object sender, ImageClickEventArgs e)
+        protected void btnRegresar_ConsultasDiagnostico_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Consultas.aspx");
         }
@@ -68,7 +68,7 @@ namespace MedicalManagement
         }
 
 
-        protected void btnGuardar_ConsultaAnalisisClinico_Click(object sender, EventArgs e)
+        protected void btnGuardar_ConsultaDiagnostico_Click(object sender, EventArgs e)
         {
             CheckBox chseleccionado;
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -182,13 +182,13 @@ namespace MedicalManagement
             SqlCommand comando = new SqlCommand("SP_Catalogo_Diagnostico", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-            if (txtBuscar_Sexo.Text == "")
+            if (txtBuscar_Diagnostico.Text == "")
             {
                 comando.Parameters.AddWithValue("@Descripcion_Diagnostico", "");
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", txtBuscar_Sexo.Text);
+                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", txtBuscar_Diagnostico.Text);
             }
             /*
                 0  Id_Empresa
