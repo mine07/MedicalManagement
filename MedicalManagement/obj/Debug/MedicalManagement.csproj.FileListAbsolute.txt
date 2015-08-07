@@ -3,6 +3,5 @@ C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalMa
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\bin\Newtonsoft.Json.dll
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\bin\Newtonsoft.Json.xml
-C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.csprojResolveAssemblyReference.cache
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
