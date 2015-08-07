@@ -111,21 +111,6 @@
     ]]>
     </script>
     <style>
-        .badge-calendar {
-            background: WHITE;
-            color: #1d86c8;
-            border-radius: 0px;
-            font-size: 9px;
-            border-bottom-left-radius: 4px;
-            padding: 3px 5px;
-        }
-
-        .contCalendar {
-            padding: 5px;
-        }
-
-            .contCalendar .active {
-                padding: 2px;
-            }
+      
     </style>
 </asp:Content>

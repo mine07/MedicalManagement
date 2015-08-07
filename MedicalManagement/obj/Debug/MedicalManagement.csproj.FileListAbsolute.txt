@@ -1,49 +1,8 @@
-C:\files\proyectos\MedicalManagement\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\files\proyectos\MedicalManagement\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\files\proyectos\MedicalManagement\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\files\proyectos\MedicalManagement\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement2\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement2\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement2\MedicalManagement\MedicalManagement\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement2\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement2\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement\MedicalManagement\MedicalManagement\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagement\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagementrestaurado\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagementrestaurado\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagementrestaurado\MedicalManagement\MedicalManagement\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagementrestaurado\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentes_MedicalManagementrestaurado\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalusuario\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalusuario\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalusuario\MedicalManagement\MedicalManagement\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalusuario\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalusuario\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalconlogin\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalconlogin\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalconlogin\MedicalManagement\MedicalManagement\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalconlogin\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\nuevoproyecto\Fuentesmedicalconlogin\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\adrian.castro\Desktop\MedicalManagement\MedicalManagement\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\adrian.castro\Desktop\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\adrian.castro\Desktop\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll.config
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
-<<<<<<< HEAD
-=======
-C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.csprojResolveAssemblyReference.cache
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\bin\Newtonsoft.Json.dll
 C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\bin\Newtonsoft.Json.xml
->>>>>>> origin/prueba
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
+C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.csprojResolveAssemblyReference.cache
+C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
+C:\Users\Cesar\Documents\Visual Studio 2013\Projects\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb

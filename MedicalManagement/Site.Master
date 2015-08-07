@@ -113,11 +113,10 @@
                                 <asp:MenuItem NavigateUrl="~/Aseguradora.aspx" Text="Aseguradora" Value="Aseguradora"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/ReferidoPor.aspx" Text="Referido por" Value="Referido por"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Categoria.aspx" Text="Categoria" Value="Categoria"></asp:MenuItem>
-<<<<<<< HEAD
+
                                 <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="Diagnostico" Value="Diagnostico"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Procedimiento.aspx" Text="Procedimiento" Value="Procedimiento"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Medicamento.aspx" Text="Medicamento" Value="Medicamento"></asp:MenuItem>
-=======
 
                                 <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="AnalisisClinico" Value="AnalisisClinico"></asp:MenuItem>
 
@@ -125,7 +124,6 @@
                                 <asp:MenuItem NavigateUrl="~/Procedimiento.aspx" Text="Procedimiento" Value="Procedimiento"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Medicamento.aspx" Text="Medicamento" Value="Medicamento"></asp:MenuItem>
 
->>>>>>> origin/prueba
                             </asp:MenuItem>
                             <asp:MenuItem Text="Configuración" Value="Configuración">
                                 <asp:MenuItem NavigateUrl="~/Empresas.aspx" Text="Empresas" Value="Empresas.aspx"></asp:MenuItem>
