@@ -44,27 +44,27 @@ Temporary Items
 
 
 #otros
-*.vcproj.
-*.user
-*.ncb
-*.aps
-*.suo
-*.cache
+.vcproj.
+.user
+.ncb
+.aps
+.suo
+.cache
 
 /build/
-*.suo
-*.user
+.suo
+.user
 _ReSharper.*/
-*.sdf
+.sdf
 bin/
 obj/
 Debug/
 Release/
-*.opensdf
-*.tlog
-*.log
+.opensdf
+.tlog
+.log
 TestResult.xml
-*.VisualState.xml
+.VisualState.xml
 Version.cs
 Version.h
 Version.cpp
