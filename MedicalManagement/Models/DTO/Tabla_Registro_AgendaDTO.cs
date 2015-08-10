@@ -18,6 +18,8 @@ namespace MedicalManagement.Models.DTO
         public int Id_FichaIdentificacion { get; set; }
         public int Id_Categoria { get; set; }
         public bool Estatus_Agenda { get; set; }
+        public string InicioCita { get; set; }
+        public string FinCita { get; set; }
         public Tabla_Catalogo_FichaIdentificacionDTO UsuarioDTO { get; set; }
     }
 }

@@ -34,7 +34,6 @@ namespace MedicalManagement
                 llenartxtantecedentesnotas();
                 GridViewProcedimiento();
                 llenarconsultas();
-                                
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
                 cnn.Open();

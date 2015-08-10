@@ -60,6 +60,13 @@ group by CAST(FLOOR(CAST(Fecha_Agenda as FLOAT)) as DateTime)";
                     Id_FichaIdentificacion = y.Id_FichaIdentificacion
                 };
                 y.UsuarioDTO = h.GetAllParametized(query, y.UsuarioDTO)[0];
+                y.FinCita = y.Fin_Agenda.ToShortTimeString();
+                y.InicioCita = y.Inicio_Agenda.ToShortTimeString();
+                
+                    y.UsuarioDTO.Nombre_FichaIdentificacion = y.UsuarioDTO.Nombre_FichaIdentificacion.Trim();
+                    y.UsuarioDTO.ApMaterno_FichaIdentificacion = y.UsuarioDTO.ApMaterno_FichaIdentificacion.Trim();
+                    y.UsuarioDTO.ApPaterno_FichaIdentificacion = y.UsuarioDTO.ApPaterno_FichaIdentificacion.Trim();
+                
             }
             string json = JsonConvert.SerializeObject(lAgendas);
             return json;
@@ -73,11 +80,20 @@ group by CAST(FLOOR(CAST(Fecha_Agenda as FLOAT)) as DateTime)";
             {
                 Nombre_FichaIdentificacion = "%" + search + "%",
                 ApPaterno_FichaIdentificacion = "%" + search + "%",
-                ApMaterno_FichaIdentificacion = "%" + search + "%"
+                ApMaterno_FichaIdentificacion = "%" + search + "%",
+                TelefonoCasa_FichaIdentificacion = "%" + search + "%",
+                TelefonoMovil_FichaIdentificacion = "%" + search + "%",
+                TelefonoOfinica_FichaIdentificacion= "%" + search + "%"
             };
-            string query = "Select * from Tabla_Catalogo_FichaIdentificacion where Nombre_FichaIdentificacion like @Nombre_FichaIdentificacion OR ApPaterno_FichaIdentificacion like @ApPaterno_FichaIdentificacion OR ApMaterno_FichaIdentificacion like @ApMaterno_FichaIdentificacion";
+            string query = "Select * from Tabla_Catalogo_FichaIdentificacion where Nombre_FichaIdentificacion like @Nombre_FichaIdentificacion OR ApPaterno_FichaIdentificacion like @ApPaterno_FichaIdentificacion OR ApMaterno_FichaIdentificacion like @ApMaterno_FichaIdentificacion OR TelefonoCasa_FichaIdentificacion  LIKE @TelefonoCasa_FichaIdentificacion OR TelefonoMovil_FichaIdentificacion  LIKE @TelefonoMovil_FichaIdentificacion  OR TelefonoOfinica_FichaIdentificacion LIKE @TelefonoOfinica_FichaIdentificacion";
             Helpers h = new Helpers();
             var lFichas = h.GetAllParametized(query, oneItem);
+            foreach (var y in lFichas)
+            {
+                y.Nombre_FichaIdentificacion = y.Nombre_FichaIdentificacion.Trim();
+                y.ApMaterno_FichaIdentificacion = y.ApMaterno_FichaIdentificacion.Trim();
+                y.ApPaterno_FichaIdentificacion = y.ApPaterno_FichaIdentificacion.Trim();
+            }
             string json = JsonConvert.SerializeObject(lFichas);
             return json;
         }

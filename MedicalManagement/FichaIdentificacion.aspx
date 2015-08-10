@@ -14,7 +14,6 @@
             <asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip="Buscar Perfil"></asp:ImageButton>&nbsp;
             <asp:ImageButton ID="AgregarFichaIdentiificacion" runat="Server" ImageUrl="IMG/agregar.png" OnClick="btnAgregarFichaIdentificacion_Click" ToolTip="Agregar Ficha Identificacion"></asp:ImageButton>
                 </div>
-
             </td>
         </tr>
     </table>
@@ -28,7 +27,7 @@
         </div>
     </div>
     <hr />
-    <div class="container-fluid  searchContainer">
+    <div class="container-fluid  searchContainer border-top1-bottom5">
     </div>
     <hr />
     <asp:GridView ID="Grid_FichaIdentificacion" runat="server" AutoGenerateColumns="False"
@@ -47,35 +46,6 @@
                 ShowHeader="True" Text="Eliminar" ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="btn btn-primary" />
         </Columns>
     </asp:GridView>
-
-
-
-    <style>
-        .center {
-            margin: auto;
-        }
-
-        .searchContainer {
-            background: white;
-            border: 1px solid #337ab7;
-            box-shadow: 0px 5px 0px #337ab7;
-            display: none;
-            padding: 20px;
-            position: relative;
-            z-index: 500;
-        }
-
-            .searchContainer hr {
-                border-top-color: #74abdb;
-            }
-
-            .searchContainer a {
-                color: white;
-            }
-           .white {
-               color:white;
-           }
-    </style>
     <script>
         $("[id$=txtBuscar_FichaIdentificacion]").keyup(function (e) {
             var nombre = $("[id$=txtBuscar_FichaIdentificacion]").val();
@@ -122,6 +92,8 @@
         </div>
         <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
         <a class="btn btn-primary" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
+        <a class="btn btn-primary" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>
+        
         </div>
         </div>
         <hr/>

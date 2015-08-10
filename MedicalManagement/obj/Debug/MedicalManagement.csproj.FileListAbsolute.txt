@@ -1,6 +1,0 @@
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\bin\MedicalManagement.dll
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\bin\MedicalManagement.pdb
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\bin\Newtonsoft.Json.dll
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\bin\Newtonsoft.Json.xml
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.dll
-C:\Users\adrian.castro\Documents\GitHub\MedicalManagement\MedicalManagement\obj\Debug\MedicalManagement.pdb
