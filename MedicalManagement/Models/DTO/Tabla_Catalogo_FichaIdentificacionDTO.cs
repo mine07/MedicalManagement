@@ -39,5 +39,6 @@ namespace MedicalManagement.Models.DTO
         public int Id_ReferidoPor { get; set; }
         public int Id_Aseguradora { get; set; }
         public bool Estatus_FichaIdentificacion { get; set; }
+        public string _NombreCompleto { get; set; }
     }
 }

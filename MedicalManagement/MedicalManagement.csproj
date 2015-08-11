@@ -375,6 +375,7 @@
     </Compile>
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AgendaDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Registro_ConsultaDTO.cs" />
     <Compile Include="Models\Extensiones.cs" />
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Modulos.aspx.cs">

@@ -149,6 +149,7 @@
         }
 
         $(document).ready(function () {
+            loadToday();
             $("#calendarAgenda").hide();
             $("#calendarConsulta").hide();
             var jsonObject;
@@ -202,6 +203,25 @@
             var month = $(this).data("month");
             var year = $(this).data("year");
             var getItem = { day: day, month: month, year: year };
+            $.ajax({
+                type: "POST",
+                url: "GetDates.asmx/GetAgendaItems",
+                data: JSON.stringify({ 'getDate': getItem }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    fillAgenda(data);
+                }
+            });
+        }
+
+        function loadToday() {
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            var getItem = { day: day, month: month, year: year };
+            console.log(getItem);
             $.ajax({
                 type: "POST",
                 url: "GetDates.asmx/GetAgendaItems",

@@ -79,7 +79,6 @@ namespace MedicalManagement
             {
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
-                txtaltaagenda.Value = fecha_actual;
 
                 DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
                 DropDownMesComienzo.SelectedIndex = (hoy.Month)-1;                
@@ -200,8 +199,8 @@ namespace MedicalManagement
 
             DateTime hoy = DateTime.Now;
             fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
-            DateTime fecha_actual1=Convert.ToDateTime(fecha_actual);
-
+            DateTime fecha_actual1=Convert.ToDateTime(txtaltaagenda.Value);
+            
             if (Id_Agenda == 0)
             {
                 comando.Parameters.AddWithValue("@Opcion", "INSERTAR");

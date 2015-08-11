@@ -84,7 +84,7 @@
             Agenda
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <input id="txtaltaagenda" type="text" class="datePicker form-control" runat="server" />
+                <input id="txtaltaagenda" type="text" class="datePicker form-control" disabled runat="server" />
             </div>
 
         </div>
@@ -211,8 +211,12 @@
         }
     </style>
     <script type="text/javascript">
+        $(document).ready(function() {
+            console.log(jQuery('.datePicker').val());
+        });
         jQuery('.datePicker').datetimepicker({
             format: 'd/m/Y H:i'
+            
         });
     </script>
 </asp:Content>

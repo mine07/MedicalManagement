@@ -21,5 +21,6 @@ namespace MedicalManagement.Models.DTO
         public string InicioCita { get; set; }
         public string FinCita { get; set; }
         public Tabla_Catalogo_FichaIdentificacionDTO UsuarioDTO { get; set; }
+        public string _estatus { get; set; }
     }
 }
