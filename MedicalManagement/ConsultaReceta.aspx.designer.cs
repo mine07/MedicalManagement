@@ -40,6 +40,15 @@ namespace MedicalManagement {
         protected global::System.Web.UI.HtmlControls.HtmlTableCell Alerta;
         
         /// <summary>
+        /// GridViewRecetaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewRecetaPrevia;
+        
+        /// <summary>
         /// txtmedicamento control.
         /// </summary>
         /// <remarks>
@@ -49,21 +58,39 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.TextBox txtmedicamento;
         
         /// <summary>
-        /// txtcantidad control.
+        /// txtdosis control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcantidad;
+        protected global::System.Web.UI.WebControls.TextBox txtdosis;
         
         /// <summary>
-        /// txtcadacuando control.
+        /// txtnotas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcadacuando;
+        protected global::System.Web.UI.WebControls.TextBox txtnotas;
+        
+        /// <summary>
+        /// LinkRecetaPrevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkRecetaPrevia;
+        
+        /// <summary>
+        /// Txtnombrerecetaprevia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Txtnombrerecetaprevia;
     }
 }
