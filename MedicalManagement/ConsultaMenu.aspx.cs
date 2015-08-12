@@ -247,13 +247,13 @@ namespace MedicalManagement
             DataTable dt = new DataTable();
             //SqlCommand comando = new SqlCommand("SP_Registro_Agenda", cnn);select * from Tabla_Registro_Consulta
             //comando.CommandType = CommandType.StoredProcedure;
-            SqlCommand comando = new SqlCommand(@"select distinct a.Fecha_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
+            SqlCommand comando = new SqlCommand(@"select distinct a.Fecha_Consulta, a.Id_FichaIdentificacion, a.Id_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
                    a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,b.Dosis_ConsultaReceta,
-                   b.Notas_ConsultaReceta,c.Observaciones_ConsultaDiagnostico 
-                   from Tabla_Registro_Consulta a left join Tabla_Registro_ConsultaReceta b
-                   on (a.Id_Consulta=b.Id_Consulta) left join Tabla_Registro_ConsultaDiagnostico c
-                   on (a.Id_Consulta=c.Id_Consulta)
-
+                   b.Notas_ConsultaReceta,c.Observaciones_ConsultaDiagnostico, d.Id_Agenda
+                   from Tabla_Registro_Consulta a
+                   left join Tabla_Registro_ConsultaReceta b on (a.Id_Consulta=b.Id_Consulta) 
+                   left join Tabla_Registro_ConsultaDiagnostico c on (a.Id_Consulta=c.Id_Consulta)
+                   left join Tabla_Registro_Agenda d on (a.Id_Agenda = d.Id_Agenda)
                    where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "order by Fecha_Consulta desc", cnn);
 
 
@@ -473,7 +473,8 @@ namespace MedicalManagement
             da.Fill(ds);
             GridViewDiagnosticosActivos.Visible = true;
             GridViewDiagnosticosActivos.DataSource = ds;
-
+            rptActivos.DataSource = ds;
+            rptActivos.DataBind();
             GridViewDiagnosticosActivos.Columns[0].Visible = true;
             GridViewDiagnosticosActivos.Columns[2].Visible = true;
             GridViewDiagnosticosActivos.DataBind();
@@ -525,7 +526,8 @@ namespace MedicalManagement
             da.Fill(ds);
             GridViewDiagnosticosInactivos.Visible = true;
             GridViewDiagnosticosInactivos.DataSource = ds;
-
+            rptInactivos.DataSource = ds;
+            rptInactivos.DataBind();
             GridViewDiagnosticosInactivos.Columns[0].Visible = true;
             GridViewDiagnosticosInactivos.Columns[2].Visible = true;
             GridViewDiagnosticosInactivos.DataBind();
@@ -582,7 +584,8 @@ namespace MedicalManagement
             GridViewProcedimientos.DataBind();         
 
             GridViewProcedimientos.Columns[0].Visible = false;
-            
+            rptProcedimientos.DataSource = ds;
+            rptProcedimientos.DataBind();
             ds.Dispose();
             da.Dispose();
             cnn.Close();

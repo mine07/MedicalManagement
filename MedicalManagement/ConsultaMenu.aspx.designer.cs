@@ -67,6 +67,33 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.LinkButton LinkReceta;
         
         /// <summary>
+        /// rptActivos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptActivos;
+        
+        /// <summary>
+        /// rptInactivos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptInactivos;
+        
+        /// <summary>
+        /// rptProcedimientos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptProcedimientos;
+        
+        /// <summary>
         /// GridViewDiagnosticosActivos control.
         /// </summary>
         /// <remarks>
