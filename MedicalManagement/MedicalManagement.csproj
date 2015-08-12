@@ -77,6 +77,7 @@
     <Content Include="Aseguradora.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="Categoria.aspx" />
+    <Content Include="ConsultaAnalisisClinico.aspx" />
     <Content Include="ConsultaDiagnostico.aspx" />
     <Content Include="ConsultaMenu.aspx" />
     <Content Include="ConsultaProcedimiento.aspx" />
@@ -243,6 +244,13 @@
     </Compile>
     <Compile Include="Categoria.aspx.designer.cs">
       <DependentUpon>Categoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaAnalisisClinico.aspx.cs">
+      <DependentUpon>ConsultaAnalisisClinico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaAnalisisClinico.aspx.designer.cs">
+      <DependentUpon>ConsultaAnalisisClinico.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConsultaDiagnostico.aspx.cs">
       <DependentUpon>ConsultaDiagnostico.aspx</DependentUpon>
