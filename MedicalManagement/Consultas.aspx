@@ -95,6 +95,8 @@
         </div>
     </div>
     <hr />
+    <div class="container-fluid searchContainer  border-top1-bottom5"></div>
+    <hr />
     <div class="row" id="calendarAgenda">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <div class="responsive-calendar  contCalendar">
@@ -126,6 +128,36 @@
         </div>
     </div>
     <script>
+
+        $("[id$=txtSearch]").keyup(function (e) {
+            var nombre = $("[id$=txtSearch]").val();
+            if (nombre !== "") {
+                $.ajax({
+                    type: "POST",
+                    url: "GetDates.asmx/GetFichas",
+                    data: "{'search':'" + nombre + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        appendData(data);
+                    }
+                });
+            } else {
+                $('.searchContainer').slideUp().empty();
+            }
+        });
+
+        function appendData(data) {
+            var jsonObject = $.parseJSON(data.d);
+            if (jsonObject[0] != null) {
+                $('.searchContainer').empty();
+                $('.searchContainer').append(
+                    $('#templateFichas').jqote(jsonObject, '*')
+                ).slideDown();
+            } else {
+                $('.searchContainer').slideUp();
+            }
+        }
         $(document).ready(function () {
             loadToday();
             var jsonObject;
@@ -156,7 +188,6 @@
 
         function fillAgenda(data) {
             var jsonObject = $.parseJSON(data.d);
-            console.log(jsonObject);
             $('#rowsContainer').empty().hide();
             $('#rowsContainer').fadeIn(200);
             $('#rowsContainer').append(
@@ -211,8 +242,15 @@
             });
         }
     </script>
+    <script type="text/x-jqote-template" id="templateEmpty">
+   <![CDATA[
+        <div class="row">        
+        <div class="col-xs-12 text-center">No hay consultas en esta fecha.</div>      
+        </div>
+    ]]>
+    </script>
     <script type="text/x-jqote-template" id="templateFichas">
-    <![CDATA[
+   <![CDATA[
         <div class="row">        
             <div class="col-xs-10 col-sm-4 col-md-3 col-lg-3">
                 <label><*= this.Id_FichaIdentificacion + " - " + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>                
@@ -225,8 +263,9 @@
         <label class="small-label"><*= "Movil - " + this.TelefonoMovil_FichaIdentificacion*></label>
         </div>
         <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
-        <a class="btn btn-primary" href='<*= "ConsultaMenu.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Menu Consulta</a>
-        <a class="btn btn-primary" href='<*= "ConsultasAnteriores.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Historial</a>
+        <a class="btn btn-primary" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
+        <a class="btn btn-primary" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>
+        
         </div>
         </div>
         <hr/>

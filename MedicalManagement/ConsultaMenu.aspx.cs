@@ -266,7 +266,6 @@ namespace MedicalManagement
             SqlDataAdapter da = new SqlDataAdapter(comando);
             DataTable ds = new DataTable();
             da.Fill(ds);
-
             DateTime fechaconsulta;
             string subjetivo = "";
             string objetivo = "";
@@ -281,7 +280,8 @@ namespace MedicalManagement
             string cadena = "<table >";
             cadena = cadena + "<tr><td><strong>" + NombreCompleto + "</strong></td></tr>";
             cadena = cadena + "<tr><td><br></Td></tr>";
-
+            rptAnteriores.DataSource = ds;
+            rptAnteriores.DataBind();
             foreach (DataRow row in ds.Rows)
             {
                 fechaconsulta = Convert.ToDateTime(row["Fecha_Consulta"]);
@@ -336,11 +336,8 @@ namespace MedicalManagement
 
                 cadena = cadena + "<Tr><td>___________________________________________________________</Td></Tr>";
             }
-
             cadena = cadena + "<table>";
-            
             consultasanteriores.InnerHtml = cadena;
-
             comando = null;
             cnn.Close();
 

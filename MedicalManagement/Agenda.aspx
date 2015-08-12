@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <table width="100%" class="hidden">
+    <table width="100%" class="">
         <tr>
             <td align="left" colspan="6">Agenda&nbsp;:&nbsp;<asp:TextBox ID="txtBuscar_FichaIdentificacion" runat="server" Columns="100" OnTextChanged="txt_OnTextChanged" AutoPostBack="true"></asp:TextBox>
                 &nbsp;
@@ -123,6 +123,8 @@
         </div>
     </div>
     <hr />
+    <div class="container-fluid searchContainer  border-top1-bottom5"></div>
+    <hr />
     <div class="row" id="calendarAgenda">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
             <div class="responsive-calendar  contCalendar">
@@ -154,7 +156,34 @@
         </div>
     </div>
     <script>
-
+        $("[id$=txtSearch]").keyup(function (e) {
+            var nombre = $("[id$=txtSearch]").val();
+            if (nombre !== "") {
+                $.ajax({
+                    type: "POST",
+                    url: "GetDates.asmx/GetFichas",
+                    data: "{'search':'" + nombre + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        appendData(data);
+                    }
+                });
+            } else {
+                $('.searchContainer').slideUp().empty();
+            }
+        });
+        function appendData(data) {
+            var jsonObject = $.parseJSON(data.d);
+            if (jsonObject[0] != null) {
+                $('.searchContainer').empty();
+                $('.searchContainer').append(
+                    $('#templateFichas').jqote(jsonObject, '*')
+                ).slideDown();
+            } else {
+                $('.searchContainer').slideUp();
+            }
+        }
         $(document).ready(function () {
             loadToday();
             var jsonObject;
@@ -185,7 +214,6 @@
 
         function fillAgenda(data) {
             var jsonObject = $.parseJSON(data.d);
-            console.log(jsonObject);
             $('#rowsContainer').empty().hide();
             $('#rowsContainer').fadeIn(200);
             $('#rowsContainer').append(
@@ -208,7 +236,6 @@
             var day = dateObj.getUTCDate();
             var year = dateObj.getUTCFullYear();
             var getItem = { day: day, month: month, year: year };
-            console.log(getItem);
             $.ajax({
                 type: "POST",
                 url: "GetDates.asmx/GetAgendaItems",
