@@ -16,9 +16,10 @@
         </td>
     </tr>
 </table>
-<table>
-    <tr>
-        <td>            
+
+<div class="container-fluid">
+    
+    <div class="row">            
             <asp:GridView ID="GridViewRecetaPrevia" runat="server" AutoGenerateColumns="false"
             onrowcommand="RowCommand">
 
@@ -35,52 +36,42 @@
                         
             </Columns>
             
-            </asp:GridView>
-            
-
-        </td>
-    </tr>
-    
-    <tr>
-        <td>
+            </asp:GridView>       
+    </div> 
+        <div class="row">
             Medicamento
-        </td>
-        <td> 
+        </div>    
+        <div class="row"> 
             <asp:TextBox ID="txtmedicamento" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>            
-        </td>  
+        </div>  
            
         
     
-    </tr>
-     <tr>
-        <td>
+    
+        <div class="row">
             Dosis
-        </td>
-        <td> 
+        </div>
+        <div class="row"> 
             <asp:TextBox ID="txtdosis" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
-        </td>       
+        </div>       
     
-    </tr>
-     <tr>
-        <td>
+    
+        <div class="row">
+        
             Notas 
-        </td>
-        <td> 
+        </div>
+        <div class="row"> 
             <asp:TextBox ID="txtnotas" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
-        </td>       
+        </div>       
     
-    </tr>
-    <tr>
-        <td>
+    
+    <div class="row">
+        
             <asp:LinkButton ID="LinkRecetaPrevia" runat="server" onclick="LinkRecetaPrevia_Click">Agregar de Receta Previa</asp:LinkButton>                    
-        </td>
-        <td>
+    </div>
+        <div class="row">
             <asp:TextBox ID="Txtnombrerecetaprevia" runat="server" Width="400"></asp:TextBox>
-        </td>  
-    </tr>
-    
-
-
-</table>
+        </div>  
+</div>   
 
 </asp:Content>
