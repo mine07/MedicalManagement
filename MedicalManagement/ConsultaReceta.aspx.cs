@@ -24,9 +24,9 @@ namespace MedicalManagement
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
             if (!IsPostBack)
-            {                           
-
-
+            {
+                MostrarGridRecetaPrevia();
+                
 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -49,8 +49,8 @@ namespace MedicalManagement
                     {   
                      
                         txtmedicamento.Text = reader.GetString(reader.GetOrdinal("Medicamento_ConsultaReceta")).ToString();
-                        txtcantidad.Text = reader.GetString(reader.GetOrdinal("Cantidad_ConsultaReceta")).ToString().Trim();
-                        txtcadacuando.Text = reader.GetString(reader.GetOrdinal("Cada_ConsultaReceta")).ToString().Trim();
+                        txtdosis.Text = reader.GetString(reader.GetOrdinal("Dosis_ConsultaReceta")).ToString().Trim();
+                        txtnotas.Text = reader.GetString(reader.GetOrdinal("Notas_ConsultaReceta")).ToString().Trim();
                                              
                     }
                 }
@@ -78,6 +78,109 @@ namespace MedicalManagement
             GrabarConsultaReceta();
         }
 
+        protected void LinkRecetaPrevia_Click(object sender, EventArgs e)
+        {
+            if ((Txtnombrerecetaprevia.Text.Trim()).Length == 0)
+            {
+                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Nombre de 'Receta Previa'</p>";
+            }
+            else
+            {
+                string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+                SqlConnection cnn;
+                cnn = new SqlConnection(conexion);
+                cnn.Open();
+
+                string nombrereceta = Txtnombrerecetaprevia.Text.Trim();
+                string medicamento = txtmedicamento.Text.Trim();
+                string dosis = txtdosis.Text.Trim();
+                string notas = txtnotas.Text.Trim();
+
+
+                SqlCommand comando = new SqlCommand(@"insert into Tabla_Registro_ConsultaRecetaPrevia (Nombre_ConsultaRecetaPrevia,Medicamento_ConsultaReceta,
+                                                Dosis_ConsultaReceta,Notas_ConsultaReceta,Estatus_ConsultaReceta)
+                                                values ('" + nombrereceta + "','" + medicamento + "','" + dosis + "','" + notas + "',"+1+") ", cnn);
+                comando.CommandType = CommandType.Text;
+                
+
+                SqlDataReader reader = comando.ExecuteReader();
+                reader.Read();
+                reader.Close();
+                comando = null;
+
+                Alerta.InnerHtml = "<p style=\"color: white;background-color: White\"></p>";
+                cnn.Close();
+                MostrarGridRecetaPrevia();
+            }
+        }
+
+        protected void RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Elegir")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                GridViewRow selectedRow = GridViewRecetaPrevia.Rows[index];
+
+                string Id_ConsultaRecetaPrevia= selectedRow.Cells[0].Text ;
+
+                string consulta = @"select Nombre_ConsultaRecetaPrevia,Medicamento_ConsultaReceta,Dosis_ConsultaReceta,Notas_ConsultaReceta
+                                  from Tabla_Registro_ConsultaRecetaPrevia
+                                  where Id_ConsultaRecetaPrevia=" + Id_ConsultaRecetaPrevia + "";
+                string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+                SqlConnection cnn;
+                cnn = new SqlConnection(conexion);
+                cnn.Open();
+
+                SqlCommand comando = new SqlCommand(consulta, cnn);
+                comando.CommandType = CommandType.Text;
+
+                SqlDataReader reader = comando.ExecuteReader();
+                if (reader.Read())
+                {
+                    txtmedicamento.Text = reader.GetString(reader.GetOrdinal("Medicamento_ConsultaReceta")).Trim();
+                    txtdosis.Text = reader.GetString(reader.GetOrdinal("Dosis_ConsultaReceta")).Trim();
+                    txtnotas.Text = reader.GetString(reader.GetOrdinal("Notas_ConsultaReceta")).Trim();
+                }
+
+                reader.Close();
+                comando = null;
+                cnn.Close();
+
+            }
+
+        }
+
+        public void MostrarGridRecetaPrevia()
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+
+            SqlCommand comando = new SqlCommand(@"select Id_ConsultaRecetaPrevia, Nombre_ConsultaRecetaPrevia from 
+                                                  Tabla_Registro_ConsultaRecetaPrevia", cnn);
+
+            comando.CommandType = CommandType.Text;
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            DataTable ds = new DataTable();
+            da.Fill(ds);
+            GridViewRecetaPrevia.Visible = true;
+            GridViewRecetaPrevia.DataSource = ds;
+            GridViewRecetaPrevia.Columns[0].Visible = true;            
+
+            GridViewRecetaPrevia.DataBind();
+
+            GridViewRecetaPrevia.Columns[0].Visible = false;
+            
+            ds.Dispose();
+            da.Dispose();
+            cnn.Close();
+        }
         
         public void GrabarConsultaReceta()
         {
@@ -113,8 +216,8 @@ namespace MedicalManagement
 
             comando.Parameters.AddWithValue("@Id_Consulta", Id_Consulta);
             comando.Parameters.AddWithValue("@Medicamento_ConsultaReceta", txtmedicamento.Text.Trim());
-            comando.Parameters.AddWithValue("@Cantidad_ConsultaReceta", txtcantidad.Text.Trim());
-            comando.Parameters.AddWithValue("@Cada_ConsultaReceta", txtcadacuando.Text.Trim());
+            comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());
+            comando.Parameters.AddWithValue("@Notas_ConsultaReceta", txtnotas.Text.Trim());
 
             
             SqlDataReader reader = comando.ExecuteReader();

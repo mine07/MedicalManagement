@@ -248,8 +248,8 @@ namespace MedicalManagement
             //SqlCommand comando = new SqlCommand("SP_Registro_Agenda", cnn);select * from Tabla_Registro_Consulta
             //comando.CommandType = CommandType.StoredProcedure;
             SqlCommand comando = new SqlCommand(@"select distinct a.Fecha_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
-                   a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,b.Cantidad_ConsultaReceta,
-                   b.Cada_ConsultaReceta,c.Observaciones_ConsultaDiagnostico 
+                   a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,b.Dosis_ConsultaReceta,
+                   b.Notas_ConsultaReceta,c.Observaciones_ConsultaDiagnostico 
                    from Tabla_Registro_Consulta a left join Tabla_Registro_ConsultaReceta b
                    on (a.Id_Consulta=b.Id_Consulta) left join Tabla_Registro_ConsultaDiagnostico c
                    on (a.Id_Consulta=c.Id_Consulta)
@@ -274,8 +274,8 @@ namespace MedicalManagement
             string analisis = "";
             string plan = "";
             string medicamento = "";
-            string cantidad = "";
-            string cada = "";
+            string dosis = "";
+            string notas = "";
             string observaciones = "";
 
             string cadena = "<table >";
@@ -291,8 +291,8 @@ namespace MedicalManagement
                 analisis = Convert.ToString(row["Analisis_Consulta"]);
                 plan = Convert.ToString(row["Plan_Consulta"]);
                 medicamento = Convert.ToString(row["Medicamento_ConsultaReceta"]);
-                cantidad = Convert.ToString(row["Cantidad_ConsultaReceta"]);
-                cada = Convert.ToString(row["Cada_ConsultaReceta"]);
+                dosis = Convert.ToString(row["Dosis_ConsultaReceta"]);
+                notas = Convert.ToString(row["Notas_ConsultaReceta"]);
                 observaciones = Convert.ToString(row["Observaciones_ConsultaDiagnostico"]);
 
                 cadena = cadena + "<Tr><td><font color=Blue><strong>FechaConsulta:</strong></font></Td></tr>";
@@ -323,12 +323,12 @@ namespace MedicalManagement
                 cadena = cadena + "<Tr><td>" + medicamento + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><font color=Blue><strong>Cantidad:</strong></font></Td></Tr>";
-                cadena = cadena + "<Tr><td>" + cantidad + "</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Dosis:</strong></font></Td></Tr>";
+                cadena = cadena + "<Tr><td>" + dosis + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
-                cadena = cadena + "<Tr><td><font color=Blue><strong>Cada cuando:</strong></font></Td></Tr>";
-                cadena = cadena + "<Tr><td>" + cada + "</Td></Tr>";
+                cadena = cadena + "<Tr><td><font color=Blue><strong>Notas:</strong></font></Td></Tr>";
+                cadena = cadena + "<Tr><td>" + notas + "</Td></Tr>";
 
                 //cadena = cadena + "<Tr><td><br></td></Tr>";
                 cadena = cadena + "<Tr><td><font color=Blue><strong>Observaciones:</strong></font></Td></Tr>";

@@ -18,40 +18,67 @@
 </table>
 <table>
     <tr>
-        <td>
-            Id_Consulta
+        <td>            
+            <asp:GridView ID="GridViewRecetaPrevia" runat="server" AutoGenerateColumns="false"
+            onrowcommand="RowCommand">
+
+            <Columns>
+            
+                <asp:BoundField DataField="Id_ConsultaRecetaPrevia" HeaderText="Id_ConsultaRecetaPrevia" 
+                SortExpression="Id_ConsultaResetaPrevia" />
+
+                <asp:BoundField DataField="Nombre_ConsultaRecetaPrevia" HeaderText="Receta Previa" 
+                SortExpression="RecetaPrevia" />
+
+                <asp:ButtonField ButtonType="Button" CommandName="Elegir" HeaderText="Elegir" 
+                ShowHeader="True" Text="Elegir" ItemStyle-HorizontalAlign="Center"/>
+                        
+            </Columns>
+            
+            </asp:GridView>
+            
+
         </td>
+    </tr>
+    
+    <tr>
         <td>
+            Medicamento
         </td>
+        <td> 
+            <asp:TextBox ID="txtmedicamento" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>            
+        </td>  
+           
+        
+    
+    </tr>
+     <tr>
+        <td>
+            Dosis
+        </td>
+        <td> 
+            <asp:TextBox ID="txtdosis" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
+        </td>       
+    
+    </tr>
+     <tr>
+        <td>
+            Notas 
+        </td>
+        <td> 
+            <asp:TextBox ID="txtnotas" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
+        </td>       
     
     </tr>
     <tr>
         <td>
-            Medicamento_Consulta
+            <asp:LinkButton ID="LinkRecetaPrevia" runat="server" onclick="LinkRecetaPrevia_Click">Agregar de Receta Previa</asp:LinkButton>                    
         </td>
-        <td> 
-            <asp:TextBox ID="txtmedicamento" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>            
-        </td>       
-    
-    </tr>
-     <tr>
         <td>
-            Cantidad_ConsultaReceta
-        </td>
-        <td> 
-            <asp:TextBox ID="txtcantidad" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
-        </td>       
-    
+            <asp:TextBox ID="Txtnombrerecetaprevia" runat="server" Width="400"></asp:TextBox>
+        </td>  
     </tr>
-     <tr>
-        <td>
-            Cada_ConsultaReceta 
-        </td>
-        <td> 
-            <asp:TextBox ID="txtcadacuando" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
-        </td>       
     
-    </tr>
 
 
 </table>
