@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Medical Management" Language="C#" MasterPageFile="Site.master" AutoEventWireup="true"
+﻿    <%@ Page Title="Medical Management" Language="C#" MasterPageFile="Site.master" AutoEventWireup="true"
     CodeBehind="MenuInicial.aspx.cs" Inherits="MedicalManagement.MenuInicial" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
