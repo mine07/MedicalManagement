@@ -37,7 +37,7 @@ namespace MedicalManagement
             //comando.CommandType = CommandType.StoredProcedure;
             SqlCommand comando = new SqlCommand(@"select distinct a.Fecha_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
                                                 a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,
-                                                b.Cantidad_ConsultaReceta,b.Cada_ConsultaReceta,
+                                                b.Dosis_ConsultaReceta,b.Cada_ConsultaReceta,
                                                 c.Observaciones_ConsultaAnalisisClinico 
                                                 from Tabla_Registro_Consulta a left join Tabla_Registro_ConsultaReceta b
                                                 on (a.Id_Consulta=b.Id_Consulta) left join Tabla_Registro_ConsultaAnalisisClinico c

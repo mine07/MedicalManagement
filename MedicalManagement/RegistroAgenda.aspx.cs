@@ -7,12 +7,13 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using MedicalManagement.Models.DTO;
+using MedicalManagement.Models;
 
 namespace MedicalManagement
 {
     public partial class RegistroAgenda : System.Web.UI.Page
     {
-
         int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
@@ -21,7 +22,7 @@ namespace MedicalManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
             bool estatuspermiso = false;
             estatuspermiso = Convert.ToBoolean(Session["estatuspermiso"]);
             int usuario = Convert.ToInt32(Session["inicio"]);
@@ -242,7 +243,8 @@ namespace MedicalManagement
             comando.Parameters.AddWithValue("@Asunto_Agenda", txtasunto.Text.Trim());
             comando.Parameters.AddWithValue("@Prioridad_Agenda", prioridad);
             comando.Parameters.AddWithValue("@EstadoCitas_Agenda", DropDownEstadoCitas.SelectedValue);
-
+            var oneConsulta = new Tabla_Registro_ConsultaDTO();
+            
 
             SqlDataReader reader = comando.ExecuteReader();
             reader.Read();

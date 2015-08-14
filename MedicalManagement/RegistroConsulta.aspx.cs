@@ -62,7 +62,6 @@ namespace MedicalManagement
                 }
                 else
                 {
-
                     DateTime hoy = DateTime.Now;
                     fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
                     txtfechaconsulta.Text = fecha_actual;
@@ -120,7 +119,7 @@ namespace MedicalManagement
             comando.Parameters.AddWithValue("@Id_Agenda", Id_Agenda);            
             comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
                                   
-            
+            comando.Parameters.AddWithValue("@Diagnostico_Consulta", txtSearch.Text.Trim());
             comando.Parameters.AddWithValue("@Subjetivo_Consulta", txtsubjetivo.Text.Trim());
             comando.Parameters.AddWithValue("@Objetivo_Consulta", txtobjetivo.Text.Trim());
             //comando.Parameters.AddWithValue("@Diagnostico_Consulta", txtdiagnostico.Text.Trim());  Se elimino el txtdiagnostico
