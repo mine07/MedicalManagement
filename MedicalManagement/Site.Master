@@ -74,6 +74,7 @@
               <li><a href="Diagnosticos.aspx">Diagnosticos</a></li>
               <li><a href="Procedimiento.aspx">Procedimiento</a></li>
               <li><a href="Medicamento.aspx">Medicamento</a></li>
+              <li><a href="RecetaPrevia.aspx">RecetaPrevia</a></li>
           </ul>
         </li>
           <li class="dropdown">
@@ -117,6 +118,7 @@
                                 <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="Diagnostico" Value="Diagnostico"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Procedimiento.aspx" Text="Procedimiento" Value="Procedimiento"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Medicamento.aspx" Text="Medicamento" Value="Medicamento"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/RecetaPrevia.aspx" Text="Receta Previa" Value="RecetaPrevia"></asp:MenuItem>
 
 
                                 <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="AnalisisClinico" Value="AnalisisClinico"></asp:MenuItem>

@@ -104,6 +104,7 @@
     <Content Include="Permisos.aspx" />
     <Content Include="PermisosPerfil.aspx" />
     <Content Include="Procedimiento.aspx" />
+    <Content Include="RecetaPrevia.aspx" />
     <Content Include="ReferidoPor.aspx" />
     <Content Include="RegistroAgenda.aspx" />
     <Content Include="RegistroAseguradora.aspx" />
@@ -120,6 +121,7 @@
     <Content Include="RegistroOcupacion.aspx" />
     <Content Include="RegistroPerfiles.aspx" />
     <Content Include="RegistroProcedimiento.aspx" />
+    <Content Include="RegistroRecetaPrevia.aspx" />
     <Content Include="RegistroReferidoPor.aspx" />
     <Content Include="RegistroSexo.aspx" />
     <Content Include="RegistroSucursales.aspx" />
@@ -436,6 +438,13 @@
       <DependentUpon>Procedimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecetaPrevia.aspx.cs">
+      <DependentUpon>RecetaPrevia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecetaPrevia.aspx.designer.cs">
+      <DependentUpon>RecetaPrevia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReferidoPor.aspx.cs">
       <DependentUpon>ReferidoPor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -547,6 +556,13 @@
     </Compile>
     <Compile Include="RegistroProcedimiento.aspx.designer.cs">
       <DependentUpon>RegistroProcedimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroRecetaPrevia.aspx.cs">
+      <DependentUpon>RegistroRecetaPrevia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroRecetaPrevia.aspx.designer.cs">
+      <DependentUpon>RegistroRecetaPrevia.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistroReferidoPor.aspx.cs">
       <DependentUpon>RegistroReferidoPor.aspx</DependentUpon>
