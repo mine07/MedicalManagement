@@ -31,15 +31,6 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.GridView GridViewFecha;
         
         /// <summary>
-        /// btnantecedentes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnantecedentes;
-        
-        /// <summary>
         /// txtantecedentes control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,15 @@ namespace MedicalManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtantecedentes;
+        
+        /// <summary>
+        /// btnantecedentes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnantecedentes;
         
         /// <summary>
         /// LinkNotaClinica control.
@@ -128,6 +128,15 @@ namespace MedicalManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridViewProcedimientos;
+        
+        /// <summary>
+        /// rptActual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptActual;
         
         /// <summary>
         /// rptAnteriores control.

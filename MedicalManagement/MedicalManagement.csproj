@@ -373,6 +373,7 @@
     <Compile Include="MenuInicial.aspx.designer.cs">
       <DependentUpon>MenuInicial.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AgendaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaDTO.cs" />

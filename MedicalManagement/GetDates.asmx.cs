@@ -27,14 +27,9 @@ namespace MedicalManagement
         {
             var lFechas = new List<dateItem>();
             Helpers h = new Helpers();
-            string query = @"select distinct CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Agenda
+            string query = @"select CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Agenda
 group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             lFechas = h.GetAll<dateItem>(query);
-            var item1 = new dateItem();
-            item1.fecha = DateTime.Now.ToString("yyyy-MM-dd");
-            item1.cantidad = 2;
-            item1.fecha = item1.fecha.Replace("/", "-");
-            lFechas.Add(item1);
             string json = JsonConvert.SerializeObject(lFechas);
             return json;
         }
@@ -44,18 +39,27 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
         {
             var lFechas = new List<dateItem>();
             Helpers h = new Helpers();
-            string query = @"select distinct CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Consulta
+            string query = @"select CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Consulta
 group by CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime)";
             lFechas = h.GetAll<dateItem>(query);
-            var item1 = new dateItem();
-            item1.fecha = DateTime.Now.ToString("yyyy-MM-dd");
-            item1.cantidad = 2;
-            item1.fecha = item1.fecha.Replace("/", "-");
-            lFechas.Add(item1);
             string json = JsonConvert.SerializeObject(lFechas);
             return json;
         }
 
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetDiagnosticoItems(string search)
+        {
+            List<string> lSearch = search.Split(new char[] { ' ' }).ToList();
+            var oneDiagnostico = new Tabla_Catalogo_DiagnosticoDTO();
+            oneDiagnostico.Descripcion_Diagnostico = "%" + search.Trim() + "%";
+            string query = "Select * from Tabla_Catalogo_Diagnostico where Descripcion_Diagnostico like @Descripcion_Diagnostico";
+            Helpers h = new Helpers();
+            var lDiag = h.GetAllParametized(query, oneDiagnostico);
+            string json = JsonConvert.SerializeObject(lDiag);
+            return json;
+        }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string GetAgendaItems(getDateItem getDate)

@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using MedicalManagement.Models;
+using MedicalManagement.Models.DTO;
 
 namespace MedicalManagement
 {
@@ -276,12 +278,25 @@ namespace MedicalManagement
             string dosis = "";
             string notas = "";
             string observaciones = "";
-
+            int Id_ag = 0;
             string cadena = "<table >";
             cadena = cadena + "<tr><td><strong>" + NombreCompleto + "</strong></td></tr>";
             cadena = cadena + "<tr><td><br></Td></tr>";
             rptAnteriores.DataSource = ds;
             rptAnteriores.DataBind();
+            comando = new SqlCommand(@"select distinct a.Fecha_Consulta, a.Id_FichaIdentificacion, a.Id_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
+                   a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,b.Dosis_ConsultaReceta,
+                   b.Notas_ConsultaReceta,c.Observaciones_ConsultaDiagnostico, d.Id_Agenda
+                   from Tabla_Registro_Consulta a
+                   left join Tabla_Registro_ConsultaReceta b on (a.Id_Consulta=b.Id_Consulta) 
+                   left join Tabla_Registro_ConsultaDiagnostico c on (a.Id_Consulta=c.Id_Consulta)
+                   left join Tabla_Registro_Agenda d on (a.Id_Agenda = d.Id_Agenda)
+                   where a.Id_Agenda =" + Id_Agenda + "order by Fecha_Consulta desc", cnn);
+            DataTable dtB = new DataTable();
+            da = new SqlDataAdapter(comando);
+            da.Fill(dtB);
+            rptActual.DataSource = dtB;
+            rptActual.DataBind();
             foreach (DataRow row in ds.Rows)
             {
                 fechaconsulta = Convert.ToDateTime(row["Fecha_Consulta"]);
@@ -464,7 +479,7 @@ namespace MedicalManagement
 
             string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
-                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=1";
+                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=1 order by a.Fecha_ConsultaDiagnostico desc";
 
             SqlCommand comando = new SqlCommand(sentencia, cnn);
 
@@ -517,7 +532,7 @@ namespace MedicalManagement
 
             string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
-                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=0";
+                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=0 order by a.Fecha_ConsultaDiagnostico desc";
 
             SqlCommand comando = new SqlCommand(sentencia, cnn);
 
@@ -569,7 +584,7 @@ namespace MedicalManagement
 
             string sentencia = @"select a.Id_Procedimiento, b.Descripcion_Procedimiento,a.Fecha_ConsultaProcedimiento,a.Estatus_ConsultaProcedimiento from Tabla_Registro_ConsultaProcedimiento a join Tabla_Catalogo_Procedimiento b 
                                on a.Id_Procedimiento=b.Id_Procedimiento
-                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaProcedimiento=1";
+                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaProcedimiento=1 order by a.Fecha_ConsultaProcedimiento desc";
 
             SqlCommand comando = new SqlCommand(sentencia, cnn);
 

@@ -89,7 +89,7 @@
         <div class="col-xs-12">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Buscar: </span>
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtSearch" autocomplete="off" runat="server" CssClass="form-control"></asp:TextBox>
                 <%--<a href="RegistroFichaIdentificacion.aspx" class="input-group-addon no-sub">Agregar</a>--%>
             </div>
         </div>
@@ -263,8 +263,8 @@
         <label class="small-label"><*= "Movil - " + this.TelefonoMovil_FichaIdentificacion*></label>
         </div>
         <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
-        <a class="btn btn-primary" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
-        <a class="btn btn-primary" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>
+        <a class="label label-secondary form-control" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
+        <a class="label label-secondary form-control" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>
         
         </div>
         </div>
@@ -292,14 +292,15 @@
         </div>
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
- <a class="btn btn-primary" href='<*= "ConsultaMenu.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Menu Consulta</a>
-        <a class="btn btn-primary" href='<*= "ConsultasAnteriores.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Historial</a>
+        <a class="label label-secondary form-control" href='<*= "ConsultaMenu.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Menu Consulta</a>
+        <a class="label label-secondary form-control" href='<*= "ConsultasAnteriores.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Historial</a>
                 </div>
         </div>
         </div>
         <hr/>
     ]]>
     </script>
+   
     <style>
         .badge-calendar {
             background: WHITE;

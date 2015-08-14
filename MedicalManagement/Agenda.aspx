@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <table width="100%" class="">
+    <table width="100%" class="hidden">
         <tr>
             <td align="left" colspan="6">Agenda&nbsp;:&nbsp;<asp:TextBox ID="txtBuscar_FichaIdentificacion" runat="server" Columns="100" OnTextChanged="txt_OnTextChanged" AutoPostBack="true"></asp:TextBox>
                 &nbsp;
@@ -117,7 +117,7 @@
         <div class="col-xs-12">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Buscar: </span>
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox autocomplete="off" ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
                 <%--<a href="RegistroFichaIdentificacion.aspx" class="input-group-addon no-sub">Agregar</a>--%>
             </div>
         </div>
@@ -281,8 +281,8 @@
         <label class="small-label"><*= "Movil - " + this.TelefonoMovil_FichaIdentificacion*></label>
         </div>
         <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
-        <a class="btn btn-primary" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
-        <a class="btn btn-primary" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>        
+        <a class="label label-secondary form-control" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
+        <a class="label label-secondary form-control" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>        
         </div>
         </div>
         <hr/>
@@ -308,7 +308,7 @@
         <label class="small-label"><*= this.Descripcion_Agenda*></label>
         </div>
         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 center-text">
-            <a class="btn btn-primary" href='<*= "RegistroAgenda.aspx?Id_Agenda=" + this.Id_Agenda + "&Id_FichaIdentificacion=" + this.UsuarioDTO.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO.Nombre_FichaIdentificacion + " " + this.UsuarioDTO.ApPaterno_FichaIdentificacion + " " + this.UsuarioDTO.ApMaterno_FichaIdentificacion *>'>Editar</a>
+            <a class="label label-secondary form-control" href='<*= "RegistroAgenda.aspx?Id_Agenda=" + this.Id_Agenda + "&Id_FichaIdentificacion=" + this.UsuarioDTO.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO.Nombre_FichaIdentificacion + " " + this.UsuarioDTO.ApPaterno_FichaIdentificacion + " " + this.UsuarioDTO.ApMaterno_FichaIdentificacion *>'>Editar</a>
         </div>
         </div>
         <hr/>

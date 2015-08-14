@@ -21,7 +21,7 @@
         <div class="col-xs-12">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Buscar: </span>
-                <asp:TextBox ID="txtBuscar_FichaIdentificacion" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtBuscar_FichaIdentificacion" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
                 <a href="RegistroFichaIdentificacion.aspx" class="input-group-addon no-sub">Agregar</a>
             </div>
         </div>
@@ -91,8 +91,8 @@
         <label class="small-label"><*= "Movil - " + this.TelefonoMovil_FichaIdentificacion*></label>
         </div>
         <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
-        <a class="btn btn-primary" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
-        <a class="btn btn-primary" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>
+        <a class="label label-secondary form-control" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
+        <a class="label label-secondary form-control" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>
         
         </div>
         </div>
