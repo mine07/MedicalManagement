@@ -208,9 +208,11 @@ namespace MedicalManagement
             {
                  fecha_actual1 = Convert.ToDateTime(txtaltaagenda.Value);
             }
+            bool validConsulta = false;
             if (Id_Agenda == 0)
             {
                 comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
+                validConsulta = true;
             }
             else
             {
@@ -284,8 +286,22 @@ namespace MedicalManagement
             comandoBitacora = null;
             */
             cnn.Close();
-
+            if (validConsulta)
+            {
+                grabarConsulta();
+            }
             Response.Redirect("Agenda.aspx");
+        }
+
+        private void grabarConsulta()
+        {
+            string query = @"insert into Tabla_Registro_Consulta(Id_Agenda,Fecha_Consulta, Id_FichaIdentificacion)
+  values((SELECT top 1 (Id_Agenda) FROM [Tabla_Registro_Agenda] ORDER BY Id_Agenda DESC), (SELECT top 1 (Fecha_Agenda) FROM [Tabla_Registro_Agenda] ORDER BY Id_Agenda DESC), @Id_FichaIdentificacion)";
+            Tabla_Registro_ConsultaDTO oneCons = new Tabla_Registro_ConsultaDTO();
+            oneCons.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            oneCons.Fecha_Consulta = Convert.ToDateTime(txtaltaagenda.Value);
+            Helpers h = new Helpers();
+            h.ExecuteNonQueryParam(query, oneCons);
         }
 
         public void LlenarCMBCategoria()

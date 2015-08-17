@@ -23,7 +23,6 @@ namespace MedicalManagement
                 Response.Redirect("Default.aspx");
             }
 
-
             else if (estatuspermiso == false)
             {
                 string valornombrepagina = "Diagnostico.aspx";

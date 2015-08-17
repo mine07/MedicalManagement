@@ -40,15 +40,6 @@ namespace MedicalManagement {
         protected global::System.Web.UI.HtmlControls.HtmlTableCell Alerta;
         
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-        
-        /// <summary>
         /// txtNombre_ConsultaRecetaPrevia control.
         /// </summary>
         /// <remarks>
@@ -58,13 +49,13 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.TextBox txtNombre_ConsultaRecetaPrevia;
         
         /// <summary>
-        /// Label1 control.
+        /// txtDiagnostico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox txtDiagnostico;
         
         /// <summary>
         /// txtmedicamento_consultareceta control.
@@ -76,15 +67,6 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.TextBox txtmedicamento_consultareceta;
         
         /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
         /// txtdosis_consultareceta control.
         /// </summary>
         /// <remarks>
@@ -92,15 +74,6 @@ namespace MedicalManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtdosis_consultareceta;
-        
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
         /// txtnotas_consultareceta control.

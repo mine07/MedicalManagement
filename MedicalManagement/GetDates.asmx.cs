@@ -39,8 +39,8 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
         {
             var lFechas = new List<dateItem>();
             Helpers h = new Helpers();
-            string query = @"select CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Consulta
-group by CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime)";
+            string query = @"select CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Agenda
+group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             lFechas = h.GetAll<dateItem>(query);
             string json = JsonConvert.SerializeObject(lFechas);
             return json;
@@ -71,7 +71,8 @@ group by CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime)";
             Tabla_Registro_AgendaDTO oneAgenda = new Tabla_Registro_AgendaDTO();
             oneAgenda.Fecha_Agenda = DateTime.Parse(fecha);
             Helpers h = new Helpers();
-            string query = "Select * From Tabla_Registro_Agenda where Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} OR Fin_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} ORDER BY Inicio_Agenda";
+            //string query = "Select * From Tabla_Registro_Agenda where Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} OR Fin_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} ORDER BY Inicio_Agenda";
+            string query = "Select * From Tabla_Registro_Agenda where Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} ORDER BY Inicio_Agenda";
             lAgendas = h.GetAllParametized(query, oneAgenda);
             foreach (var y in lAgendas)
             {
@@ -113,7 +114,13 @@ group by CAST(FLOOR(CAST(Fecha_Consulta as FLOAT)) as DateTime)";
             var oneConsulta = new Tabla_Registro_ConsultaDTO();
             oneConsulta.Fecha_Consulta = DateTime.Parse(fecha);
             Helpers h = new Helpers();
-            string query = "Select * From Tabla_Registro_Consulta where Fecha_Consulta BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} ORDER BY Fecha_Consulta";
+//            string query = @"Select * From Tabla_Registro_Consulta a where b.Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + @"'} 
+//                            left join Tabla_Registro_Agenda on b.Id_Agenda = a.Id_Agenda
+//                            ORDER BY a.Inicio_Agenda ";
+            string query = @"Select * From Tabla_Registro_Consulta a  
+                            left join Tabla_Registro_Agenda b on b.Id_Agenda = a.Id_Agenda
+                            where b.Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + @"'}
+							order by b.Inicio_Agenda";
             lConsultas = h.GetAllParametized(query, oneConsulta);
             foreach (var y in lConsultas)
             {

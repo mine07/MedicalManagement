@@ -46,17 +46,16 @@ namespace MedicalManagement
                     SqlDataReader reader = comando2.ExecuteReader();
                     if (reader.Read())
                     {
-                        
                         txtnombre.Text = NombreCompleto;
-                        txtfechaconsulta.Text = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
-                        txtsubjetivo.Text = reader.GetString(reader.GetOrdinal("Subjetivo_Consulta")).ToString().Trim();
-                        txtobjetivo.Text = reader.GetString(reader.GetOrdinal("Objetivo_Consulta")).ToString().Trim();
+                        txtfechaconsulta.Text = reader.IsDBNull(reader.GetOrdinal("Fecha_Consulta")) ? String.Empty : reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
+                        txtsubjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Subjetivo_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Subjetivo_Consulta")).ToString().Trim();
+                        txtobjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Objetivo_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Objetivo_Consulta")).ToString().Trim();
                         //txtdiagnostico.Text = reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim(); Se elimino el txtdiagnostico
-                        txtanalisis.Text = reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
-                        txtplan.Text = reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
+                        txtSearch.Text = reader.IsDBNull(reader.GetOrdinal("Diagnostico_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim();
+                        txtanalisis.Text = reader.IsDBNull(reader.GetOrdinal("Analisis_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
+                        txtplan.Text = reader.IsDBNull(reader.GetOrdinal("Plan_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
                         LinkDiagnostico.Visible = true;
                         LinkProcedimiento.Visible = true;
-
                         Session["Fechaconsulta"] = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                     }
                 }
@@ -118,7 +117,6 @@ namespace MedicalManagement
 
             comando.Parameters.AddWithValue("@Id_Agenda", Id_Agenda);            
             comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
-                                  
             comando.Parameters.AddWithValue("@Diagnostico_Consulta", txtSearch.Text.Trim());
             comando.Parameters.AddWithValue("@Subjetivo_Consulta", txtsubjetivo.Text.Trim());
             comando.Parameters.AddWithValue("@Objetivo_Consulta", txtobjetivo.Text.Trim());

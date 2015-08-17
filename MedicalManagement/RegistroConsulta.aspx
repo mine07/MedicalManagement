@@ -38,52 +38,53 @@
 
 
     </table>
-    <div class="container-fluid">
+    <div class="container-fluid border-top1-bottom10">
         <div class="row">
             <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                 <label>Fecha</label>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                 <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC"
                     ReadOnly="True" CssClass="form-control"></asp:TextBox>
-                <hr />
             </div>
         </div>
+         <hr />
         <div class="row">
             <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                 <label>Nombre</label>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                 <asp:TextBox ID="txtnombre" runat="server" BackColor="#CCFFCC"
                     ReadOnly="True" CssClass="form-control"></asp:TextBox>
-                <hr />
+               
             </div>
         </div>
+          <hr />
         <div class="row">
             <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                 <label>Subjetivo</label>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                 <asp:TextBox ID="txtsubjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-                <hr />
+               
             </div>
         </div>
-
+          <hr />
         <div class="row">
             <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                 <label>Objetivo</label>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                 <asp:TextBox ID="txtobjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-                <hr />
+              
             </div>
         </div>
-
+          <hr />
         <div class="row">
             <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                 <label>Diagnostico</label>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                 <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" autocomplete="off"></asp:TextBox>
                 <hr />
                 <div class="container-fluid searchContainer border-top1-bottom5">
@@ -96,21 +97,22 @@
             <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                 <label>Analisis</label>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                 <asp:TextBox ID="txtanalisis" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-                <hr />
+                
             </div>
         </div>
+        <hr />
         <div class="row">
             <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                 <label>Plan</label>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-6 col-sm-6">
+            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                 <asp:TextBox ID="txtplan" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-                <hr />
+                
             </div>
         </div>
-
+        <hr />
     </div>
     <script>$('[id$=txtSearch]').bind('input keyup', function () {
     var $this = $(this);
@@ -167,6 +169,10 @@
             if (!container.is(e.target) // if the target of the click isn't the container...
                 && container.has(e.target).length === 0 && !containerB.is(e.target)) // ... nor a descendant of the container
             {
+                container.slideUp();
+            }
+            var containerC = $("h5");
+            if (containerC.is(e.target)) {
                 container.slideUp();
             }
         });

@@ -40,6 +40,7 @@ namespace MedicalManagement
                         txtmedicamento_consultareceta.Text = reader.GetString(reader.GetOrdinal("Medicamento_ConsultaReceta")).Trim();
                         txtdosis_consultareceta.Text = reader.GetString(reader.GetOrdinal("Dosis_ConsultaReceta")).Trim();
                         txtnotas_consultareceta.Text = reader.GetString(reader.GetOrdinal("Notas_ConsultaReceta")).Trim();
+                        txtDiagnostico.Text = reader.GetString(reader.GetOrdinal("Descripcion_Diagnostico")).Trim();
                     }
 
                     reader.Close();
@@ -77,6 +78,7 @@ namespace MedicalManagement
                 comando.Parameters.AddWithValue("@Opcion", "ACTUALIZAR");
                 comando.Parameters.AddWithValue("@Id_ConsultaRecetaPrevia", Id_ConsultaRecetaPrevia);
             }
+            comando.Parameters.AddWithValue("@Diagnostico", txtDiagnostico.Text.Trim());
             comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", txtNombre_ConsultaRecetaPrevia.Text.Trim());
             comando.Parameters.AddWithValue("@Medicamento_ConsultaReceta", txtmedicamento_consultareceta.Text.Trim());
             comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis_consultareceta.Text.Trim());
