@@ -14,11 +14,29 @@ namespace MedicalManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                LlenarGridAnalisisClinico();
+            }
 
         }
 
 
         ///////////////////////////////////////////////////////////////////////////////////////
+
+        protected void btnRegresar_ConsultasDiagnostico_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Consultas.aspx");
+        }
+
+        protected void RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+        }
+
+
+        protected void btnGuardar_ConsultaDiagnostico_Click(object sender, EventArgs e)
+        {
+        }
 
         protected void txt_OnTextChanged(object sender, EventArgs e)
         {
@@ -32,6 +50,8 @@ namespace MedicalManagement
 
         }
 
+        
+
         protected void Grid_AnalisisClinico_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             LlenarGridAnalisisClinico();
@@ -42,6 +62,68 @@ namespace MedicalManagement
 
         protected void Grid_AnalisisClinico_PageIndexChanged(object sender, EventArgs e)//EventArgs
         {
+
+        }
+
+        protected void CheckBoxelegir_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            DataTable ds = new DataTable();
+            ds.Columns.Add("Id_AnalisisClinico", typeof(Int32));
+            ds.Columns.Add("Descripcion_AnalisisClinico", typeof(String));
+
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+            
+
+            CheckBox chseleccionado;
+
+            foreach (GridViewRow row in Grid_AnalisisClinico.Rows)
+            {
+                bool valorcheck = false;
+               
+                chseleccionado = row.FindControl("CheckBoxelegir") as CheckBox;
+                valorcheck =chseleccionado.Checked;
+                if (valorcheck == true)
+                {
+                    int Id_analisisclinico = Convert.ToInt32(row.Cells[0].Text);
+                    string Descripcion_AnalisisClinico = Convert.ToString(row.Cells[1].Text);
+                    
+                    
+//                    string sentencia = @"select Id_AnalisisClinico,Descripcion_AnalisisClinico from Tabla_Catalogo_AnalisisClinico 
+//                                        where Id_AnalisisClinico="+Id_analisisclinico+"";
+
+//                    SqlCommand comando = new SqlCommand(sentencia, cnn);
+
+//                    SqlDataAdapter da = new SqlDataAdapter(comando);
+                    
+
+                    DataRow fila = ds.NewRow();
+                    fila["Id_AnalisisClinico"] = Id_analisisclinico;
+                    fila["Descripcion_AnalisisClinico"] = Descripcion_AnalisisClinico;
+
+                    ds.Rows.Add(fila);                
+                                 
+
+                }
+                else
+                {
+                    //chseleccionado.Checked = false;
+                }
+            }
+
+            Grid_AnalisisClinicoSeleccionado.Visible = true;
+            Grid_AnalisisClinicoSeleccionado.DataSource = ds;
+            //Grid_AnalisisClinicoSeleccionado.Columns[0].Visible = true;
+            //Grid_AnalisisClinicoSeleccionado.Columns[1].Visible = true;
+            //Grid_AnalisisClinicoSeleccionado.Columns[2].Visible = true;
+            Grid_AnalisisClinicoSeleccionado.DataBind();
+
+            cnn.Close();
 
         }
 
@@ -84,5 +166,7 @@ namespace MedicalManagement
             da.Dispose();
 
         }
+
+        
     }
 }

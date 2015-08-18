@@ -10,9 +10,11 @@
 
     <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
-        onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" AllowPaging="true" pagesize="15"
+        onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
+        AllowPaging="true" pagesize="15"
         onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
-                    PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
+                    PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
+        GridLines="None"  >
                     
     
         <Columns>
@@ -29,12 +31,18 @@
                     Elegir
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:CheckBox  ID="CheckBoxelegir" runat="server"   />
+                    <asp:CheckBox  ID="CheckBoxelegir" runat="server" OnCheckedChanged ="CheckBoxelegir_CheckedChanged" AutoPostBack="true" />
                 </ItemTemplate>
             </asp:TemplateField>
             
         </Columns>
     </asp:GridView>
 
+
+    <asp:TextBox ID="TextBox1" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+    
+    <asp:GridView ID="Grid_AnalisisClinicoSeleccionado" runat="server">
+    </asp:GridView>
 
 </asp:Content>

@@ -69,6 +69,12 @@ namespace MedicalManagement
             Response.Redirect("ConsultaReceta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
         }
 
+        protected void LinkAnalisisClinico_Click(object sender, EventArgs e)
+        {
+            Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
+            Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
+        }
+
        
         ////////////CHECKBOXS DEL MENU CONSULTAS///////////////////////////////////////////
         protected void CheckBoxactivo_CheckedChanged(object sender, EventArgs e)

@@ -76,6 +76,15 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.LinkButton LinkReceta;
         
         /// <summary>
+        /// LinkAnalisisClinico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAnalisisClinico;
+        
+        /// <summary>
         /// rptActivos control.
         /// </summary>
         /// <remarks>
