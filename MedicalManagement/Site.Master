@@ -57,12 +57,12 @@
             <li><a href="FichaIdentificacion.aspx">Ficha Identificacion</a></li>
             <li><a href="Agenda.aspx">Agenda</a></li>
             <li><a href="Consultas.aspx">Consultas</a></li>
-            <li><a href="#">Pagos</a></li>
+            <li><a href="Pagos.aspx">Pagos</a></li>
           </ul>
         </li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalogos<span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu multi-level">
             <li><a href="Sexo.aspx">Sexo</a></li>
             <li><a href="EstadoCivil.aspx">Estado Civil</a></li>
             <li><a href="Ocupacion.aspx">Ocupacion</a></li>
@@ -71,10 +71,12 @@
                           <li><a href="Aseguradora.aspx">Aseguradora</a></li>
                           <li><a href="ReferidoPor.aspx">Referido Por </a></li>              
               <li><a href="Categoria.aspx">Categoria</a></li>
+              <li role="separator" class="divider"></li>
               <li><a href="Diagnosticos.aspx">Diagnosticos</a></li>
               <li><a href="Procedimiento.aspx">Procedimiento</a></li>
               <li><a href="Medicamento.aspx">Medicamento</a></li>
               <li><a href="RecetaPrevia.aspx">RecetaPrevia</a></li>
+               
           </ul>
         </li>
           <li class="dropdown">
@@ -165,4 +167,7 @@
         $(".footable").footable();
     });
 </script>
+<style>
+    
+</style>
 

@@ -19,7 +19,7 @@
  <asp:GridView ID="Grid_Escolaridad" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Empresas_PageIndexChanging" AllowPaging ="False"
-        onpageindexchanged="Grid_Empresas_PageIndexChanged" CssClass="mGrid" 
+        onpageindexchanged="Grid_Empresas_PageIndexChanged" CssClass="mGrid footable" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
                     
     

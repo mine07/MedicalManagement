@@ -69,7 +69,7 @@ namespace MedicalManagement
 
             if (!IsPostBack)
             {
-                LlenarGridDiagnostico();
+                //LlenarGridDiagnostico();
             }
 
             estatuspermiso = false;

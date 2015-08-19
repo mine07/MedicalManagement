@@ -51,7 +51,7 @@ namespace MedicalManagement
                         txtsubjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Subjetivo_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Subjetivo_Consulta")).ToString().Trim();
                         txtobjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Objetivo_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Objetivo_Consulta")).ToString().Trim();
                         //txtdiagnostico.Text = reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim(); Se elimino el txtdiagnostico
-                        txtSearch.Text = reader.IsDBNull(reader.GetOrdinal("Diagnostico_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim();
+                        txtSearch.Text = reader.IsDBNull(reader.GetOrdinal("Diagnostico_Consulta")) ? "" : reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim();
                         txtanalisis.Text = reader.IsDBNull(reader.GetOrdinal("Analisis_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
                         txtplan.Text = reader.IsDBNull(reader.GetOrdinal("Plan_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
                         LinkDiagnostico.Visible = true;

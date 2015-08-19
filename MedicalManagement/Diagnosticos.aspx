@@ -19,7 +19,7 @@
  <asp:GridView ID="Grid_Diagnostico" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Diagnostico_PageIndexChanging" AllowPaging="true" pagesize="15"
-        onpageindexchanged="Grid_Diagnostico_PageIndexChanged" CssClass="mGrid" 
+        onpageindexchanged="Grid_Diagnostico_PageIndexChanged" CssClass="mGrid footable" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
                     
     

@@ -29,12 +29,12 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
                             <h5>Antecedentes</h5>
-                            <asp:TextBox ID="txtantecedentes" CssClass="form-control" runat="server" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                            <asp:TextBox placeholder="Sin Antecedentes..." ID="txtantecedentes" CssClass="form-control" runat="server" TextMode="MultiLine" Rows="3"></asp:TextBox>
                         </div>
                         <br />
                         <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
                             <h5>Notas Relevantes</h5>
-                            <asp:TextBox ID="txtnotasrelevantes" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                            <asp:TextBox placeholder="Sin Notas Relevantes..." ID="txtnotasrelevantes" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
                         </div>
                         <div class="col-xs-12 col-md-12 col-lg-12 text-right h5">
                             <asp:Button ID="btnantecedentes" runat="server" Text="Guardar"
@@ -195,7 +195,7 @@
                                     <h4>
                                         <span class="label label-primary">
                                             <label class="hidden-xs"><%# Eval("Subjetivo_Consulta") + " - "%></label>
-                                            <label><%# Eval("Fecha_Consulta")%></label>
+                                            <label><%# testbind(Eval("Fecha_Consulta"))%></label>
                                         </span>
                                     </h4>
                                     <hr class="blue-hr" />
@@ -205,7 +205,7 @@
                                                 <label>Objetivo</label>
                                             </div>
                                             <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%# Eval("Objetivo_Consulta") %>
+                                                <%#  testbind(Eval("Objetivo_Consulta")) %>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -213,7 +213,7 @@
                                                 <label>Diagonisto</label>
                                             </div>
                                             <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%# Eval("Diagnostico_Consulta") %>
+                                                <%#  testbind(Eval("Diagnostico_Consulta")) %>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -221,7 +221,7 @@
                                                 <label>Analis</label>
                                             </div>
                                             <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%# Eval("Analisis_Consulta") %>
+                                                <%#  testbind(Eval("Analisis_Consulta")) %>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -229,7 +229,7 @@
                                                 <label>Plan</label>
                                             </div>
                                             <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%# Eval("Plan_Consulta") %>
+                                                <%#  testbind(Eval("Plan_Consulta")) %>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -237,7 +237,7 @@
                                                 <label>Medicamento</label>
                                             </div>
                                             <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%# Eval("Medicamento_ConsultaReceta") %>
+                                                <%#  testbind(Eval("Medicamento_ConsultaReceta")) %>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -245,7 +245,7 @@
                                                 <label>Dosis</label>
                                             </div>
                                             <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%# Eval("Dosis_ConsultaReceta") %>
+                                                <%#  testbind(Eval("Dosis_ConsultaReceta")) %>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -253,7 +253,7 @@
                                                 <label>Observaciones</label>
                                             </div>
                                             <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
-                                                <%# Eval("Observaciones_ConsultaDiagnostico") %>
+                                                <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
                                             </div>
                                             <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
                                                 <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6">
@@ -290,75 +290,74 @@
                                 </span>
                             </h3>
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Objetivo</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%# Eval("Objetivo_Consulta") %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Diagonisto</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%# Eval("Diagnostico_Consulta") %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Analis</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%# Eval("Analisis_Consulta") %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Plan</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%# Eval("Plan_Consulta") %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Medicamento</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%# Eval("Medicamento_ConsultaReceta") %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Dosis</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%# Eval("Dosis_ConsultaReceta") %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Observaciones</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
-                                        <%# Eval("Observaciones_ConsultaDiagnostico") %>
-                                    </div>
-                                    <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
-                                        <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6">
-                                            <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                                <label>Objetivo</label>
+                                            </div>
+                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                                <%#  testbind(Eval("Objetivo_Consulta")) %>
+                                            </div>
                                         </div>
-                                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                                            <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                                <label>Diagonisto</label>
+                                            </div>
+                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                                <%#  testbind(Eval("Diagnostico_Consulta")) %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                                <label>Analis</label>
+                                            </div>
+                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                                <%#  testbind(Eval("Analisis_Consulta")) %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                                <label>Plan</label>
+                                            </div>
+                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                                <%#  testbind(Eval("Plan_Consulta")) %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                                <label>Medicamento</label>
+                                            </div>
+                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                                <%#  testbind(Eval("Medicamento_ConsultaReceta")) %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                                <label>Dosis</label>
+                                            </div>
+                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                                <%#  testbind(Eval("Dosis_ConsultaReceta")) %>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                                <label>Observaciones</label>
+                                            </div>
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
+                                                <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
+                                                <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6">
+                                                    <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                                                    <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
                                             <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
                                         </div>
                                     </div>
-                                </div>
-
-                            </div>
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>

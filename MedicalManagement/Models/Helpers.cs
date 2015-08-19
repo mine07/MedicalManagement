@@ -264,6 +264,8 @@ namespace MedicalManagement.Models
             cmd.ExecuteNonQuery();
         }
 
+        
+
        
 
         public class propiedades

@@ -85,7 +85,7 @@
                 <label>Diagnostico</label>
             </div>
             <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" autocomplete="off"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
                 <hr />
                 <div class="container-fluid searchContainer border-top1-bottom5">
                 </div>

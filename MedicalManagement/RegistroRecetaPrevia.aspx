@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistroRecetaPrevia.aspx.cs" Inherits="MedicalManagement.RegistroRecetaPrevia" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -34,7 +32,7 @@
                 <label>Diagnostico/Enfermedad</label>
             </div>
             <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                <asp:TextBox ID="txtDiagnostico" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtDiagnostico" runat="server" CssClass="form-control"  placeholder="Buscar Diagnostico..."></asp:TextBox>
                 <hr />
                 <div class="container-fluid searchContainer border-top1-bottom5">
                 </div>
