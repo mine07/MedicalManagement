@@ -18,7 +18,7 @@
  <asp:GridView ID="Grid_Categoria" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Categoria_PageIndexChanging" AllowPaging ="False"
-        onpageindexchanged="Grid_Categoria_PageIndexChanged" CssClass="mGrid" 
+        onpageindexchanged="Grid_Categoria_PageIndexChanged" CssClass="mGrid footable" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
                     
     

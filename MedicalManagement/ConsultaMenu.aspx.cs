@@ -716,6 +716,17 @@ namespace MedicalManagement
             cnn.Close();
 
             llenartxtantecedentesnotas();
-        }  
+        }
+
+        public string testbind(object myValue)
+        {
+            string strValue = myValue.ToString();
+            if (strValue == "")
+            {
+                return "Sin Datos...";
+            }
+
+            return myValue.ToString();
+        }
     }
 }

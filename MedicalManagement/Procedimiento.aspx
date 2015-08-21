@@ -19,7 +19,7 @@
  <asp:GridView ID="Grid_Procedimiento" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Procedimiento_PageIndexChanging" AllowPaging="true" pagesize="15"
-        onpageindexchanged="Grid_Procedimiento_PageIndexChanged" CssClass="mGrid" 
+        onpageindexchanged="Grid_Procedimiento_PageIndexChanged" CssClass="mGrid footable" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
                     
     

@@ -282,16 +282,15 @@ div.accountInfo {
     .mGrid td {
         padding: 2px;
         border: solid 1px #c1c1c1;
-        /*color: #717171;*/
-        color: Black;
+        color: #717171;
     }
 
     .mGrid th {
         padding: 4px 2px;
         color: #fff;
-        background: #424242 url(grd_head.png) repeat-x top;
-        border-left: solid 1px #525252;
+        background: #337ab7 url(grd_head.png) repeat-x top;
         font-size: 0.9em;
+        text-align: center;
     }
 
     .mGrid .alt {
@@ -433,23 +432,37 @@ div.fichaidentificacion4 {
 }
 
 .blue-hr {
-    border-top-color:#98c7f0;
+    border-top-color: #98c7f0;
 }
 
 .border-top1-bottom5 {
     border: 1px solid #337ab7;
     box-shadow: 0px 5px 0px #337ab7;
-    padding:10px;
+    padding: 10px;
 }
 
 .border-top1-bottom10 {
     border: 1px solid #337ab7;
     box-shadow: 0px 10px 0px #337ab7;
-    padding:10px;
+    padding: 10px;
 }
+
 .row-hover:hover {
     color: rgb(0, 131, 255);
 }
+
 .row-hover a {
     color: rgb(0, 131, 255);
+}
+
+input[readonly] {
+    border: 0;
+    background-color: rgb(66, 136, 148) !important;
+    color: white;
+    
+}
+
+input[readonly]:hover {
+    outline: 0 !important;
+    box-shadow: none !important;
 }

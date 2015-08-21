@@ -60,6 +60,24 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             string json = JsonConvert.SerializeObject(lDiag);
             return json;
         }
+
+      
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetRecetaPreviaItems(string search)
+        {
+            List<string> lSearch = search.Split(new char[] { ' ' }).ToList();
+            var oneDiagnostico = new Tabla_Catalogo_ConsultaRecetaPreviaDTO();
+            oneDiagnostico.Nombre_ConsultaRecetaPrevia = "%" + search.Trim() + "%";
+            oneDiagnostico.Descripcion_Diagnostico = "%" + search.Trim() + "%";
+            string query = "Select a.*, b.Descripcion_Diagnostico from Tabla_Catalogo_ConsultaRecetaPrevia a left join Tabla_Catalogo_Diagnostico b on b.Id_Diagnostico = a.Id_Diagnostico where b.Descripcion_Diagnostico like @Descripcion_Diagnostico OR a.Nombre_ConsultaRecetaPrevia like @Nombre_ConsultaRecetaPrevia";
+            Helpers h = new Helpers();
+            var lDiag = h.GetAllParametized(query, oneDiagnostico);
+            string json = JsonConvert.SerializeObject(lDiag);
+            return json;
+        }
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string GetAgendaItems(getDateItem getDate)
@@ -181,6 +199,7 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             return json;
         }
 
+      
 
         public string add0(int number)
         {
