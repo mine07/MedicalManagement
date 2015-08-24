@@ -18,7 +18,6 @@
                         <Columns>
                             <asp:BoundField DataField="Id_Consulta" HeaderText="Id.Consulta"
                                 SortExpression="Id_Consulta" />
-
                             <asp:BoundField DataField="Fecha_Consulta" HeaderText="Fecha de Consultas"
                                 SortExpression="Fecha_Consulta" />
                         </Columns>
@@ -40,7 +39,7 @@
                             <asp:Button ID="btnantecedentes" runat="server" Text="Guardar"
                                 OnClick="btnantecedentes_Click" CssClass="btn btn-primary" />
                         </div>
-                        
+
                     </div>
                 </div>
                 <hr />
@@ -184,6 +183,9 @@
                     <div class="col-xs-12 text-center">
                         <hr class="blue-hr" />
                         <label class="label label-primary">Actual</label>
+                        <div class="text-right pull-right">
+                            <a class="label label-secondary form-control" href='<%= "PagosIndividuales.aspx?Id_Usuario=" + Request.QueryString["Id_FichaIdentificacion"] %>'>Pagos</a>
+                        </div>
                         <hr class="blue-hr" />
                     </div>
                 </div>
@@ -252,19 +254,20 @@
                                             <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
                                                 <label>Observaciones</label>
                                             </div>
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
+                                            <div class="col-xs-6 col-md-4 col-sm-4 col-lg-4">
                                                 <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
                                             </div>
-                                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
-                                                <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6">
+                                            <div class="col-xs-12 col-md-5 col-sm-5 col-lg-5">
+                                                <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6 text-right">
                                                     <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
                                                 </div>
-                                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 text-right">
                                                     <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
                                                 </div>
-                                            </div>
-                                            <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                                                <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                                <div class="col-xs-12 text-right">
+                                                    <hr />
+                                                    <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -290,74 +293,74 @@
                                 </span>
                             </h3>
                             <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Objetivo</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Objetivo_Consulta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Diagonisto</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Diagnostico_Consulta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Analis</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Analisis_Consulta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Plan</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Plan_Consulta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Medicamento</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Medicamento_ConsultaReceta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Dosis</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Dosis_ConsultaReceta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Observaciones</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
-                                                <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
-                                            </div>
-                                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
-                                                <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6">
-                                                    <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
-                                                </div>
-                                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                                                    <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
-                                                </div>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                        <label>Objetivo</label>
+                                    </div>
+                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                        <%#  testbind(Eval("Objetivo_Consulta")) %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                        <label>Diagonisto</label>
+                                    </div>
+                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                        <%#  testbind(Eval("Diagnostico_Consulta")) %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                        <label>Analis</label>
+                                    </div>
+                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                        <%#  testbind(Eval("Analisis_Consulta")) %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                        <label>Plan</label>
+                                    </div>
+                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                        <%#  testbind(Eval("Plan_Consulta")) %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                        <label>Medicamento</label>
+                                    </div>
+                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                        <%#  testbind(Eval("Medicamento_ConsultaReceta")) %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                        <label>Dosis</label>
+                                    </div>
+                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
+                                        <%#  testbind(Eval("Dosis_ConsultaReceta")) %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
+                                        <label>Observaciones</label>
+                                    </div>
+                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
+                                        <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
+                                        <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6">
+                                            <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
                                         </div>
                                         <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                                            <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                            <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
+                                    <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                </div>
+                            </div>
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
@@ -378,7 +381,7 @@
     <style>
         textarea {
             resize: none;
-            margin-bottom:5px;
+            margin-bottom: 5px;
         }
     </style>
 </asp:Content>

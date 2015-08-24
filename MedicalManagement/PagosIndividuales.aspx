@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Pagos.aspx.cs" Inherits="MedicalManagement.Pagos" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PagosIndividuales.aspx.cs" Inherits="MedicalManagement.PagosIndividuales" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <!-- jTable style file -->
@@ -62,109 +62,7 @@
             </div>
 
         </div>
-
-        <hr class="blue-hr" />
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                <label class="label label-primary">Agregar</label>
-            </div>
-        </div>
-        <hr class="blue-hr" />
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-sm-12 col-lg-6">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                            <label>Usuario</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-                            <asp:DropDownList runat="server" ID="ddlFichas" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" CssClass="form-control"></asp:DropDownList><hr />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 ">
-                            <label>Descripcion</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-                            <input type="text" class="form-control" /><hr />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 ">
-                            <label>Origen</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-                            <input type="text" class="form-control" /><hr />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 ">
-                            <label>Importe</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-                            <input type="text" class="form-control" /><hr />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 ">
-                            <label>Pagado</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8 ">
-                            <input type="text" class="form-control" /><hr />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 ">
-                            <label>Debe</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-                            <input type="text" class="form-control" /><hr />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 ">
-                            <label>FPP</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-                            <input type="text" class="form-control" /><hr />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 ">
-                            <label>FP</label>
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-                            <input type="text" class="form-control" /><hr />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-md-6 col-lg-6 col-sm-12">
-                <div class="border-top1-bottom5">
-                    <label class="label label-secondary form-control addConcept no-user-select" data-toggle="modal" data-target="#myModalB">Agregar Pago</label>
-                    <hr class="blue-hr" />
-                    <div id="initialDiv" class="conceptContainer container-fluid">
-                        <div class="row hidden-xs hidden-sm">
-                            <div class="col-xs-12 col-md-3 col-sm-6 col-lg-3">Concepto</div>
-                            <div class="col-xs-12 col-md-3 col-sm-6 col-lg-3">Cantidad</div>
-                            <div class="col-xs-12 col-md-3 col-sm-6 col-lg-3">Pago</div>
-                            <div class="col-xs-12 col-md-3 col-sm-6 col-lg-3">Descuento</div>
-                        </div>
-                        <hr />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row"></div>
-        <hr class="blue-hr" />
-        <div class="col-xs-12 text-right">
-            <label class="label label-danger form-control  no-radius">Limpiar</label>
-            <label class="label label-primary form-control  no-radius">Guardar Pago</label>
-        </div>
     </div>
-
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -174,6 +72,14 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar Concepto De Pago</h4>
                 </div>
                 <div class="modal-body container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <label>Usuario</label>
+                        </div>
+                        <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
+                            <asp:DropDownList runat="server" ID="ddlFichas"></asp:DropDownList>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                             <label>Descripcion</label>
@@ -209,59 +115,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="myModalB" tabindex="-1" role="dialog" aria-labelledby="myModalBLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalBLabel">Agregar Concepto De Pago</h4>
-                </div>
-                <div class="modal-body container-fluid">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            <label>Concepto</label>
-                        </div>
-                        <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                            <asp:DropDownList ID="ddlConceptos" DataTextField="Descripcion_ConceptoPago" DataValueField="Id_ConceptoPago" runat="server" CssClass="form-control" />
-                        </div>
-                    </div>
-                    <hr class="blue-hr" />
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            <label>Cantidad</label>
-                        </div>
-                        <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                            <input type="number" id="txtCantidad" class="form-control" />
-                        </div>
-                    </div>
-                    <hr class="blue-hr" />
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            <label>Precio</label>
-                        </div>
-                        <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                            <input type="number" id="txtPrecio" class="form-control" />
-                        </div>
-                    </div>
-                    <hr class="blue-hr" />
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                            <label>Descuento</label>
-                        </div>
-                        <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                            <input type="text" id="txtDescuento" class="form-control" />
-                        </div>
-                    </div>
-                    <hr class="blue-hr" />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="addConceptoPago()">Agregar</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         $("li.text").click(function () {
             $("#ddl").text($(this).text());
@@ -282,8 +135,8 @@
                 //Enables sorting
                 defaultSorting: 'Id_Pagos desc', //Optional. Default sorting on first load.
                 actions: {
-                    listAction: 'Pagos.aspx/GetPagosItems',
-                    createAction: 'Pagos.aspx/Create'
+                    listAction: 'PagosIndividuales.aspx/GetPagosItems?Id_Usuario=' + <%= Id_Usuario%>,
+                    createAction: 'PagosIndividuales.aspx/Create'
                     //deleteAction: '/PagingAndSorting.aspx/DeleteStudent'
                 },
                 fields: {
@@ -364,11 +217,8 @@
         function addConcepto() {
             var descripcion = $("#txtDescripcion").val();
             var nombreCorto = $("#txtNombreCorto").val();
-            var estatus = false;
-            if ($("#checkEstatus").is(':checked')) {
-                estatus = true;
-            }
-            var oneConcepto = { Id_ConceptoPago: "0", Descripcion_ConceptoPago: descripcion, NombreCorto_ConceptoPago: nombreCorto, Estatus_ConceptoPago: estatus };
+            var estatus = $("#checkEstatus").val();
+            var oneConcepto = { Id_ConceptoPago : "0", Descripcion_ConceptoPago: descripcion, NombreCorto_ConceptoPago: nombreCorto, Estatus_ConceptoPago: estatus };
             console.log(oneConcepto);
             $.ajax({
                 type: "POST",
@@ -380,36 +230,11 @@
             });
         }
 
-        function addConceptoPago() {
-            var opcion = $("[id$='ddlConceptos'] option:selected").text();
-            var opcionValue = $("#txtConceptoOption option:selected").val();
-            var cantidad = $("#txtCantidad").val();
-            var precio = $("#txtPrecio").val();
-            var descuento = $("#txtDescuento").val() + "%";
-            var reRow = rowTemplate.replace(".c.", opcion).replace(".ca.", cantidad).replace(".p.", precio).replace(".d.", descuento);
-            $("#initialDiv").append(reRow);
-            $('#myModalB').modal('hide');
-
-        }
         function success() {
             $('#myModal').modal('hide');
-            $(':input', '#myModal')
-                .not(':button, :submit, :reset, :hidden')
-                .val('');
         }
-        var rowTemplate = "<div class='row'><div class='col-xs-12 col-md-3 col-sm-6 col-lg-3'>.c.</div>" +
-            "<div class='col-xs-12 col-md-3 col-sm-6 col-lg-3'>.ca.</div>" +
-            "<div class='col-xs-12 col-md-3 col-sm-6 col-lg-3'>.p.</div>" +
-            "<div class='col-xs-12 col-md-3 col-sm-6 col-lg-3'>.d.</div>" +
-            "</div><hr/>";
-
     </script>
     <style>
-        .conceptContainer {
-            height: 300px;
-            overflow-y: auto;
-        }
-
         .ui-state-hover, .ui-state-focus, .ui-state-focus {
             background-color: transparent !important;
             border: 0 !important;

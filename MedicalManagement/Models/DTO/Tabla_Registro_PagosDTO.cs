@@ -21,5 +21,6 @@ namespace MedicalManagement.Models.DTO
         public DateTime FechaParaPagar_Pagos { get; set; }
         public DateTime FechaPagado_Pagos { get; set; }
         public Tabla_Catalogo_FichaIdentificacionDTO oneUsuario { get; set; }
+        public List<Tabla_Registro_ConsultaConceptoPagoDTO> lConceptos { get; set; }
     }
 }

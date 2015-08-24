@@ -27,19 +27,22 @@ namespace MedicalManagement
         {
             var lFechas = new List<dateItem>();
             Helpers h = new Helpers();
-            string query = @"select CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Agenda
+            string query =
+                @"select CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Agenda
 group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             lFechas = h.GetAll<dateItem>(query);
             string json = JsonConvert.SerializeObject(lFechas);
             return json;
         }
+
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string GetConsulta()
         {
             var lFechas = new List<dateItem>();
             Helpers h = new Helpers();
-            string query = @"select CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Agenda
+            string query =
+                @"select CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime) as date, count(CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)) as cantidad  from Tabla_Registro_Agenda
 group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             lFechas = h.GetAll<dateItem>(query);
             string json = JsonConvert.SerializeObject(lFechas);
@@ -54,14 +57,15 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             List<string> lSearch = search.Split(new char[] { ' ' }).ToList();
             var oneDiagnostico = new Tabla_Catalogo_DiagnosticoDTO();
             oneDiagnostico.Descripcion_Diagnostico = "%" + search.Trim() + "%";
-            string query = "Select * from Tabla_Catalogo_Diagnostico where Descripcion_Diagnostico like @Descripcion_Diagnostico";
+            string query =
+                "Select * from Tabla_Catalogo_Diagnostico where Descripcion_Diagnostico like @Descripcion_Diagnostico";
             Helpers h = new Helpers();
             var lDiag = h.GetAllParametized(query, oneDiagnostico);
             string json = JsonConvert.SerializeObject(lDiag);
             return json;
         }
 
-      
+
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -71,7 +75,8 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             var oneDiagnostico = new Tabla_Catalogo_ConsultaRecetaPreviaDTO();
             oneDiagnostico.Nombre_ConsultaRecetaPrevia = "%" + search.Trim() + "%";
             oneDiagnostico.Descripcion_Diagnostico = "%" + search.Trim() + "%";
-            string query = "Select a.*, b.Descripcion_Diagnostico from Tabla_Catalogo_ConsultaRecetaPrevia a left join Tabla_Catalogo_Diagnostico b on b.Id_Diagnostico = a.Id_Diagnostico where b.Descripcion_Diagnostico like @Descripcion_Diagnostico OR a.Nombre_ConsultaRecetaPrevia like @Nombre_ConsultaRecetaPrevia";
+            string query =
+                "Select a.*, b.Descripcion_Diagnostico from Tabla_Catalogo_ConsultaRecetaPrevia a left join Tabla_Catalogo_Diagnostico b on b.Id_Diagnostico = a.Id_Diagnostico where b.Descripcion_Diagnostico like @Descripcion_Diagnostico OR a.Nombre_ConsultaRecetaPrevia like @Nombre_ConsultaRecetaPrevia";
             Helpers h = new Helpers();
             var lDiag = h.GetAllParametized(query, oneDiagnostico);
             string json = JsonConvert.SerializeObject(lDiag);
@@ -90,11 +95,13 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             oneAgenda.Fecha_Agenda = DateTime.Parse(fecha);
             Helpers h = new Helpers();
             //string query = "Select * From Tabla_Registro_Agenda where Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} OR Fin_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} ORDER BY Inicio_Agenda";
-            string query = "Select * From Tabla_Registro_Agenda where Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + "'} ORDER BY Inicio_Agenda";
+            string query = "Select * From Tabla_Registro_Agenda where Inicio_Agenda BETWEEN {ts '" + fechaIni +
+                           "'} AND {ts '" + fechaFin + "'} ORDER BY Inicio_Agenda";
             lAgendas = h.GetAllParametized(query, oneAgenda);
             foreach (var y in lAgendas)
             {
-                query = "Select * From Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+                query =
+                    "Select * From Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
                 y.UsuarioDTO = new Tabla_Catalogo_FichaIdentificacionDTO
                 {
                     Id_FichaIdentificacion = y.Id_FichaIdentificacion
@@ -132,9 +139,9 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             var oneConsulta = new Tabla_Registro_ConsultaDTO();
             oneConsulta.Fecha_Consulta = DateTime.Parse(fecha);
             Helpers h = new Helpers();
-//            string query = @"Select * From Tabla_Registro_Consulta a where b.Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + @"'} 
-//                            left join Tabla_Registro_Agenda on b.Id_Agenda = a.Id_Agenda
-//                            ORDER BY a.Inicio_Agenda ";
+            //            string query = @"Select * From Tabla_Registro_Consulta a where b.Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + @"'} 
+            //                            left join Tabla_Registro_Agenda on b.Id_Agenda = a.Id_Agenda
+            //                            ORDER BY a.Inicio_Agenda ";
             string query = @"Select * From Tabla_Registro_Consulta a  
                             left join Tabla_Registro_Agenda b on b.Id_Agenda = a.Id_Agenda
                             where b.Inicio_Agenda BETWEEN {ts '" + fechaIni + "'} AND {ts '" + fechaFin + @"'}
@@ -142,7 +149,8 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             lConsultas = h.GetAllParametized(query, oneConsulta);
             foreach (var y in lConsultas)
             {
-                string queryB = "Select * From Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+                string queryB =
+                    "Select * From Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
                 y.UsuarioDTO = new Tabla_Catalogo_FichaIdentificacionDTO
                 {
                     Id_FichaIdentificacion = y.Id_FichaIdentificacion
@@ -152,7 +160,7 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
                 {
                     Id_Agenda = y.Id_Agenda
                 };
-                y.UsuarioDTO._NombreCompleto = y.UsuarioDTO.Nombre_FichaIdentificacion.Trim() + " "+
+                y.UsuarioDTO._NombreCompleto = y.UsuarioDTO.Nombre_FichaIdentificacion.Trim() + " " +
                                                y.UsuarioDTO.ApPaterno_FichaIdentificacion.Trim() + " " +
                                                y.UsuarioDTO.ApMaterno_FichaIdentificacion.Trim();
                 queryB = "Select * From Tabla_Registro_Agenda where Id_Agenda = @Id_Agenda";
@@ -186,7 +194,8 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
                 TelefonoMovil_FichaIdentificacion = "%" + search + "%",
                 TelefonoOfinica_FichaIdentificacion = "%" + search + "%"
             };
-            string query = "Select * from Tabla_Catalogo_FichaIdentificacion where Nombre_FichaIdentificacion like @Nombre_FichaIdentificacion OR ApPaterno_FichaIdentificacion like @ApPaterno_FichaIdentificacion OR ApMaterno_FichaIdentificacion like @ApMaterno_FichaIdentificacion OR TelefonoCasa_FichaIdentificacion  LIKE @TelefonoCasa_FichaIdentificacion OR TelefonoMovil_FichaIdentificacion  LIKE @TelefonoMovil_FichaIdentificacion  OR TelefonoOfinica_FichaIdentificacion LIKE @TelefonoOfinica_FichaIdentificacion";
+            string query =
+                "Select * from Tabla_Catalogo_FichaIdentificacion where Nombre_FichaIdentificacion like @Nombre_FichaIdentificacion OR ApPaterno_FichaIdentificacion like @ApPaterno_FichaIdentificacion OR ApMaterno_FichaIdentificacion like @ApMaterno_FichaIdentificacion OR TelefonoCasa_FichaIdentificacion  LIKE @TelefonoCasa_FichaIdentificacion OR TelefonoMovil_FichaIdentificacion  LIKE @TelefonoMovil_FichaIdentificacion  OR TelefonoOfinica_FichaIdentificacion LIKE @TelefonoOfinica_FichaIdentificacion";
             Helpers h = new Helpers();
             var lFichas = h.GetAllParametized(query, oneItem);
             foreach (var y in lFichas)
@@ -199,7 +208,22 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             return json;
         }
 
-      
+        [WebMethod(EnableSession = true)]
+        public void InsertarConcepto(Tabla_Catalogo_ConceptoPagoDTO oneConcepto)
+        {
+            string query = @"
+            INSERT INTO [dbo].[Tabla_Catalogo_ConceptoPago]
+           ([Descripcion_ConceptoPago]
+           ,[NombreCorto_ConceptoPago]
+           ,[Estatus_ConceptoPago])
+                VALUES
+           (@Descripcion_ConceptoPago,
+           @NombreCorto_ConceptoPago,
+           @Estatus_ConceptoPago)
+            ";
+            Helpers h = new Helpers();
+            h.GetAllParametized(query, oneConcepto);
+        }
 
         public string add0(int number)
         {

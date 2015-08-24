@@ -2213,7 +2213,7 @@ THE SOFTWARE.
                 }
 
                 //Create a container div for this input field and add to form
-                var $fieldContainer = $('<div />').appendTo('<hr />')
+                var $fieldContainer = $('<div />')
                     .addClass('jtable-input-field-container row')
                     .appendTo($addRecordForm);
 
@@ -2604,7 +2604,7 @@ THE SOFTWARE.
                 }
 
                 //Create a container div for this input field and add to form
-                var $fieldContainer = $('<div class="jtable-input-field-container"></div>').appendTo($editForm);
+                var $fieldContainer = $('<div class="jtable-input-field-container row"></div>').appendTo($editForm);
 
                 //Create a label for input
                 $fieldContainer.append(self._createInputLabelForRecordField(fieldName));

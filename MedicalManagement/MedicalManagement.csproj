@@ -77,6 +77,7 @@
     <Content Include="Aseguradora.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="Categoria.aspx" />
+    <Content Include="ConceptoPago.aspx" />
     <Content Include="ConsultaAnalisisClinico.aspx" />
     <Content Include="ConsultaDiagnostico.aspx" />
     <Content Include="ConsultaMenu.aspx" />
@@ -161,6 +162,7 @@
     <Content Include="MenuInicial.aspx" />
     <Content Include="Modulos.aspx" />
     <Content Include="Ocupacion.aspx" />
+    <Content Include="PagosIndividuales.aspx" />
     <Content Include="Pagos.aspx" />
     <Content Include="Perfles.aspx" />
     <Content Include="PermisoPerfil2.aspx" />
@@ -448,6 +450,13 @@
     <Compile Include="Categoria.aspx.designer.cs">
       <DependentUpon>Categoria.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ConceptoPago.aspx.cs">
+      <DependentUpon>ConceptoPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConceptoPago.aspx.designer.cs">
+      <DependentUpon>ConceptoPago.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ConsultaAnalisisClinico.aspx.cs">
       <DependentUpon>ConsultaAnalisisClinico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -588,11 +597,13 @@
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AgendaDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Registro_ConsultaConceptoPagoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaSeguimientoDTO.cs" />
-    <Compile Include="Models\DTO\Tabla_Registro_Pagos.cs" />
+    <Compile Include="Models\DTO\Tabla_Registro_PagosDTO.cs" />
     <Compile Include="Models\Extensiones.cs" />
     <Compile Include="Models\Helpers.cs" />
+    <Compile Include="Models\DTO\Tabla_Catalogo_ConceptoPago.cs" />
     <Compile Include="Modulos.aspx.cs">
       <DependentUpon>Modulos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -606,6 +617,13 @@
     </Compile>
     <Compile Include="Ocupacion.aspx.designer.cs">
       <DependentUpon>Ocupacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagosIndividuales.aspx.cs">
+      <DependentUpon>PagosIndividuales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagosIndividuales.aspx.designer.cs">
+      <DependentUpon>PagosIndividuales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pagos.aspx.cs">
       <DependentUpon>Pagos.aspx</DependentUpon>

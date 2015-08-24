@@ -10,7 +10,7 @@
 namespace MedicalManagement {
     
     
-    public partial class Pagos {
+    public partial class PagosIndividuales {
         
         /// <summary>
         /// ddlFichas control.
@@ -20,14 +20,5 @@ namespace MedicalManagement {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFichas;
-        
-        /// <summary>
-        /// ddlConceptos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlConceptos;
     }
 }
