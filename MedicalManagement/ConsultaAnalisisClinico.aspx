@@ -5,11 +5,23 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+<table width="100%" border="0"><tr><td align="left"><font color="red">Operaciones\Consultas\ConsultasAnalisisClinico</font></td>
+        <td align="right">   
+        <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar ConsultaAnalisisClinico" onclick="btnGuardar_ConsultasAnalisisClinico_Click"></asp:ImageButton>&nbsp;     
+        <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_ConsultasAnalisisClinico_Click"></asp:ImageButton>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" align ="center" runat="Server" id="Alerta">
+        </td>
+    </tr>
+</table>
 
     <asp:TextBox ID="txtBuscar_AnalisisClinico" runat="server"></asp:TextBox>
 
     <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
-        onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
+        onrowcommand="RowCommand"          
         onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
         AllowPaging="true" pagesize="15"
         onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
@@ -39,10 +51,19 @@
     </asp:GridView>
 
 
-    <asp:TextBox ID="TextBox1" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
+    <asp:GridView ID="Grid_AnalisisClinicoSeleccionado" runat="server" AutoGenerateColumns="False" > 
+        <Columns>       
 
-    
-    <asp:GridView ID="Grid_AnalisisClinicoSeleccionado" runat="server">
+             <asp:BoundField DataField="Id_AnalisisClinico" HeaderText="Id.AnalisisClinicos" 
+                SortExpression="Id_AnalisisClinicos" />
+
+             <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
+                SortExpression="Descripcion_AnalisisClinicos" /> 
+
+        </Columns>
+
     </asp:GridView>
+
+    <asp:TextBox ID="txtobservacionesanalisisclinico" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
 
 </asp:Content>
