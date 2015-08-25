@@ -19,6 +19,11 @@
 
 <div class="container-fluid">
     
+    <div class="row">
+        <asp:TextBox ID="txtBuscar_Receta" runat="server" Columns="40"></asp:TextBox>
+        <asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip = "Buscar Receta"></asp:ImageButton>
+    </div>
+    
     <div class="row">            
             <asp:GridView ID="GridViewRecetaPrevia" runat="server" AutoGenerateColumns="false"
             onrowcommand="RowCommand">

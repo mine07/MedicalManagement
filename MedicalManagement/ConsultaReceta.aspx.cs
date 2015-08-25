@@ -68,6 +68,13 @@ namespace MedicalManagement
             }
         }
 
+        /////////////////////////////////////////////////////////////////////////
+
+        protected void txt_OnTextChanged(object sender, EventArgs e)
+        {
+            MostrarGridRecetaPrevia();
+        }
+        /////////////////////////////////////////////////////////////////////////
         protected void btnRegresar_ConsultasRecetas_Click(object sender, ImageClickEventArgs e)
         {
             Response.Redirect("Consultas.aspx");
@@ -261,15 +268,15 @@ namespace MedicalManagement
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
 
-            comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", "");
-            //if (txtBuscar_Categoria.Text == "")
-            //{
-            //    comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", "");
-            //}
-            //else
-            //{
-            //    comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", txtBuscar_Categoria.Text);
-            //}
+
+            if (txtBuscar_Receta.Text.Trim() == "")
+            {
+                comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", "");
+            }
+            else
+            {
+                comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", txtBuscar_Receta.Text.Trim());
+            }
 
             SqlDataAdapter da = new SqlDataAdapter(comando);
             DataTable ds = new DataTable();

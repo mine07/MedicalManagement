@@ -18,52 +18,61 @@
     </tr>
 </table>
 
-    <asp:TextBox ID="txtBuscar_AnalisisClinico" runat="server"></asp:TextBox>
+<div class="container-fluid">
 
-    <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
-        onrowcommand="RowCommand"          
-        onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
-        AllowPaging="true" pagesize="15"
-        onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
+    <div class="row">
+        <asp:TextBox ID="txtBuscar_AnalisisClinico" runat="server"></asp:TextBox>
+    </div>
+
+    <div class="row">
+        <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
+            onrowcommand="RowCommand"          
+            onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
+            AllowPaging="true" pagesize="15"
+            onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
-        GridLines="None"  >
+            GridLines="None"  >
                     
     
-        <Columns>
+            <Columns>
 
-            <asp:BoundField DataField="Id_AnalisisClinico" HeaderText="Id.AnalisisClinicos" 
+                <asp:BoundField DataField="Id_AnalisisClinico" HeaderText="Id.AnalisisClinicos" 
                 SortExpression="Id_AnalisisClinicos" />
 
 
-            <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
+                <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
                 SortExpression="Descripcion_AnalisisClinicos" />    
             
-            <asp:TemplateField  HeaderText="Elegir">
-                <HeaderTemplate>
+                <asp:TemplateField  HeaderText="Elegir">
+                    <HeaderTemplate>
                     Elegir
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <asp:CheckBox  ID="CheckBoxelegir" runat="server" OnCheckedChanged ="CheckBoxelegir_CheckedChanged" AutoPostBack="true" />
-                </ItemTemplate>
-            </asp:TemplateField>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:CheckBox  ID="CheckBoxelegir" runat="server" OnCheckedChanged ="CheckBoxelegir_CheckedChanged" AutoPostBack="true" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             
-        </Columns>
-    </asp:GridView>
+            </Columns>
+        </asp:GridView>
+    </div>
 
+    <div class="row">
+        <asp:GridView ID="Grid_AnalisisClinicoSeleccionado" runat="server" AutoGenerateColumns="False" > 
+            <Columns>       
 
-    <asp:GridView ID="Grid_AnalisisClinicoSeleccionado" runat="server" AutoGenerateColumns="False" > 
-        <Columns>       
-
-             <asp:BoundField DataField="Id_AnalisisClinico" HeaderText="Id.AnalisisClinicos" 
+                <asp:BoundField DataField="Id_AnalisisClinico" HeaderText="Id.AnalisisClinicos" 
                 SortExpression="Id_AnalisisClinicos" />
 
-             <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
+                <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
                 SortExpression="Descripcion_AnalisisClinicos" /> 
 
-        </Columns>
+            </Columns>
 
-    </asp:GridView>
-
-    <asp:TextBox ID="txtobservacionesanalisisclinico" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
+        </asp:GridView>
+    </div>
+    <div class="row">
+        <asp:TextBox ID="txtobservacionesanalisisclinico" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
+    </div>
+</div>
 
 </asp:Content>
