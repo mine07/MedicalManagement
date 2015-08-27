@@ -87,7 +87,7 @@
             <li><a href="Perfles.aspx">Perfiles</a></li>
             <li><a href="Usuarios.aspx">Usuarios</a></li>
               <li><a href="Modulos.aspx">Modulos</a></li>
-              <li><a href="PermisoPerfil2.aspx">Permisos Por Perfil</a></li>
+              <li><a href="PermisosPerfil.aspx">Permisos Por Perfil</a></li>
               <li><a href="Bitacora.aspx">Bitacora de Movimientos</a></li>
           </ul>
         </li>
@@ -139,7 +139,7 @@
                                 <asp:MenuItem NavigateUrl="~/Usuarios.aspx" Text="Usuarios" Value="Usuarios.aspx"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Modulos.aspx" Text="Modulos" Value="Modulos.aspx"></asp:MenuItem>
 
-                                <asp:MenuItem NavigateUrl="~/PermisoPerfil2.aspx" Text="Permisos por Perfil" Value="PermisoPerfil2.aspx"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/PermisosPerfil.aspx" Text="Permisos por Perfil" Value="PermisosPerfil.aspx"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Bitacora.aspx" Text="Bitacora de Movimientos" Value="Bitacora.aspx"></asp:MenuItem>
                             </asp:MenuItem>
                             <asp:MenuItem Text="Salir" Value="Salir"></asp:MenuItem>

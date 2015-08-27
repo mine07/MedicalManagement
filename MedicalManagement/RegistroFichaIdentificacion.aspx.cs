@@ -86,6 +86,7 @@ namespace MedicalManagement
                 LlenarCMBReferidoPor();
                 LlenarCMBAseguradora();
                 LlenarCmbDiaMesAnio();
+                LlenarTxtFechas();
                 Session["imagen"] = "";
 
                 if (Id_FichaIdentificacion != 0)
@@ -213,11 +214,11 @@ namespace MedicalManagement
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Clave de Indentificacion</p>";
             }
-            
-            else if (txtFechaIdent.Text.Length == 0)
+            */
+            else if (txtFechaIdent.Value.Length == 0)
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Fecha de Identificacion</p>";
-            }  */
+            }  
             if (txtNombreIdent.Text.Length == 0)
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Nombre</p>";
@@ -227,22 +228,25 @@ namespace MedicalManagement
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Apellido Paterno</p>";
             }
-            else if (txtApMaIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Apellido Materno</p>";
-            }
-            else if (txtLugarNaIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Lugar de Nacimiento</p>";
-            }
-            /* else if (txtFechaNaIdent.Text.Length == 0)
+            
+            //else if (txtApMaIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Apellido Materno</p>";
+            //}
+            //else if (txtLugarNaIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Lugar de Nacimiento</p>";
+            //}
+                
+             else if (txtFechaNaIdent.Value.Length == 0)
              {
                  Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Fecha de Nacimiento</p>";
              }
-             else if (txtFechaPriIdent.Text.Length == 0)
+             else if (txtFechaPriIdent.Value.Length == 0)
              {
                  Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Fecha de Primera Visita</p>";
              }
+            /*
             else if (txtTelCaIdent.Text.Length == 0)
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Telefono de Casa</p>";
@@ -257,44 +261,44 @@ namespace MedicalManagement
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Celular</p>";
             }
             
-            /*
-            else if (txtCorreoIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Correo Electronico</p>";
-            }*/
-            else if (txtCasoEmeIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Telefono en caso de emergencia</p>";
-            }
-            else if (txtCalleIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Calle</p>";
-            }
-                /*
-            else if (txtNuIntIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Numero de calle interior</p>";
-            }*/
-            else if (txtNuExtIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Numero de calle exterior</p>";
-            }
-            else if (txtColoIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Colonia</p>";
-            }
-            else if (txtMuniIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Municipio</p>";
-            }
-            else if (txtPaisIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Pais</p>";
-            }
-            else if (txtCoPosIdent.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Codigo Postal</p>";
-            }
+            
+            //else if (txtCorreoIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Correo Electronico</p>";
+            //}
+            //else if (txtCasoEmeIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Telefono en caso de emergencia</p>";
+            //}
+            //else if (txtCalleIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Calle</p>";
+            //}
+                
+            //else if (txtNuIntIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Numero de calle interior</p>";
+            //}
+            //else if (txtNuExtIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Numero de calle exterior</p>";
+            //}
+            //else if (txtColoIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Colonia</p>";
+            //}
+            //else if (txtMuniIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Municipio</p>";
+            //}
+            //else if (txtPaisIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Pais</p>";
+            //}
+            //else if (txtCoPosIdent.Text.Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Codigo Postal</p>";
+            //}
              //else if(!FileUpload1.HasFile)
              //{
              //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Es necesario seleccionar una fila para la foto.</p>"; 
@@ -706,7 +710,16 @@ namespace MedicalManagement
             
         }
 
-       
+        public void LlenarTxtFechas()// Llena los txtbox por default que sirven para fechas "FechaDeIdentificacion","FechaNacimiento","Fechaprimeravisita"
+        {
+            DateTime hoy = DateTime.Today;
+            string hoy1 = hoy.ToShortDateString();
+
+            txtFechaIdent.Value = hoy1;
+            txtFechaNaIdent.Value = hoy1;
+            txtFechaPriIdent.Value = hoy1;
+        }
+          
 
         void GuardarFila(HttpPostedFile fila)
         {

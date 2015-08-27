@@ -13,13 +13,13 @@ namespace prototipo {
     public partial class PermisosPerfil {
         
         /// <summary>
-        /// Id_Perfil control.
+        /// ddl_Id_Perfil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Id_Perfil;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_Id_Perfil;
         
         /// <summary>
         /// Grid_Permisos control.
@@ -29,5 +29,14 @@ namespace prototipo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView Grid_Permisos;
+        
+        /// <summary>
+        /// btnelegir control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnelegir;
     }
 }

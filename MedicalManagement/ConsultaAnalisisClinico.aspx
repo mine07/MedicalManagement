@@ -25,35 +25,38 @@
     </div>
 
     <div class="row">
-        <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
-            onrowcommand="RowCommand"          
-            onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
-            AllowPaging="true" pagesize="15"
-            onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
+        
+            <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
+                onrowcommand="RowCommand"          
+                onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
+                AllowPaging="true" pagesize="15"
+                onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
-            GridLines="None"  >
+                GridLines="None"   >
                     
     
-            <Columns>
+                <Columns>
 
-                <asp:BoundField DataField="Id_AnalisisClinico" HeaderText="Id.AnalisisClinicos" 
-                SortExpression="Id_AnalisisClinicos" />
+                    <asp:BoundField DataField="Id_AnalisisClinico" HeaderText="Id.AnalisisClinicos" 
+                    SortExpression="Id_AnalisisClinicos" />
 
 
-                <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
-                SortExpression="Descripcion_AnalisisClinicos" />    
+                    <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
+                    SortExpression="Descripcion_AnalisisClinicos" />    
             
-                <asp:TemplateField  HeaderText="Elegir">
-                    <HeaderTemplate>
-                    Elegir
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <asp:CheckBox  ID="CheckBoxelegir" runat="server" OnCheckedChanged ="CheckBoxelegir_CheckedChanged" AutoPostBack="true" />
-                    </ItemTemplate>
-                </asp:TemplateField>
+                    <asp:TemplateField  HeaderText="Elegir">
+                        <HeaderTemplate>
+                        Elegir
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <asp:CheckBox  ID="CheckBoxelegir" runat="server" OnCheckedChanged ="CheckBoxelegir_CheckedChanged" AutoPostBack="true" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
             
-            </Columns>
-        </asp:GridView>
+                </Columns>
+            </asp:GridView>
+        
+        
     </div>
 
     <div class="row">

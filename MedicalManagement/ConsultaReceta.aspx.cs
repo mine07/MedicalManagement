@@ -235,8 +235,7 @@ namespace MedicalManagement
                 comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
                 comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", Txtnombrerecetaprevia.Text.Trim());
                 comando.Parameters.AddWithValue("@Medicamento_ConsultaReceta", txtmedicamento.Text.Trim());
-                comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtmedicamento.Text.Trim());
-                comando.Parameters.AddWithValue("@Medicamento_ConsultaReceta", txtdosis.Text.Trim());
+                comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());                
                 comando.Parameters.AddWithValue("@Notas_ConsultaReceta", txtnotas.Text.Trim());
 
 
