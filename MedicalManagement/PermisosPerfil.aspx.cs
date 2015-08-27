@@ -26,7 +26,7 @@ namespace prototipo
 
             else if (estatuspermiso == false)
             {
-                string valornombrepagina = "PermisoPerfil2.aspx";
+                string valornombrepagina = "PermisosPerfil.aspx";
                 string consulta;
                 SqlCommand comando;
                 int numeroidmodulo = 0;
