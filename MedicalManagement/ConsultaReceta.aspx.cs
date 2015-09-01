@@ -163,8 +163,8 @@ namespace MedicalManagement
             */
             cnn.Close();
 
-
-            Response.Redirect("RegistroConsulta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
+            Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
+            
         }
 
         ////////////DETALLES DE RECETA PREVIA///////////////////////////////////////////////////////////////////////////////////////////

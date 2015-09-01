@@ -74,11 +74,13 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Agenda.aspx" />
     <Content Include="AgendaElegirFicha.aspx" />
+    <Content Include="AnalisisClinico.aspx" />
     <Content Include="Aseguradora.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="Categoria.aspx" />
     <Content Include="ConceptoPago.aspx" />
     <Content Include="ConsultaAnalisisClinico.aspx" />
+    <Content Include="ConsultaAnalisisClinico2.aspx" />
     <Content Include="ConsultaDiagnostico.aspx" />
     <Content Include="ConsultaMenu.aspx" />
     <Content Include="ConsultaProcedimiento.aspx" />
@@ -172,6 +174,7 @@
     <Content Include="RecetaPrevia.aspx" />
     <Content Include="ReferidoPor.aspx" />
     <Content Include="RegistroAgenda.aspx" />
+    <Content Include="RegistroAnalisisClinico.aspx" />
     <Content Include="RegistroAseguradora.aspx" />
     <Content Include="RegistroCategoria.aspx" />
     <Content Include="RegistroConsulta.aspx" />
@@ -429,6 +432,13 @@
     <Compile Include="AgendaElegirFicha.aspx.designer.cs">
       <DependentUpon>AgendaElegirFicha.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AnalisisClinico.aspx.cs">
+      <DependentUpon>AnalisisClinico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnalisisClinico.aspx.designer.cs">
+      <DependentUpon>AnalisisClinico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aseguradora.aspx.cs">
       <DependentUpon>Aseguradora.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -463,6 +473,13 @@
     </Compile>
     <Compile Include="ConsultaAnalisisClinico.aspx.designer.cs">
       <DependentUpon>ConsultaAnalisisClinico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaAnalisisClinico2.aspx.cs">
+      <DependentUpon>ConsultaAnalisisClinico2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaAnalisisClinico2.aspx.designer.cs">
+      <DependentUpon>ConsultaAnalisisClinico2.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConsultaDiagnostico.aspx.cs">
       <DependentUpon>ConsultaDiagnostico.aspx</DependentUpon>
@@ -688,6 +705,13 @@
     </Compile>
     <Compile Include="RegistroAgenda.aspx.designer.cs">
       <DependentUpon>RegistroAgenda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroAnalisisClinico.aspx.cs">
+      <DependentUpon>RegistroAnalisisClinico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroAnalisisClinico.aspx.designer.cs">
+      <DependentUpon>RegistroAnalisisClinico.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistroAseguradora.aspx.cs">
       <DependentUpon>RegistroAseguradora.aspx</DependentUpon>
@@ -919,7 +943,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>56773</DevelopmentServerPort>
+          <DevelopmentServerPort>61794</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -81,7 +81,7 @@ namespace MedicalManagement
         protected void btnGuardar_Consulta_Click(object sender, EventArgs e)
         {
             GrabarConsulta();
-            Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
+            
         }
 
 

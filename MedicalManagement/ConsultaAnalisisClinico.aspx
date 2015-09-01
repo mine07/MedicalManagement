@@ -21,13 +21,52 @@
 <div class="container-fluid">
 
     <div class="row">
+        <asp:TextBox ID="txtBuscar_AnalisisClinicoPaquetes" runat="server"></asp:TextBox>
+    </div>
+
+    <div class="row">
+
+    <asp:GridView ID="Grid_AnalisisClinicoPaquetes" runat="server" AutoGenerateColumns="False" 
+                          
+                onpageindexchanging ="Grid_AnalisisClinicoPaquetes_PageIndexChanging" 
+                AllowPaging="true" pagesize="15"
+                onpageindexchanged="Grid_AnalisisClinicoPaquetes_PageIndexChanged" CssClass="mGrid" 
+                    PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
+                GridLines="None"   >
+                    
+    
+                <Columns>
+
+                    <asp:BoundField DataField="Id_AnalisisClinicoPaquetes" HeaderText="Id.AnalisisClinicoPaquetes" 
+                    SortExpression="Id_AnalisisClinicoPaquetes" />
+
+
+                    <asp:BoundField DataField="Descripcion_AnalisisClinicoPaquetes" HeaderText="Descripcion Analisis Clinicos Paquetes" 
+                    SortExpression="Descripcion_AnalisisClinicoPaquetes" />    
+            
+                    <asp:TemplateField  HeaderText="Elegir">
+                        <HeaderTemplate>
+                        Elegir
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <asp:CheckBox  ID="CheckBoxelegirPaquetes" runat="server" OnCheckedChanged ="CheckBoxelegirPaquetes_CheckedChanged" AutoPostBack="true" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+            
+                </Columns>
+            </asp:GridView>
+        
+
+    </div>
+
+    <div class="row">
         <asp:TextBox ID="txtBuscar_AnalisisClinico" runat="server"></asp:TextBox>
     </div>
 
     <div class="row">
         
             <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
-                onrowcommand="RowCommand"          
+                         
                 onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
                 AllowPaging="true" pagesize="15"
                 onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
@@ -68,6 +107,20 @@
 
                 <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
                 SortExpression="Descripcion_AnalisisClinicos" /> 
+
+            </Columns>
+
+        </asp:GridView>
+    </div>
+    <div class="row">
+        <asp:GridView ID="Grid_AnalisisClinicoSeleccionadoPaquetes" runat="server" AutoGenerateColumns="False" > 
+            <Columns>       
+
+                <asp:BoundField DataField="Id_AnalisisClinicoPaquetes" HeaderText="Id.AnalisisClinicos" 
+                SortExpression="Id_AnalisisClinicoPaquetes" />
+
+                <asp:BoundField DataField="Descripcion_AnalisisClinicoPaquetes" HeaderText="Descripcion Analisis Clinicos Paquetes" 
+                SortExpression="Descripcion_AnalisisClinicoPaquetes" /> 
 
             </Columns>
 
