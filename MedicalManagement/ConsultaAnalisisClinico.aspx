@@ -22,6 +22,7 @@
 
     <div class="row">
         <asp:TextBox ID="txtBuscar_AnalisisClinicoPaquetes" runat="server"></asp:TextBox>
+        <asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChangedPaquetes" ToolTip = "Buscar Paquetes de Analisis Clinicos"></asp:ImageButton>
     </div>
 
     <div class="row">
@@ -29,7 +30,7 @@
     <asp:GridView ID="Grid_AnalisisClinicoPaquetes" runat="server" AutoGenerateColumns="False" 
                           
                 onpageindexchanging ="Grid_AnalisisClinicoPaquetes_PageIndexChanging" 
-                AllowPaging="true" pagesize="15"
+                AllowPaging="true" pagesize="10"
                 onpageindexchanged="Grid_AnalisisClinicoPaquetes_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
                 GridLines="None"   >
@@ -61,6 +62,7 @@
 
     <div class="row">
         <asp:TextBox ID="txtBuscar_AnalisisClinico" runat="server"></asp:TextBox>
+        <asp:ImageButton ID="ImageButton2" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip = "Buscar Analisis Clinicos "></asp:ImageButton>
     </div>
 
     <div class="row">
@@ -68,7 +70,7 @@
             <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
                          
                 onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
-                AllowPaging="true" pagesize="15"
+                AllowPaging="true" pagesize="10"
                 onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
                 GridLines="None"   >

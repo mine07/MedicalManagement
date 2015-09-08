@@ -119,7 +119,17 @@ namespace MedicalManagement
 
         protected void btnGuardar_AnalisisClinico_Click(object sender, EventArgs e)
         {
-            GrabaAnalisisClinico();
+
+            if (Descripcion_AnalisisClinico.Text.Trim().Length == 0)
+            {
+                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado: Favor de Capturar el Nombre del Analisis Clinico</p>";
+            }
+            
+            else
+            {
+                GrabaAnalisisClinico(); 
+            }
+            
         }
 
     }

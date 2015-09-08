@@ -75,6 +75,7 @@
     <Content Include="Agenda.aspx" />
     <Content Include="AgendaElegirFicha.aspx" />
     <Content Include="AnalisisClinico.aspx" />
+    <Content Include="AnalisisClinicoPaquetes.aspx" />
     <Content Include="Aseguradora.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="Categoria.aspx" />
@@ -85,6 +86,7 @@
     <Content Include="ConsultaMenu.aspx" />
     <Content Include="ConsultaProcedimiento.aspx" />
     <Content Include="ConsultaReceta.aspx" />
+    <Content Include="ConsultaReceta2.aspx" />
     <Content Include="Consultas.aspx" />
     <Content Include="ConsultasAnteriores.aspx" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -175,6 +177,7 @@
     <Content Include="ReferidoPor.aspx" />
     <Content Include="RegistroAgenda.aspx" />
     <Content Include="RegistroAnalisisClinico.aspx" />
+    <Content Include="RegistroAnalisisClinicoPaquetes.aspx" />
     <Content Include="RegistroAseguradora.aspx" />
     <Content Include="RegistroCategoria.aspx" />
     <Content Include="RegistroConsulta.aspx" />
@@ -439,6 +442,13 @@
     <Compile Include="AnalisisClinico.aspx.designer.cs">
       <DependentUpon>AnalisisClinico.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AnalisisClinicoPaquetes.aspx.cs">
+      <DependentUpon>AnalisisClinicoPaquetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnalisisClinicoPaquetes.aspx.designer.cs">
+      <DependentUpon>AnalisisClinicoPaquetes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aseguradora.aspx.cs">
       <DependentUpon>Aseguradora.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -508,6 +518,13 @@
     </Compile>
     <Compile Include="ConsultaReceta.aspx.designer.cs">
       <DependentUpon>ConsultaReceta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaReceta2.aspx.cs">
+      <DependentUpon>ConsultaReceta2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaReceta2.aspx.designer.cs">
+      <DependentUpon>ConsultaReceta2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Consultas.aspx.cs">
       <DependentUpon>Consultas.aspx</DependentUpon>
@@ -712,6 +729,13 @@
     </Compile>
     <Compile Include="RegistroAnalisisClinico.aspx.designer.cs">
       <DependentUpon>RegistroAnalisisClinico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroAnalisisClinicoPaquetes.aspx.cs">
+      <DependentUpon>RegistroAnalisisClinicoPaquetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroAnalisisClinicoPaquetes.aspx.designer.cs">
+      <DependentUpon>RegistroAnalisisClinicoPaquetes.aspx</DependentUpon>
     </Compile>
     <Compile Include="RegistroAseguradora.aspx.cs">
       <DependentUpon>RegistroAseguradora.aspx</DependentUpon>
@@ -943,7 +967,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>61794</DevelopmentServerPort>
+          <DevelopmentServerPort>51259</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

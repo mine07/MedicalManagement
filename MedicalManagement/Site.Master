@@ -77,6 +77,7 @@
               <li><a href="Medicamento.aspx">Medicamento</a></li>
               <li><a href="RecetaPrevia.aspx">RecetaPrevia</a></li>
               <li><a href="AnalisisClinico.aspx">AnalisisClinico</a></li>
+              <li><a href="AnalisisClinicoPaquetes.aspx">AnalisisClinicoPaquetes</a></li>
                
           </ul>
         </li>
