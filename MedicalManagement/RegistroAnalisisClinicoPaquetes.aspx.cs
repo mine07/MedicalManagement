@@ -79,6 +79,7 @@ namespace MedicalManagement
 
         protected void Grid_AnalisisClinico_PageIndexChanged(object sender, EventArgs e)//EventArgs
         {
+            
             LlenarGridAnalisisClinico();
             Mostrar(Convert.ToString(Id_AnalisisClinicoPaquetes));
         }
@@ -92,6 +93,7 @@ namespace MedicalManagement
 
             else
             {
+                Alerta.InnerHtml = "<p style=\"color: white;background-color: white\"></p>";
                 GrabaAnalisisClinicoPaquetes();
                 Mostrar(Convert.ToString( Id_AnalisisClinicoPaquetes));
             }
@@ -190,22 +192,25 @@ namespace MedicalManagement
             cnn = new SqlConnection(conexion);
             cnn.Open();
             SqlCommand comando = new SqlCommand("SP_Catalogo_AnalisisClinicoPaquetes", cnn);
-            comando.CommandType = CommandType.StoredProcedure;
+            comando.CommandType = CommandType.StoredProcedure;           
 
 
+            
+
+            bool insertarIdAnalisisclinicoPaquetes = false;
 
             if (Id_AnalisisClinicoPaquetes == 0)
             {
                 comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
-
-
+                insertarIdAnalisisclinicoPaquetes = true;
             }
             else
             {
                 comando.Parameters.AddWithValue("@Opcion", "ACTUALIZAR");
                 comando.Parameters.AddWithValue("@Id_AnalisisClinicoPaquetes", Id_AnalisisClinicoPaquetes);
-
+                
             }
+
             comando.Parameters.AddWithValue("@Descripcion_AnalisisClinicoPaquetes", Descripcion_AnalisisClinicoPaquetes.Text);
 
 
@@ -216,7 +221,16 @@ namespace MedicalManagement
 
             ///////////////////////////////////////
 
-
+            if (insertarIdAnalisisclinicoPaquetes == true)
+            {
+                string sentenciaId = @"select max(Id_AnalisisClinicoPaquetes) from Tabla_Catalogo_AnalisisClinicoPaquetes where 
+                                     Descripcion_AnalisisClinicoPaquetes='"+Descripcion_AnalisisClinicoPaquetes.Text.Trim()+"'";
+                SqlCommand comandoid = new SqlCommand(sentenciaId, cnn);
+                int numeroidAnalisisClinicoPaquete = Convert.ToInt32(comandoid.ExecuteScalar());
+                Session["numeroidAnalisisClinicoPaquete"] = numeroidAnalisisClinicoPaquete;
+                Id_AnalisisClinicoPaquetes = numeroidAnalisisClinicoPaquete;
+            }
+            ///////////////////////////////////////
 
             string sentencia = @"select Id_AnalisisClinico from Tabla_Registro_AnalisisClinicoPaquetes
                                          where Id_AnalisisClinicoPaquetes=" + Id_AnalisisClinicoPaquetes + "";
@@ -349,6 +363,13 @@ namespace MedicalManagement
                     }
 
                 }
+            }
+
+            if (insertarIdAnalisisclinicoPaquetes == true)
+            {
+                int sessionidAnalisisClinicoPaquete = Convert.ToInt32(Session["numeroidAnalisisClinicoPaquete"]);
+                Session["numeroidAnalisisClinicoPaquete"] = null;
+                System.Web.HttpContext.Current.Response.Redirect("RegistroAnalisisClinicoPaquetes.aspx?Id_AnalisisClinicoPaquetes=" + sessionidAnalisisClinicoPaquete);
             }
         }
 

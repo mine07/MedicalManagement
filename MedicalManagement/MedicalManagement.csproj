@@ -86,7 +86,6 @@
     <Content Include="ConsultaMenu.aspx" />
     <Content Include="ConsultaProcedimiento.aspx" />
     <Content Include="ConsultaReceta.aspx" />
-    <Content Include="ConsultaReceta2.aspx" />
     <Content Include="Consultas.aspx" />
     <Content Include="ConsultasAnteriores.aspx" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -518,13 +517,6 @@
     </Compile>
     <Compile Include="ConsultaReceta.aspx.designer.cs">
       <DependentUpon>ConsultaReceta.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ConsultaReceta2.aspx.cs">
-      <DependentUpon>ConsultaReceta2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ConsultaReceta2.aspx.designer.cs">
-      <DependentUpon>ConsultaReceta2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Consultas.aspx.cs">
       <DependentUpon>Consultas.aspx</DependentUpon>
