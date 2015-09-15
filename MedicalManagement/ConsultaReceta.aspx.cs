@@ -337,7 +337,16 @@ namespace MedicalManagement
             txtDos.Value = "";
             txtNot.Value = "";
             ddlMedicamento.SelectedIndex = 0;
+        }
 
+        protected void saveToTemplate(object sender, EventArgs e)
+        {
+            string query = "select * from Tabla_Temporal_Receta where Id_Consulta = @Id_Consulta and Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            Helpers h = new Helpers();
+            var oneTemp = new Tabla_Temporal_RecetaDTO();
+            oneTemp.Id_Consulta = Id_Consulta;
+            oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            var lTemporal = h.GetAllParametized(query, oneTemp);
         }
 
         protected void loadMedicamentos()

@@ -86,6 +86,12 @@
         <ContentTemplate>
             <div class="container-fluid border-top1-bottom5">
                 <div class="row">
+                    <div class="col-xs-12">
+                        <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;">Guardar Como Receta Previa<i class="fa fa-save"></i></label>
+                        <hr />
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4">
                         <div class="container-fluid">
                             <div class="row">
@@ -122,7 +128,7 @@
                             </div>
                             <div class="row" style="padding-top: 5px;">
                                 <div class="col-xs-12">
-                                    <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right" style="padding-left: 10px;"></i></label></h4>' />
+                                    <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' />
                                 </div>
                             </div>
                         </div>
