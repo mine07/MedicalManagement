@@ -33,6 +33,7 @@ namespace MedicalManagement
 
         protected void txt_OnTextChanged(object sender, EventArgs e)
         {
+            GuardarDiagnosticos();
             LlenarGridDiagnostico();
         }
 
@@ -45,10 +46,11 @@ namespace MedicalManagement
 
         protected void Grid_Diagnostico_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            LlenarGridDiagnostico();
 
+            GuardarDiagnosticos();
             Grid_Diagnostico.PageIndex = e.NewPageIndex;
             Grid_Diagnostico.DataBind();
+            LlenarGridDiagnostico();
         }
 
         protected void Grid_Diagnostico_PageIndexChanged(object sender, EventArgs e)//EventArgs
@@ -69,6 +71,13 @@ namespace MedicalManagement
 
 
         protected void btnGuardar_ConsultaDiagnostico_Click(object sender, EventArgs e)
+        {
+            GuardarDiagnosticos();
+            System.Web.HttpContext.Current.Response.Write("<script>javascript: alert('Datos modificados');</script>");
+
+        }
+
+        public void GuardarDiagnosticos()
         {
             CheckBox chseleccionado;
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -104,8 +113,8 @@ namespace MedicalManagement
                         comando.Parameters.AddWithValue("@Id_Diagnostico", numeroiddiagnostico);
                         comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
                         comando.Parameters.AddWithValue("@Estatus_ConsultaDiagnostico", varlorcheck);
-                        comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico",Convert.ToDateTime( Fecha_Consulta));
-                        
+                        comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico", Convert.ToDateTime(Fecha_Consulta));
+
                         comando.ExecuteNonQuery();
                     }
                     else
@@ -132,7 +141,7 @@ namespace MedicalManagement
                                 comando.Parameters.AddWithValue("@Id_Consulta", Id_Consulta);
                                 comando.Parameters.AddWithValue("@Id_Diagnostico", numeroiddiagnostico);
                                 comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
-                                comando.Parameters.AddWithValue("@Estatus_diagnostico", varlorcheck);
+                                comando.Parameters.AddWithValue("@Estatus_ConsultaDiagnostico", varlorcheck);
                                 comando.Parameters.AddWithValue("@Fecha_ConsultaDiagnostico", Convert.ToDateTime(Fecha_Consulta));
                                 comando.ExecuteNonQuery();
                                 break;
@@ -165,10 +174,11 @@ namespace MedicalManagement
 
             }
             cnn.Close();
-            System.Web.HttpContext.Current.Response.Write("<script>javascript: alert('Datos modificados');</script>");
+            
             //LlenarGridAnalisisClinico();
 
         }
+
 
         public void LlenarGridDiagnostico()
         {

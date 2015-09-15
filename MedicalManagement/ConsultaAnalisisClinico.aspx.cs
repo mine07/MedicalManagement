@@ -18,29 +18,33 @@ namespace MedicalManagement
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
 
         int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
-        int Id_ConsultaAnalisisClinico = 0;
+        int Id_ConsultaAnalisisClinico = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_ConsultaAnalisisClinico"]);//int Id_ConsultaAnalisisClinico = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+
+            string consulta = "select Id_ConsultaAnalisisClinico from Tabla_Registro_ConsultaAnalisisClinico where Id_Consulta=" + Id_Consulta + "";
+            SqlCommand comando = new SqlCommand(consulta, cnn);
+            Id_ConsultaAnalisisClinico = Convert.ToInt32(comando.ExecuteScalar());
+            Session["Id_ConsultaAnalisisClinico"] = Id_ConsultaAnalisisClinico;
+
             if (!IsPostBack)
-            {
+            {               
+
                 LlenarGridAnalisisClinico();
+                Mostrar(Convert.ToString(Id_ConsultaAnalisisClinico));
+
                 LlenarGridAnalisisClinicoPaquetes();
-
-                SqlConnection cnn;
-                cnn = new SqlConnection(conexion);
-                cnn.Open();
-
-                string consulta = "select Id_ConsultaAnalisisClinico from Tabla_Registro_ConsultaAnalisisClinico where Id_Consulta=" + Id_Consulta + "";
-                SqlCommand comando = new SqlCommand(consulta, cnn);
-                Id_ConsultaAnalisisClinico = Convert.ToInt32(comando.ExecuteScalar());
-                Session["Id_ConsultaAnalisisClinico"] = Id_ConsultaAnalisisClinico;
+                MostrarPaquetes(Convert.ToString(Id_ConsultaAnalisisClinico));
 
                 if (Id_ConsultaAnalisisClinico != 0)
                 {
-                    /////////////LLenando Grid Analisis Clinico Seleccionado
+                    /////////////LLenando txtobservacionesanalisisclinico.text
 
                     SqlCommand comando2 = new SqlCommand("SP_Registro_ConsultasAnalisisClinicos", cnn);
                     comando2.CommandType = CommandType.StoredProcedure;
@@ -60,46 +64,46 @@ namespace MedicalManagement
                     reader.Close();
                     comando2 = null;
 
-                    string sentencia = @"select a.Id_AnalisisClinico, b.Descripcion_AnalisisClinico from Tabla_Registro_ConsultaAnalisisClinicoDetallado a
-                                     join Tabla_Catalogo_AnalisisClinico b on a.Id_AnalisisClinico= b.Id_AnalisisClinico
-                                     where a.Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinico + "and a.Estatus_ConsultaAnalisisClinicoDetallado=1";//Id_ConsultaAnalisisClinico se utiliza en caso de que este no sea cero
+//                    string sentencia = @"select a.Id_AnalisisClinico, b.Descripcion_AnalisisClinico from Tabla_Registro_ConsultaAnalisisClinicoDetallado a
+//                                     join Tabla_Catalogo_AnalisisClinico b on a.Id_AnalisisClinico= b.Id_AnalisisClinico
+//                                     where a.Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinico + "and a.Estatus_ConsultaAnalisisClinicoDetallado=1";//Id_ConsultaAnalisisClinico se utiliza en caso de que este no sea cero
                     
-                    SqlCommand comandoselect = new SqlCommand(sentencia, cnn);
+//                    SqlCommand comandoselect = new SqlCommand(sentencia, cnn);
 
-                    SqlDataAdapter da = new SqlDataAdapter(comandoselect);
-                    DataTable ds = new DataTable();
-                    da.Fill(ds);
-                    Grid_AnalisisClinicoSeleccionado.Visible = true;
-                    Grid_AnalisisClinicoSeleccionado.DataSource = ds;
-                    Grid_AnalisisClinicoSeleccionado.Columns[0].Visible = true;
-                    Grid_AnalisisClinicoSeleccionado.Columns[1].Visible = true;
-                    Grid_AnalisisClinicoSeleccionado.DataBind();
-                    ds.Dispose();
-                    da.Dispose();
+//                    SqlDataAdapter da = new SqlDataAdapter(comandoselect);
+//                    DataTable ds = new DataTable();
+//                    da.Fill(ds);
+//                    Grid_AnalisisClinicoSeleccionado.Visible = true;
+//                    Grid_AnalisisClinicoSeleccionado.DataSource = ds;
+//                    Grid_AnalisisClinicoSeleccionado.Columns[0].Visible = true;
+//                    Grid_AnalisisClinicoSeleccionado.Columns[1].Visible = true;
+//                    Grid_AnalisisClinicoSeleccionado.DataBind();
+//                    ds.Dispose();
+//                    da.Dispose();
 
-                    /////////////LLenando Grid Analisis Clinico Seleccionado Paquetes
+//                    /////////////LLenando Grid Analisis Clinico Seleccionado Paquetes
 
-                    sentencia = null;
-                    comandoselect = null;
-                    da = null;
-                    ds = null;
+//                    sentencia = null;
+//                    comandoselect = null;
+//                    da = null;
+//                    ds = null;
 
-                    sentencia = @"select a.Id_AnalisisClinicoPaquetes, b.Descripcion_AnalisisClinicoPaquetes from Tabla_Registro_ConsultaAnalisisClinicoDetalladoPaquetes a
-                                     join Tabla_Catalogo_AnalisisClinicoPaquetes b on a.Id_AnalisisClinicoPaquetes= b.Id_AnalisisClinicoPaquetes
-                                     where a.Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinico + "and a.Estatus_ConsultaAnalisisClinicoDetalladoPaquetes=1";//Id_ConsultaAnalisisClinico se utiliza en caso de que este no sea cero
+//                    sentencia = @"select a.Id_AnalisisClinicoPaquetes, b.Descripcion_AnalisisClinicoPaquetes from Tabla_Registro_ConsultaAnalisisClinicoDetalladoPaquetes a
+//                                     join Tabla_Catalogo_AnalisisClinicoPaquetes b on a.Id_AnalisisClinicoPaquetes= b.Id_AnalisisClinicoPaquetes
+//                                     where a.Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinico + "and a.Estatus_ConsultaAnalisisClinicoDetalladoPaquetes=1";//Id_ConsultaAnalisisClinico se utiliza en caso de que este no sea cero
 
-                    comandoselect = new SqlCommand(sentencia, cnn);
+//                    comandoselect = new SqlCommand(sentencia, cnn);
 
-                    da = new SqlDataAdapter(comandoselect);
-                    ds = new DataTable();
-                    da.Fill(ds);
-                    Grid_AnalisisClinicoSeleccionadoPaquetes.Visible = true;
-                    Grid_AnalisisClinicoSeleccionadoPaquetes.DataSource = ds;
-                    Grid_AnalisisClinicoSeleccionadoPaquetes.Columns[0].Visible = true;
-                    Grid_AnalisisClinicoSeleccionadoPaquetes.Columns[1].Visible = true;
-                    Grid_AnalisisClinicoSeleccionadoPaquetes.DataBind();
-                    ds.Dispose();
-                    da.Dispose();
+//                    da = new SqlDataAdapter(comandoselect);
+//                    ds = new DataTable();
+//                    da.Fill(ds);
+//                    Grid_AnalisisClinicoSeleccionadoPaquetes.Visible = true;
+//                    Grid_AnalisisClinicoSeleccionadoPaquetes.DataSource = ds;
+//                    Grid_AnalisisClinicoSeleccionadoPaquetes.Columns[0].Visible = true;
+//                    Grid_AnalisisClinicoSeleccionadoPaquetes.Columns[1].Visible = true;
+//                    Grid_AnalisisClinicoSeleccionadoPaquetes.DataBind();
+//                    ds.Dispose();
+//                    da.Dispose();
                 }
                 else
                 {
@@ -144,10 +148,12 @@ namespace MedicalManagement
 
             Id_ConsultaAnalisisClinico = Convert.ToInt32(Session["Id_ConsultaAnalisisClinico"]);
 
+            
+
             if (Id_ConsultaAnalisisClinico == 0)
             {
                 comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
-
+                
             }
             else
             {
@@ -165,7 +171,7 @@ namespace MedicalManagement
             reader.Close();
             comando = null;
 
-            ////////////////////////////////////
+                        
 
             //Insertar o Actualizar datos en Tabla_registro_consultaanalisisclinicodetallado
 
@@ -184,49 +190,74 @@ namespace MedicalManagement
 
             if (ds.Rows.Count == 0)//Insertar datos a Tabla_registro_consultaanalisisclinicodetallado 
             {
-                foreach (GridViewRow row in Grid_AnalisisClinicoSeleccionado.Rows)
+                foreach (GridViewRow row in Grid_AnalisisClinico.Rows)
                 {
+                    CheckBox chseleccionado;
+
                     int Numeroid_AnalisisClinicoGrid = Convert.ToInt32(row.Cells[0].Text);
 
-                    SqlCommand comando3 = new SqlCommand(@"insert into tabla_registro_consultaanalisisclinicodetallado (Id_ConsultaAnalisisClinico,Id_AnalisisClinico,Estatus_ConsultaAnalisisClinicoDetallado)
+                     chseleccionado = row.FindControl("CheckBoxelegir") as CheckBox;
+                     if (chseleccionado.Checked == true)
+                     {
+
+                         SqlCommand comando3 = new SqlCommand(@"insert into tabla_registro_consultaanalisisclinicodetallado (Id_ConsultaAnalisisClinico,Id_AnalisisClinico,Estatus_ConsultaAnalisisClinicoDetallado)
                                                              values (" + Id_ConsultaAnalisisClinicoSentencia + "," + Numeroid_AnalisisClinicoGrid + ",1)", cnn);
-                    comando3.CommandType = CommandType.Text;
-                    SqlDataReader reader3 = comando3.ExecuteReader();
+                         comando3.CommandType = CommandType.Text;
+                         SqlDataReader reader3 = comando3.ExecuteReader();
 
-                    reader3.Read();
-                    reader3.Close();
-
+                         reader3.Read();
+                         reader3.Close();
+                     }
+                     else
+                     {
+                     }
                 }
             }
             else
             {
-                SqlCommand comando2 = new SqlCommand(@"update tabla_registro_consultaanalisisclinicodetallado set Estatus_ConsultaAnalisisClinicoDetallado=0 
-                                                       where Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + "", cnn);
-                comando2.CommandType = CommandType.Text;
-                SqlDataReader reader2 = comando2.ExecuteReader();
-                reader2.Read();
-                reader2.Close();
+//               
 
-                foreach (GridViewRow row in Grid_AnalisisClinicoSeleccionado.Rows)
+                foreach (GridViewRow row in Grid_AnalisisClinico.Rows)
                 {
+                    CheckBox chseleccionado;
+
                     int Numeroid_AnalisisClinicoGrid = Convert.ToInt32(row.Cells[0].Text);
 
-
-                    bool insertar = false;
-
-                    foreach (DataRow dtRow in ds.Rows)
+                    chseleccionado = row.FindControl("CheckBoxelegir") as CheckBox;
+                    if (chseleccionado.Checked == true)
                     {
-                        int NumeroidAnalisisClinicoTabla = 0;
-                        NumeroidAnalisisClinicoTabla = Convert.ToInt32(dtRow["Id_AnalisisClinico"]);
 
-                        insertar = true;
+                        bool insertar = false;
 
-                        if (Numeroid_AnalisisClinicoGrid == NumeroidAnalisisClinicoTabla)
+                        foreach (DataRow dtRow in ds.Rows)
                         {
-                            insertar = false;
-                            SqlCommand comando3 = new SqlCommand(@"update tabla_registro_consultaanalisisclinicodetallado set Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + @",Id_AnalisisClinico=" + NumeroidAnalisisClinicoTabla +
-                                                                 @",Estatus_ConsultaAnalisisClinicoDetallado=1 
+                            int NumeroidAnalisisClinicoTabla = 0;
+                            NumeroidAnalisisClinicoTabla = Convert.ToInt32(dtRow["Id_AnalisisClinico"]);
+
+                            insertar = true;
+
+                            if (Numeroid_AnalisisClinicoGrid == NumeroidAnalisisClinicoTabla)
+                            {
+                                insertar = false;
+                                SqlCommand comando3 = new SqlCommand(@"update tabla_registro_consultaanalisisclinicodetallado set Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + @",Id_AnalisisClinico=" + NumeroidAnalisisClinicoTabla +
+                                                                     @",Estatus_ConsultaAnalisisClinicoDetallado=1 
                                                                      where Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + " and Id_AnalisisClinico=" + NumeroidAnalisisClinicoTabla + "", cnn);
+                                comando3.CommandType = CommandType.Text;
+
+
+                                //comando.Parameters.AddWithValue("@Id_AnalisisClinico", numeroid_AnalisisClinico);
+
+                                SqlDataReader reader3 = comando3.ExecuteReader();
+                                reader3.Read();
+                                reader3.Close();
+                                break;
+                            }
+                        }
+
+                        if (insertar == true)
+                        {
+                            SqlCommand comando3 = new SqlCommand(@"insert into tabla_registro_consultaanalisisclinicodetallado (Id_ConsultaAnalisisClinico,Id_AnalisisClinico,Estatus_ConsultaAnalisisClinicoDetallado)
+                                                                 values (" + Id_ConsultaAnalisisClinicoSentencia + "," + Numeroid_AnalisisClinicoGrid + ",1)", cnn);
                             comando3.CommandType = CommandType.Text;
 
 
@@ -235,22 +266,37 @@ namespace MedicalManagement
                             SqlDataReader reader3 = comando3.ExecuteReader();
                             reader3.Read();
                             reader3.Close();
-                            break;
+
                         }
                     }
-
-                    if (insertar == true)
+                    else
                     {
-                        SqlCommand comando3 = new SqlCommand(@"insert into tabla_registro_consultaanalisisclinicodetallado (Id_ConsultaAnalisisClinico,Id_AnalisisClinico,Estatus_ConsultaAnalisisClinicoDetallado)
-                                                                 values (" + Id_ConsultaAnalisisClinicoSentencia + "," + Numeroid_AnalisisClinicoGrid + ",1)", cnn);
-                        comando3.CommandType = CommandType.Text;
+                        bool insertar = false;
+
+                        foreach (DataRow dtRow in ds.Rows)
+                        {
+                            int NumeroidAnalisisClinicoTabla = 0;
+                            NumeroidAnalisisClinicoTabla = Convert.ToInt32(dtRow["Id_AnalisisClinico"]);
+
+                            insertar = true;
+
+                            if (Numeroid_AnalisisClinicoGrid == NumeroidAnalisisClinicoTabla)
+                            {
+                                insertar = false;
+                                SqlCommand comando3 = new SqlCommand(@"update tabla_registro_consultaanalisisclinicodetallado set Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + @",Id_AnalisisClinico=" + NumeroidAnalisisClinicoTabla +
+                                                                     @",Estatus_ConsultaAnalisisClinicoDetallado=0 
+                                                                     where Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + " and Id_AnalisisClinico=" + NumeroidAnalisisClinicoTabla + "", cnn);
+                                comando3.CommandType = CommandType.Text;
 
 
-                        //comando.Parameters.AddWithValue("@Id_AnalisisClinico", numeroid_AnalisisClinico);
+                                //comando.Parameters.AddWithValue("@Id_AnalisisClinico", numeroid_AnalisisClinico);
 
-                        SqlDataReader reader3 = comando3.ExecuteReader();
-                        reader3.Read();
-                        reader3.Close();
+                                SqlDataReader reader3 = comando3.ExecuteReader();
+                                reader3.Read();
+                                reader3.Close();
+                                break;
+                            }
+                        }
 
                     }
 
@@ -330,49 +376,79 @@ namespace MedicalManagement
 
             if (ds.Rows.Count == 0)//Insertar datos a Tabla_registro_consultaanalisisclinicodetalladoPaquetes 
             {
-                foreach (GridViewRow row in Grid_AnalisisClinicoSeleccionadoPaquetes.Rows)
+                foreach (GridViewRow row in Grid_AnalisisClinicoPaquetes.Rows)
                 {
+                    CheckBox chseleccionado;
+
                     int Numeroid_AnalisisClinicoGrid = Convert.ToInt32(row.Cells[0].Text);
 
-                    SqlCommand comando3 = new SqlCommand(@"insert into tabla_registro_consultaanalisisclinicodetalladoPaquetes (Id_ConsultaAnalisisClinico,Id_AnalisisClinicoPaquetes,Estatus_ConsultaAnalisisClinicoDetalladoPaquetes)
-                                                             values (" + Id_ConsultaAnalisisClinicoSentencia + "," + Numeroid_AnalisisClinicoGrid + ",1)", cnn);
-                    comando3.CommandType = CommandType.Text;
-                    SqlDataReader reader3 = comando3.ExecuteReader();
+                     chseleccionado = row.FindControl("CheckBoxelegirPaquetes") as CheckBox;
+                     if (chseleccionado.Checked == true)
+                     {                        
 
-                    reader3.Read();
-                    reader3.Close();
+                         SqlCommand comando3 = new SqlCommand(@"insert into tabla_registro_consultaanalisisclinicodetalladoPaquetes (Id_ConsultaAnalisisClinico,Id_AnalisisClinicoPaquetes,Estatus_ConsultaAnalisisClinicoDetalladoPaquetes)
+                                                             values (" + Id_ConsultaAnalisisClinicoSentencia + "," + Numeroid_AnalisisClinicoGrid + ",1)", cnn);
+                         comando3.CommandType = CommandType.Text;
+                         SqlDataReader reader3 = comando3.ExecuteReader();
+
+                         reader3.Read();
+                         reader3.Close();
+                     }
+                     else
+                     {
+
+                     }
 
                 }
             }
             else
             {
-                SqlCommand comando2 = new SqlCommand(@"update tabla_registro_consultaanalisisclinicodetalladoPaquetes set Estatus_ConsultaAnalisisClinicoDetalladoPaquetes=0 
-                                                       where Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + "", cnn);
-                comando2.CommandType = CommandType.Text;
-                SqlDataReader reader2 = comando2.ExecuteReader();
-                reader2.Read();
-                reader2.Close();
+//                
 
-                foreach (GridViewRow row in Grid_AnalisisClinicoSeleccionadoPaquetes.Rows)
+                foreach (GridViewRow row in Grid_AnalisisClinicoPaquetes.Rows)
                 {
+                    
+                    
+                    CheckBox chseleccionado;
+
                     int Numeroid_AnalisisClinicoGrid = Convert.ToInt32(row.Cells[0].Text);
 
-
-                    bool insertar = false;
-
-                    foreach (DataRow dtRow in ds.Rows)
+                    chseleccionado = row.FindControl("CheckBoxelegirPaquetes") as CheckBox;
+                    if (chseleccionado.Checked == true)
                     {
-                        int NumeroidAnalisisClinicoTabla = 0;
-                        NumeroidAnalisisClinicoTabla = Convert.ToInt32(dtRow["Id_AnalisisClinicoPaquetes"]);
 
-                        insertar = true;
+                        bool insertar = false;
 
-                        if (Numeroid_AnalisisClinicoGrid == NumeroidAnalisisClinicoTabla)
+                        foreach (DataRow dtRow in ds.Rows)
                         {
-                            insertar = false;
-                            SqlCommand comando3 = new SqlCommand(@"update tabla_registro_consultaanalisisclinicodetalladoPaquetes set Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + @",Id_AnalisisClinicoPaquetes=" + NumeroidAnalisisClinicoTabla +
-                                                                 @",Estatus_ConsultaAnalisisClinicoDetalladoPaquetes=1 
+                            int NumeroidAnalisisClinicoTabla = 0;
+                            NumeroidAnalisisClinicoTabla = Convert.ToInt32(dtRow["Id_AnalisisClinicoPaquetes"]);
+
+                            insertar = true;
+
+                            if (Numeroid_AnalisisClinicoGrid == NumeroidAnalisisClinicoTabla)
+                            {
+                                insertar = false;
+                                SqlCommand comando3 = new SqlCommand(@"update tabla_registro_consultaanalisisclinicodetalladoPaquetes set Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + @",Id_AnalisisClinicoPaquetes=" + NumeroidAnalisisClinicoTabla +
+                                                                     @",Estatus_ConsultaAnalisisClinicoDetalladoPaquetes=1 
                                                                      where Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + " and Id_AnalisisClinicoPaquetes=" + NumeroidAnalisisClinicoTabla + "", cnn);
+                                comando3.CommandType = CommandType.Text;
+
+
+                                //comando.Parameters.AddWithValue("@Id_AnalisisClinico", numeroid_AnalisisClinico);
+
+                                SqlDataReader reader3 = comando3.ExecuteReader();
+                                reader3.Read();
+                                reader3.Close();
+                                break;
+                            }
+                        }
+
+
+                        if (insertar == true)
+                        {
+                            SqlCommand comando3 = new SqlCommand(@"insert into tabla_registro_consultaanalisisclinicodetalladoPaquetes (Id_ConsultaAnalisisClinico,Id_AnalisisClinicoPaquetes,Estatus_ConsultaAnalisisClinicoDetalladoPaquetes)
+                                                                 values (" + Id_ConsultaAnalisisClinicoSentencia + "," + Numeroid_AnalisisClinicoGrid + ",1)", cnn);
                             comando3.CommandType = CommandType.Text;
 
 
@@ -381,22 +457,37 @@ namespace MedicalManagement
                             SqlDataReader reader3 = comando3.ExecuteReader();
                             reader3.Read();
                             reader3.Close();
-                            break;
+
                         }
                     }
-
-                    if (insertar == true)
+                    else
                     {
-                        SqlCommand comando3 = new SqlCommand(@"insert into tabla_registro_consultaanalisisclinicodetalladoPaquetes (Id_ConsultaAnalisisClinico,Id_AnalisisClinicoPaquetes,Estatus_ConsultaAnalisisClinicoDetalladoPaquetes)
-                                                                 values (" + Id_ConsultaAnalisisClinicoSentencia + "," + Numeroid_AnalisisClinicoGrid + ",1)", cnn);
-                        comando3.CommandType = CommandType.Text;
+                        bool insertar = false;
+
+                        foreach (DataRow dtRow in ds.Rows)
+                        {
+                            int NumeroidAnalisisClinicoTabla = 0;
+                            NumeroidAnalisisClinicoTabla = Convert.ToInt32(dtRow["Id_AnalisisClinicoPaquetes"]);
+
+                            insertar = true;
+
+                            if (Numeroid_AnalisisClinicoGrid == NumeroidAnalisisClinicoTabla)
+                            {
+                                insertar = false;
+                                SqlCommand comando3 = new SqlCommand(@"update tabla_registro_consultaanalisisclinicodetalladoPaquetes set Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + @",Id_AnalisisClinicoPaquetes=" + NumeroidAnalisisClinicoTabla +
+                                                                     @",Estatus_ConsultaAnalisisClinicoDetalladoPaquetes=0 
+                                                                     where Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinicoSentencia + " and Id_AnalisisClinicoPaquetes=" + NumeroidAnalisisClinicoTabla + "", cnn);
+                                comando3.CommandType = CommandType.Text;
 
 
-                        //comando.Parameters.AddWithValue("@Id_AnalisisClinico", numeroid_AnalisisClinico);
+                                //comando.Parameters.AddWithValue("@Id_AnalisisClinico", numeroid_AnalisisClinico);
 
-                        SqlDataReader reader3 = comando3.ExecuteReader();
-                        reader3.Read();
-                        reader3.Close();
+                                SqlDataReader reader3 = comando3.ExecuteReader();
+                                reader3.Read();
+                                reader3.Close();
+                                break;
+                            }
+                        }
 
                     }
 
@@ -440,11 +531,20 @@ namespace MedicalManagement
 
             cnn.Close();
 
-            Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
+            //Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
             
         }
 
        
+
+
+
+
+
+
+
+
+
 
         ////////////Parte de Grid Analisis Clinicos sin paquetes////////////////////////////////////////////////////////////////
                
@@ -457,10 +557,12 @@ namespace MedicalManagement
         
         protected void Grid_AnalisisClinico_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            LlenarGridAnalisisClinico();
-
             Grid_AnalisisClinico.PageIndex = e.NewPageIndex;
             Grid_AnalisisClinico.DataBind();
+
+            LlenarGridAnalisisClinico();
+
+            
         }
 
         protected void Grid_AnalisisClinico_PageIndexChanged(object sender, EventArgs e)//EventArgs
@@ -468,8 +570,15 @@ namespace MedicalManagement
 
         }
 
-       
         protected void CheckBoxelegir_CheckedChanged(object sender, EventArgs e)
+        {
+
+            GuardarConsultaAnalisisClinico();
+            Id_ConsultaAnalisisClinico =Convert.ToInt32( Session["Id_ConsultaAnalisisClinico"]);
+            Mostrar(Convert.ToString(Id_ConsultaAnalisisClinico));
+        }
+       
+        protected void CheckBoxelegir_CheckedChanged2(object sender, EventArgs e)
         {
             
             DataTable ds = new DataTable();
@@ -531,6 +640,18 @@ namespace MedicalManagement
 
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
         /////////Parte de Grid Analisis Clinicos con Paquetes////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         protected void txt_OnTextChangedPaquetes(object sender, EventArgs e)
@@ -540,11 +661,12 @@ namespace MedicalManagement
 
 
         protected void Grid_AnalisisClinicoPaquetes_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            LlenarGridAnalisisClinicoPaquetes();
+        {            
 
             Grid_AnalisisClinicoPaquetes.PageIndex = e.NewPageIndex;
             Grid_AnalisisClinicoPaquetes.DataBind();
+
+            LlenarGridAnalisisClinicoPaquetes();
         }
 
         protected void Grid_AnalisisClinicoPaquetes_PageIndexChanged(object sender, EventArgs e)//EventArgs
@@ -553,6 +675,14 @@ namespace MedicalManagement
         }
 
         protected void CheckBoxelegirPaquetes_CheckedChanged(object sender, EventArgs e)
+        {
+
+            GuardarConsultaAnalisisClinico();
+            Id_ConsultaAnalisisClinico = Convert.ToInt32(Session["Id_ConsultaAnalisisClinico"]);
+            MostrarPaquetes(Convert.ToString(Id_ConsultaAnalisisClinico));
+        }
+
+        protected void CheckBoxelegirPaquetes_CheckedChanged2(object sender, EventArgs e)
         {
             DataTable ds = new DataTable();
             ds.Columns.Add("Id_AnalisisClinicoPaquetes", typeof(Int32));
@@ -614,9 +744,123 @@ namespace MedicalManagement
 
         }
 
-        /////////Metodo para Llenar Grid Analisis Clinico////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+        /////////Metodo para Llenar Grid Analisis Clinico sin paquetes////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         protected void LlenarGridAnalisisClinico()
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+
+            SqlCommand comando;
+
+            
+
+
+            if (txtBuscar_AnalisisClinico.Text == "")
+            {
+                comando = new SqlCommand(@"select Id_AnalisisClinico,Descripcion_AnalisisClinico,Estatus_ConsultaAnalisisClinicoDetallado='false'
+                                                  from Tabla_Catalogo_AnalisisClinico", cnn);
+                comando.CommandType = CommandType.Text;
+            }
+            else
+            {
+                comando = new SqlCommand(@"select Id_AnalisisClinico,Descripcion_AnalisisClinico,Estatus_ConsultaAnalisisClinicoDetallado='false'
+                                                  from Tabla_Catalogo_AnalisisClinico
+                                                  where Descripcion_AnalisisClinico like '%' + ltrim(rtrim('" + txtBuscar_AnalisisClinico.Text.Trim() + "')) + '%'", cnn);
+
+                comando.CommandType = CommandType.Text;
+                
+
+                
+            }
+            /*
+                0  Id_Empresa
+                1  Nombre_Empresa
+             */
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            DataTable ds = new DataTable();
+            da.Fill(ds);
+            Grid_AnalisisClinico.Visible = true;
+            Grid_AnalisisClinico.DataSource = ds;
+            Grid_AnalisisClinico.Columns[0].Visible = true;
+            Grid_AnalisisClinico.Columns[1].Visible = true;
+            Grid_AnalisisClinico.Columns[2].Visible = true;
+            Grid_AnalisisClinico.DataBind();
+
+            CheckBox chseleccionado;
+
+            string sentencia = @" select Id_AnalisisClinico,Estatus_ConsultaAnalisisClinicoDetallado from Tabla_Registro_ConsultaAnalisisClinicoDetallado
+                                where Estatus_ConsultaAnalisisClinicoDetallado=1 and Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinico+"";
+            
+
+
+            SqlCommand comandoselect = new SqlCommand(sentencia, cnn);
+
+            SqlDataAdapter da2 = new SqlDataAdapter(comandoselect);
+            DataTable ds2 = new DataTable();
+            da2.Fill(ds2);
+
+            foreach (GridViewRow row in Grid_AnalisisClinico.Rows)
+            {
+                int Numeroid_AnalisisClinicoGrid = Convert.ToInt32(row.Cells[0].Text);
+
+
+                bool valorcheck = false;
+                string valorcheck2 = (row.Cells[0].Text);
+                string valorcheck3 = (row.Cells[1].Text);
+                valorcheck = Convert.ToBoolean(row.Cells[2].Text);
+                
+
+                foreach (DataRow dtRow in ds2.Rows)
+                {
+
+                    int NumeroidAnalisisClinicoTabla = 0;
+                    NumeroidAnalisisClinicoTabla = Convert.ToInt32(dtRow["Id_AnalisisClinico"]);
+
+                    if (Numeroid_AnalisisClinicoGrid == NumeroidAnalisisClinicoTabla)
+                    {
+                        bool valorEstatusSeleccionado = false;
+                        valorEstatusSeleccionado = Convert.ToBoolean(dtRow["Estatus_ConsultaAnalisisClinicoDetallado"]);
+
+                        if (valorEstatusSeleccionado == true)
+                        {
+                            chseleccionado = row.FindControl("CheckBoxelegir") as CheckBox;
+                            chseleccionado.Checked = true;
+                            (row.Cells[2].Text) = true.ToString(); ;
+
+                        }
+                        else
+                        {
+                            (row.Cells[2].Text) = false.ToString(); ;
+                        }
+                    }
+                }
+
+            }
+
+            Grid_AnalisisClinico.Columns[2].Visible = false;
+            ds.Dispose();
+            da.Dispose();
+            ds2.Dispose();
+            da2.Dispose();
+            cnn.Close();
+
+        }
+
+        protected void LlenarGridAnalisisClinico2()
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
@@ -654,9 +898,125 @@ namespace MedicalManagement
 
         }
 
+
+
+
+
+
+
+
+
+
         /////////Metodo para Llenar Grid Analisis Clinico con Paquetes/////////////////////////////////////////////////////////////////////////////////
 
         protected void LlenarGridAnalisisClinicoPaquetes()
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+
+
+
+            SqlCommand comando;
+
+            if (txtBuscar_AnalisisClinicoPaquetes.Text == "")
+            {
+                comando = new SqlCommand(@"select Id_AnalisisClinicoPaquetes,Descripcion_AnalisisClinicoPaquetes,Estatus_ConsultaAnalisisClinicoDetalladoPaquetes='false'
+                                                  from Tabla_Catalogo_AnalisisClinicoPaquetes", cnn);
+                comando.CommandType = CommandType.Text;
+                
+            }
+            else
+            {
+                comando = new SqlCommand(@"select Id_AnalisisClinicoPaquetes,Descripcion_AnalisisClinicoPaquetes,Estatus_ConsultaAnalisisClinicoDetalladoPaquetes='false'
+                                          from Tabla_Catalogo_AnalisisClinicoPaquetes
+                                          where Descripcion_AnalisisClinicoPaquetes like '%' + ltrim(rtrim('" + txtBuscar_AnalisisClinicoPaquetes.Text.Trim() + "')) + '%'", cnn);         
+                                         
+                comando.CommandType = CommandType.Text;
+
+                
+            }
+            /*
+                0  Id_Empresa
+                1  Nombre_Empresa
+             */
+
+            
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            DataTable ds = new DataTable();
+            da.Fill(ds);
+            Grid_AnalisisClinicoPaquetes.Visible = true;
+            Grid_AnalisisClinicoPaquetes.DataSource = ds;
+            Grid_AnalisisClinicoPaquetes.Columns[0].Visible = true;
+            Grid_AnalisisClinicoPaquetes.Columns[1].Visible = true;
+            Grid_AnalisisClinicoPaquetes.Columns[2].Visible = true;
+            Grid_AnalisisClinicoPaquetes.DataBind();
+
+            CheckBox chseleccionado;
+
+            string sentencia = @"select Id_AnalisisClinicoPaquetes,Estatus_ConsultaAnalisisClinicoDetalladoPaquetes from Tabla_Registro_ConsultaAnalisisClinicoDetalladoPaquetes
+                                where Estatus_ConsultaAnalisisClinicoDetalladoPaquetes=1 and Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinico + "";
+
+            
+            SqlCommand comandoselect = new SqlCommand(sentencia, cnn);
+
+            SqlDataAdapter da2 = new SqlDataAdapter(comandoselect);
+            DataTable ds2 = new DataTable();
+            da2.Fill(ds2);
+
+            foreach (GridViewRow row in Grid_AnalisisClinicoPaquetes.Rows)
+            {
+                int Numeroid_AnalisisClinicoGrid = Convert.ToInt32(row.Cells[0].Text);
+
+
+                bool valorcheck = false;
+                string valorcheck2 = (row.Cells[0].Text);
+                string valorcheck3 = (row.Cells[1].Text);
+                valorcheck = Convert.ToBoolean(row.Cells[2].Text);
+
+
+                foreach (DataRow dtRow in ds2.Rows)
+                {
+
+                    int NumeroidAnalisisClinicoTabla = 0;
+                    NumeroidAnalisisClinicoTabla = Convert.ToInt32(dtRow["Id_AnalisisClinicoPaquetes"]);
+
+                    if (Numeroid_AnalisisClinicoGrid == NumeroidAnalisisClinicoTabla)
+                    {
+                        bool valorEstatusSeleccionado = false;
+                        valorEstatusSeleccionado = Convert.ToBoolean(dtRow["Estatus_ConsultaAnalisisClinicoDetalladoPaquetes"]);
+
+                        if (valorEstatusSeleccionado == true)
+                        {
+                            chseleccionado = row.FindControl("CheckBoxelegirPaquetes") as CheckBox;
+                            chseleccionado.Checked = true;
+                            (row.Cells[2].Text) = true.ToString(); ;
+
+                        }
+                        else
+                        {
+                            (row.Cells[2].Text) = false.ToString(); ;
+                        }
+                    }
+                }
+
+            }
+
+            Grid_AnalisisClinicoPaquetes.Columns[2].Visible = false;
+            ds.Dispose();
+            da.Dispose();
+            ds2.Dispose();
+            da2.Dispose();
+            cnn.Close();
+
+
+        }
+
+        protected void LlenarGridAnalisisClinicoPaquetes2()
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
@@ -692,9 +1052,85 @@ namespace MedicalManagement
             ds.Dispose();
             da.Dispose();
 
-        
+
         }
 
+
+
+
+
+
+
+
+        /////////Metodo para Llenar Grid Analisis ClinicoSeleccionado sin Paquetes///////////////////////////////////////////////////////////////////
+
+        protected void Mostrar(string Id_ConsultaAnalisisClinico)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+
+            string sentencia = @"select a.Id_AnalisisClinico,b.Descripcion_AnalisisClinico from Tabla_Registro_ConsultaAnalisisClinicoDetallado a
+                               join Tabla_Catalogo_AnalisisClinico b on a.Id_AnalisisClinico=b.Id_AnalisisClinico
+                               where Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinico + "and a.Estatus_ConsultaAnalisisClinicoDetallado=1";
+
+            SqlCommand comando = new SqlCommand(sentencia, cnn);
+            comando.CommandType = CommandType.Text;
+
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            DataTable ds = new DataTable();
+            da.Fill(ds);
+            Grid_AnalisisClinicoSeleccionado.Visible = true;
+            Grid_AnalisisClinicoSeleccionado.DataSource = ds;
+            Grid_AnalisisClinicoSeleccionado.Columns[0].Visible = true;
+            Grid_AnalisisClinicoSeleccionado.Columns[1].Visible = true;
+            Grid_AnalisisClinicoSeleccionado.DataBind();
+            ds.Dispose();
+            da.Dispose();
+
+            cnn.Close();
+
+        }
         
+
+        /////////Metodo para Llenar Grid Analisis ClinicoSeleccionado con Paquetes///////////////////////////////////////////////////////////////////
+
+        protected void MostrarPaquetes(string Id_ConsultaAnalisisClinico)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+
+            string sentencia = @"select a.Id_AnalisisClinicoPaquetes,b.Descripcion_AnalisisClinicoPaquetes from Tabla_Registro_ConsultaAnalisisClinicoDetalladoPaquetes a
+                               join Tabla_Catalogo_AnalisisClinicoPaquetes b on a.Id_AnalisisClinicoPaquetes=b.Id_AnalisisClinicoPaquetes
+                               where Id_ConsultaAnalisisClinico=" + Id_ConsultaAnalisisClinico + " and a.Estatus_ConsultaAnalisisClinicoDetalladoPaquetes=1";
+            
+
+            SqlCommand comando = new SqlCommand(sentencia, cnn);
+            comando.CommandType = CommandType.Text;
+
+
+            SqlDataAdapter da = new SqlDataAdapter(comando);
+            DataTable ds = new DataTable();
+            da.Fill(ds);
+            Grid_AnalisisClinicoSeleccionadoPaquetes.Visible = true;
+            Grid_AnalisisClinicoSeleccionadoPaquetes.DataSource = ds;
+            Grid_AnalisisClinicoSeleccionadoPaquetes.Columns[0].Visible = true;
+            Grid_AnalisisClinicoSeleccionadoPaquetes.Columns[1].Visible = true;
+            Grid_AnalisisClinicoSeleccionadoPaquetes.DataBind();
+            ds.Dispose();
+            da.Dispose();
+
+            cnn.Close();
+
+        }
+                
     }
 }

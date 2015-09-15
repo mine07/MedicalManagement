@@ -30,7 +30,7 @@
     <asp:GridView ID="Grid_AnalisisClinicoPaquetes" runat="server" AutoGenerateColumns="False" 
                           
                 onpageindexchanging ="Grid_AnalisisClinicoPaquetes_PageIndexChanging" 
-                AllowPaging="true" pagesize="10"
+                AllowPaging="true" pagesize="2"
                 onpageindexchanged="Grid_AnalisisClinicoPaquetes_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
                 GridLines="None"   >
@@ -44,7 +44,11 @@
 
                     <asp:BoundField DataField="Descripcion_AnalisisClinicoPaquetes" HeaderText="Descripcion Analisis Clinicos Paquetes" 
                     SortExpression="Descripcion_AnalisisClinicoPaquetes" />    
-            
+
+                    <asp:BoundField DataField="Estatus_ConsultaAnalisisClinicoDetalladoPaquetes" HeaderText="Estatus_ConsultaAnalisisClinicoDetalladoPaquetes" 
+                    SortExpression="Estatus_ConsultaAnalisisClinicoDetalladoPaquetes" />  
+
+                                
                     <asp:TemplateField  HeaderText="Elegir">
                         <HeaderTemplate>
                         Elegir
@@ -70,7 +74,7 @@
             <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
                          
                 onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
-                AllowPaging="true" pagesize="10"
+                AllowPaging="true" pagesize="2"
                 onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
                 GridLines="None"   >
@@ -84,6 +88,9 @@
 
                     <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
                     SortExpression="Descripcion_AnalisisClinicos" />    
+
+                    <asp:BoundField DataField="Estatus_ConsultaAnalisisClinicoDetallado" HeaderText="Estatus_ConsultaAnalisisClinicoDetallado" 
+                    SortExpression="Estatus_ConsultaAnalisisClinicoDetallado" />  
             
                     <asp:TemplateField  HeaderText="Elegir">
                         <HeaderTemplate>
