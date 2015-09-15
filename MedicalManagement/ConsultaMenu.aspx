@@ -61,27 +61,27 @@
                     </div>
                 </div>
                 <div>
-                    <h5>Enfermedades Activas</h5>
+                    <h5>Diagnosticos Activos</h5>
                     <asp:Repeater ID="rptActivos" runat="server">
                         <ItemTemplate>
                             <div class="border-top1-bottom5">
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
+                                <i onclick="removeDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-remove fa-1x pull-right remove-icon"></i>
                             </div>
-
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
                 <hr />
                 <div>
-                    <h5>Enfermedades Inactivas</h5>
+                    <h5>Diagnosticos Inactivas</h5>
                     <asp:Repeater ID="rptInactivos" runat="server">
                         <ItemTemplate>
                             <div class="border-top1-bottom5">
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
+                                <i  onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
                             </div>
-
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
@@ -377,6 +377,39 @@
             collapsible: true,
             heightStyle: "content"
         });
+
+        function removeDiagnostico(Id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "GetDates.asmx/RemoveActive",
+                data: JSON.stringify({ 'Id_Diagnostico': Id }),
+                success: success,
+                error: error,
+                dataType: "json"
+            });
+        }
+
+        function AddDiagnostico(Id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "GetDates.asmx/RemoveInActive",
+                data: JSON.stringify({ 'Id_Diagnostico': Id }),
+                success: success,
+                error: error,
+                dataType: "json"
+            });
+        }
+
+        function success() {
+            location.reload();
+        }
+
+        function error() {
+            alert("A ocurrido un error, favor de volver a intentarlo.");
+            location.reload();
+        }
     </script>
     <style>
         textarea {

@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using MedicalManagement.Models;
+using MedicalManagement.Models.DTO;
 
 namespace MedicalManagement
 {
@@ -64,9 +66,11 @@ namespace MedicalManagement
 
                 }
                 cnn.Close();
-
             }
+            loadTemporal();
+            loadMedicamentos();
         }
+
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -291,6 +295,58 @@ namespace MedicalManagement
             ds.Dispose();
             da.Dispose();
             cnn.Close();
+        }
+
+
+        private void loadTemporal()
+        {
+            string query = @"select a.*, b.Descripcion_Medicamento as Tem_Medicamento from tabla_temporal_receta a
+                            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento";
+            var oneTemp = new Tabla_Temporal_RecetaDTO();
+            oneTemp.Id_Consulta = Id_Consulta;
+            Helpers h = new Helpers();
+            var lTemporal = h.GetAllParametized(query, oneTemp);
+            rptTemporal.DataSource = lTemporal;
+            rptTemporal.DataBind();
+        }
+
+        public void RemoveTemporal(object sender, EventArgs e)
+        {
+            var linkButton = (LinkButton)sender;
+            var Id_Temporal = linkButton.CommandArgument;
+            string query = @"delete Tabla_Temporal_Receta Where Id_Temporal_Receta = @Id_Temporal_Receta ";
+            var oneTemp = new Tabla_Temporal_RecetaDTO();
+            oneTemp.Id_Temporal_Receta = Convert.ToInt32(Id_Temporal);
+            Helpers h = new Helpers();
+            h.ExecuteNonQueryParam(query, oneTemp);
+            loadTemporal();
+        }
+
+        protected void saveTo(object sender, EventArgs e)
+        {
+            var oneTemp = new Tabla_Temporal_RecetaDTO();
+            oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            oneTemp.Tem_Dosis = txtDos.Value;
+            oneTemp.Tem_Notas = txtNot.Value;
+            oneTemp.Id_Medicamento = Convert.ToInt32(ddlMedicamento.SelectedItem.Value);
+            oneTemp.Id_Consulta = Id_Consulta;
+            string query = "insert into Tabla_Temporal_Receta (Id_FichaIdentificacion, Tem_Dosis, Tem_Notas, Id_Medicamento, Id_Consulta) values (@Id_FichaIdentificacion, @Tem_Dosis, @Tem_Notas, @Id_Medicamento, @Id_Consulta)";
+            Helpers h = new Helpers();
+            h.ExecuteNonQueryParam(query, oneTemp);
+            loadTemporal();
+            txtDos.Value = "";
+            txtNot.Value = "";
+            ddlMedicamento.SelectedIndex = 0;
+
+        }
+
+        protected void loadMedicamentos()
+        {
+            string query = "select * from Tabla_Catalogo_Medicamento where Estatus_Medicamento = 1";
+            Helpers h = new Helpers();
+            var lMeds = h.GetAllParametized(query, new Tabla_Catalogo_MedicamentoDTO());
+            ddlMedicamento.DataSource = lMeds;
+            ddlMedicamento.DataBind();
         }
     }
 }

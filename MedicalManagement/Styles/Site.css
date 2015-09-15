@@ -436,9 +436,20 @@ div.fichaidentificacion4 {
 }
 
 .border-top1-bottom5 {
-    border: 1px solid #337ab7;
-    box-shadow: 0px 5px 0px #337ab7;
+    border: 1px solid #2196F3;
+    box-shadow: 0px 5px 0px #2196F3;
     padding: 10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+
+.border-right3-bottom3 {
+    border: 1px solid #80CBC4;
+    box-shadow: 3px 3px 0px rgba(128, 203, 196, .5);
+    padding: 10px;
+    margin:10px;
+    border-radius:5px;
+    border-bottom-right-radius:0px;
 }
 
 .border-top1-bottom10 {

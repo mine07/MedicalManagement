@@ -198,6 +198,7 @@
     <Content Include="RegistroTerritorios.aspx" />
     <Content Include="RegistroUsuarioEmpresaSucursal.aspx" />
     <Content Include="RegistroUsuarios.aspx" />
+    <Content Include="Scripts\bootstrap-combobox.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
@@ -622,11 +623,13 @@
     <Compile Include="Models\DTO\Tabla_Catalogo_ConsultaRecetaPreviaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Catalogo_MedicamentoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AgendaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaConceptoPagoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaSeguimientoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_PagosDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Temporal_RecetaDTO.cs" />
     <Compile Include="Models\Extensiones.cs" />
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConceptoPago.cs" />
