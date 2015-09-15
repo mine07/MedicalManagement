@@ -212,7 +212,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Diagonisto</label>
+                                                <label>Diagnostico</label>
                                             </div>
                                             <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
                                                 <%#  testbind(Eval("Diagnostico_Consulta")) %>
@@ -220,7 +220,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Analis</label>
+                                                <label>Analisis</label>
                                             </div>
                                             <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
                                                 <%#  testbind(Eval("Analisis_Consulta")) %>
@@ -303,7 +303,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Diagonisto</label>
+                                        <label>Diagnostico</label>
                                     </div>
                                     <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
                                         <%#  testbind(Eval("Diagnostico_Consulta")) %>
@@ -311,7 +311,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Analis</label>
+                                        <label>Analisis</label>
                                     </div>
                                     <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
                                         <%#  testbind(Eval("Analisis_Consulta")) %>

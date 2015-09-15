@@ -30,7 +30,7 @@
     <asp:GridView ID="Grid_AnalisisClinicoPaquetes" runat="server" AutoGenerateColumns="False" 
                           
                 onpageindexchanging ="Grid_AnalisisClinicoPaquetes_PageIndexChanging" 
-                AllowPaging="true" pagesize="2"
+                AllowPaging="true" pagesize="10"
                 onpageindexchanged="Grid_AnalisisClinicoPaquetes_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
                 GridLines="None"   >
@@ -74,7 +74,7 @@
             <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
                          
                 onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
-                AllowPaging="true" pagesize="2"
+                AllowPaging="true" pagesize="10"
                 onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
                 GridLines="None"   >
@@ -121,6 +121,7 @@
 
         </asp:GridView>
     </div>
+
     <div class="row">
         <asp:GridView ID="Grid_AnalisisClinicoSeleccionadoPaquetes" runat="server" AutoGenerateColumns="False" > 
             <Columns>       
@@ -135,6 +136,7 @@
 
         </asp:GridView>
     </div>
+
     <div class="row">
         <asp:TextBox ID="txtobservacionesanalisisclinico" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
     </div>

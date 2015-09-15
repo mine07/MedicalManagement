@@ -284,7 +284,7 @@ namespace MedicalManagement
             string dosis = "";
             string notas = "";
             string observaciones = "";
-            int Id_ag = 0;
+            
             string cadena = "<table >";
             cadena = cadena + "<tr><td><strong>" + NombreCompleto + "</strong></td></tr>";
             cadena = cadena + "<tr><td><br></Td></tr>";
