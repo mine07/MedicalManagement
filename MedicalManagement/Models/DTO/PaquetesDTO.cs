@@ -25,5 +25,23 @@ namespace MedicalManagement.Models.DTO
             }
             return lPaquetes;
         }
+
+        public void Insert(string queryIf, PaquetesDTO onePaquete)
+        {
+            string query = "insert into  Tabla_Catalogo_AnalisisClinicoPaquetes (Descripcion_AnalisisClinicoPaquetes, Estatus_AnalisisClinicoPaquetes) values (@Descripcion_AnalisisClinicoPaquetes, @Estatus_AnalisisClinicoPaquetes)";
+            Helpers h = new Helpers();
+            h.ExecuteNonQueryParam(query, onePaquete);
+        }
+
+        public void Delete(string queryIf, PaquetesDTO onePaquete)
+        {
+            string query ="delete Tabla_Catalogo_AnalisisClinicoPaquetes where Id_AnalisisClinicoPaquetes = @Id_AnalisisClinicoPaquetes";
+            Helpers h = new Helpers();
+            h.ExecuteNonQueryParam(query, onePaquete);
+            AnalisisEnPaquetesDAO Delete = new AnalisisEnPaquetesDAO();
+            AnalisisEnPaquetesDTO oneAnaPaquete = new AnalisisEnPaquetesDTO();
+            oneAnaPaquete.Id_AnalisisClinicoPaquetes = onePaquete.Id_AnalisisClinicoPaquetes;
+            Delete.deleteFromPaquet("", oneAnaPaquete);
+        }
     }
 }

@@ -5,8 +5,8 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <TimeStampOfAssociatedLegacyPublishXmlFile>2015-09-15T14:31:01.5389811-05:00</TimeStampOfAssociatedLegacyPublishXmlFile>
-    <_PublishTargetUrl>C:\Users\adrian.castro\Desktop\Nueva carpeta</_PublishTargetUrl>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Cesar\Documents\deploymedical</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="About.aspx">
@@ -31,16 +31,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/14/2015 11:22:25</publishTime>
     </File>
     <File Include="AgendaElegirFicha.aspx">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
+    </File>
+    <File Include="AnalisisClinico.aspx">
+      <publishTime>09/14/2015 11:27:42</publishTime>
+    </File>
+    <File Include="AnalisisClinicoPaquetes.aspx">
+      <publishTime>09/14/2015 11:27:42</publishTime>
     </File>
     <File Include="Aseguradora.aspx">
       <publishTime>08/19/2015 15:59:49</publishTime>
     </File>
     <File Include="bin/MedicalManagement.dll">
-      <publishTime>08/24/2015 11:07:32</publishTime>
+      <publishTime>09/21/2015 09:30:15</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>06/08/2015 14:19:21</publishTime>
+      <publishTime>08/06/2015 14:19:21</publishTime>
     </File>
     <File Include="Bitacora.aspx">
       <publishTime>03/19/2015 10:46:28</publishTime>
@@ -52,28 +58,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2015 15:59:49</publishTime>
     </File>
     <File Include="ConceptoPago.aspx">
-      <publishTime>08/20/2015 12:32:42</publishTime>
+      <publishTime>08/24/2015 11:12:16</publishTime>
     </File>
     <File Include="ConsultaAnalisisClinico.aspx">
-      <publishTime>08/19/2015 15:59:43</publishTime>
+      <publishTime>09/15/2015 14:31:01</publishTime>
+    </File>
+    <File Include="ConsultaAnalisisClinico2.aspx">
+      <publishTime>09/15/2015 14:31:01</publishTime>
     </File>
     <File Include="ConsultaDiagnostico.aspx">
-      <publishTime>07/08/2015 12:51:33</publishTime>
+      <publishTime>09/15/2015 14:31:01</publishTime>
     </File>
     <File Include="ConsultaMenu.aspx">
-      <publishTime>08/20/2015 12:30:31</publishTime>
+      <publishTime>09/17/2015 10:39:15</publishTime>
     </File>
     <File Include="ConsultaProcedimiento.aspx">
-      <publishTime>07/08/2015 12:51:33</publishTime>
+      <publishTime>08/07/2015 12:51:33</publishTime>
     </File>
     <File Include="ConsultaReceta.aspx">
-      <publishTime>08/12/2015 13:29:43</publishTime>
+      <publishTime>09/19/2015 11:07:11</publishTime>
     </File>
     <File Include="Consultas.aspx">
       <publishTime>08/12/2015 15:35:47</publishTime>
     </File>
     <File Include="ConsultasAnteriores.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>06/22/2015 12:25:00</publishTime>
+    </File>
+    <File Include="Consulta_AnalisisClinico.aspx">
+      <publishTime>09/18/2015 16:24:18</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>08/19/2015 15:59:49</publishTime>
@@ -259,7 +271,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/23/2014 02:13:01</publishTime>
     </File>
     <File Include="Diagnosticos.aspx">
-      <publishTime>08/19/2015 15:59:50</publishTime>
+      <publishTime>09/14/2015 11:33:31</publishTime>
     </File>
     <File Include="EmpresaConvenio.aspx">
       <publishTime>08/19/2015 15:59:50</publishTime>
@@ -280,7 +292,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/06/2015 15:27:59</publishTime>
     </File>
     <File Include="GetDates.asmx">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>12/22/2014 22:52:21</publishTime>
@@ -307,7 +319,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2015 15:59:50</publishTime>
     </File>
     <File Include="MenuInicial.aspx">
-      <publishTime>08/14/2015 12:18:59</publishTime>
+      <publishTime>09/18/2015 12:04:29</publishTime>
     </File>
     <File Include="Modulos.aspx">
       <publishTime>03/11/2015 13:38:40</publishTime>
@@ -319,10 +331,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2015 15:59:52</publishTime>
     </File>
     <File Include="Pagos.aspx">
-      <publishTime>08/24/2015 11:05:42</publishTime>
+      <publishTime>09/14/2015 11:33:37</publishTime>
     </File>
     <File Include="PagosIndividuales.aspx">
-      <publishTime>08/21/2015 14:16:17</publishTime>
+      <publishTime>08/24/2015 11:12:17</publishTime>
+    </File>
+    <File Include="Paquetes.aspx">
+      <publishTime>09/19/2015 12:37:08</publishTime>
     </File>
     <File Include="Perfles.aspx">
       <publishTime>03/11/2015 17:49:56</publishTime>
@@ -334,13 +349,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/11/2015 17:49:55</publishTime>
     </File>
     <File Include="PermisosPerfil.aspx">
-      <publishTime>03/11/2015 17:54:56</publishTime>
+      <publishTime>09/14/2015 11:27:42</publishTime>
     </File>
     <File Include="Procedimiento.aspx">
       <publishTime>08/19/2015 15:59:50</publishTime>
     </File>
     <File Include="RecetaPrevia.aspx">
-      <publishTime>08/19/2015 15:59:50</publishTime>
+      <publishTime>09/21/2015 09:28:06</publishTime>
     </File>
     <File Include="ReferidoPor.aspx">
       <publishTime>08/19/2015 15:59:50</publishTime>
@@ -348,17 +363,23 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="RegistroAgenda.aspx">
       <publishTime>08/11/2015 10:18:58</publishTime>
     </File>
+    <File Include="RegistroAnalisisClinico.aspx">
+      <publishTime>09/14/2015 11:27:42</publishTime>
+    </File>
+    <File Include="RegistroAnalisisClinicoPaquetes.aspx">
+      <publishTime>09/14/2015 11:27:42</publishTime>
+    </File>
     <File Include="RegistroAseguradora.aspx">
       <publishTime>04/24/2015 12:01:48</publishTime>
     </File>
     <File Include="RegistroCategoria.aspx">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>04/27/2015 09:54:00</publishTime>
     </File>
     <File Include="RegistroConsulta.aspx">
-      <publishTime>08/19/2015 15:59:50</publishTime>
+      <publishTime>09/18/2015 12:17:06</publishTime>
     </File>
     <File Include="RegistroDiagnostico.aspx">
-      <publishTime>07/28/2015 14:00:23</publishTime>
+      <publishTime>09/14/2015 11:33:40</publishTime>
     </File>
     <File Include="RegistroEmpresaConvenio.aspx">
       <publishTime>04/23/2015 15:16:56</publishTime>
@@ -373,7 +394,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2015 12:13:44</publishTime>
     </File>
     <File Include="RegistroFichaIdentificacion.aspx">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="RegistroMedicamento.aspx">
       <publishTime>07/29/2015 13:32:37</publishTime>
@@ -411,6 +432,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="RegistroUsuarios.aspx">
       <publishTime>03/11/2015 14:20:56</publishTime>
     </File>
+    <File Include="Scripts/bootstrap-combobox.js">
+      <publishTime>09/19/2015 11:25:43</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>07/30/2015 12:01:34</publishTime>
     </File>
@@ -418,10 +442,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2015 12:01:34</publishTime>
     </File>
     <File Include="Scripts/fullcalendar.min.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/jqota2.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1-vsdoc.js">
       <publishTime>07/30/2015 12:01:35</publishTime>
@@ -457,10 +481,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2015 12:01:34</publishTime>
     </File>
     <File Include="Scripts/jquery.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/jquery.weekcalendar.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/jtable/extensions/jquery.jtable.aspnetpagemethods.js">
       <publishTime>08/19/2015 15:59:51</publishTime>
@@ -475,7 +499,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2015 15:59:51</publishTime>
     </File>
     <File Include="Scripts/jtable/jquery.jtable.js">
-      <publishTime>08/20/2015 09:29:49</publishTime>
+      <publishTime>08/24/2015 11:12:17</publishTime>
     </File>
     <File Include="Scripts/jtable/jquery.jtable.min.js">
       <publishTime>08/19/2015 15:59:51</publishTime>
@@ -706,7 +730,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2015 15:59:52</publishTime>
     </File>
     <File Include="Scripts/jtable/themes/metro/blue/jtable.css">
-      <publishTime>08/20/2015 09:23:23</publishTime>
+      <publishTime>08/24/2015 11:12:17</publishTime>
     </File>
     <File Include="Scripts/jtable/themes/metro/blue/jtable.less">
       <publishTime>08/19/2015 15:59:52</publishTime>
@@ -853,25 +877,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2015 15:59:52</publishTime>
     </File>
     <File Include="Scripts/moment-with-locales.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/moment-with-locales.min.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/moment.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/moment.min.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/npm.js">
       <publishTime>07/30/2015 12:01:35</publishTime>
     </File>
     <File Include="Scripts/responsive-calendar.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/responsive-calendar.min.js">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Scripts/validationEngine/jquery.validationEngine-en.js">
       <publishTime>08/19/2015 15:59:52</publishTime>
@@ -886,7 +910,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/19/2015 15:59:52</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>08/19/2015 15:59:52</publishTime>
+      <publishTime>09/18/2015 12:12:19</publishTime>
     </File>
     <File Include="Styles/bootstrap-theme.css">
       <publishTime>07/30/2015 12:01:45</publishTime>
@@ -898,7 +922,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2015 12:01:45</publishTime>
     </File>
     <File Include="Styles/bootstrap.css">
-      <publishTime>08/20/2015 10:27:43</publishTime>
+      <publishTime>09/18/2015 16:04:30</publishTime>
     </File>
     <File Include="Styles/bootstrap.css.map">
       <publishTime>07/30/2015 12:01:45</publishTime>
@@ -907,25 +931,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2015 12:01:45</publishTime>
     </File>
     <File Include="Styles/footable.css">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Styles/fullcalendar.min.css">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Styles/jquery-ui-1.9.2.custom.css">
       <publishTime>08/19/2015 15:59:52</publishTime>
     </File>
     <File Include="Styles/jquery.datetimepicker.css">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Styles/jquery.weekcalendar.css">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Styles/responsive-calendar.css">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
     <File Include="Styles/Site.css">
-      <publishTime>08/21/2015 14:14:03</publishTime>
+      <publishTime>09/19/2015 12:35:26</publishTime>
     </File>
     <File Include="Sucursales.aspx">
       <publishTime>03/11/2015 18:09:40</publishTime>
@@ -934,10 +958,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/26/2015 16:10:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/14/2015 11:58:21</publishTime>
+      <publishTime>09/21/2015 09:30:16</publishTime>
     </File>
     <File Include="WebPrueba.aspx">
-      <publishTime>06/08/2015 14:19:20</publishTime>
+      <publishTime>08/06/2015 14:19:20</publishTime>
     </File>
   </ItemGroup>
 </Project>

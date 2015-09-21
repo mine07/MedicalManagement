@@ -57,6 +57,7 @@
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" />
             <asp:AsyncPostBackTrigger ControlID="rptTemporal" />
+            <asp:PostBackTrigger ControlID="LinkButton1" />
         </Triggers>
         <ContentTemplate>
             <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
@@ -212,8 +213,10 @@
         var prm = Sys.WebForms.PageRequestManager.getInstance();
 
         prm.add_endRequest(function () {
-            $('.combobox').combobox();
-            $("[id$=ddlTemplate]").change();
+            $(document).ready(function () {
+                $('.combobox').combobox();
+                $("[id$=ddlTemplate]").change();
+            });
         });
         $('[id$=txtSearch]').bind('input keyup', function () {
             var $this = $(this);
@@ -294,7 +297,7 @@
             $("[id$=txtSearch]").val(val.html());
         }
 
-        $("[id$=ddlTemplate]").change(function () {
+        $("[id$=ddlTemplate]").on("change", function () {
             var x = $("[id$=ddlTemplate]").val();
             $.ajax({
                 type: "POST",
@@ -307,6 +310,7 @@
                 }
             });
         });
+
         function appendTemplate(data) {
             var jsonObject = $.parseJSON(data.d);
             var Tem_Nombre = jsonObject[0].Tem_Nombre;

@@ -18,6 +18,16 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-xs-10 col-xs-offset-2">
+                            <label class="h6">Agregar Auxiliar</label>
+                            <asp:DropDownList runat="server" ID="ddlAnalisis" CssClass="form-control combobox" DataTextField="Descripcion_AnalisisClinico" DataValueField="Id_AnalisisClinico" />
+                        </div>
+                        <div class="col-xs-10 col-xs-offset-2 padding">
+                            <asp:LinkButton runat="server" ID="btnAdd" OnClick="addAnalisis" Text='<label class=" pull-right label label-button label-success" runat="server">Agregar<i class="fa fa-arrow-right"></i></label>'/> 
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-xs-12 container-fluid">
                             <div class="row">
                                 <div class="col-xs-12">
@@ -28,18 +38,11 @@
                             <div class="row">
                                 <div class="col-xs-10 col-xs-offset-2">
                                     <label class="h6">Nombre</label>
-                                    <input type="text" class="form-control" disabled />
-                                    <hr />
+                                    <input type="text" runat="server" class="form-control" id="txtNombre" />
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-10 col-xs-offset-2">
-                                    <label class="h6">Agregar Auxiliar</label>
-                                    <asp:DropDownList runat="server" ID="ddlAnalisis" Enabled="false" CssClass="form-control combobox" DataTextField="Descripcion_AnalisisClinico" DataValueField="Id_AnalisisClinico" />
+                                <div class="col-xs-10 col-xs-offset-2 padding">
+                                    <asp:LinkButton runat="server" OnClick="insertPacket" Text='<label class=" pull-right label label-button label-success" runat="server">Crear<i class="fa fa-plus"></i></label>'  />
                                     <hr />
-                                </div>
-                                <div class="col-xs-12">
-                                    <label class=" pull-right label label-button label-success" runat="server">Agregar<i class="fa fa-arrow-right"></i></label>
                                 </div>
                             </div>
                         </div>
@@ -49,14 +52,14 @@
             <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 container-fluid padding">
                 <div class="row">
                     <div class="col-xs-12">
-                        <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Nuevo Paquete<i class="fa fa-plus"></i></label>
+                        
+                        <asp:LinkButton runat="server" OnClick="deletePacket" Text='<label class="label label-danger pull-right label-button pull-right" style="font-size: 16px;">Eliminar<i class="fa fa-scissors"></i></label>'/>
                         <hr />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <h3>Analis Clinicos<i class="fa fa-stethoscope fa-margin-left fa-margin-right"></i>-<label runat="server" id="lblPaqueteNombre"></label></h3>
-                        
                         <hr />
                     </div>
                 </div>
@@ -65,15 +68,14 @@
                         <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3 container-fluid " style="padding: 10px;">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <label class="h5"><i class="fa fa-stethoscope fa-margin-right"></i><%# Eval("oneAnalisis.Descripcion_AnalisisClinico") %></label>
-                                    <i class="fa fa-close remove-icon pull-right"></i>
+                                    <asp:LinkButton runat="server" Text='<i class="fa fa-close remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_AnalisisClinicoPaquetesdatos")%>' OnClick="deleteItem"/>
                                     <hr />
+                                    <label class="h5"><i class="fa fa-stethoscope fa-margin-right"></i><%# Eval("oneAnalisis.Descripcion_AnalisisClinico") %></label>
                                 </div>
                             </div>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-
             </div>
         </div>
     </div>
@@ -81,5 +83,6 @@
         $(document).ready(function () {
             $(".combobox").combobox();
         });
+
     </script>
 </asp:Content>
