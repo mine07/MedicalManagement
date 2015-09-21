@@ -225,6 +225,41 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             h.GetAllParametized(query, oneConcepto);
         }
 
+        [WebMethod(EnableSession = true)]
+        public void RemoveActive(int Id_Diagnostico)
+        {
+            string query = "Update Tabla_Registro_ConsultaDiagnostico SET Estatus_ConsultaDiagnostico = 'False' where Id_ConsultaDiagnostico = @Id_ConsultaDiagnostico";
+            Helpers h = new Helpers();
+            ConsultaDiagnosticoDTO oneConsulta = new ConsultaDiagnosticoDTO();
+            oneConsulta.Id_ConsultaDiagnostico = Id_Diagnostico;
+            h.ExecuteNonQueryParam(query, oneConsulta);
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void RemoveInActive(int Id_Diagnostico)
+        {
+            string query = "Update Tabla_Registro_ConsultaDiagnostico SET Estatus_ConsultaDiagnostico = 'True' where Id_ConsultaDiagnostico = @Id_ConsultaDiagnostico";
+            Helpers h = new Helpers();
+            ConsultaDiagnosticoDTO oneConsulta = new ConsultaDiagnosticoDTO();
+            oneConsulta.Id_ConsultaDiagnostico = Id_Diagnostico;
+            h.ExecuteNonQueryParam(query, oneConsulta);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string loadTemplate(int Id_Template)
+        {
+            string query = @"select  a.*, b.Descripcion_Medicamento as Tem_Medicamento from Tabla_receta_Template a
+            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where Id_Template = @Id_Template";
+            var oneTemp = new Tabla_Receta_TemplateDTO();
+            oneTemp.Id_Template = Id_Template;
+            Helpers h = new Helpers();
+            var lTemporal = h.GetAllParametized(query, oneTemp);
+            string json = JsonConvert.SerializeObject(lTemporal);
+            return json;
+        }
+
+
         public string add0(int number)
         {
             string snum = number.ToString();
@@ -248,5 +283,10 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
         public int day { get; set; }
         public int month { get; set; }
         public int year { get; set; }
+    }
+
+    public class ConsultaDiagnosticoDTO
+    {
+        public int Id_ConsultaDiagnostico { get; set; }
     }
 }

@@ -29,6 +29,7 @@ namespace MedicalManagement
 
             if (!IsPostBack)
             {
+                loadUsuario();
                 lblNombre.Text = NombreCompleto;
                 GridViewActivos();
                 GridViewInactivos();
@@ -39,12 +40,11 @@ namespace MedicalManagement
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
                 cnn.Open();
-
                 string consulta = "select Id_Consulta from Tabla_Registro_Consulta where Id_Agenda=" + Id_Agenda + "";
                 SqlCommand comando = new SqlCommand(consulta, cnn);
                 Id_Consulta = Convert.ToInt32(comando.ExecuteScalar());
                 Session["Id_Consultas"] = Id_Consulta;
-
+               
                 if (Id_Consulta != 0)
                 {                    
                     LinkReceta.Visible = true;                     
@@ -59,18 +59,20 @@ namespace MedicalManagement
         
         protected void LinkNotaClinica_Click(object sender, EventArgs e)
         {
-            
+            loadUsuario();
             Response.Redirect("RegistroConsulta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "");
         }
 
         protected void LinkReceta_Click(object sender, EventArgs e)
         {
+            loadUsuario();
             Id_Consulta =Convert.ToInt32( Session["Id_Consultas"]);
             Response.Redirect("ConsultaReceta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
         }
 
         protected void LinkAnalisisClinico_Click(object sender, EventArgs e)
         {
+            loadUsuario();
             Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
             Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
         }
@@ -284,7 +286,7 @@ namespace MedicalManagement
             string dosis = "";
             string notas = "";
             string observaciones = "";
-            int Id_ag = 0;
+            
             string cadena = "<table >";
             cadena = cadena + "<tr><td><strong>" + NombreCompleto + "</strong></td></tr>";
             cadena = cadena + "<tr><td><br></Td></tr>";
@@ -483,7 +485,7 @@ namespace MedicalManagement
             cnn.Open();
                                     
 
-            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
+            string sentencia = @"select a.Id_Diagnostico, a.Id_ConsultaDiagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
                                where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=1 order by a.Fecha_ConsultaDiagnostico desc";
 
@@ -536,7 +538,7 @@ namespace MedicalManagement
 
             cnn.Open();
 
-            string sentencia = @"select a.Id_Diagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
+            string sentencia = @"select a.Id_Diagnostico,a.Id_ConsultaDiagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
                                where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaDiagnostico=0 order by a.Fecha_ConsultaDiagnostico desc";
 
@@ -670,6 +672,15 @@ namespace MedicalManagement
             comando = null;
             cnn.Close();
 
+        }
+
+        public void loadUsuario()
+        {
+            string query ="select * from Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            Helpers h = new Helpers();
+            var oneFicha = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO {Id_FichaIdentificacion = Id_FichaIdentificacion})[0];
+            lblNombre.Text = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
+            NombreCompleto = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
         }
 
 

@@ -5,7 +5,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-
 <table width="100%" border="0"><tr><td align="left"><font color="red">Operaciones\Consultas\ConsultasAnalisisClinico</font></td>
         <td align="right">   
         <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar ConsultaAnalisisClinico" onclick="btnGuardar_ConsultasAnalisisClinico_Click"></asp:ImageButton>&nbsp;     
@@ -23,6 +22,7 @@
 
     <div class="row">
         <asp:TextBox ID="txtBuscar_AnalisisClinicoPaquetes" runat="server"></asp:TextBox>
+        <asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChangedPaquetes" ToolTip = "Buscar Paquetes de Analisis Clinicos"></asp:ImageButton>
     </div>
 
     <div class="row">
@@ -30,7 +30,7 @@
     <asp:GridView ID="Grid_AnalisisClinicoPaquetes" runat="server" AutoGenerateColumns="False" 
                           
                 onpageindexchanging ="Grid_AnalisisClinicoPaquetes_PageIndexChanging" 
-                AllowPaging="true" pagesize="15"
+                AllowPaging="true" pagesize="2"
                 onpageindexchanged="Grid_AnalisisClinicoPaquetes_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
                 GridLines="None"   >
@@ -62,6 +62,7 @@
 
     <div class="row">
         <asp:TextBox ID="txtBuscar_AnalisisClinico" runat="server"></asp:TextBox>
+        <asp:ImageButton ID="ImageButton2" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip = "Buscar Analisis Clinicos "></asp:ImageButton>
     </div>
 
     <div class="row">
@@ -69,7 +70,7 @@
             <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
                          
                 onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" 
-                AllowPaging="true" pagesize="15"
+                AllowPaging="true" pagesize="10"
                 onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" 
                 GridLines="None"   >
@@ -114,8 +115,23 @@
         </asp:GridView>
     </div>
     <div class="row">
+        <asp:GridView ID="Grid_AnalisisClinicoSeleccionadoPaquetes" runat="server" AutoGenerateColumns="False" > 
+            <Columns>       
+
+                <asp:BoundField DataField="Id_AnalisisClinicoPaquetes" HeaderText="Id.AnalisisClinicos" 
+                SortExpression="Id_AnalisisClinicoPaquetes" />
+
+                <asp:BoundField DataField="Descripcion_AnalisisClinicoPaquetes" HeaderText="Descripcion Analisis Clinicos Paquetes" 
+                SortExpression="Descripcion_AnalisisClinicoPaquetes" /> 
+
+            </Columns>
+
+        </asp:GridView>
+    </div>
+    <div class="row">
         <asp:TextBox ID="txtobservacionesanalisisclinico" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
     </div>
 </div>
+
 
 </asp:Content>

@@ -44,7 +44,11 @@
 
                     <asp:BoundField DataField="Descripcion_AnalisisClinicoPaquetes" HeaderText="Descripcion Analisis Clinicos Paquetes" 
                     SortExpression="Descripcion_AnalisisClinicoPaquetes" />    
-            
+
+                    <asp:BoundField DataField="Estatus_ConsultaAnalisisClinicoDetalladoPaquetes" HeaderText="Estatus_ConsultaAnalisisClinicoDetalladoPaquetes" 
+                    SortExpression="Estatus_ConsultaAnalisisClinicoDetalladoPaquetes" />  
+
+                                
                     <asp:TemplateField  HeaderText="Elegir">
                         <HeaderTemplate>
                         Elegir
@@ -84,6 +88,9 @@
 
                     <asp:BoundField DataField="Descripcion_AnalisisClinico" HeaderText="Descripcion Analisis Clinicos" 
                     SortExpression="Descripcion_AnalisisClinicos" />    
+
+                    <asp:BoundField DataField="Estatus_ConsultaAnalisisClinicoDetallado" HeaderText="Estatus_ConsultaAnalisisClinicoDetallado" 
+                    SortExpression="Estatus_ConsultaAnalisisClinicoDetallado" />  
             
                     <asp:TemplateField  HeaderText="Elegir">
                         <HeaderTemplate>
@@ -114,6 +121,7 @@
 
         </asp:GridView>
     </div>
+
     <div class="row">
         <asp:GridView ID="Grid_AnalisisClinicoSeleccionadoPaquetes" runat="server" AutoGenerateColumns="False" > 
             <Columns>       
@@ -128,6 +136,7 @@
 
         </asp:GridView>
     </div>
+
     <div class="row">
         <asp:TextBox ID="txtobservacionesanalisisclinico" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
     </div>

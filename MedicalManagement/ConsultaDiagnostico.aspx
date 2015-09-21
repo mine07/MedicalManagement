@@ -16,10 +16,13 @@
             </td>
         </tr>
 
+</table>
 
-        <tr>
-            <td align="center"colspan="6">
- <asp:GridView ID="Grid_Diagnostico" runat="server" AutoGenerateColumns="False" 
+<div class="container-fluid">
+
+    <div class="row">
+            
+    <asp:GridView ID="Grid_Diagnostico" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Diagnostico_PageIndexChanging" AllowPaging="true" pagesize="15"
         onpageindexchanged="Grid_Diagnostico_PageIndexChanged" CssClass="mGrid" 
@@ -40,7 +43,7 @@
                     Elegir
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:CheckBox  ID="CheckBoxelegir" runat="server"   />
+                    <asp:CheckBox  ID="CheckBoxelegir" runat="server"/>
                 </ItemTemplate>
             </asp:TemplateField>
             
@@ -48,8 +51,8 @@
     </asp:GridView>
             
             
+    </div>            
             
-            </td></tr>
-    </table>
-
+    
+</div>
 </asp:Content>

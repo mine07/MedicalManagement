@@ -24,7 +24,7 @@
             <td>Fecha
             </td>
         </tr>
-        <tr>
+        <tr class="hidden">
             <td></td>
             <td>
                 <asp:LinkButton ID="LinkDiagnostico" runat="server" OnClick="LinkDiagnostico_Click"
@@ -114,25 +114,26 @@
         </div>
         <hr />
     </div>
-    <script>$('[id$=txtSearch]').bind('input keyup', function () {
-    var $this = $(this);
-    var delay; // 2 seconds delay after last input
-    var value = $('[id$=txtSearch]').val();
-    clearTimeout($this.data('timer'));
-    if (value === " ") {
-        $('.searchContainer').slideUp().empty();
-    }
-    if (value.substr(value.length - 1) !== " ") {
-        delay = 500;
-    } else {
-        delay = 1;
-    }
-    $this.data('timer', setTimeout(function () {
-        $this.removeData('timer');
+    <script>
+        $('[id$=txtSearch]').bind('input keyup', function () {
+            var $this = $(this);
+            var delay; // 2 seconds delay after last input
+            var value = $('[id$=txtSearch]').val();
+            clearTimeout($this.data('timer'));
+            if (value === " ") {
+                $('.searchContainer').slideUp().empty();
+            }
+            if (value.substr(value.length - 1) !== " ") {
+                delay = 500;
+            } else {
+                delay = 1;
+            }
+            $this.data('timer', setTimeout(function () {
+                $this.removeData('timer');
 
-        diagSearch(value);
-    }, delay));
-});
+                diagSearch(value);
+            }, delay));
+        });
 
         function diagSearch(x) {
             var nombre = x;

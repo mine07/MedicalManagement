@@ -90,7 +90,7 @@ first child of the left and right table columns */
 .page {
     width: 960px;
     background-color: #fff;
-    margin: 20px auto 0px auto;
+    margin: 0 auto;
     border: 1px solid rgba(73, 96, 119, 0.6);
     float: none;
     padding: 15px;
@@ -455,14 +455,37 @@ div.fichaidentificacion4 {
 }
 
 .border-top1-bottom5 {
-    border: 1px solid #337ab7;
-    box-shadow: 0px 5px 0px #337ab7;
+    border: 1px solid #2196F3;
+    box-shadow: 0px 5px 0px #2196F3;
     padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.gray-border {
+    border: 1px solid #c8c8c8;
+    box-shadow:0px 5px 0px #c8c8c8;
+}
+
+.no-vertical-padding {
+    padding: 0 10px;
+}
+
+.padding {
+    padding: 10px;
+}
+
+.border-right3-bottom3 {
+    border: 1px solid  #2196F3;
+    box-shadow: 3px 3px 0px #2196F3;
+    padding: 10px;
+    margin: 10px;
+    border-top-left-radius:5px;
 }
 
 .border-top1-bottom10 {
     border: 1px solid #337ab7;
-    box-shadow: 0px 10px 0px #337ab7;
+    box-shadow: 0px 10px 2px #337ab7;
     padding: 10px;
 }
 
@@ -478,16 +501,75 @@ input[readonly] {
     border: 0;
     background-color: rgb(66, 136, 148) !important;
     color: white;
-    
 }
 
-input[readonly]:hover {
-    outline: 0 !important;
-    box-shadow: none !important;
-}
+    input[readonly]:hover {
+        outline: 0 !important;
+        box-shadow: none !important;
+    }
 
 .no-radius {
-    -ms-border-radius:0;
-    border-radius:0 !important;
-    border: 0 !important;
+    -ms-border-radius: 0;
+    border-radius: 0 !important;
+}
+
+.left-panel {
+    background: #F8F8F8;
+    border-right: 1px solid #cecece;
+    box-shadow:0px 1px 0px #cecece;
+    padding: 10px;
+}
+
+.left-panel hr {
+    border-color: #c8c8c8;
+}
+
+.fa-margin-right {
+    margin-right:10px;
+}
+
+.fa-margin-left {
+    margin-left:10px;
+}
+
+.left-panel .white-container {
+    background-color:white;
+    padding:10px;
+    border: 1px solid #cecece;
+    max-height:600px;
+}
+
+.white-container hr {
+    border-color:#ededed;
+}
+
+.packet-name {
+    font-size: 85%;
+}
+
+.gray-container {
+    background-color:#F8F8F8;
+    padding:10px;
+    border: 1px solid #cecece;
+    max-height:600px;
+}
+
+.fade-hover {
+    opacity:.5;
+    transition:all linear .2s;
+}
+
+.fade-hover:hover {
+    opacity:1;
+}
+.icon-add i{
+    transition:all linear .1s;
+}
+
+.icon-add:hover {
+     cursor:pointer;
+}
+
+.icon-add:hover i {
+    color:green;
 }
