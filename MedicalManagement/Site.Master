@@ -14,8 +14,11 @@
     <link href="Styles/footable.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/js/footable.min.js"></script>
     <script src="Scripts/jquery.datetimepicker.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap-combobox.js" type="text/javascript"></script>
     <script src="Scripts/responsive-calendar.js" type="text/javascript"></script>
     <link href="Styles/responsive-calendar.css" rel="Stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="Scripts/jqota2.js" type="text/javascript"></script>
     <meta charset="UTF-8" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
@@ -173,4 +176,3 @@
 <style>
     
 </style>
-
