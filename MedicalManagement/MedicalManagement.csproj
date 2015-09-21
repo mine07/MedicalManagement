@@ -88,6 +88,7 @@
     <Content Include="ConsultaReceta.aspx" />
     <Content Include="Consultas.aspx" />
     <Content Include="ConsultasAnteriores.aspx" />
+    <Content Include="Consulta_AnalisisClinico.aspx" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -167,6 +168,7 @@
     <Content Include="Ocupacion.aspx" />
     <Content Include="PagosIndividuales.aspx" />
     <Content Include="Pagos.aspx" />
+    <Content Include="Paquetes.aspx" />
     <Content Include="Perfles.aspx" />
     <Content Include="PermisoPerfil2.aspx" />
     <Content Include="Permisos.aspx" />
@@ -533,6 +535,13 @@
     <Compile Include="ConsultasAnteriores.aspx.designer.cs">
       <DependentUpon>ConsultasAnteriores.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Consulta_AnalisisClinico.aspx.cs">
+      <DependentUpon>Consulta_AnalisisClinico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consulta_AnalisisClinico.aspx.designer.cs">
+      <DependentUpon>Consulta_AnalisisClinico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -620,6 +629,10 @@
     <Compile Include="MenuInicial.aspx.designer.cs">
       <DependentUpon>MenuInicial.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DTO\AnalisisClinico.cs" />
+    <Compile Include="Models\DTO\AnalisisEnPaquetesDTO.cs" />
+    <Compile Include="Models\DTO\PaquetesDTO.cs" />
+    <Compile Include="Models\DTO\Taba_Receta_Template.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConsultaRecetaPreviaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
@@ -633,6 +646,7 @@
     <Compile Include="Models\Extensiones.cs" />
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConceptoPago.cs" />
+    <Compile Include="Models\DTO\Tabla_Catalogo_AnalisisClinicoPaquetes.cs" />
     <Compile Include="Modulos.aspx.cs">
       <DependentUpon>Modulos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -660,6 +674,13 @@
     </Compile>
     <Compile Include="Pagos.aspx.designer.cs">
       <DependentUpon>Pagos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paquetes.aspx.cs">
+      <DependentUpon>Paquetes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paquetes.aspx.designer.cs">
+      <DependentUpon>Paquetes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfles.aspx.cs">
       <DependentUpon>Perfles.aspx</DependentUpon>
@@ -962,7 +983,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60524</DevelopmentServerPort>
+          <DevelopmentServerPort>51259</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

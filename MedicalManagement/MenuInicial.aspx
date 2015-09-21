@@ -25,14 +25,15 @@
                 <hr class="blue-hr" />
                 <div class="container-fluid searchContainer border-top1-bottom5">
                 </div>
+                <hr class="blue-hr" />
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-6 text-right">
+            <div class="col-xs-6 text-right hidden">
                     <label id="lblAgenda" class="label label-secondary form-control center no-user-select text-uppercase">agenda</label>
             </div>
-            <div class="col-xs-6 text-left">
-                    <label id="lblConsulta" class="label label-secondary form-control no-user-select center text-uppercase">Consulta</label>
+            <div class="col-xs-12 text-center">
+                    <label id="lblConsulta" class="label label-secondary no-user-select center text-uppercase">Consulta</label>
             </div>
             
         </div>
@@ -126,15 +127,6 @@
                 $('.searchContainer').slideUp().empty();
             }
         });
-        $("[id$=txtBuscar_FichaIdentificacion]").blur(function () {
-            $('.searchContainer').slideUp();
-        });
-
-        $("[id$=txtBuscar_FichaIdentificacion]").focus(function () {
-            if ($('.searchContainer').children().length !== 0) {
-                $('.searchContainer').slideDown();
-            }
-        });
         function appendData(data) {
             var jsonObject = $.parseJSON(data.d);
             if (jsonObject[0] != null) {
@@ -150,7 +142,6 @@
         $(document).ready(function () {
             loadToday();
             $("#calendarAgenda").hide();
-            $("#calendarConsulta").hide();
             var jsonObject;
             var eventB = {};
             var eventC = {};
@@ -341,10 +332,10 @@
         <label class="small-label"><*= "Casa - " + this.TelefonoCasa_FichaIdentificacion*></label>
         <label class="small-label"><*= "Movil - " + this.TelefonoMovil_FichaIdentificacion*></label>
         </div>
-        <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
+        <div class="col-xs-12 col-sm-1 col-md-2 col-lg-4">
         <a class="label label-secondary form-control" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
         <a class="label label-secondary form-control" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>
-        
+        <a class="label label-secondary form-control" href='<*= "ConsultaMenu.aspx?Id_Agenda=0" + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Menu Consulta</a>        
         </div>
         </div>
         <hr/>

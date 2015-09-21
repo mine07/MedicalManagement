@@ -28,7 +28,7 @@ namespace MedicalManagement
             if (!IsPostBack)
             {
                 MostrarGridRecetaPrevia();
-                
+
 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -48,12 +48,12 @@ namespace MedicalManagement
                     comando2.Parameters.AddWithValue("@Id_ConsultaReceta", Id_ConsultaReceta);
                     SqlDataReader reader = comando2.ExecuteReader();
                     if (reader.Read())
-                    {   
-                     
+                    {
+
                         txtmedicamento.Text = reader.GetString(reader.GetOrdinal("Medicamento_ConsultaReceta")).ToString();
                         txtdosis.Text = reader.GetString(reader.GetOrdinal("Dosis_ConsultaReceta")).ToString().Trim();
                         txtnotas.Text = reader.GetString(reader.GetOrdinal("Notas_ConsultaReceta")).ToString().Trim();
-                                             
+
                     }
                 }
                 else
@@ -66,9 +66,10 @@ namespace MedicalManagement
 
                 }
                 cnn.Close();
+
+                loadTemporal();
+                loadMedicamentos();
             }
-            loadTemporal();
-            loadMedicamentos();
         }
 
 
@@ -83,13 +84,13 @@ namespace MedicalManagement
         {
             Response.Redirect("Consultas.aspx");
         }
-        
+
         protected void btnGuardar_ConsultasRecetas_Click(object sender, ImageClickEventArgs e)
         {
             GrabarConsultaReceta();
         }
 
-               
+
         public void GrabarConsultaReceta()
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -105,7 +106,7 @@ namespace MedicalManagement
             //DateTime fecha_actual1 = Convert.ToDateTime(fecha_actual);
 
             Id_ConsultaReceta = Convert.ToInt32(Session["Id_ConsultasRecetas"]);
-            
+
             if (Id_ConsultaReceta == 0)
             {
                 comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
@@ -127,7 +128,7 @@ namespace MedicalManagement
             comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());
             comando.Parameters.AddWithValue("@Notas_ConsultaReceta", txtnotas.Text.Trim());
 
-            
+
             SqlDataReader reader = comando.ExecuteReader();
             reader.Read();
             reader.Close();
@@ -168,7 +169,7 @@ namespace MedicalManagement
             cnn.Close();
 
             Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
-            
+
         }
 
         ////////////DETALLES DE RECETA PREVIA///////////////////////////////////////////////////////////////////////////////////////////
@@ -239,7 +240,7 @@ namespace MedicalManagement
                 comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
                 comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", Txtnombrerecetaprevia.Text.Trim());
                 comando.Parameters.AddWithValue("@Medicamento_ConsultaReceta", txtmedicamento.Text.Trim());
-                comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());                
+                comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());
                 comando.Parameters.AddWithValue("@Notas_ConsultaReceta", txtnotas.Text.Trim());
 
 
@@ -308,6 +309,23 @@ namespace MedicalManagement
             var lTemporal = h.GetAllParametized(query, oneTemp);
             rptTemporal.DataSource = lTemporal;
             rptTemporal.DataBind();
+            string queryTemplate = "select Id_Template, Tem_Nombre from tabla_receta_template group by Id_Template , Tem_Nombre";
+            var lTemplates = h.GetAllParametized(queryTemplate, new Tabla_Receta_TemplateDTO());
+            ddlTemplate.DataSource = lTemplates;
+            ddlTemplate.DataBind();
+            loadTemplate();
+        }
+
+        public void loadTemplate()
+        {
+            string query = @"select  * from Tabla_receta_Template a
+            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where Id_Template = @Id_Template";
+            var oneTemp = new Tabla_Receta_TemplateDTO();
+            oneTemp.Id_Template = Convert.ToInt32(ddlTemplate.SelectedItem.Value);
+            Helpers h = new Helpers();
+            var lTemporal = h.GetAllParametized(query, oneTemp);
+            rptTemplate.DataSource = lTemporal;
+            rptTemplate.DataBind();
         }
 
         public void RemoveTemporal(object sender, EventArgs e)
@@ -347,6 +365,29 @@ namespace MedicalManagement
             oneTemp.Id_Consulta = Id_Consulta;
             oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
             var lTemporal = h.GetAllParametized(query, oneTemp);
+            string queryInsert = "insert into Tabla_Receta_Template (Id_Medicamento, Tem_Dosis, Tem_Notas, Tem_Nombre, Id_Template) values (@Id_Medicamento, @Tem_Dosis, @Tem_Notas, @Tem_Nombre, @Id_Template)";
+            var oneT = new Tabla_Receta_TemplateDTO();
+            string queryLast = "SELECT TOP 1 Id_Template FROM Tabla_Receta_Template ORDER BY Id_Template DESC";
+            var lIdTemplate = h.GetAllParametized(queryLast, oneT);
+            if (lIdTemplate.Count == 0)
+            {
+                oneT.Id_Template = 0;
+            }
+            else
+            {
+                oneT.Id_Template = lIdTemplate[0].Id_Template + 1;
+            }
+            foreach (var y in lTemporal)
+            {
+                var oneTemplate = new Tabla_Receta_TemplateDTO();
+                oneTemplate.Id_Medicamento = y.Id_Medicamento;
+                oneTemplate.Tem_Dosis = y.Tem_Dosis;
+                oneTemplate.Tem_Notas = y.Tem_Notas;
+                oneTemplate.Tem_Nombre = txtNombre.Value;
+                oneTemplate.Id_Template = oneT.Id_Template;
+                h.ExecuteNonQueryParam(queryInsert, oneTemplate);
+            }
+            loadTemporal();
         }
 
         protected void loadMedicamentos()
@@ -356,6 +397,31 @@ namespace MedicalManagement
             var lMeds = h.GetAllParametized(query, new Tabla_Catalogo_MedicamentoDTO());
             ddlMedicamento.DataSource = lMeds;
             ddlMedicamento.DataBind();
+        }
+
+        protected void saveToUse(object sender, EventArgs e)
+        {
+            int Id_Template = Convert.ToInt32(ddlTemplate.SelectedItem.Value);
+            string query = @"select  a.*, b.Descripcion_Medicamento as Tem_Medicamento from Tabla_receta_Template a
+            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where Id_Template = @Id_Template";
+            var oneTemp = new Tabla_Receta_TemplateDTO();
+            oneTemp.Id_Template = Id_Template;
+            Helpers h = new Helpers();
+            var lTemporal = h.GetAllParametized(query, oneTemp);
+            string queryInsert = "insert into Tabla_Temporal_Receta (Id_FichaIdentificacion, Tem_Dosis, Tem_Notas, Id_Medicamento, Id_Consulta) values (@Id_FichaIdentificacion, @Tem_Dosis, @Tem_Notas, @Id_Medicamento, @Id_Consulta)";
+            string queryDelete = "delete from Tabla_Temporal_Receta where Id_Consulta = @Id_Consulta and Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            h.ExecuteNonQueryParam(queryDelete, new Tabla_Temporal_RecetaDTO {Id_FichaIdentificacion = Id_FichaIdentificacion, Id_Consulta = Id_Consulta});
+            foreach (var y in lTemporal)
+            {
+                var oneTe = new Tabla_Temporal_RecetaDTO();
+                oneTe.Id_Consulta = Id_Consulta;
+                oneTe.Id_FichaIdentificacion = Id_FichaIdentificacion;
+                oneTe.Id_Medicamento = y.Id_Medicamento;
+                oneTe.Tem_Dosis = y.Tem_Dosis;
+                oneTe.Tem_Notas = y.Tem_Notas;
+                h.ExecuteNonQueryParam(queryInsert, oneTe);
+                loadTemporal();
+            }
         }
     }
 }

@@ -245,6 +245,20 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             h.ExecuteNonQueryParam(query, oneConsulta);
         }
 
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string loadTemplate(int Id_Template)
+        {
+            string query = @"select  a.*, b.Descripcion_Medicamento as Tem_Medicamento from Tabla_receta_Template a
+            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where Id_Template = @Id_Template";
+            var oneTemp = new Tabla_Receta_TemplateDTO();
+            oneTemp.Id_Template = Id_Template;
+            Helpers h = new Helpers();
+            var lTemporal = h.GetAllParametized(query, oneTemp);
+            string json = JsonConvert.SerializeObject(lTemporal);
+            return json;
+        }
+
 
         public string add0(int number)
         {

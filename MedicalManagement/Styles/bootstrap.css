@@ -6,20 +6,39 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /* */
 
+
+
 .label-button:hover {
-     cursor:pointer !important;
+    cursor: pointer !important;
 }
+
+.label-button i {
+    margin-left: 10px;
+    transition: all linear .1s;
+}
+
+
+.label-success:hover i{
+    margin-right:-5px;
+    color: #F0F4C3;
+}
+
+.lbl-hvr-icn:hover i{
+    margin-right:-5px;
+    color: #F0F4C3;
+}
+
 .remove-icon {
     color: black;
-    opacity:.3;
+    opacity: .3;
     transition: all linear .1s;
 }
 
     .remove-icon:hover {
-        opacity:1;
+        opacity: 1;
         color: red;
         cursor: pointer;
-        font-size:1.5em;
+        font-size: 1.5em;
     }
 
 .focus {
@@ -6101,7 +6120,7 @@ a.label:focus {
     background-color: #5cb85c;
 }
 
-    .label-success[href]:hover,
+    .label-success:hover,
     .label-success[href]:focus {
         background-color: #449d44;
     }

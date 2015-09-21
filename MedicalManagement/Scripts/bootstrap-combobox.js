@@ -175,9 +175,9 @@
 
     , template: function () {
         if (this.options.bsVersion == '2') {
-            return '<div class="combobox-container"><input type="hidden" /> <div class="input-append"> <input type="text" autocomplete="off" /> <span class="add-on dropdown-toggle" data-dropdown="dropdown"> <span class="caret"/> <i class="icon-remove"/> </span> </div> </div>'
+            return '<div class="combobox-container"><input type="hidden" /> <div class="input-append"> <input type="text" autocomplete="off" /> <span class="add-on dropdown-toggle" data-dropdown="dropdown"> <span class="caret"/> <i class="icon-remove"/> </span> </div> </div>';
         } else {
-            return '<div class="combobox-container"> <input type="hidden" /> <div class="input-group"> <input type="text" autocomplete="off" /> <span class="input-group-addon dropdown-toggle" data-dropdown="dropdown"> <span class="caret" /> <span class="fa fa-remove" /> </span> </div> </div>'
+            return '<div class="combobox-container"> <input type="hidden" /> <div class="input-group"> <input type="text" autocomplete="off" /> <span class="input-group-addon dropdown-toggle" data-dropdown="dropdown"> <span class="caret" /> </div> </div>';
         }
     }
 
@@ -245,7 +245,7 @@
 
     , toggle: function () {
         if (!this.disabled) {
-            if (this.$container.hasClass('combobox-selected')) {
+            if (this.$container.hasClass('combobox-selectedB')) {
                 this.clearTarget();
                 this.triggerChange();
                 this.clearElement();

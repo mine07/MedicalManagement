@@ -29,6 +29,7 @@ namespace MedicalManagement
 
             if (!IsPostBack)
             {
+                loadUsuario();
                 lblNombre.Text = NombreCompleto;
                 GridViewActivos();
                 GridViewInactivos();
@@ -39,12 +40,11 @@ namespace MedicalManagement
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
                 cnn.Open();
-
                 string consulta = "select Id_Consulta from Tabla_Registro_Consulta where Id_Agenda=" + Id_Agenda + "";
                 SqlCommand comando = new SqlCommand(consulta, cnn);
                 Id_Consulta = Convert.ToInt32(comando.ExecuteScalar());
                 Session["Id_Consultas"] = Id_Consulta;
-
+               
                 if (Id_Consulta != 0)
                 {                    
                     LinkReceta.Visible = true;                     
@@ -59,18 +59,20 @@ namespace MedicalManagement
         
         protected void LinkNotaClinica_Click(object sender, EventArgs e)
         {
-            
+            loadUsuario();
             Response.Redirect("RegistroConsulta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "");
         }
 
         protected void LinkReceta_Click(object sender, EventArgs e)
         {
+            loadUsuario();
             Id_Consulta =Convert.ToInt32( Session["Id_Consultas"]);
             Response.Redirect("ConsultaReceta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
         }
 
         protected void LinkAnalisisClinico_Click(object sender, EventArgs e)
         {
+            loadUsuario();
             Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
             Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
         }
@@ -670,6 +672,15 @@ namespace MedicalManagement
             comando = null;
             cnn.Close();
 
+        }
+
+        public void loadUsuario()
+        {
+            string query ="select * from Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            Helpers h = new Helpers();
+            var oneFicha = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO {Id_FichaIdentificacion = Id_FichaIdentificacion})[0];
+            lblNombre.Text = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
+            NombreCompleto = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
         }
 
 

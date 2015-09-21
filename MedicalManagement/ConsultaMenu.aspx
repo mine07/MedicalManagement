@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid">
+    <div class="container-fluid ">
         <div class="row">
             <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4">
                 <hr class="blue-hr" />
@@ -80,7 +80,7 @@
                             <div class="border-top1-bottom5">
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                                <i  onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
+                                <i onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -254,20 +254,17 @@
                                             <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
                                                 <label>Observaciones</label>
                                             </div>
-                                            <div class="col-xs-6 col-md-4 col-sm-4 col-lg-4">
+                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
                                                 <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
                                             </div>
-                                            <div class="col-xs-12 col-md-5 col-sm-5 col-lg-5">
-                                                <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6 text-right">
-                                                    <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
-                                                </div>
-                                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6 text-right">
-                                                    <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
-                                                </div>
-                                                <div class="col-xs-12 text-right">
-                                                    <hr />
-                                                    <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
-                                                </div>
+                                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
+                                            </div>
+                                        </div>
+                                        <div class="row  pull-right">
+                                            <div class="col-xs-12">
+                                                <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
+                                                <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
+                                                <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
                                             </div>
                                         </div>
                                     </div>
@@ -349,16 +346,14 @@
                                         <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
                                     </div>
                                     <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
-                                        <div class="col-xs-5 col-sm-6 col-lg-6 col-md-6">
-                                            <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
-                                        </div>
-                                        <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                                            <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                                    <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                <div class="row  pull-right">
+                                    <div class="col-xs-12">
+                                        <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
+                                        <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
+                                        <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                    </div>
                                 </div>
                             </div>
                         </ItemTemplate>
