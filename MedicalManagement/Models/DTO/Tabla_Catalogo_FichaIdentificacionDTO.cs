@@ -29,6 +29,7 @@ namespace MedicalManagement.Models.DTO
         public string CorreoElectronico_FichaIdentificacion { get; set; }
         public string CasoEmergencia_FichaIdentificacion { get; set; }
         public string Foto_FichaIdentificacion { get; set; }
+        public string Estado_FichaIdentificacion { get; set; }
         public int Id_Empresa { get; set; }
         public int Id_Sucursal { get; set; }
         public int Id_Sexo { get; set; }
@@ -40,5 +41,24 @@ namespace MedicalManagement.Models.DTO
         public int Id_Aseguradora { get; set; }
         public bool Estatus_FichaIdentificacion { get; set; }
         public string _NombreCompleto { get; set; }
+    }
+
+    public class FichaDAO
+    {
+        public static List<Tabla_Catalogo_FichaIdentificacionDTO> GetAll()
+        {
+            Helpers h = new Helpers();
+            string query = "select * from Tabla_Catalogo_FichaIdentificacion";
+            var lFichas = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO());
+            return lFichas;
+        }
+
+        public static Tabla_Catalogo_FichaIdentificacionDTO GetOne(Tabla_Catalogo_FichaIdentificacionDTO oneFicha)
+        {
+            Helpers h = new Helpers();
+            string query = "select * from Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            var lFichas = h.GetAllParametized(query, oneFicha);
+            return lFichas[0];
+        }
     }
 }

@@ -18,14 +18,14 @@
 }
 
 
-.label-success:hover i{
-    margin-right:-5px;
-    color: #F0F4C3;
+.label-success:hover i {
+    margin-right: -5px;
+    opacity: .8;
 }
 
-.lbl-hvr-icn:hover i{
-    margin-right:-5px;
-    color: #F0F4C3;
+.lbl-hvr-icn:hover i {
+    margin-right: -5px;
+    opacity: .8;
 }
 
 .remove-icon {

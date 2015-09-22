@@ -141,9 +141,10 @@
                                     <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3">
                                         <div class="row">
                                             <div class="col-xs-12">
+                                                <asp:LinkButton ID="btnRemove" runat="server" Text='<i class="fa fa-remove fa-1x pull-right remove-icon"></i>' OnClick="RemoveTemporal" CommandArgument='<%# Eval("Id_Temporal_Receta") %>' />
+                                                <hr />
                                                 <label class="h5">Medicamento</label>
                                                 <label><%# Eval("Tem_Medicamento") %></label>
-                                                <asp:LinkButton ID="btnRemove" runat="server" Text='<i class="fa fa-remove fa-1x pull-right remove-icon"></i>' OnClick="RemoveTemporal" CommandArgument='<%# Eval("Id_Temporal_Receta") %>' />
                                             </div>
                                             <div class="col-xs-12">
                                                 <label class="h5">Dosis</label>
@@ -355,5 +356,6 @@
             position: absolute;
             width: 90%;
         }
+
     </style>
 </asp:Content>

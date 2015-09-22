@@ -61,7 +61,6 @@
         </Triggers>
         <ContentTemplate>
             <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
-
                 <div class="row">
                     <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4 left-panel">
                         <div class="container-fluid">
@@ -131,9 +130,10 @@
                                     <hr />
                                 </div>
                             </div>
+                            <div class="row gray-container">
                             <asp:Repeater runat="server" ID="rptTemporal">
                                 <ItemTemplate>
-                                    <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3">
+                                    <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3" style="background-color: white;">
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <label class="h5">Medicamento</label>
@@ -152,6 +152,7 @@
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
+                                </div>
                             <div class="row" runat="server" visible="false" id="cancelRow">
                                 <div class="col-xs-12">
                                     <asp:LinkButton OnClick="cancelEdit" ID="LinkButton3" runat="server" Text='<label style="font-size:16px;" class="label label-danger pull-right label-button">Cancelar<i class="fa fa-close"></i></label>' />

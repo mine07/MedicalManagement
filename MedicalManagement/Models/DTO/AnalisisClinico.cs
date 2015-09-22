@@ -20,5 +20,7 @@ namespace MedicalManagement.Models.DTO
             string query = "select * from  tabla_catalogo_analisisclinico " + queryIf;
             return h.GetAllParametized(query, oneAnalisis);
         }
+
+       
     }
 }

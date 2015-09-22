@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Consulta_AnalisisClinico.aspx.cs" Inherits="MedicalManagement.Consulta_AnalisisClinico" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
+    <label class="label label-primary">Paciente: <span runat="server" id="spanName">Nombre</span></label>
     <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
         <div class="row">
             <div class="col-xs-12 col-md-5 col-sm-5 col-lg-5 container-fluid left-panel">
@@ -17,13 +18,15 @@
                         <hr />
                         <div class="row">
                             <div class="col-xs-10 col-xs-offset-2">
-                                <label class="h5 text-capitalize">Lista de paquetes</label><i class="fa-margin-left fa fa-cubes"></i>
+                                <label
+                                     class="h5 text-capitalize">Lista de paquetes</label><i class="fa-margin-left fa fa-cubes"></i>
                                 <div class="container-fluid white-container">
                                     <asp:Repeater runat="server" ID="rptPaquete">
                                         <ItemTemplate>
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                    <i class="fa-margin-right fa fa-cube"></i><label class="packet-name"><%# Eval("Descripcion_AnalisisClinicoPaquetes")%></label>
+                                                    <asp:LinkButton OnClick="addTemporalPaquete" runat="server" Text='<i class="fa  fa-arrow-right icon-button pull-right"></i>' CommandArgument='<%# Eval("Id_AnalisisClinicoPaquetes") %>'/>
                                                     <hr />
                                                 </div>
                                             </div>
@@ -39,7 +42,8 @@
                                         <ItemTemplate>
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <label class="packet-name"><%# Eval("Descripcion_AnalisisClinicoPaquetes")%></label>
+                                                    <i class="fa-margin-right fa fa-stethoscope"></i><label class="packet-name"><%# Eval("Descripcion_AnalisisClinico")%></label>
+                                                    <asp:LinkButton OnClick="addTemporal" runat="server" Text='<i class="fa  fa-arrow-right icon-button pull-right"></i>' CommandArgument='<%# Eval("Id_AnalisisClinico") %>'/>
                                                     <hr />
                                                 </div>
                                             </div>
@@ -60,11 +64,12 @@
                             <asp:Repeater runat="server" ID="rptSeleccionados">
                                 <ItemTemplate>
                                     <div class="row">
-                                        <div class="col-xs-12">
-                                            <label class="packet-name"><%# Eval("Descripcion_AnalisisClinicoPaquetes")%></label>
-                                            <hr />
-                                        </div>
-                                    </div>
+                                                <div class="col-xs-12">
+                                                    <i class="fa-margin-right fa fa-stethoscope"></i><label class="packet-name"><%# Eval("Descripcion_AnalisisClinico")%></label>
+                                                    <asp:LinkButton runat="server" Text='<i class="fa fa-remove remove-icon pull-right"></i>' OnClick="removeSelected" CommandArgument='<%# Eval("Id_AnalisisClinico") %>'/>
+                                                    <hr />
+                                                </div>
+                                            </div>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>

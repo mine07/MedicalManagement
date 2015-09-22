@@ -29,6 +29,7 @@ namespace MedicalManagement.Models.DTO
             return lAnalisisEnPaquetes;
         }
 
+
         public void Insert(string queryIf, AnalisisEnPaquetesDTO oneAnaPaquete)
         {
             string query = "insert into Tabla_Registro_AnalisisClinicoPaquetes (Id_AnalisisClinicoPaquetes, Id_AnalisisClinico, Estatus_AnalisisClinicoPaquetes) values (@Id_AnalisisClinicoPaquetes, @Id_AnalisisClinico, @Estatus_AnalisisClinicoPaquetes) ";

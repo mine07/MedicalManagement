@@ -13,6 +13,15 @@ namespace MedicalManagement {
     public partial class Consulta_AnalisisClinico {
         
         /// <summary>
+        /// spanName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanName;
+        
+        /// <summary>
         /// rptPaquete control.
         /// </summary>
         /// <remarks>

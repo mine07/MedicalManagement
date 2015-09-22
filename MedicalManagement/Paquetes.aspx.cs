@@ -67,7 +67,6 @@ namespace MedicalManagement
             AnalisisEnPaquetesDAO Insert = new AnalisisEnPaquetesDAO();
             Insert.Insert("", oneAnaPaquete);
             loadItems();
-            limpiar();
         }
 
         protected void deleteItem(object sender, EventArgs e)
@@ -78,7 +77,6 @@ namespace MedicalManagement
             AnalisisEnPaquetesDAO Delete = new AnalisisEnPaquetesDAO();
             Delete.delete("", oneAnaPaquete);
             loadItems();
-            limpiar();
         }
 
         protected void deletePacket(object sender, EventArgs e)
