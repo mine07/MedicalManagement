@@ -220,71 +220,8 @@ THE SOFTWARE.
             this._jqueryuiThemeAddClass(this._$mainContainer, 'ui-widget');
         },
 
-        /* Creates title of the table if a title supplied in options.
-        *************************************************************************/
-        _createTableTitle: function () {
-            var self = this;
 
-            if (!self.options.title) {
-                return;
-            }
-
-            var $titleDiv = $('<div />')
-                .addClass('jtable-title')
-                .appendTo(self._$mainContainer);
-
-            self._jqueryuiThemeAddClass($titleDiv, 'ui-widget-header');
-
-            $('<div />')
-                .addClass('jtable-title-text')
-                .appendTo($titleDiv)
-                .append(self.options.title);
-
-            if (self.options.showCloseButton) {
-
-                var $textSpan = $('<span />')
-                    .html(self.options.messages.close);
-
-                $('<button></button>')
-                    .addClass('jtable-command-button jtable-close-button')
-                    .attr('title', self.options.messages.close)
-                    .append($textSpan)
-                    .appendTo($titleDiv)
-                    .click(function (e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        self._onCloseRequested();
-                    });
-            }
-
-            self._$titleDiv = $titleDiv;
-        },
-
-        /* Creates the table.
-        *************************************************************************/
-        _createTable: function () {
-            this._$table = $('<table></table>')
-                .addClass('jtable')
-                .appendTo(this._$mainContainer);
-
-            if (this.options.tableId) {
-                this._$table.attr('id', this.options.tableId);
-            }
-
-            this._jqueryuiThemeAddClass(this._$table, 'ui-widget-content');
-
-            this._createTableHead();
-            this._createTableBody();
-        },
-
-        /* Creates header (all column headers) of the table.
-        *************************************************************************/
-        _createTableHead: function () {
-            var $thead = $('<thead></thead>')
-                .appendTo(this._$table);
-
-            this._addRowToTableHead($thead);
-        },
+        
 
         /* Adds tr element to given thead element
         *************************************************************************/
@@ -1985,7 +1922,7 @@ THE SOFTWARE.
 
             //Localization
             messages: {
-                addNewRecord: 'Add new record'
+                
             }
         },
 
@@ -2052,23 +1989,7 @@ THE SOFTWARE.
                 }
             });
 
-            if (self.options.addRecordButton) {
-                //If user supplied a button, bind the click event to show dialog form
-                self.options.addRecordButton.click(function (e) {
-                    e.preventDefault();
-                    self._showAddRecordForm();
-                });
-            } else {
-                //If user did not supplied a button, create a 'add record button' toolbar item.
-                self._addToolBarItem({
-                    icon: true,
-                    cssClass: 'jtable-toolbar-item-add-record',
-                    text: self.options.messages.addNewRecord,
-                    click: function () {
-                        self._showAddRecordForm();
-                    }
-                });
-            }
+           
         },
 
         _onSaveClickedOnCreateForm: function () {

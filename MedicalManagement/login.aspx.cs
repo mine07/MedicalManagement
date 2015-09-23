@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using MedicalManagement.Models.DTO;
 
 namespace MedicalManagement
 {
@@ -43,6 +44,9 @@ namespace MedicalManagement
                 string consulta2 = "select Id_perfil from Tabla_Catalogo_Usuario where Cuenta_Usuario='" + txtusuario.Text + "' and PWD_Usuario='" + txtcontrasena.Text + "'";
                 SqlCommand comando2 = new SqlCommand(consulta2, cnn);
                 int numeroidperfil = Convert.ToInt32(comando2.ExecuteScalar());
+                var getOne = new PerfilDAO();
+                var onePerfil = getOne.onePerfil(new PerfilDTO {Id_Perfil = numeroidperfil});
+                Session["Perfil"] = onePerfil;
                 Session["inicioidperfil"] = numeroidperfil;
 
                 string consulta4 = "select Id_Usuario from Tabla_Catalogo_Usuario where Cuenta_Usuario='" + txtusuario.Text + "' and PWD_Usuario='" + txtcontrasena.Text + "'";
@@ -54,7 +58,7 @@ namespace MedicalManagement
                 string nombreusuario = Convert.ToString(comando3.ExecuteScalar());
                 Session["NombreUsuario"] = nombreusuario;
             }
-
+            
             //if (contador != 0)
             //{
             //    string consulta2 = "select Nombre_Usuario,Apellido_Paterno_Usuario,Apellido_Materno_Usuario,Cuenta_Usuario from Tabla_Catalogo_Usuario where Cuenta_Usuario='" + txtusuario.Text + "' and PWD_Usuario='" + txtcontrasena.Text + "'";

@@ -8,7 +8,6 @@
         serverCommunicationError: 'Ocurrió un error en la comunicación con el servidor.',
         loadingMessage: 'Cargando registros...',
         noDataAvailable: 'No hay datos disponibles!',
-        addNewRecord: 'Crear nuevo registro',
         editRecord: 'Editar registro',
         areYouSure: '¿Está seguro?',
         deleteConfirmation: 'El registro será eliminado. ¿Está seguro?',

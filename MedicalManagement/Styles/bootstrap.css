@@ -173,7 +173,7 @@ hr {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
 }
-
+label label-primary
 pre {
     overflow: auto;
 }
@@ -2095,6 +2095,8 @@ pre {
 
 .col-xs-12 {
     width: 100%;
+    top: 0px;
+    left: 0px;
 }
 
 .col-xs-11 {

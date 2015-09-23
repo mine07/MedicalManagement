@@ -14,6 +14,7 @@ body {
     color: #034af3;
 }*/
 
+
 a:hover {
     color: #1d60ff;
     text-decoration: none;
@@ -26,6 +27,13 @@ a:active {
 p {
     margin-bottom: 10px;
     line-height: 1.6em;
+}
+
+
+.modalBackground {
+	background-color:Black;
+	filter:alpha(opacity=90);
+	opacity:0.8;
 }
 
 
@@ -128,6 +136,17 @@ first child of the left and right table columns */
     min-height: 200px;
 }
 
+
+.modalPopup {
+	border-radius:10px;
+    background-color:#fff;
+	padding-top:10px;
+	padding-left:10px;
+    padding-bottom:10px;
+    margin:0 auto;
+    height:auto;
+    width:600px;
+	}
 
 
 .footer {
@@ -626,4 +645,14 @@ input[readonly] {
     margin:0 auto;
     text-align: center;
     margin-top:20%;
+}
+
+.add-icon {
+    transition:all linear .1s;
+    cursor: pointer;
+    opacity:.5;
+}
+.add-icon:hover {
+    font-size:16px;
+    opacity:1;
 }

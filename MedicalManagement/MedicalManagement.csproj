@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -26,6 +26,8 @@
     <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,8 +46,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=15.1.3.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.15.1.3.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -52,12 +60,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -65,6 +71,7 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
@@ -156,14 +163,17 @@
     <Content Include="EstadoCivil.aspx" />
     <Content Include="FichaIdentificacion.aspx" />
     <Content Include="FichaIdentificacion2.aspx" />
+    <Content Include="IMG\calendar.png" />
     <Content Include="IMG\Logotipo_i.jpg" />
     <Content Include="IMG\Logotipo_iCh.jpg" />
     <Content Include="IMG\ui-icons_FF1919_256x240.png" />
     <Content Include="IMG\Ui-icons_ffffff_256x240.png" />
     <Content Include="login.aspx" />
     <Content Include="login2.aspx" />
+    <Content Include="logintest.html" />
     <Content Include="Medicamento.aspx" />
     <Content Include="MenuInicial.aspx" />
+    <Content Include="Modulo.aspx" />
     <Content Include="Modulos.aspx" />
     <Content Include="Ocupacion.aspx" />
     <Content Include="PagosIndividuales.aspx" />
@@ -173,6 +183,7 @@
     <Content Include="PermisoPerfil2.aspx" />
     <Content Include="Permisos.aspx" />
     <Content Include="PermisosPerfil.aspx" />
+    <Content Include="PermisosPorPerfil.aspx" />
     <Content Include="Procedimiento.aspx" />
     <Content Include="RecetaPrevia.aspx" />
     <Content Include="ReferidoPor.aspx" />
@@ -213,6 +224,7 @@
     <Content Include="Scripts\jquery-ui-1.9.2.custom.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.weekcalendar.js" />
@@ -343,6 +355,7 @@
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="CalendarPrueba.aspx" />
+    <Content Include="Styles\CSStest.css" />
     <Content Include="Styles\footable.css" />
     <Content Include="Styles\fullcalendar.min.css" />
     <Content Include="Styles\jquery-ui-1.9.2.custom.css" />
@@ -632,7 +645,10 @@
     </Compile>
     <Compile Include="Models\DTO\AnalisisClinico.cs" />
     <Compile Include="Models\DTO\AnalisisEnPaquetesDTO.cs" />
+    <Compile Include="Models\DTO\ModuloDTO.cs" />
     <Compile Include="Models\DTO\PaquetesDTO.cs" />
+    <Compile Include="Models\DTO\PerfilDTO.cs" />
+    <Compile Include="Models\DTO\PermisosDTO.cs" />
     <Compile Include="Models\DTO\Taba_Receta_Template.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConsultaRecetaPreviaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
@@ -648,6 +664,14 @@
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConceptoPago.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_AnalisisClinicoPaquetes.cs" />
+    <Compile Include="Models\VerificarPermiso.cs" />
+    <Compile Include="Modulo.aspx.cs">
+      <DependentUpon>Modulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modulo.aspx.designer.cs">
+      <DependentUpon>Modulo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modulos.aspx.cs">
       <DependentUpon>Modulos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -710,6 +734,13 @@
     </Compile>
     <Compile Include="PermisosPerfil.aspx.designer.cs">
       <DependentUpon>PermisosPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PermisosPorPerfil.aspx.cs">
+      <DependentUpon>PermisosPorPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PermisosPorPerfil.aspx.designer.cs">
+      <DependentUpon>PermisosPorPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Procedimiento.aspx.cs">
       <DependentUpon>Procedimiento.aspx</DependentUpon>

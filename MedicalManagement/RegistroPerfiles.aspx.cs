@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Configuration;
+using MedicalManagement.Models.DTO;
 
 namespace prototipo
 {
@@ -221,9 +222,17 @@ namespace prototipo
             }
             else
             {
-                GrabaPerfil();
+                GrabaPerfilB();
             }
             
+        }
+
+        public void GrabaPerfilB()
+        {
+            var onePerfil = new PerfilDTO{Descripcion_Perfil = Descripcion_Perfil.Text.Trim(), Estatus_Perfil = true};
+            var Insert = new PerfilDAO();
+            Insert.Create(onePerfil);
+            Response.Redirect("Perfles.aspx");
         }
     }
 }
