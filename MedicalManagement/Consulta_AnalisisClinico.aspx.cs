@@ -11,6 +11,7 @@ namespace MedicalManagement
 {
     public partial class Consulta_AnalisisClinico : System.Web.UI.Page
     {
+        public Tabla_Catalogo_FichaIdentificacionDTO oneUser { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,13 +19,14 @@ namespace MedicalManagement
                 var Id_Paciente = Request.QueryString["Id_Paciente"];
                 if (Id_Paciente != null)
                 {
-                    var onePaciente =
+                    oneUser =
                         FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
                         {
                             Id_FichaIdentificacion = Convert.ToInt32(Id_Paciente)
                         });
-                    spanName.InnerText = onePaciente.Nombre_FichaIdentificacion.Trim() + " " +
-                                         onePaciente.ApPaterno_FichaIdentificacion.Trim();
+
+                    spanName.InnerText = oneUser.Nombre_FichaIdentificacion.Trim() + " " +
+                                         oneUser.ApPaterno_FichaIdentificacion.Trim();
                 }
                 Session["lAnalisis"] = new List<AnalisisClinicoDTO>();
                 loadPaquetes();

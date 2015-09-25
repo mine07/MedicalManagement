@@ -60,5 +60,13 @@ namespace MedicalManagement.Models.DTO
             var lFichas = h.GetAllParametized(query, oneFicha);
             return lFichas[0];
         }
+
+        public static Tabla_Catalogo_FichaIdentificacionDTO GetLast()
+        {
+            Helpers h = new Helpers();
+            string query = "select * from Tabla_Catalogo_FichaIdentificacion";
+            var lFichas = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO());
+            return lFichas.Last();
+        }
     }
 }

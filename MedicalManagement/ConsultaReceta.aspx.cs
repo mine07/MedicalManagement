@@ -14,8 +14,8 @@ namespace MedicalManagement
 {
     public partial class ConsultaReceta : System.Web.UI.Page
     {
-        int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
-        int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
+        public int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
+        public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
 
         int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
@@ -302,9 +302,10 @@ namespace MedicalManagement
         private void loadTemporal()
         {
             string query = @"select a.*, b.Descripcion_Medicamento as Tem_Medicamento from tabla_temporal_receta a
-                            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento";
+                            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where a.Id_FichaIdentificacion = @Id_FichaIdentificacion and a.Id_Consulta = @Id_Consulta";
             var oneTemp = new Tabla_Temporal_RecetaDTO();
             oneTemp.Id_Consulta = Id_Consulta;
+            oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
             Helpers h = new Helpers();
             var lTemporal = h.GetAllParametized(query, oneTemp);
             rptTemporal.DataSource = lTemporal;

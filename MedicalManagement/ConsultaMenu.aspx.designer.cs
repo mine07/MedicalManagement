@@ -103,6 +103,24 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.Repeater rptProcedimientos;
         
         /// <summary>
+        /// rptFiles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptFiles;
+        
+        /// <summary>
+        /// fleUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fleUpload;
+        
+        /// <summary>
         /// GridViewDiagnosticosActivos control.
         /// </summary>
         /// <remarks>

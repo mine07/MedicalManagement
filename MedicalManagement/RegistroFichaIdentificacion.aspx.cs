@@ -7,17 +7,19 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text.RegularExpressions;
+using MedicalManagement.Models.DTO;
 
 namespace MedicalManagement
 {
     public partial class RegistroFichaIdentificacion : System.Web.UI.Page
     {
-        int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);              
+        int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
-            
+        {
+
 
             bool estatuspermiso = false;
             estatuspermiso = Convert.ToBoolean(Session["estatuspermiso"]);
@@ -72,7 +74,7 @@ namespace MedicalManagement
                 }
             }
 
-            
+
 
             if (!IsPostBack)
             {
@@ -155,10 +157,10 @@ namespace MedicalManagement
 
 
                 }
-                
+
             }
 
-           
+
 
         }
 
@@ -167,7 +169,7 @@ namespace MedicalManagement
             Response.Redirect("FichaIdentificacion.aspx");
         }
 
-        
+
 
         protected void btnGuardar_FichaIdentificacion_Click(object sender, EventArgs e)
         {
@@ -199,7 +201,7 @@ namespace MedicalManagement
                    System.IO.Path.GetExtension(FileUpload1.FileName);
 
                 if (fileExt == ".jpg" || fileExt == ".jpeg" || fileExt == ".png")
-                {                    
+                {
 
                 }
                 else
@@ -209,7 +211,7 @@ namespace MedicalManagement
                 }
             }
 
-           
+
             /* if (txtClaveIdent.Text.Length == 0)
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Clave de Indentificacion</p>";
@@ -218,17 +220,17 @@ namespace MedicalManagement
             else if (txtFechaIdent.Value.Length == 0)
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Fecha de Identificacion</p>";
-            }  
+            }
             if (txtNombreIdent.Text.Length == 0)
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Nombre</p>";
-            }           
+            }
 
             else if (txtApPaIdent.Text.Length == 0)
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Apellido Paterno</p>";
             }
-            
+
             //else if (txtApMaIdent.Text.Length == 0)
             //{
             //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Apellido Materno</p>";
@@ -237,15 +239,15 @@ namespace MedicalManagement
             //{
             //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Lugar de Nacimiento</p>";
             //}
-                
-             else if (txtFechaNaIdent.Value.Length == 0)
-             {
-                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Fecha de Nacimiento</p>";
-             }
-             else if (txtFechaPriIdent.Value.Length == 0)
-             {
-                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Fecha de Primera Visita</p>";
-             }
+
+            else if (txtFechaNaIdent.Value.Length == 0)
+            {
+                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Fecha de Nacimiento</p>";
+            }
+            else if (txtFechaPriIdent.Value.Length == 0)
+            {
+                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Fecha de Primera Visita</p>";
+            }
             /*
             else if (txtTelCaIdent.Text.Length == 0)
             {
@@ -260,8 +262,8 @@ namespace MedicalManagement
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Celular</p>";
             }
-            
-            
+
+
             //else if (txtCorreoIdent.Text.Length == 0)
             //{
             //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Correo Electronico</p>";
@@ -274,7 +276,7 @@ namespace MedicalManagement
             //{
             //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Calle</p>";
             //}
-                
+
             //else if (txtNuIntIdent.Text.Length == 0)
             //{
             //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Numero de calle interior</p>";
@@ -299,21 +301,21 @@ namespace MedicalManagement
             //{
             //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Codigo Postal</p>";
             //}
-             //else if(!FileUpload1.HasFile)
-             //{
-             //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Es necesario seleccionar una fila para la foto.</p>"; 
-             //}
+            //else if(!FileUpload1.HasFile)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Es necesario seleccionar una fila para la foto.</p>"; 
+            //}
             else
             {
                 GrabafichaIdentificacion();
             }
         etiqueta:
-            string variable="";
+            string variable = "";
 
         }
         protected void GrabafichaIdentificacion()
         {
-            string nombrefila="";
+            string nombrefila = "";
 
             if (FileUpload1.HasFile)
             {
@@ -350,8 +352,8 @@ namespace MedicalManagement
                 nombrefila = Session["imagen"].ToString();
                 Session["imagen"] = null;
             }
-           
-            
+
+
             /*SqlConnection cnn = new SqlConnection(ConfigurationManager.AppSettings.Get("strConnection"));*/
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
@@ -446,12 +448,16 @@ namespace MedicalManagement
             comandoBitacora = null;
 
             cnn.Close();
-
+            var oneFicha = FichaDAO.GetLast();
+            string pathToCreate = "~/Pacientes/" + oneFicha.Id_FichaIdentificacion;
+            if (!Directory.Exists(Server.MapPath(pathToCreate)))
+            {
+                Directory.CreateDirectory(Server.MapPath(pathToCreate));
+            }
             Response.Redirect("FichaIdentificacion.aspx");
-
         }
 
-        
+
 
         public void LlenarCMBEmpresas()
         {
@@ -680,13 +686,13 @@ namespace MedicalManagement
 
         public void LlenarCmbDiaMesAnio()
         {
-            var listadia= new List<Int32>();
+            var listadia = new List<Int32>();
             for (int i = 1; i <= 31; i++)
             {
                 listadia.Add(i);
-                
+
             }
-          
+
 
             //var listames = new List<Int32>();
             //for (int i = 1; i <= 12; i++)
@@ -706,8 +712,8 @@ namespace MedicalManagement
 
             DateTime hoy = DateTime.Today;
 
-           
-            
+
+
         }
 
         public void LlenarTxtFechas()// Llena los txtbox por default que sirven para fechas "FechaDeIdentificacion","FechaNacimiento","Fechaprimeravisita"
@@ -719,7 +725,7 @@ namespace MedicalManagement
             txtFechaNaIdent.Value = hoy1;
             txtFechaPriIdent.Value = hoy1;
         }
-          
+
 
         void GuardarFila(HttpPostedFile fila)
         {
@@ -774,39 +780,39 @@ namespace MedicalManagement
 
         void GuardarFila2(HttpPostedFile fila)
         {
-            string guardarPath = HttpContext.Current.Server.MapPath("ImagenesFicha/");            
-            string nombrefila = FileUpload1.FileName;           
-            string checarpath = guardarPath + nombrefila;           
+            string guardarPath = HttpContext.Current.Server.MapPath("ImagenesFicha/");
+            string nombrefila = FileUpload1.FileName;
+            string checarpath = guardarPath + nombrefila;
             string nombrefilachecar = "";
-                 
+
             if (System.IO.File.Exists(checarpath))
             {
                 int contador = 2;
                 while (System.IO.File.Exists(checarpath))
-                {                    
+                {
                     nombrefilachecar = contador.ToString() + nombrefila;
                     checarpath = guardarPath + nombrefilachecar;
                     contador++;
                 }
 
                 nombrefila = nombrefilachecar;
-               
+
                 Alerta2.Text = "A file with the same name already exists." +
                     "<br />Your file was saved as " + nombrefila;
             }
             else
-            {                
+            {
                 Alerta2.Text = "Your file was uploaded successfully.";
             }
-            
-            guardarPath = guardarPath + nombrefila;           
+
+            guardarPath = guardarPath + nombrefila;
             FileUpload1.SaveAs(guardarPath);
 
         }
 
-        
 
-        
-       
+
+
+
     }
 }

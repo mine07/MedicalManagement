@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Consulta_AnalisisClinico.aspx.cs" Inherits="MedicalManagement.Consulta_AnalisisClinico" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
+    <a href='<%= "ConsultaMenu.aspx?Id_Agenda=0&Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'><label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
     <h3>Pedido Auxiliar Clinico</h3>
-    <label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label>
     <hr />
     <label class="label label-primary">Paciente: <span runat="server" id="spanName">Nombre</span></label>
     <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">

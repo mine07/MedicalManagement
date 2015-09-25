@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 using MedicalManagement.Models;
 using MedicalManagement.Models.DTO;
 
@@ -44,7 +45,7 @@ namespace MedicalManagement
                 SqlCommand comando = new SqlCommand(consulta, cnn);
                 Id_Consulta = Convert.ToInt32(comando.ExecuteScalar());
                 Session["Id_Consultas"] = Id_Consulta;
-               
+                loadFile(new Tabla_Catalogo_FichaIdentificacionDTO{Id_FichaIdentificacion = Id_FichaIdentificacion});
                 if (Id_Consulta != 0)
                 {                    
                     LinkReceta.Visible = true;                     
@@ -750,5 +751,47 @@ namespace MedicalManagement
 
             return myValue.ToString();
         }
+
+        protected void upload(object sender, EventArgs e)
+        {
+            var oneFicha = FichaDAO.GetOne( new Tabla_Catalogo_FichaIdentificacionDTO {Id_FichaIdentificacion = Id_FichaIdentificacion});
+            string pathToCreate = "~/Pacientes/" + oneFicha.Id_FichaIdentificacion;
+            if (!Directory.Exists(Server.MapPath(pathToCreate)))
+            {
+                Directory.CreateDirectory(Server.MapPath(pathToCreate));
+            }
+            if (fleUpload.PostedFile != null)
+            {
+                fleUpload.SaveAs(Server.MapPath(pathToCreate) + "/" + fleUpload.PostedFile.FileName);
+            }
+            loadFile(oneFicha);
+        }
+
+        public void loadFile(Tabla_Catalogo_FichaIdentificacionDTO oneFicha)
+        {
+            string pathToCreate = "~/Pacientes/" + oneFicha.Id_FichaIdentificacion;
+            if (!Directory.Exists(Server.MapPath(pathToCreate)))
+            {
+                Directory.CreateDirectory(Server.MapPath(pathToCreate));
+            }
+            string[] fileEntries = Directory.GetFiles(Server.MapPath(pathToCreate));
+            var lFiles = new List<FileDTO>();
+
+            foreach (string fileName in fileEntries)
+            {
+                FileDTO oneFile = new FileDTO();
+                oneFile.Nombre = fileName.Remove(0, Server.MapPath(pathToCreate).Count() + 1);
+                oneFile.Download =  fileName;
+                lFiles.Add(oneFile);
+            }
+            rptFiles.DataSource = lFiles;
+            rptFiles.DataBind();
+        }
+    }
+
+    public class FileDTO
+    {
+        public string Nombre { get; set; }
+        public string Download { get; set; }
     }
 }

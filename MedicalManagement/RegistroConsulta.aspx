@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <table width="100%" border="0">
+    <table width="100%" border="0" class="hidden">
 
         <tr>
             <td align="left"><font color="red">Configuración\Consulta\Agregar</font></td>
@@ -15,7 +15,7 @@
             </td>
         </tr>
     </table>
-    <table>
+    <table class="hidden">
         <tr>
             <td></td>
         </tr>
@@ -38,7 +38,10 @@
 
 
     </table>
-    <div class="container-fluid border-top1-bottom10">
+    <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'><label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
+    <h3>Nota Clinica</h3>
+    <hr />
+    <div class="container-fluid border-top1-bottom 5 gray-border">
         <div class="row">
             <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                 <label>Fecha</label>

@@ -13,7 +13,8 @@ namespace MedicalManagement
 {
     public partial class RegistroConsulta : System.Web.UI.Page
     {
-        int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
+        public Tabla_Catalogo_FichaIdentificacionDTO oneUser { get; set; }
+        public int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
         int Id_Consulta = 0;
@@ -27,6 +28,11 @@ namespace MedicalManagement
             
             if (!IsPostBack)
             {
+                oneUser =
+                    FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
+                    {
+                        Id_FichaIdentificacion = Id_FichaIdentificacion
+                    });
                 loadCategoria();
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);

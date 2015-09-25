@@ -82,6 +82,9 @@
             <asp:AsyncPostBackTrigger ControlID="rptTemporal" />
         </Triggers>
         <ContentTemplate>
+            <a href='<%= "ConsultaMenu.aspx?Id_Agenda="+ Id_Agenda +"&Id_FichaIdentificacion=" + Id_FichaIdentificacion %>'><label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
+            <h3>Receta</h3>
+            <hr />
             <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
                 <div class="row">
                     <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4 left-panel">
@@ -136,28 +139,32 @@
                                     <hr />
                                 </div>
                             </div>
-                            <asp:Repeater runat="server" ID="rptTemporal">
-                                <ItemTemplate>
-                                    <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3">
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <asp:LinkButton ID="btnRemove" runat="server" Text='<i class="fa fa-remove fa-1x pull-right remove-icon"></i>' OnClick="RemoveTemporal" CommandArgument='<%# Eval("Id_Temporal_Receta") %>' />
-                                                <hr />
-                                                <label class="h5">Medicamento</label>
-                                                <label><%# Eval("Tem_Medicamento") %></label>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                <label class="h5">Dosis</label>
-                                                <label><%# Eval("Tem_Dosis") %></label>
-                                            </div>
-                                            <div class="col-xs-12">
-                                                <label class="h5">Notas</label>
-                                                <label><%# Eval("Tem_Notas") %></label>
+                            <div class="gray-container" style="max-height: 450px;">
+                                <asp:Repeater runat="server" ID="rptTemporal">
+                                    <ItemTemplate>
+                                        <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3" style="background-color: white;">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <asp:LinkButton ID="btnRemove" runat="server" Text='<i class="fa fa-remove fa-1x pull-right remove-icon"></i>' OnClick="RemoveTemporal" CommandArgument='<%# Eval("Id_Temporal_Receta") %>' />
+                                                    <hr />
+                                                    <label class="h5">Medicamento</label>
+                                                    <label><%# Eval("Tem_Medicamento") %></label>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <label class="h5">Dosis</label>
+                                                    <label><%# Eval("Tem_Dosis") %></label>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <label class="h5">Notas</label>
+                                                    <label><%# Eval("Tem_Notas") %></label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                            <hr />
+                            <label class="pull-right label label-success label-button" style="font-size: 16px;">Guardar<i class="fa fa-margin-left fa-save"></i></label>
                         </div>
                     </div>
                 </div>
@@ -356,6 +363,5 @@
             position: absolute;
             width: 90%;
         }
-
     </style>
 </asp:Content>

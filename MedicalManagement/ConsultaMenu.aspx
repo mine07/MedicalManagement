@@ -102,6 +102,26 @@
                     <h5>Auxiliar Clinico<a href='<%= "Consulta_AnalisisClinico.aspx?Id_Paciente="+ Id_FichaIdentificacion %>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>
                     <hr />
                 </div>
+                <div>
+                    <h5>Archivos Adjuntos</h5>
+                    <div class="container-fluid white-container">
+                        <asp:Repeater runat="server" ID="rptFiles">
+                            <ItemTemplate>
+                                <div class="row">
+                                                <div class="col-xs-12">
+                                                    <a href='<%# Eval("Download") %>' target="_blank" class="label-button" download>
+                                                   <i class="fa-margin-right fa fa-file"></i><label class="packet-name"><%# Eval("Nombre")%></label>
+                                                        </a>
+                                                    <hr />
+                                                </div>
+                                            </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                    <asp:FileUpload ID="fleUpload" runat="server" CssClass="form-control padding"/>
+                    <asp:LinkButton OnClick="upload" runat="server" Text='<label class="label pull-right label-success padding">Subir<i class="fa-margin-left fa fa-upload"></i></label>'/>
+                    <hr />
+                </div>
                 <div class="hidden">
                     <asp:GridView ID="GridViewDiagnosticosActivos" runat="server"
                         AutoGenerateColumns="False">
