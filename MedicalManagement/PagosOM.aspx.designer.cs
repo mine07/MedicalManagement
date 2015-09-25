@@ -40,24 +40,6 @@ namespace MedicalManagement {
         protected global::System.Web.UI.UpdatePanel udpOutterUpdatePanel;
         
         /// <summary>
-        /// Control divControlContainer.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divControlContainer;
-        
-        /// <summary>
-        /// Control dummy.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton dummy;
-        
-        /// <summary>
         /// Control mpeThePopup.
         /// </summary>
         /// <remarks>
@@ -146,15 +128,6 @@ namespace MedicalManagement {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlModalPopUpPanel;
-        
-        /// <summary>
-        /// Control udpInnerUpdatePanel.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpInnerUpdatePanel;
         
         /// <summary>
         /// Control ddlConceptos.

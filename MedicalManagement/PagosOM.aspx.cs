@@ -19,52 +19,12 @@ namespace MedicalManagement
             if (!IsPostBack)
             {
                 loadData();
-                LinkButton lbtnRed = new LinkButton();
-                LinkButton lbtnBlue = new LinkButton();
-                LinkButton lbtnYellow = new LinkButton();
+                AddDefaultFirstRecord();
 
-                lbtnRed.ID = lbtnRed.Text = "Red";
-                lbtnBlue.ID = lbtnBlue.Text = "Blue";
-                lbtnYellow.ID = lbtnYellow.Text = "Yellow";
-
-              
-
-                divControlContainer.Controls.Add(lbtnRed);
-                divControlContainer.Controls.Add(new LiteralControl("<br/>"));
-                divControlContainer.Controls.Add(lbtnBlue);
-                divControlContainer.Controls.Add(new LiteralControl("<br/>"));
-                divControlContainer.Controls.Add(lbtnYellow);
-                divControlContainer.Controls.Add(new LiteralControl("<br/>"));
 
             }
         }
 
-        //protected void lbtn_Click(object sender, EventArgs e)
-        //{
-        //    //Get Event Sender Control 
-        //    LinkButton lbtnSender = (LinkButton)sender;
-
-        //    //Clear Previous Saved Values 
-        //    ddlProducts.Items.Clear();
-        //    lblText.Text = "";
-
-        //    //Populate DropDownList Items 
-        //    for (int i = 1; i < 10; i++)
-        //    {
-        //        string productName = lbtnSender.ID + " Product " + i.ToString();
-        //        ddlProducts.Items.Add(new ListItem(productName, productName));
-        //    }
-        //    //Show ModalPopup 
-        //    mpeThePopup.Show();
-        //}
-
-        //protected void btnChooseProduct_Click(object sender, EventArgs e)
-        //{
-        //    //Changed Label Control Text 
-        //    lblText.Text = "You have selected " + ddlProducts.SelectedItem.Text;
-        //    //Show ModalPopup 
-        //    mpeThePopup.Show();
-        //}
 
         private void loadData()
         {
@@ -250,9 +210,30 @@ namespace MedicalManagement
             
         }
     }
+
+        private void AddDefaultFirstRecord()
+        {
+            //creating DataTable
+            DataTable dt = new DataTable();
+            DataRow dr;
+            dt.TableName = "ProductsSold";
+            //creating columns for DataTable
+            dt.Columns.Add(new DataColumn("Concepto", typeof(string)));
+            dt.Columns.Add(new DataColumn("Cantidad", typeof(string)));
+            dt.Columns.Add(new DataColumn("Total", typeof(string)));
+            dt.Columns.Add(new DataColumn("Descuento", typeof(string)));
+            dr = dt.NewRow();
+            dt.Rows.Add(dr);
+
+            ViewState["ProductsSold"] = dt;
+            gvConceptos.DataSource = dt;
+            gvConceptos.DataBind();
+        }
+
         protected void Edit(object sender, EventArgs e)
         {
         }
+
         protected void Add(object sender, EventArgs e)
         {
 
