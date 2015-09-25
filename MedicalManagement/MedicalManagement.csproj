@@ -360,6 +360,7 @@
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\bootstrap.min.css" />
     <Content Include="CalendarPrueba.aspx" />
+    <Content Include="Styles\CSSLogin.css" />
     <Content Include="Styles\CSStest.css" />
     <Content Include="Styles\footable.css" />
     <Content Include="Styles\fullcalendar.min.css" />
