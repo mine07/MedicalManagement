@@ -23,4 +23,32 @@ namespace MedicalManagement.Models.DTO
         public Tabla_Catalogo_FichaIdentificacionDTO UsuarioDTO { get; set; }
         public string _estatus { get; set; }
     }
+
+    public class AgendaDAO
+    {
+        public List<Tabla_Registro_AgendaDTO> GetAll()
+        {
+            string query = "select * from Tabla_Registro_Agenda";
+            Helpers h = new Helpers();
+            var lAgendas = h.GetAllParametized(query, new Tabla_Registro_AgendaDTO());
+            return lAgendas;
+        }
+
+        public Tabla_Registro_AgendaDTO GetOne(Tabla_Registro_AgendaDTO oneAgenda)
+        {
+            string query = "select * from Tabla_Registro_Agenda where ID_Agenda = @Id_Agenda";
+            Helpers h = new Helpers();
+            var lAgendas = h.GetAllParametized(query, new Tabla_Registro_AgendaDTO());
+            oneAgenda = lAgendas.Single(x => x.Id_Agenda == oneAgenda.Id_Agenda);
+            return oneAgenda;
+        }
+
+        public void Insert(Tabla_Registro_AgendaDTO oneAgenda)
+        {
+            string query =
+                "insert into Tabla_Registro_Agenda (Fecha_Agenda, Asunto_Agenda, Prioridad_Agenda, EstadoCitas_Agenda, Descripcion_Agenda, Inicio_Agenda, Fin_Agenda, Id_FichaIdentificacion, Id_Categoria, Estatus_Agenda, Inicio_Cita, Fin_Cita) values(@Fecha_Agenda, @Asunto_Agenda, @Prioridad_Agenda, @EstadoCitas_Agenda, @Descripcion_Agenda, @Inicio_Agenda, @Fin_Agenda, @Id_FichaIdentificacion, @Id_Categoria, @Estatus_Agenda, @Inicio_Cita, @Fin_Cita ";
+            Helpers h = new Helpers();
+            h.ExecuteNonQueryParam(query, oneAgenda);
+        }
+    }
 }

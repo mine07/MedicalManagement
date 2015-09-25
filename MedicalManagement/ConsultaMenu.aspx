@@ -5,9 +5,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid ">
+<h3>Menu Consulta</h3>
+    <hr />
+    <div class="container-fluid gray-border border-top1-bottom5 no-vertical-padding">
         <div class="row">
-            <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4">
+            <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 left-panel">
                 <hr class="blue-hr" />
                 <div class=" text-center">
                     <label class="label-primary label">Paciente:<asp:Label ID="lblNombre" runat="server" Text=""></asp:Label></label>
@@ -56,8 +58,6 @@
                             Visible="False">Receta Medica</asp:LinkButton>
                     </div>
                     <div>
-                        <asp:LinkButton ID="LinkAnalisisClinico" runat="server" OnClick="LinkAnalisisClinico_Click" CssClass="label label-secondary"
-                            Visible="False">Analisis Clinico</asp:LinkButton>
                     </div>
                 </div>
                 <div>
@@ -65,9 +65,9 @@
                     <asp:Repeater ID="rptActivos" runat="server">
                         <ItemTemplate>
                             <div class="border-top1-bottom5">
+                                <i onclick="removeDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-remove fa-1x pull-right remove-icon"></i>
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                                <i onclick="removeDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-remove fa-1x pull-right remove-icon"></i>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -78,9 +78,9 @@
                     <asp:Repeater ID="rptInactivos" runat="server">
                         <ItemTemplate>
                             <div class="border-top1-bottom5">
+                                <i onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                                <i onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -98,6 +98,10 @@
                     </asp:Repeater>
                 </div>
                 <hr />
+                <div>
+                    <h5>Auxiliar Clinico<a href='<%= "Consulta_AnalisisClinico.aspx?Id_Paciente="+ Id_FichaIdentificacion %>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>
+                    <hr />
+                </div>
                 <div class="hidden">
                     <asp:GridView ID="GridViewDiagnosticosActivos" runat="server"
                         AutoGenerateColumns="False">
@@ -178,7 +182,7 @@
                     </asp:GridView>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
+            <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8 padding">
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <hr class="blue-hr" />
@@ -196,7 +200,7 @@
                                 <div class="border-top1-bottom5">
                                     <h4>
                                         <span class="label label-primary">
-                                            <label class="hidden-xs"><%# Eval("Subjetivo_Consulta") + " - "%></label>
+                                            <label class="hidden-xs"><%# porConsultar(Eval("Subjetivo_Consulta")) + " - "%></label>
                                             <label><%# testbind(Eval("Fecha_Consulta"))%></label>
                                         </span>
                                     </h4>
@@ -264,7 +268,7 @@
                                             <div class="col-xs-12">
                                                 <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
                                                 <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
-                                                <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                                <a class="label label-secondary form-control hidden" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
                                             </div>
                                         </div>
                                     </div>
@@ -285,7 +289,7 @@
                         <ItemTemplate>
                             <h3>
                                 <span class="label label-primary">
-                                    <label class="hidden-xs"><%# Eval("Subjetivo_Consulta") + " - "%></label>
+                                    <label class="hidden-xs"><%# porConsultar(Eval("Subjetivo_Consulta")) + " - "%></label>
                                     <label><%# Eval("Fecha_Consulta")%></label>
                                 </span>
                             </h3>
@@ -300,7 +304,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Diagnostico</label>
+                                        <label>Diagnosticos</label>
                                     </div>
                                     <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
                                         <%#  testbind(Eval("Diagnostico_Consulta")) %>
@@ -352,7 +356,7 @@
                                     <div class="col-xs-12">
                                         <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
                                         <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
-                                        <a class="label label-secondary form-control" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                        <a class="label label-secondary form-control hidden" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
                                     </div>
                                 </div>
                             </div>

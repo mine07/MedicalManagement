@@ -15,7 +15,7 @@ namespace MedicalManagement
     public partial class ConsultaMenu : System.Web.UI.Page
     {
         int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
-        int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
+        public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
         int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
               
@@ -734,7 +734,18 @@ namespace MedicalManagement
             string strValue = myValue.ToString();
             if (strValue == "")
             {
-                return "Sin Datos...";
+                return "";
+            }
+
+            return myValue.ToString();
+        }
+
+        protected string porConsultar(object myValue)
+        {
+            string strValue = myValue.ToString();
+            if (strValue == "")
+            {
+                return "Por Consultar";
             }
 
             return myValue.ToString();

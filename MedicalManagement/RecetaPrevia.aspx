@@ -57,10 +57,10 @@
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" />
             <asp:AsyncPostBackTrigger ControlID="rptTemporal" />
+            <asp:PostBackTrigger ControlID="LinkButton1" />
         </Triggers>
         <ContentTemplate>
             <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
-
                 <div class="row">
                     <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4 left-panel">
                         <div class="container-fluid">
@@ -130,9 +130,10 @@
                                     <hr />
                                 </div>
                             </div>
+                            <div class="row gray-container">
                             <asp:Repeater runat="server" ID="rptTemporal">
                                 <ItemTemplate>
-                                    <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3">
+                                    <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3" style="background-color: white;">
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <label class="h5">Medicamento</label>
@@ -151,6 +152,7 @@
                                     </div>
                                 </ItemTemplate>
                             </asp:Repeater>
+                                </div>
                             <div class="row" runat="server" visible="false" id="cancelRow">
                                 <div class="col-xs-12">
                                     <asp:LinkButton OnClick="cancelEdit" ID="LinkButton3" runat="server" Text='<label style="font-size:16px;" class="label label-danger pull-right label-button">Cancelar<i class="fa fa-close"></i></label>' />
@@ -212,8 +214,10 @@
         var prm = Sys.WebForms.PageRequestManager.getInstance();
 
         prm.add_endRequest(function () {
-            $('.combobox').combobox();
-            $("[id$=ddlTemplate]").change();
+            $(document).ready(function () {
+                $('.combobox').combobox();
+                $("[id$=ddlTemplate]").change();
+            });
         });
         $('[id$=txtSearch]').bind('input keyup', function () {
             var $this = $(this);
@@ -294,7 +298,7 @@
             $("[id$=txtSearch]").val(val.html());
         }
 
-        $("[id$=ddlTemplate]").change(function () {
+        $("[id$=ddlTemplate]").on("change", function () {
             var x = $("[id$=ddlTemplate]").val();
             $.ajax({
                 type: "POST",
@@ -307,6 +311,7 @@
                 }
             });
         });
+
         function appendTemplate(data) {
             var jsonObject = $.parseJSON(data.d);
             var Tem_Nombre = jsonObject[0].Tem_Nombre;

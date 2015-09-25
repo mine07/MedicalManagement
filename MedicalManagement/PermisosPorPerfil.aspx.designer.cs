@@ -10,42 +10,33 @@
 namespace MedicalManagement {
     
     
-    public partial class Consulta_AnalisisClinico {
+    public partial class PermisosPorPerfil {
         
         /// <summary>
-        /// spanName control.
+        /// ddlPerfil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPerfil;
         
         /// <summary>
-        /// rptPaquete control.
+        /// spanNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPaquete;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanNombre;
         
         /// <summary>
-        /// rptAuxiliares control.
+        /// rptPermiso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptAuxiliares;
-        
-        /// <summary>
-        /// rptSeleccionados control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSeleccionados;
+        protected global::System.Web.UI.WebControls.Repeater rptPermiso;
     }
 }

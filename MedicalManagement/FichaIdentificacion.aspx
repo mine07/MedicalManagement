@@ -33,7 +33,7 @@
     <asp:GridView ID="Grid_FichaIdentificacion" runat="server" AutoGenerateColumns="False"
         OnRowCommand="RowCommand" OnRowDeleting="RowDeleting"
         OnPageIndexChanging="Grid_FichaIdentificacion_PageIndexChanging" AllowPaging="False"
-        OnPageIndexChanged="Grid_FichaIdentificacion_PageIndexChanged" CssClass="mGrid footable"
+        OnPageIndexChanged="Grid_FichaIdentificacion_PageIndexChanged" CssClass="table table-hover"
         PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None">
         <Columns>
             <asp:BoundField DataField="Id_FichaIdentificacion" HeaderText="Id.FichaIdentificacion" ControlStyle-CssClass="expand"

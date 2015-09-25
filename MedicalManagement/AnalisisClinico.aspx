@@ -18,7 +18,7 @@
  <asp:GridView ID="Grid_AnalisisClinico" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_AnalisisClinico_PageIndexChanging" AllowPaging="true" pagesize="15"
-        onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="mGrid" 
+        onpageindexchanged="Grid_AnalisisClinico_PageIndexChanged" CssClass="table table-hover" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
                     
     

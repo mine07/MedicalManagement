@@ -419,9 +419,5 @@ namespace MedicalManagement
                 rbNormal.Checked = false;
             }
         }
-
-
-
-
     }
 }

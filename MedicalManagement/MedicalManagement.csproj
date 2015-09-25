@@ -173,6 +173,7 @@
     <Content Include="logintest.html" />
     <Content Include="Medicamento.aspx" />
     <Content Include="MenuInicial.aspx" />
+    <Content Include="Modulo.aspx" />
     <Content Include="Modulos.aspx" />
     <Content Include="Ocupacion.aspx" />
     <Content Include="PagosIndividuales.aspx" />
@@ -182,7 +183,9 @@
     <Content Include="PermisoPerfil2.aspx" />
     <Content Include="Permisos.aspx" />
     <Content Include="PermisosPerfil.aspx" />
+    <Content Include="PermisosPorPerfil.aspx" />
     <Content Include="Procedimiento.aspx" />
+    <Content Include="Prueba.aspx" />
     <Content Include="RecetaPrevia.aspx" />
     <Content Include="ReferidoPor.aspx" />
     <Content Include="RegistroAgenda.aspx" />
@@ -215,6 +218,7 @@
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\jqota2.js" />
     <Content Include="Scripts\jquery-1.8.3.js" />
+    <None Include="Properties\PublishProfiles\cesarMedical.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -340,6 +344,10 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\plugins\morris-data.js" />
+    <Content Include="Scripts\plugins\morris.js" />
+    <Content Include="Scripts\plugins\morris.min.js" />
+    <Content Include="Scripts\plugins\raphael.min.js" />
     <Content Include="Scripts\responsive-calendar.js" />
     <Content Include="Scripts\responsive-calendar.min.js" />
     <Content Include="GetDates.asmx" />
@@ -358,7 +366,9 @@
     <Content Include="Styles\jquery-ui-1.9.2.custom.css" />
     <Content Include="Styles\jquery.datetimepicker.css" />
     <Content Include="Styles\jquery.weekcalendar.css" />
+    <Content Include="Styles\plugins\morris.css" />
     <Content Include="Styles\responsive-calendar.css" />
+    <Content Include="Styles\sb-admin.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -643,7 +653,10 @@
     </Compile>
     <Compile Include="Models\DTO\AnalisisClinico.cs" />
     <Compile Include="Models\DTO\AnalisisEnPaquetesDTO.cs" />
+    <Compile Include="Models\DTO\ModuloDTO.cs" />
     <Compile Include="Models\DTO\PaquetesDTO.cs" />
+    <Compile Include="Models\DTO\PerfilDTO.cs" />
+    <Compile Include="Models\DTO\PermisosDTO.cs" />
     <Compile Include="Models\DTO\Taba_Receta_Template.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConsultaRecetaPreviaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
@@ -659,6 +672,14 @@
     <Compile Include="Models\Helpers.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConceptoPago.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_AnalisisClinicoPaquetes.cs" />
+    <Compile Include="Models\VerificarPermiso.cs" />
+    <Compile Include="Modulo.aspx.cs">
+      <DependentUpon>Modulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modulo.aspx.designer.cs">
+      <DependentUpon>Modulo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modulos.aspx.cs">
       <DependentUpon>Modulos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -722,6 +743,13 @@
     <Compile Include="PermisosPerfil.aspx.designer.cs">
       <DependentUpon>PermisosPerfil.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PermisosPorPerfil.aspx.cs">
+      <DependentUpon>PermisosPorPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PermisosPorPerfil.aspx.designer.cs">
+      <DependentUpon>PermisosPorPerfil.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Procedimiento.aspx.cs">
       <DependentUpon>Procedimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -730,6 +758,13 @@
       <DependentUpon>Procedimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Prueba.aspx.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prueba.aspx.designer.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RecetaPrevia.aspx.cs">
       <DependentUpon>RecetaPrevia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

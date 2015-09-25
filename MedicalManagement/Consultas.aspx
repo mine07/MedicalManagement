@@ -85,7 +85,9 @@
             </td>
         </tr>
     </table>
-    <div class="container-fluid">
+    <h3>Consultas</h3>
+    <hr />
+    <div class="container-fluid ">
         <div class="col-xs-12">
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">Buscar: </span>
@@ -97,8 +99,9 @@
     <hr />
     <div class="container-fluid searchContainer  border-top1-bottom5"></div>
     <hr />
-    <div class="row" id="calendarAgenda">
-        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+    <div class="container-fluid">
+    <div class="row border-top1-bottom5 gray-border no-vertical-padding" id="calendarAgenda">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 left-panel">
             <div class="responsive-calendar  contCalendar">
                 <div class="controls">
                     <span class="pull-left" data-go="prev">
@@ -127,6 +130,7 @@
         <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 container-fluid" id="rowsContainer">
         </div>
     </div>
+        </div>
     <script>
 
         $("[id$=txtSearch]").keyup(function (e) {
@@ -273,7 +277,7 @@
     </script>
     <script type="text/x-jqote-template" id="templateCalendar">
     <![CDATA[
-        <div class="row border-top1-bottom5">        
+        <div class="row">        
             <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4 <*= this.AgendaDTO._estatus *>">
                 <label><*= this.UsuarioDTO.Nombre_FichaIdentificacion + " " + this.UsuarioDTO.ApPaterno_FichaIdentificacion + " " + this.UsuarioDTO.ApMaterno_FichaIdentificacion *>                
             </div>        
@@ -292,8 +296,7 @@
         </div>
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
-        <a class="label label-secondary form-control" href='<*= "ConsultaMenu.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Menu Consulta</a>
-        <a class="label label-secondary form-control" href='<*= "ConsultasAnteriores.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Historial</a>
+        <a class="label label-secondary form-control" href='<*= "ConsultaMenu.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Menu Consulta</a>        
                 </div>
         </div>
         </div>

@@ -216,7 +216,6 @@
         });
         jQuery('.datePicker').datetimepicker({
             format: 'd/m/Y H:i'
-            
         });
     </script>
 </asp:Content>

@@ -104,7 +104,8 @@ namespace MedicalManagement.Models
                         {
                             var x = dr.GetDateTime(i);
                             t.SetPropertyValue(y.Nombre, x);
-                        }
+                        } 
+                       
                     }
                 }
                 lT.Add(t);
@@ -175,6 +176,11 @@ namespace MedicalManagement.Models
                         if (y.Datatype == typeof(DateTime) && !dr.IsDBNull(i))
                         {
                             var x = dr.GetDateTime(i);
+                            t.SetPropertyValue(y.Nombre, x);
+                        }
+                        if (y.Datatype == typeof(bool) && !dr.IsDBNull(i))
+                        {
+                            var x = dr.GetBoolean(i);
                             t.SetPropertyValue(y.Nombre, x);
                         }
                     }
@@ -256,17 +262,17 @@ namespace MedicalManagement.Models
                 {
                     if ((DateTime)value < checkDate)
                     {
-                        cmd.Parameters.RemoveAt(cmd.Parameters.Count-1);
+                        cmd.Parameters.RemoveAt(cmd.Parameters.Count - 1);
                     }
                 }
-                
+
             }
             cmd.ExecuteNonQuery();
         }
 
-        
 
-       
+
+
 
         public class propiedades
         {
