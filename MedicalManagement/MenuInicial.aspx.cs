@@ -17,10 +17,8 @@ namespace MedicalManagement
             int usuario = Convert.ToInt32(Session["inicio"]);
             if (Session["inicio"] == null || usuario == 0)
             {
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Login.aspx");
             }
-                
-                
 
             else
             {

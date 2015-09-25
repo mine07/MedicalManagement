@@ -57,27 +57,24 @@
 </head> 
 <body> 
     <form id="form1" runat="server"> 
-
     <asp:ScriptManager ID="ScriptManager1" runat="server"> 
     </asp:ScriptManager> 
     <div> 
-        <asp:UpdatePanel ID="udpOutterUpdatePanel" runat="server"> 
+        <asp:UpdatePanel ID="udpOutterUpdatePanel" runat="server" ChildrenAsTriggers="True" ClientIDMode="Static"> 
              <ContentTemplate> 
-                <div id="divControlContainer" runat="server"></div> 
-                <input id="dummy" type="button" runat="server" />
                  <ajaxToolkit:ModalPopupExtender runat="server" 
                         ID="mpeThePopup" 
-                        TargetControlID="dummy" 
+                        TargetControlID="btnAdd" 
                         PopupControlID="pnlModalPopUpPanel" 
                         BackgroundCssClass="modalBackground"                        
-                        DropShadow="true" OkControlID="btntest"/> 
-                    <label style="font-weight: bold; font-size: x-large; font-family: Helvetica;">Pagos</label>
+                        DropShadow="true" CancelControlID="btnCancelModalPopup"/>
+            <label style="font-weight: bold; font-size: x-large; font-family: Helvetica;">Pagos</label>
             <div class="container-fluid border-top1-bottom5">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-4 col-lg-12 col-md-12 text-right">
-                                <div class="dropdown">
+                     <div class="row">
+                         <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2">
+                             <div class="row">
+                                 <div class="col-xs-12 col-sm-4 col-lg-12 col-md-12 text-right">
+                                     <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         <span id="ddl">Filtro...</span>
                                         <span class="caret"></span>
@@ -318,9 +315,10 @@
                     </div>
                 </div>
             </div>
-                 <asp:Panel ID="pnlModalPopUpPanel" runat="server" CssClass="modalPopup"  > 
-                    <asp:UpdatePanel ID="udpInnerUpdatePanel" runat="Server"> 
-                        <ContentTemplate>
+
+                 <asp:Panel ID="pnlModalPopUpPanel" runat="server" CssClass="modalPopup" style="display:none" > 
+               <%--     <asp:UpdatePanel ID="udpInnerUpdatePanel" runat="Server"  ChildrenAsTriggers="True" ClientIDMode="Static">  
+                        <ContentTemplate>--%>
                             <div class="modal-header">Agregar Pago
                                 <h4 class="modal-title" id="myModalBLabel">Agregar Concepto De Pago</h4>
                             </div>
@@ -367,16 +365,14 @@
                 </div>
             <asp:Button ID="btntest" runat="server" Text="aparece?"  CssClass="btn btn-primary" OnClick="btntes" />
             <asp:Button ID="btnCancelModalPopup" runat="server" Text="Cancel"  CssClass="btn btn-primary" /> 
-                        </ContentTemplate>       
-                        <Triggers> 
-                            <asp:AsyncPostBackTrigger ControlID="btntest" EventName="Click" /> 
-                            <asp:asyncpostbacktrigger controlid="ddlConceptos" eventname="SelectedIndexChanged" />
-                        </Triggers> 
-
-
-                    </asp:UpdatePanel> 
+                     <%--   </ContentTemplate>       
+                    </asp:UpdatePanel>--%> 
                  </asp:Panel> 
             </ContentTemplate>
+                   <Triggers>
+                       <asp:AsyncPostBackTrigger ControlID="btntest" EventName="Click" />
+                       <asp:asyncpostbacktrigger controlid="ddlConceptos" eventname="SelectedIndexChanged" />
+                   </Triggers> 
         </asp:UpdatePanel>
     </div>
     </form>
