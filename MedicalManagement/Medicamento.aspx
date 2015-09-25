@@ -19,7 +19,7 @@
  <asp:GridView ID="Grid_Medicamento" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Medicamento_PageIndexChanging" AllowPaging="true" pagesize="15"
-        onpageindexchanged="Grid_Medicamento_PageIndexChanged" CssClass="mGrid footable" 
+        onpageindexchanged="Grid_Medicamento_PageIndexChanged" CssClass="table table-hover" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
                     
     

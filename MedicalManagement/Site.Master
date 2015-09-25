@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MedicalManagement.SiteMaster" %>
- 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head id="Head1" runat="server">
@@ -17,162 +17,223 @@
     <script src="Scripts/bootstrap-combobox.js" type="text/javascript"></script>
     <script src="Scripts/responsive-calendar.js" type="text/javascript"></script>
     <link href="Styles/responsive-calendar.css" rel="Stylesheet" />
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <script src="Scripts/jqota2.js" type="text/javascript"></script>
     <meta charset="UTF-8" />
+
+    <!-- Bootstrap Core CSS -->
+    <!-- Custom CSS -->
+    <link href="styles/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="styles/plugins/morris.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
 </head>
+
 <body>
-    <form id="Form1" runat="server">
-        <div class="col-xs-12 col-sm-11 col-lg-10 col-md-11 page shadow padding0" style="float: none;">
-            <div class="header">
-                <div class="title">
-                    <h1>
-                        <a href="MenuInicial.aspx">
-                            <img src="IMG/Logotipo_iCh.jpg"></a>
-                    </h1>
-                </div>
+    <form runat="Server" id="form1">
+        <div id="wrapper">
 
-                <div class="clear">
-                    <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-left">
-        <li><a class="navbar-brand" href="#"> <h5 class="label label-primary">Usuario:<asp:Label ID="lblUsuario" runat="server"></asp:Label></h5></a></li>
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="MenuInicial.aspx">Medical Management<i class="fa fa-heartbeat fa-margin-left"></i></a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs">Notas</span><i class="fa fa-envelope fa-margin-left"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>Mensajes</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i>Yesterday at 4:32 PM</p>
+                                        <p>Prueba</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Ver todos los mensajes</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs">Proximas Consultas</span><i class=" fa-margin-left fa fa-bell"></i><b class="caret"></b></a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-margin-right"></i><asp:Label runat="server" ID="lblUsuario"></asp:Label><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <asp:LinkButton OnClick="logout" runat="server" Text='<p><i class="fa fa-fw fa-power-off"></i>Salir</p>'/>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse ">
+                <ul class="nav navbar-nav side-nav custom-scroll">
+                    <li class="active">
+                        <a href="MenuInicial.aspx"><i style="color:white;" class="fa fa-fw fa-calendar"></i> Inicio</a>
+                    </li>
+                    <li>
+                        <hr />
+                    </li>
+                     <li class="li-main">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ddFast" class="dropdown-title"><i class="fa fa-fw fa-medkit"></i> Accesos Rapidos</a>
+                        <ul id="ddFast" class="collaps in">
+                            <li class="divider"></li>
+                            <li>
+                                <a href="RegistroFichaIdentificacion.aspx"><i class="fa fa-fw fa-user-plus"></i> Nuevo Pacientes</a>
+                            </li>
+                            <li>
+                                <a href="RegistroAgenda.Aspx"><i class="fa fa-fw fa-calendar-plus-o"></i> Nueva Consultas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="li-main">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ddOperaciones" class="dropdown-title"><i class="fa fa-fw fa-medkit"></i> Operaciones</a>
+                        <ul id="ddOperaciones" class="collapse in">
+                            <li class="divider"></li>
+                            <li>
+                                <a href="FichaIdentificacion.aspx"><i class="fa fa-fw fa-user"></i> Pacientes</a>
+                            </li>
+                            <li>
+                                <a href="Consultas.Aspx"><i class="fa fa-fw fa-calendar"></i> Consultas</a>
+                            </li>
+                            <li>
+                                <a href="Pagos.Aspx"><i class="fa fa-fw fa-money"></i> Pagos</a>
+                            </li>
+                        </ul>
+                    </li>
+                     <li class="li-main">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ddCatalogos" class="dropdown-title"><i class="fa fa-fw fa-edit"></i>Catalogos</a>
+                        <ul id="ddCatalogos" class="collapse">
+                            <li class="divider"></li>
+                            <li>
+                                <a href="Procedimiento.aspx"><i class="fa fa-fw fa-ambulance"></i> Procedimientos</a>
+                            </li>
+                           
+                             <li>
+                                <a href="Medicamento.aspx"><i class="fa fa-fw fa-spoon"></i> Medicamentos</a>
+                            </li>
+                           
+                             <li>
+                                <a href="RecetaPrevia.aspx"><i class="fa fa-fw fa-list-alt"></i> Recetas Previas</a>
+                            </li>
+                           
+                             <li>
+                                <a href="AnalisisClinico.aspx"><i class="fa fa-fw fa-stethoscope"></i> Analisis Clinicos</a>
+                            </li>
+                           
+                             <li>
+                                <a href="Paquetes.aspx"><i class="fa fa-fw fa-cubes"></i> Paquetes</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                    <li class="li-main">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ddConfig" class="dropdown-title"><i class="fa fa-fw fa-cogs"></i> Catalogos Sistema</a>
+                        <ul id="ddConfig" class="collapse">
+                            <li class="divider"></li>
+                            <li>
+                                <a href="Sexo.aspx">Sexo</a>
+                            </li>
+                            <li>
+                                <a href="EstadoCivil.aspx">Estado Civil</a>
+                            </li>
+                            <li>
+                                <a href="Ocupacion.aspx"> Ocupacion</a>
+                            </li>
+                            <li>
+                                <a href="Escolaridad.aspx">Escolaridad</a>
+                            </li>
+                            <li>
+                                <a href="EmpresaConvenio.aspx">Empresa Convenio</a>
+                            </li>
+                            <li>
+                                <a href="Aseguradora.aspx">Aseguradora</a>
+                            </li>
+                            <li>
+                                <a href="ReferidoPor.aspx"> Referido Por</a>
+                            </li>
+                            <li>
+                                <a href="Categoria.aspx"> Categoria</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Operaciones<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="FichaIdentificacion.aspx">Ficha Identificacion</a></li>
-            <li><a href="Agenda.aspx">Agenda</a></li>
-            <li><a href="Consultas.aspx">Consultas</a></li>
-            <li><a href="Pagos.aspx">Pagos</a></li>
-          </ul>
-        </li>
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalogos<span class="caret"></span></a>
-          <ul class="dropdown-menu multi-level">
-            <li><a href="Sexo.aspx">Sexo</a></li>
-            <li><a href="EstadoCivil.aspx">Estado Civil</a></li>
-            <li><a href="Ocupacion.aspx">Ocupacion</a></li>
-            <li><a href="Escolaridad.aspx">Escolaridad</a></li>
-                          <li><a href="EmpresaConvenio.aspx">Empresa Convenio</a></li>
-                          <li><a href="Aseguradora.aspx">Aseguradora</a></li>
-                          <li><a href="ReferidoPor.aspx">Referido Por </a></li>              
-              <li><a href="Categoria.aspx">Categoria</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="Diagnosticos.aspx">Diagnosticos</a></li>
-              <li><a href="Procedimiento.aspx">Procedimiento</a></li>
-              <li><a href="Medicamento.aspx">Medicamento</a></li>
-              <li><a href="RecetaPrevia.aspx">RecetaPrevia</a></li>
-              <li><a href="AnalisisClinico.aspx">AnalisisClinico</a></li>
-              <li><a href="Paquetes.aspx">Paquetes</a></li>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </div>
+                <!-- /.container-fluid -->
                
-          </ul>
-        </li>
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configuracion<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="Empresas.aspx">Empresas</a></li>
-            <li><a href="Sucursales.aspx">Consultorios</a></li>
-            <li><a href="Perfles.aspx">Perfiles</a></li>
-            <li><a href="Usuarios.aspx">Usuarios</a></li>
-              <li><a href="Modulo.aspx">Modulos</a></li>
-              <li><a href="PermisosPorPerfil.aspx">Permisos Por Perfil</a></li>
-              <li><a href="Bitacora.aspx">Bitacora de Movimientos</a></li>
-          </ul>
-        </li>
-           <li><asp:LinkButton runat="server" OnClick="logout">Salir</asp:LinkButton></li>
-      </ul>
-       
-    </div>
-  </div>
-</nav>
-                </div>
-                <div class="clear hideSkiplink hidden">
-                    <asp:Menu ID="Menu1" runat="server" CssClass="menu row" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal" OnMenuItemClick="menuclick">
-                        <Items>
-                            <asp:MenuItem Text="Operaciones" Value="Operaciones">
-                                <asp:MenuItem NavigateUrl="~/FichaIdentificacion.aspx" Text="Ficha Identificación" Value="Ficha Identificación"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Agenda.aspx" Text="Agenda" Value="Agenda"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Consultas.aspx" Text="Consultas" Value="Consultas"></asp:MenuItem>
-                                <asp:MenuItem Text="Pagos" Value="Pagos"></asp:MenuItem>
-                            </asp:MenuItem>
-                            <asp:MenuItem Text="Catalogos" Value="Catalogos">
-                                <asp:MenuItem NavigateUrl="~/Sexo.aspx" Text="Sexo" Value="Sexo"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/EstadoCivil.aspx" Text="Estado Civil" Value="Estado Civil"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Ocupacion.aspx" Text="Ocupación" Value="Ocupación"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Escolaridad.aspx" Text="Escolaridad" Value="Escolaridad"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/EmpresaConvenio.aspx" Text="Empresa Convenio" Value="Empresa Convenio"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Aseguradora.aspx" Text="Aseguradora" Value="Aseguradora"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/ReferidoPor.aspx" Text="Referido por" Value="Referido por"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Categoria.aspx" Text="Categoria" Value="Categoria"></asp:MenuItem>
-
-                                <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="Diagnostico" Value="Diagnostico"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Procedimiento.aspx" Text="Procedimiento" Value="Procedimiento"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Medicamento.aspx" Text="Medicamento" Value="Medicamento"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/RecetaPrevia.aspx" Text="Receta Previa" Value="RecetaPrevia"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/AnalisisClinico.aspx" Text="Analisis Clinico" Value="AnalisisClinico"></asp:MenuItem>
-
-
-                                <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="AnalisisClinico" Value="AnalisisClinico"></asp:MenuItem>
-
-                                <asp:MenuItem NavigateUrl="~/Diagnosticos.aspx" Text="Diagnostico" Value="Diagnostico"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Procedimiento.aspx" Text="Procedimiento" Value="Procedimiento"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Medicamento.aspx" Text="Medicamento" Value="Medicamento"></asp:MenuItem>
-
-
-                            </asp:MenuItem>
-                            <asp:MenuItem Text="Configuración" Value="Configuración">
-                                <asp:MenuItem NavigateUrl="~/Empresas.aspx" Text="Empresas" Value="Empresas.aspx"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Sucursales.aspx" Text="Consultorios" Value="Sucursales.aspx"></asp:MenuItem>
-
-                                <asp:MenuItem NavigateUrl="~/Perfles.aspx" Text="Perfiles" Value="Perfles.aspx"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Usuarios.aspx" Text="Usuarios" Value="Usuarios.aspx"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Modulos.aspx" Text="Modulos" Value="Modulos.aspx"></asp:MenuItem>
-
-                                <asp:MenuItem NavigateUrl="~/PermisosPerfil.aspx" Text="Permisos por Perfil" Value="PermisosPerfil.aspx"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Bitacora.aspx" Text="Bitacora de Movimientos" Value="Bitacora.aspx"></asp:MenuItem>
-                            </asp:MenuItem>
-                            <asp:MenuItem Text="Salir" Value="Salir"></asp:MenuItem>
-
-                        </Items>
-
-                    </asp:Menu>
-
-                </div>
             </div>
-            <div class="main">
-                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            <!-- /#page-wrapper -->
 
-            </div>
-            <div class="clear">
-            </div>
         </div>
-        <div class="footer">
+        <!-- /#wrapper -->
+        <!-- Bootstrap Core JavaScript -->
+
+        <!-- Morris Charts JavaScript 
+    <script src="scripts/plugins/raphael.min.js"></script>
+    <script src="scripts/plugins/morris.min.js"></script>
+    <script src="scripts/plugins/morris-data.js"></script>
+        -->
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <hr />
+                </div>
+                <div class="col-xs-12 text-right">
+                    <label class="h6">©Footer</label>
+                </div>
+            </div>
         </div>
     </form>
 </body>
+
 </html>
+
 <script>
     $(function () {
         $(".footable").footable();
     });
 </script>
 <style>
-    
+    body {
+        background-color: white;
+    }
 </style>
+

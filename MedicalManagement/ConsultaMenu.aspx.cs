@@ -734,7 +734,18 @@ namespace MedicalManagement
             string strValue = myValue.ToString();
             if (strValue == "")
             {
-                return "Sin Datos...";
+                return "";
+            }
+
+            return myValue.ToString();
+        }
+
+        protected string porConsultar(object myValue)
+        {
+            string strValue = myValue.ToString();
+            if (strValue == "")
+            {
+                return "Por Consultar";
             }
 
             return myValue.ToString();

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using MedicalManagement.Models.DTO;
 
 namespace MedicalManagement
 {
@@ -26,7 +27,7 @@ namespace MedicalManagement
             
             if (!IsPostBack)
             {
-
+                loadCategoria();
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
                 cnn.Open();
@@ -47,6 +48,7 @@ namespace MedicalManagement
                     if (reader.Read())
                     {
                         txtnombre.Text = NombreCompleto;
+                        txtnombrecompleto.Text = NombreCompleto;
                         txtfechaconsulta.Text = reader.IsDBNull(reader.GetOrdinal("Fecha_Consulta")) ? String.Empty : reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                         txtsubjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Subjetivo_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Subjetivo_Consulta")).ToString().Trim();
                         txtobjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Objetivo_Consulta")) ? "Sin Datos en Nota Clinica" : reader.GetString(reader.GetOrdinal("Objetivo_Consulta")).ToString().Trim();
@@ -183,6 +185,29 @@ namespace MedicalManagement
             Response.Redirect("ConsultaProcedimiento.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "&Fecha_Consulta=" + fecha_actual + "");
         }
 
+        public void loadCategoria()
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+            SqlCommand objsqlcommand = new SqlCommand("SP_Catalogo_Categoria", cnn);
+            objsqlcommand.CommandType = CommandType.StoredProcedure;
+            objsqlcommand.Parameters.AddWithValue("@Opcion", "COMBO");
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(objsqlcommand);
+            DataTable dt = new DataTable();
+            sqlDataAdapter.Fill(dt);
+            ddlCategoria.DataTextField = "Descripcion_Categoria";
+            ddlCategoria.DataValueField = "Id_Categoria";
+            ddlCategoria.DataSource = dt;
+            ddlCategoria.DataBind();
+            ddlCategoria.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
+            ddlCategoria.SelectedIndex = 0;
+            objsqlcommand.ExecuteNonQuery();
+            cnn.Close();
+        }
+
         //protected void btnreceta_Click(object sender, EventArgs e)
         //{
         //    Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
@@ -197,6 +222,24 @@ namespace MedicalManagement
         //    Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
         //}
 
-              
+        protected void btnSave(object sender, EventArgs e)
+        {
+            string prioridad = "Normal";
+            if (rbUrgente.Checked)
+            {
+                prioridad = "Urgente";
+            }
+            Tabla_Registro_AgendaDTO oneAgenda = new Tabla_Registro_AgendaDTO();
+            oneAgenda.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            oneAgenda.Asunto_Agenda = txtasunto.Text;
+            oneAgenda.Id_Categoria = Convert.ToInt32(ddlCategoria.SelectedItem.Value);
+            oneAgenda.Prioridad_Agenda = prioridad;
+            oneAgenda.Fecha_Agenda = DateTime.Now;
+            oneAgenda.Inicio_Agenda = Convert.ToDateTime(txtDiaComienzo.Value);
+            oneAgenda.Fin_Agenda = Convert.ToDateTime(txtDiaFinal.Value);
+            oneAgenda.Descripcion_Agenda = txtdescripcionagenda.Text;
+            AgendaDAO Insert = new AgendaDAO();
+            Insert.Insert(oneAgenda);
+        }
     }
 }

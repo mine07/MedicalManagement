@@ -4,8 +4,12 @@
     <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
+            <h3>Paquetes</h3>
+            <hr />
             <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
-                <div class="loading hidden"><div><i class="fa fa-3x fa-spinner fa-spin"></i></div></div>
+                <div class="loading hidden">
+                    <div><i class="fa fa-3x fa-spinner fa-spin"></i></div>
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4 left-panel">
                         <div class="container-fluid">
@@ -67,19 +71,25 @@
                                 <hr />
                             </div>
                         </div>
-                        <asp:Repeater runat="server" ID="rptItems">
-                            <ItemTemplate>
-                                <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3 container-fluid " style="padding: 10px;">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <asp:LinkButton runat="server" Text='<i class="fa fa-close remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_AnalisisClinicoPaquetesdatos")%>' OnClick="deleteItem" />
-                                            <hr />
-                                            <label class="h5"><i class="fa fa-stethoscope fa-margin-right"></i><%# Eval("oneAnalisis.Descripcion_AnalisisClinico") %></label>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="gray-container">
+                                <asp:Repeater runat="server" ID="rptItems">
+                                    <ItemTemplate>
+                                        <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3 container-fluid " style="padding: 10px;">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <asp:LinkButton runat="server" Text='<i class="fa fa-close remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_AnalisisClinicoPaquetesdatos")%>' OnClick="deleteItem" />
+                                                    <hr />
+                                                    <label class="h5"><i class="fa fa-stethoscope fa-margin-right"></i><%# Eval("oneAnalisis.Descripcion_AnalisisClinico") %></label>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                                     </div>
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,10 +98,10 @@
     <script>
         $(document).ready(function () {
             $(".combobox").combobox();
-            $(".label-button").click(function() {
+            $(".label-button").click(function () {
                 $(".loading").removeClass("hidden");
             });
-            $(".does-postback").change(function() {
+            $(".does-postback").change(function () {
                 $(".loading").removeClass("hidden");
             });
         });

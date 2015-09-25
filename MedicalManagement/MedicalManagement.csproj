@@ -185,6 +185,7 @@
     <Content Include="PermisosPerfil.aspx" />
     <Content Include="PermisosPorPerfil.aspx" />
     <Content Include="Procedimiento.aspx" />
+    <Content Include="Prueba.aspx" />
     <Content Include="RecetaPrevia.aspx" />
     <Content Include="ReferidoPor.aspx" />
     <Content Include="RegistroAgenda.aspx" />
@@ -343,6 +344,10 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\plugins\morris-data.js" />
+    <Content Include="Scripts\plugins\morris.js" />
+    <Content Include="Scripts\plugins\morris.min.js" />
+    <Content Include="Scripts\plugins\raphael.min.js" />
     <Content Include="Scripts\responsive-calendar.js" />
     <Content Include="Scripts\responsive-calendar.min.js" />
     <Content Include="GetDates.asmx" />
@@ -361,7 +366,9 @@
     <Content Include="Styles\jquery-ui-1.9.2.custom.css" />
     <Content Include="Styles\jquery.datetimepicker.css" />
     <Content Include="Styles\jquery.weekcalendar.css" />
+    <Content Include="Styles\plugins\morris.css" />
     <Content Include="Styles\responsive-calendar.css" />
+    <Content Include="Styles\sb-admin.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -750,6 +757,13 @@
       <DependentUpon>Procedimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Prueba.aspx.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Prueba.aspx.designer.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RecetaPrevia.aspx.cs">
       <DependentUpon>RecetaPrevia.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

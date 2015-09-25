@@ -29,23 +29,26 @@ namespace MedicalManagement
             link = link.Remove(0, 1);
             var onePerfil = (PerfilDTO)Session["Perfil"];
             PerfilDAO GetOne = new PerfilDAO();
-            onePerfil = GetOne.onePerfil(onePerfil);
             if (onePerfil == null)
             {
                 HttpContext.Current.Response.Redirect("Login.aspx", true);
             }
-            var lPermisos = onePerfil.lPermisos;
-            try
+            onePerfil = GetOne.onePerfil(onePerfil);
+            if (onePerfil != null)
             {
-            var onePermiso = lPermisos.Single(x => x.oneModulo.Programa_Modulo == link);
-            if (!onePermiso.Estatus_Permiso)
-            {
-                HttpContext.Current.Response.Redirect("MenuInicial.aspx?Forbidden", true);
-            }
-            }
-            catch
-            {
+                var lPermisos = onePerfil.lPermisos;
+                try
+                {
+                    var onePermiso = lPermisos.Single(x => x.oneModulo.Programa_Modulo == link);
+                    if (!onePermiso.Estatus_Permiso)
+                    {
+                        HttpContext.Current.Response.Redirect("MenuInicial.aspx?Forbidden", true);
+                    }
+                }
+                catch
+                {
 
+                }
             }
         }
 

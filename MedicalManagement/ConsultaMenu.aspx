@@ -5,9 +5,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid ">
+<h3>Menu Consulta</h3>
+    <hr />
+    <div class="container-fluid gray-border border-top1-bottom5 no-vertical-padding">
         <div class="row">
-            <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4">
+            <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 left-panel">
                 <hr class="blue-hr" />
                 <div class=" text-center">
                     <label class="label-primary label">Paciente:<asp:Label ID="lblNombre" runat="server" Text=""></asp:Label></label>
@@ -63,9 +65,9 @@
                     <asp:Repeater ID="rptActivos" runat="server">
                         <ItemTemplate>
                             <div class="border-top1-bottom5">
+                                <i onclick="removeDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-remove fa-1x pull-right remove-icon"></i>
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                                <i onclick="removeDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-remove fa-1x pull-right remove-icon"></i>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -76,9 +78,9 @@
                     <asp:Repeater ID="rptInactivos" runat="server">
                         <ItemTemplate>
                             <div class="border-top1-bottom5">
+                                <i onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                                <i onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -180,7 +182,7 @@
                     </asp:GridView>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
+            <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8 padding">
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <hr class="blue-hr" />
@@ -198,7 +200,7 @@
                                 <div class="border-top1-bottom5">
                                     <h4>
                                         <span class="label label-primary">
-                                            <label class="hidden-xs"><%# Eval("Subjetivo_Consulta") + " - "%></label>
+                                            <label class="hidden-xs"><%# porConsultar(Eval("Subjetivo_Consulta")) + " - "%></label>
                                             <label><%# testbind(Eval("Fecha_Consulta"))%></label>
                                         </span>
                                     </h4>
@@ -287,7 +289,7 @@
                         <ItemTemplate>
                             <h3>
                                 <span class="label label-primary">
-                                    <label class="hidden-xs"><%# Eval("Subjetivo_Consulta") + " - "%></label>
+                                    <label class="hidden-xs"><%# porConsultar(Eval("Subjetivo_Consulta")) + " - "%></label>
                                     <label><%# Eval("Fecha_Consulta")%></label>
                                 </span>
                             </h3>
@@ -302,7 +304,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Diagnostico</label>
+                                        <label>Diagnosticos</label>
                                     </div>
                                     <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
                                         <%#  testbind(Eval("Diagnostico_Consulta")) %>
