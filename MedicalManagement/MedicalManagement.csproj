@@ -366,6 +366,7 @@
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Sucursales.aspx" />
+    <Content Include="PagosOM.aspx" />
     <Content Include="Usuarios.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -942,6 +943,13 @@
     </Compile>
     <Compile Include="Sucursales.aspx.designer.cs">
       <DependentUpon>Sucursales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PagosOM.aspx.cs">
+      <DependentUpon>PagosOM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PagosOM.aspx.designer.cs">
+      <DependentUpon>PagosOM.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

@@ -1,31 +1,77 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Pagos.aspx.cs" Inherits="MedicalManagement.Pagos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PagosOM.aspx.cs" Inherits="MedicalManagement.testUDW" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+    <title></title> 
+    <style type="text/css"> 
+        .modalBackground { 
+            background-color:#333333; 
+            filter:alpha(opacity=70); 
+            opacity:0.7; 
+        } 
+        .modalPopup { 
+            background-color:#FFFFFF; 
+            border-width:1px; 
+            border-style:solid; 
+            border-color:#CCCCCC; 
+            padding:1px; 
+            width:300px; 
+            Height:200px; 
+        }    
+    </style> 
+      <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+    <link href="~/Styles/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/bootstrap.js" type="text/javascript"></script>
+    <link href="Styles/bootstrap.css" rel="Stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="Styles/jquery.datetimepicker.css" />
+    <link href="Styles/footable.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/0.1.0/js/footable.min.js"></script>
+    <script src="Scripts/jquery.datetimepicker.js" type="text/javascript"></script>
+    <script src="Scripts/bootstrap-combobox.js" type="text/javascript"></script>
+    <script src="Scripts/responsive-calendar.js" type="text/javascript"></script>
+    <link href="Styles/responsive-calendar.css" rel="Stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="Scripts/jqota2.js" type="text/javascript"></script>
+    <meta charset="UTF-8" />
+     <!-- jTable style file -->
+    <link href="/Scripts/jtable/themes/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
+    <!-- A helper library for JSON serialization -->
+    <script type="text/javascript" src="/Scripts/jtable/external/json2.js"></script>
+    <!-- Core jTable script file -->
+    <script type="text/javascript" src="/Scripts/jtable/jquery.jtable.js"></script>
+    <!-- ASP.NET Web Forms extension for jTable -->
+    <script type="text/javascript" src="/Scripts/jtable/extensions/jquery.jtable.aspnetpagemethods.js"></script>
+    <script type="text/javascript" src="/Scripts/jtable/localization/jquery.jtable.es.js"></script>
+    <link href="/Scripts/validationEngine/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+    <!-- Import Javascript files for validation engine (in Head section of HTML) -->
+    <script type="text/javascript" src="/Scripts/validationEngine/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="/Scripts/validationEngine/jquery.validationEngine-en.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+</head> 
+<body> 
+    <form id="form1" runat="server"> 
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server" AjaxFrameworkMode="Enabled" />
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <!-- jTable style file -->
-            <link href="/Scripts/jtable/themes/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
-            <!-- A helper library for JSON serialization -->
-            <script type="text/javascript" src="/Scripts/jtable/external/json2.js"></script>
-            <!-- Core jTable script file -->
-            <script type="text/javascript" src="/Scripts/jtable/jquery.jtable.js"></script>
-            <!-- ASP.NET Web Forms extension for jTable -->
-            <script type="text/javascript" src="/Scripts/jtable/extensions/jquery.jtable.aspnetpagemethods.js"></script>
-            <script type="text/javascript" src="/Scripts/jtable/localization/jquery.jtable.es.js"></script>
-            <link href="/Scripts/validationEngine/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
-            <!-- Import Javascript files for validation engine (in Head section of HTML) -->
-            <script type="text/javascript" src="/Scripts/validationEngine/jquery.validationEngine.js"></script>
-            <script type="text/javascript" src="/Scripts/validationEngine/jquery.validationEngine-en.js"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-            <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
-            <!--                                          Scripts                                                          -->
-
-            <label style="font-weight: bold; font-size: x-large; font-family: Helvetica;">Pagos</label>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"> 
+    </asp:ScriptManager> 
+    <div> 
+        <asp:UpdatePanel ID="udpOutterUpdatePanel" runat="server"> 
+             <ContentTemplate> 
+                <div id="divControlContainer" runat="server"></div> 
+                <input id="dummy" type="button" runat="server" />
+                 <ajaxToolkit:ModalPopupExtender runat="server" 
+                        ID="mpeThePopup" 
+                        TargetControlID="dummy" 
+                        PopupControlID="pnlModalPopUpPanel" 
+                        BackgroundCssClass="modalBackground"                        
+                        DropShadow="true" OkControlID="btntest"/> 
+                    <label style="font-weight: bold; font-size: x-large; font-family: Helvetica;">Pagos</label>
             <div class="container-fluid border-top1-bottom5">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2">
@@ -272,120 +318,67 @@
                     </div>
                 </div>
             </div>
-
-            <ajaxToolkit:ModalPopupExtender ID="popup" runat="server"
-                DropShadow="false" PopupControlID="pnlAddEdit"
-                TargetControlID="btnAdd" OkControlID="btnCancel"
-                BackgroundCssClass="modalBackground" />
-            <asp:Panel ID="pnlAddEdit" runat="server" CssClass="modalPopup">
-                <asp:UpdatePanel ID="udpInnerUpdatePanel" runat="Server" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <div class="modal-header">
-                            Agregar Pago
-    <h4 class="modal-title" id="myModalBLabel">Agregar Concepto De Pago</h4>
-                        </div>
-                        <div class="modal-body container-fluid">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                    <label>Concepto</label>
-                                </div>
-                                <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                                    <asp:DropDownList ID="ddlConceptos" DataTextField="Descripcion_ConceptoPago"
-                                        DataValueField="Id_ConceptoPago" runat="server" CssClass="form-control"
+                 <asp:Panel ID="pnlModalPopUpPanel" runat="server" CssClass="modalPopup"  > 
+                    <asp:UpdatePanel ID="udpInnerUpdatePanel" runat="Server"> 
+                        <ContentTemplate>
+                            <div class="modal-header">Agregar Pago
+                                <h4 class="modal-title" id="myModalBLabel">Agregar Concepto De Pago</h4>
+                            </div>
+                            <div class="modal-body container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                                        <label>Concepto</label>
+                                    </div>
+                                    <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
+                                        <asp:DropDownList ID="ddlConceptos" DataTextField="Descripcion_ConceptoPago"
+                                        DataValueField="Id_ConceptoPago" runat="server" CssClass="form-control" AutoPostBack="true"
                                         OnSelectedIndexChanged="ddlConceptos_Selected" EnableViewState="true">
-                                    </asp:DropDownList>
+                                        </asp:DropDownList>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr class="blue-hr" />
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                    <label>Cantidad</label>
-                                </div>
-                                <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                                    <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number" CssClass="form-control" />
-                                </div>
-                            </div>
-                            <hr class="blue-hr" />
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                    <label>Precio</label>
-                                </div>
-                                <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" />
-                                </div>
-                            </div>
-                            <hr class="blue-hr" />
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                    <label>Descuento</label>
-                                </div>
-                                <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                                    <asp:TextBox ID="txtDescuento" runat="server" TextMode="Number" CssClass="form-control" />
-                                </div>
-                            </div>
-                            <hr class="blue-hr" />
+                    <hr class="blue-hr" />
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <label>Cantidad</label>
                         </div>
-                        <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn-primary" OnClick="btnSave_Click" />
-                        <asp:Button ID="btntest" runat="server" Text="aparece?" CssClass="btn-primary" OnClick="btntes" />
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancelar" CssClass="btn-primary" OnClick="CancelAdd" />
-
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="btntest" EventName="Click" />
-                        <%--<asp:asyncpostbacktrigger controlid="ddlConceptos" eventname="SelectedIndexChanged" />--%>
-                    </Triggers>
-                </asp:UpdatePanel>
-
-            </asp:Panel>
-
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <script>
-        function addConcepto() {
-            var descripcion = $("#txtDescripcion").val();
-            var nombreCorto = $("#txtNombreCorto").val();
-            var estatus = false;
-            if ($("#checkEstatus").is(':checked')) {
-                estatus = true;
-            }
-            var oneConcepto = { Id_ConceptoPago: "0", Descripcion_ConceptoPago: descripcion, NombreCorto_ConceptoPago: nombreCorto, Estatus_ConceptoPago: estatus };
-            console.log(oneConcepto);
-            $.ajax({
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                url: "GetDates.asmx/InsertarConcepto",
-                data: JSON.stringify({ 'oneConcepto': oneConcepto }),
-                success: success,
-                dataType: "json"
-            });
-        }
-        function success() {
-            $('#myModal').modal('hide');
-            $(':input', '#myModal')
-                .not(':button, :submit, :reset, :hidden')
-                .val('');
-        }
-
-    </script>
-
-    <script type="text/javascript">
-        function BlockUI(elementID) {
-            var prm = Sys.WebForms.PageRequestManager.getInstance();
-            prm.add_beginRequest(function () {
-                $("#" + elementID).block({
-                    message: '<table align = "center"><tr><td><img src="Images/loading-x.gif"/></td></tr></table>', css: {}, overlayCSS: { backgroundColor: '#000000', opacity: 0.6 }
-                });
-            });
-            prm.add_endRequest(function () {
-                $("#" + elementID).unblock();
-            });
-        }
-        $(document).ready(function () {
-            BlockUI("<%=pnlAddEdit.ClientID %>");
-            $.blockUI.defaults.css = {};
-        });
-    </script>
+                        <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
+                            <asp:TextBox ID="txtCantidad" runat="server"  TextMode="Number" CssClass="form-control"/>
+                        </div>
+                    </div>
+                    <hr class="blue-hr" />
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <label>Precio</label>
+                        </div>
+                        <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
+                            <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"/>
+                        </div>
+                    </div>
+                    <hr class="blue-hr" />
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <label>Descuento</label>
+                        </div>
+                        <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
+                            <asp:TextBox ID="txtDescuento" runat="server"  TextMode="Number" CssClass="form-control"/>
+                        </div>
+                    </div>
+                    <hr class="blue-hr" />
+                </div>
+            <asp:Button ID="btntest" runat="server" Text="aparece?"  CssClass="btn btn-primary" OnClick="btntes" />
+            <asp:Button ID="btnCancelModalPopup" runat="server" Text="Cancel"  CssClass="btn btn-primary" /> 
+                        </ContentTemplate>       
+                        <Triggers> 
+                            <asp:AsyncPostBackTrigger ControlID="btntest" EventName="Click" /> 
+                            <asp:asyncpostbacktrigger controlid="ddlConceptos" eventname="SelectedIndexChanged" />
+                        </Triggers> 
 
 
-
-</asp:Content>
+                    </asp:UpdatePanel> 
+                 </asp:Panel> 
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+    </form>
+</body>
+</html>
