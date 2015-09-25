@@ -62,28 +62,31 @@
                 </div>
                 <div>
                     <h5>Diagnosticos Activos</h5>
+                        <div class="white-container">
+
                     <asp:Repeater ID="rptActivos" runat="server">
                         <ItemTemplate>
-                            <div class="border-top1-bottom5">
+                            <hr />
                                 <i onclick="removeDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-remove fa-1x pull-right remove-icon"></i>
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                            </div>
                         </ItemTemplate>
                     </asp:Repeater>
+                    </div>
                 </div>
                 <hr />
                 <div>
                     <h5>Diagnosticos Inactivas</h5>
+                    <div class="white-container">
                     <asp:Repeater ID="rptInactivos" runat="server">
                         <ItemTemplate>
-                            <div class="border-top1-bottom5">
+                            <hr />
                                 <i onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                            </div>
                         </ItemTemplate>
                     </asp:Repeater>
+                        </div>
                 </div>
                 <hr />
                 <div>
@@ -217,7 +220,7 @@
                     <div class="col-xs-12">
                         <asp:Repeater runat="server" ID="rptActual">
                             <ItemTemplate>
-                                <div class="border-top1-bottom5">
+                                <div class="border-top1-bottom5 gray-border">
                                     <h4>
                                         <span class="label label-primary">
                                             <label class="hidden-xs"><%# porConsultar(Eval("Subjetivo_Consulta")) + " - "%></label>

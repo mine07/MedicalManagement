@@ -654,6 +654,7 @@
     </Compile>
     <Compile Include="Models\DTO\AnalisisClinico.cs" />
     <Compile Include="Models\DTO\AnalisisEnPaquetesDTO.cs" />
+    <Compile Include="Models\DTO\ConsultaDiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\ModuloDTO.cs" />
     <Compile Include="Models\DTO\PaquetesDTO.cs" />
     <Compile Include="Models\DTO\PerfilDTO.cs" />

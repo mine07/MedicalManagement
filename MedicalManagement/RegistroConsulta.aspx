@@ -38,87 +38,113 @@
 
 
     </table>
-    <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'><label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
+    <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "&Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'>
+        <label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
     <h3>Nota Clinica</h3>
     <hr />
-    <div class="container-fluid border-top1-bottom 5 gray-border">
+    <div class="container-fluid gray-border border-top1-bottom5 no-vertical-padding">
         <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Fecha</label>
+            <div class="col-xs-12 col-ms-4 col-lg-4 col-sm-4 container-fluid left-panel">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label>Diagnostico</label>
+                    </div>
+                    <div class="col-xs-12">
+                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
+                        <hr />
+                        <div class="container-fluid searchContainer border-top1-bottom5">
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Diagnostico<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="addDiagnostico"></asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="white-container">
+                            <asp:Repeater runat="server" ID="rptDiag">
+                                <ItemTemplate>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <asp:LinkButton runat="server" Text='<i class="fa fa-margin-left fa-remove remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_ConsultaDiagnostico") %>' OnClick="deleteDiag"/>
+                                                <label class="packet-name"><%# Eval("oneDiag.Descripcion_Diagnostico")%></label>
+                                            <hr />
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC"
-                    ReadOnly="True" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Nombre</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtnombre" runat="server" BackColor="#CCFFCC"
-                    ReadOnly="True" CssClass="form-control"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Subjetivo</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtsubjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Objetivo</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtobjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Diagnostico</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
+            <div class="col-xs-12 col-ms-8 col-lg-8 col-sm-8 container-fluid padding">
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Fecha</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC"
+                            ReadOnly="True" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
                 <hr />
-                <div class="container-fluid searchContainer border-top1-bottom5">
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Nombre</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtnombre" runat="server" BackColor="#CCFFCC"
+                            ReadOnly="True" CssClass="form-control"></asp:TextBox>
+
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Subjetivo</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtsubjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Objetivo</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtobjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+                    </div>
+                </div>
+                <hr />
+
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Analisis</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtanalisis" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Plan</label>
+                        <div class="padding">
+                            <label class="label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtplan" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+                    </div>
+
                 </div>
             </div>
-
+            <hr />
         </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Analisis</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtanalisis" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Plan</label>
-                <div class="padding">
-                    <label class="pull-right label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtplan" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
     </div>
 
     <div class="modal fade no-radius" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -306,7 +332,7 @@
                 </div>
                 <div class="modal-footer">
                     <label class="label label-danger" data-dismiss="modal">Cancelar<i class="fa fa-remove fa-margin-left"></i></label>
-                    <asp:LinkButton runat="server" OnClick="btnSave" Text='<label class="pull-right label label-button label-success">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>'/>
+                    <asp:LinkButton runat="server" OnClick="btnSave" Text='<label class="pull-right label label-button label-success">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>' />
                 </div>
             </div>
         </div>
@@ -401,10 +427,6 @@
     ]]>
     </script>
     <style>
-        .row {
-            padding: 5px;
-        }
-
         .searchContainer {
             max-height: 300px;
             overflow-x: auto;

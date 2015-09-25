@@ -285,8 +285,4 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
         public int year { get; set; }
     }
 
-    public class ConsultaDiagnosticoDTO
-    {
-        public int Id_ConsultaDiagnostico { get; set; }
-    }
 }

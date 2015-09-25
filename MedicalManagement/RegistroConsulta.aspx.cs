@@ -24,16 +24,15 @@ namespace MedicalManagement
         protected void Page_Load(object sender, EventArgs e)
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
-            
-            
-            if (!IsPostBack)
-            {
-                oneUser =
+            oneUser =
                     FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
                     {
                         Id_FichaIdentificacion = Id_FichaIdentificacion
                     });
+            if (!IsPostBack)
+            {
                 loadCategoria();
+                loadDiagnosticos();
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
                 cnn.Open();
@@ -246,6 +245,43 @@ namespace MedicalManagement
             oneAgenda.Descripcion_Agenda = txtdescripcionagenda.Text;
             AgendaDAO Insert = new AgendaDAO();
             Insert.Insert(oneAgenda);
+        }
+
+        protected void addDiagnostico(object sender, EventArgs e)
+        {
+            var oneDiagnostico = new Tabla_Catalogo_DiagnosticoDTO();
+            oneDiagnostico.Descripcion_Diagnostico = txtSearch.Text;
+            oneDiagnostico = DiagnosticoDAO.GetOneByName(oneDiagnostico);
+            ConsultaDiagnosticoDTO oneConsultaDiag = new ConsultaDiagnosticoDTO();
+            oneConsultaDiag.Id_ConsultaDiagnostico = Id_Consulta;
+            oneConsultaDiag.Fecha_ConsultaDiagnostico = DateTime.Now;
+            oneConsultaDiag.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            oneConsultaDiag.Estatus_ConsultaDiagnostico = true;
+            oneConsultaDiag.Id_Diagnostico = oneDiagnostico.Id_Diagnostico;
+            oneConsultaDiag.Observaciones_ConsultaDiagnostico = "";
+            ConsultaDiagnosticoDAO Insert = new ConsultaDiagnosticoDAO();
+            Insert.Insert(oneConsultaDiag);
+            loadDiagnosticos();
+        }
+
+        private void loadDiagnosticos()
+        {
+            var oneConsultadia = new ConsultaDiagnosticoDTO();
+            oneConsultadia.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            var lConsultasDiag = ConsultaDiagnosticoDAO.GetAllByPaciente(oneConsultadia);
+            lConsultasDiag = lConsultasDiag.Where(x => x.Id_Consulta == Id_Consulta).ToList();
+            rptDiag.DataSource = lConsultasDiag;
+            rptDiag.DataBind();
+        }
+
+        protected void deleteDiag(object sender, EventArgs e)
+        {
+            var Id = ((LinkButton) sender).CommandArgument;
+            var oneConsultadia = new ConsultaDiagnosticoDTO();
+            oneConsultadia.Id_ConsultaDiagnostico = Convert.ToInt32(Id);
+            ConsultaDiagnosticoDAO Delete = new ConsultaDiagnosticoDAO();
+            Delete.Delete(oneConsultadia);
+            loadDiagnosticos();
         }
     }
 }
