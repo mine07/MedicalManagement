@@ -20,7 +20,6 @@ namespace MedicalManagement.Models.DTO
             Helpers h = new Helpers();
             return h.GetAllParametized(query, new Tabla_Catalogo_DiagnosticoDTO());
         }
-
         public static Tabla_Catalogo_DiagnosticoDTO GetOneByName(Tabla_Catalogo_DiagnosticoDTO oneDiagnostico)
         {
             string query = "Select * from Tabla_Catalogo_Diagnostico where Descripcion_Diagnostico = @Descripcion_Diagnostico";

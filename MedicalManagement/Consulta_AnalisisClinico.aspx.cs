@@ -16,21 +16,21 @@ namespace MedicalManagement
         {
             if (!IsPostBack)
             {
-                var Id_Paciente = Request.QueryString["Id_Paciente"];
-                if (Id_Paciente != null)
-                {
-                    oneUser =
-                        FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
-                        {
-                            Id_FichaIdentificacion = Convert.ToInt32(Id_Paciente)
-                        });
-
-                    spanName.InnerText = oneUser.Nombre_FichaIdentificacion.Trim() + " " +
-                                         oneUser.ApPaterno_FichaIdentificacion.Trim();
-                }
                 Session["lAnalisis"] = new List<AnalisisClinicoDTO>();
                 loadPaquetes();
                 loadAnalisis();
+            }
+            var Id_Paciente = Request.QueryString["Id_Paciente"];
+            if (Id_Paciente != null)
+            {
+                oneUser =
+                    FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
+                    {
+                        Id_FichaIdentificacion = Convert.ToInt32(Id_Paciente)
+                    });
+
+                spanName.InnerText = oneUser.Nombre_FichaIdentificacion.Trim() + " " +
+                                     oneUser.ApPaterno_FichaIdentificacion.Trim();
             }
             loadSelected();
         }

@@ -74,10 +74,13 @@ namespace MedicalManagement
                     Session["alerta"] = "<p style=\"color: white;background-color: blue\">No tiene permiso para acceder a 'Agenda'</p>";
                     Response.Redirect("MenuInicial.aspx");
                 }
+                
             }
 
             if (!IsPostBack)
             {
+                ddlUsuarios.DataSource = FichaDAO.GetAll();
+                ddlUsuarios.DataBind();
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
                 DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
@@ -239,7 +242,7 @@ namespace MedicalManagement
             comando.Parameters.AddWithValue("@Fecha_Agenda", fecha_actual1);
             comando.Parameters.AddWithValue("@Inicio_Agenda", fechaAgendaComienzo1);
             comando.Parameters.AddWithValue("@Fin_Agenda", fechaAgendaFinal1);
-            comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
+            comando.Parameters.AddWithValue("@Id_FichaIdentificacion", ddlUsuarios.SelectedItem.Value);
             comando.Parameters.AddWithValue("@Id_Categoria", ddlCategoria.SelectedValue);
             comando.Parameters.AddWithValue("@Descripcion_Agenda", txtdescripcionagenda.Text.Trim());
             comando.Parameters.AddWithValue("@Asunto_Agenda", txtasunto.Text.Trim());
@@ -290,7 +293,7 @@ namespace MedicalManagement
             {
                 grabarConsulta();
             }
-            Response.Redirect("Agenda.aspx");
+            Response.Redirect("MenuInicial.aspx");
         }
 
         private void grabarConsulta()
@@ -298,7 +301,7 @@ namespace MedicalManagement
             string query = @"insert into Tabla_Registro_Consulta(Id_Agenda,Fecha_Consulta, Id_FichaIdentificacion)
   values((SELECT top 1 (Id_Agenda) FROM [Tabla_Registro_Agenda] ORDER BY Id_Agenda DESC), (SELECT top 1 (Fecha_Agenda) FROM [Tabla_Registro_Agenda] ORDER BY Id_Agenda DESC), @Id_FichaIdentificacion)";
             Tabla_Registro_ConsultaDTO oneCons = new Tabla_Registro_ConsultaDTO();
-            oneCons.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            oneCons.Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedItem.Value);
             oneCons.Fecha_Consulta = Convert.ToDateTime(txtaltaagenda.Value);
             Helpers h = new Helpers();
             h.ExecuteNonQueryParam(query, oneCons);

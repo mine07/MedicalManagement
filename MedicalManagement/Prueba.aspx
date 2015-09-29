@@ -17,7 +17,7 @@
     <link href="styles/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="styles/sb-admin.css" rel="stylesheet">
+    <link href="styles/sb-admin-dark.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="styles/plugins/morris.css" rel="stylesheet">
@@ -152,7 +152,7 @@
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
+                <ul class="nav navbar-nav side-nav" id="side-bar">
                     <li class="active">
                         <a href="MenuInicial.aspx"><i style="color:white;" class="fa fa-fw fa-calendar"></i>Menu Inicial</a>
                     </li>
@@ -215,6 +215,7 @@
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
+                        <a onclick="toggleSidebar()">prueba</a>
                         <h1 class="page-header">Dashboard <small>Statistics Overview</small>
                         </h1>
                         <ol class="breadcrumb">
@@ -503,3 +504,16 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+    });
+
+    function toggleSidebar() {
+        $("#side-bar").toggleClass("side-nav-hidden");
+    }
+</script>
+<style>
+    .side-nav-hidden {
+        left:0px;
+    }
+</style>

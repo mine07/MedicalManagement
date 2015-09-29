@@ -362,6 +362,7 @@
     <Content Include="CalendarPrueba.aspx" />
     <Content Include="Styles\CSSLogin.css" />
     <Content Include="Styles\CSStest.css" />
+    <Content Include="Styles\font-awesome.min.css" />
     <Content Include="Styles\footable.css" />
     <Content Include="Styles\fullcalendar.min.css" />
     <Content Include="Styles\jquery-ui-1.9.2.custom.css" />
@@ -369,6 +370,7 @@
     <Content Include="Styles\jquery.weekcalendar.css" />
     <Content Include="Styles\plugins\morris.css" />
     <Content Include="Styles\responsive-calendar.css" />
+    <Content Include="Styles\sb-admin-dark.css" />
     <Content Include="Styles\sb-admin.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -655,7 +657,9 @@
     <Compile Include="Models\DTO\AnalisisClinico.cs" />
     <Compile Include="Models\DTO\AnalisisEnPaquetesDTO.cs" />
     <Compile Include="Models\DTO\ConsultaDiagnosticoDTO.cs" />
+    <Compile Include="Models\DTO\ConsultaMenu.cs" />
     <Compile Include="Models\DTO\ModuloDTO.cs" />
+    <Compile Include="Models\DTO\NotaClinicaDTO.cs" />
     <Compile Include="Models\DTO\PaquetesDTO.cs" />
     <Compile Include="Models\DTO\PerfilDTO.cs" />
     <Compile Include="Models\DTO\PermisosDTO.cs" />

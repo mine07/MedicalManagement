@@ -5,7 +5,7 @@
 <head id="Head1" runat="server">
     <title></title>
     <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"    ></script>
     <script src="Scripts/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
     <link href="~/Styles/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css" />
     <script src="Scripts/bootstrap.js" type="text/javascript"></script>
@@ -18,9 +18,10 @@
     <script src="Scripts/responsive-calendar.js" type="text/javascript"></script>
     <link href="Styles/responsive-calendar.css" rel="Stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    
     <script src="Scripts/jqota2.js" type="text/javascript"></script>
     <meta charset="UTF-8" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap Core CSS -->
     <!-- Custom CSS -->
     <link href="styles/sb-admin.css" rel="stylesheet">
@@ -105,7 +106,7 @@
                         <hr />
                     </li>
                      <li class="li-main">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#ddFast" class="dropdown-title"><i class="fa fa-fw fa-medkit"></i> Accesos Rapidos</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ddFast" class="dropdown-title"><i class="fa fa-fw fa-flash"></i> Accesos Rapidos</a>
                         <ul id="ddFast" class="collaps in">
                             <li class="divider"></li>
                             <li>
@@ -113,6 +114,9 @@
                             </li>
                             <li>
                                 <a href="RegistroAgenda.Aspx"><i class="fa fa-fw fa-calendar-plus-o"></i> Nueva Consultas</a>
+                            </li>
+                            <li>
+                                <a href="ConsultaMenu.Aspx"><i class="fa fa-fw fa-desktop"></i> Menu Consulta</a>
                             </li>
                         </ul>
                     </li>

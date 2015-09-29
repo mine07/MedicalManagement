@@ -12,6 +12,7 @@
             <td align="right">
                 <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png" ToolTip="Grabar EstadoCivil" OnClick="btnGuardar_Consulta_Click"></asp:ImageButton>&nbsp;
         <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png" ToolTip="Regresar" OnClick="btnRegresar_Consulta_Click"></asp:ImageButton>
+                
             </td>
         </tr>
     </table>
@@ -133,7 +134,7 @@
                     <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                         <label>Plan</label>
                         <div class="padding">
-                            <label class="label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
+                            
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
@@ -141,6 +142,13 @@
 
                     </div>
 
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label class="pull-right label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
+                        <asp:LinkButton runat="server" OnClick="btnGuardar_Consulta_Click" Text='<label class="label pull-right label-success label-button">Guardar<i class="fa fa-margin-left fa-save"></i></label>'></asp:LinkButton>
+                    </div>
                 </div>
             </div>
             <hr />

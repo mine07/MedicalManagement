@@ -50,6 +50,10 @@ namespace MedicalManagement.Models.DTO
             Helpers h = new Helpers();
             string query = "select * from Tabla_Catalogo_FichaIdentificacion";
             var lFichas = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO());
+            foreach (var y in lFichas)
+            {
+                y._NombreCompleto = y.Nombre_FichaIdentificacion.Trim() + " " + y.ApPaterno_FichaIdentificacion.Trim() + " " + y.ApMaterno_FichaIdentificacion.Trim();
+            }
             return lFichas;
         }
 

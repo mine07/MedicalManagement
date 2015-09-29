@@ -43,10 +43,19 @@ namespace MedicalManagement.Models.DTO
             return oneAgenda;
         }
 
+        public Tabla_Registro_AgendaDTO GetLastById_Ficha(Tabla_Registro_AgendaDTO oneAgenda)
+        {
+            string query = "select * from Tabla_Registro_Agenda where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            Helpers h = new Helpers();
+            var lAgendas = h.GetAllParametized(query, oneAgenda);
+            oneAgenda = lAgendas.Last(x => x.Id_FichaIdentificacion == oneAgenda.Id_FichaIdentificacion);
+            return oneAgenda;
+        }
+
         public void Insert(Tabla_Registro_AgendaDTO oneAgenda)
         {
             string query =
-                "insert into Tabla_Registro_Agenda (Fecha_Agenda, Asunto_Agenda, Prioridad_Agenda, EstadoCitas_Agenda, Descripcion_Agenda, Inicio_Agenda, Fin_Agenda, Id_FichaIdentificacion, Id_Categoria, Estatus_Agenda, Inicio_Cita, Fin_Cita) values(@Fecha_Agenda, @Asunto_Agenda, @Prioridad_Agenda, @EstadoCitas_Agenda, @Descripcion_Agenda, @Inicio_Agenda, @Fin_Agenda, @Id_FichaIdentificacion, @Id_Categoria, @Estatus_Agenda, @Inicio_Cita, @Fin_Cita ";
+                "insert into Tabla_Registro_Agenda (Fecha_Agenda, Asunto_Agenda, Prioridad_Agenda, EstadoCitas_Agenda, Descripcion_Agenda, Inicio_Agenda, Fin_Agenda, Id_FichaIdentificacion, Id_Categoria, Estatus_Agenda) values(@Fecha_Agenda, @Asunto_Agenda, @Prioridad_Agenda, @EstadoCitas_Agenda, @Descripcion_Agenda, @Inicio_Agenda, @Fin_Agenda, @Id_FichaIdentificacion, @Id_Categoria, @Estatus_Agenda)";
             Helpers h = new Helpers();
             h.ExecuteNonQueryParam(query, oneAgenda);
         }

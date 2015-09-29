@@ -15,49 +15,53 @@ namespace MedicalManagement
 {
     public partial class ConsultaMenu : System.Web.UI.Page
     {
-        int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
+        public int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
         int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
-              
         
-        
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
-            
-
             if (!IsPostBack)
             {
-                loadUsuario();
-                lblNombre.Text = NombreCompleto;
-                GridViewActivos();
-                GridViewInactivos();
-                GridViewFechaConsulta();
-                llenartxtantecedentesnotas();
-                GridViewProcedimiento();
-                llenarconsultas();
-                SqlConnection cnn;
-                cnn = new SqlConnection(conexion);
-                cnn.Open();
-                string consulta = "select Id_Consulta from Tabla_Registro_Consulta where Id_Agenda=" + Id_Agenda + "";
-                SqlCommand comando = new SqlCommand(consulta, cnn);
-                Id_Consulta = Convert.ToInt32(comando.ExecuteScalar());
-                Session["Id_Consultas"] = Id_Consulta;
-                loadFile(new Tabla_Catalogo_FichaIdentificacionDTO{Id_FichaIdentificacion = Id_FichaIdentificacion});
-                if (Id_Consulta != 0)
-                {                    
-                    LinkReceta.Visible = true;                     
-                }
-                else
-                {                    
+                loadPacientes();
+                if (Id_FichaIdentificacion != 0)
+                {
+                    ddlFichas.SelectedValue = Id_FichaIdentificacion.ToString();
+                    loadUsuario();
+                    lblNombre.Text = NombreCompleto;
+                    GridViewActivos();
+                    GridViewInactivos();
+                    GridViewFechaConsulta();
+                    llenartxtantecedentesnotas();
+                    GridViewProcedimiento();
+                    llenarconsultas();
+                    SqlConnection cnn;
+                    cnn = new SqlConnection(conexion);
+                    cnn.Open();
+                    string consulta = "select Id_Consulta from Tabla_Registro_Consulta where Id_Agenda=" + Id_Agenda +
+                                      "";
+                    SqlCommand comando = new SqlCommand(consulta, cnn);
+                    Id_Consulta = Convert.ToInt32(comando.ExecuteScalar());
+                    Session["Id_Consultas"] = Id_Consulta;
+                    loadFile(new Tabla_Catalogo_FichaIdentificacionDTO { Id_FichaIdentificacion = Id_FichaIdentificacion });
+                    if (Id_Consulta != 0)
+                    {
+                        LinkReceta.Visible = true;
+                    }
                 }
             }
         }
 
+        private void loadPacientes()
+        {
+            ddlFichas.DataSource = FichaDAO.GetAll();
+            ddlFichas.DataBind();
+        }
+
         /////////////LINKS DEL MENU CONSULTAS/////////////////////////////////////////////////////////////////////
-        
+
         protected void LinkNotaClinica_Click(object sender, EventArgs e)
         {
             loadUsuario();
@@ -67,8 +71,8 @@ namespace MedicalManagement
         protected void LinkReceta_Click(object sender, EventArgs e)
         {
             loadUsuario();
-            Id_Consulta =Convert.ToInt32( Session["Id_Consultas"]);
-            Response.Redirect("ConsultaReceta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta="+Id_Consulta+"");
+            Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
+            Response.Redirect("ConsultaReceta.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
         }
 
         protected void LinkAnalisisClinico_Click(object sender, EventArgs e)
@@ -78,7 +82,7 @@ namespace MedicalManagement
             Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
         }
 
-       
+
         ////////////CHECKBOXS DEL MENU CONSULTAS///////////////////////////////////////////
         protected void CheckBoxactivo_CheckedChanged(object sender, EventArgs e)
         {
@@ -173,7 +177,7 @@ namespace MedicalManagement
             cnn = new SqlConnection(conexion);
             cnn.Open();
 
-            foreach (GridViewRow row in GridViewDiagnosticosActivos.Rows )
+            foreach (GridViewRow row in GridViewDiagnosticosActivos.Rows)
             {
 
                 int valorIddiagnostico = Convert.ToInt32(row.Cells[0].Text);
@@ -244,7 +248,7 @@ namespace MedicalManagement
 
         }
         //////////////////////////////////////////////////////////////////////////////////
-       
+
 
         public void llenarconsultas()//REFERENTE AL HISTORIAL DEL PACIENTE
         {
@@ -287,11 +291,16 @@ namespace MedicalManagement
             string dosis = "";
             string notas = "";
             string observaciones = "";
-            
+
             string cadena = "<table >";
             cadena = cadena + "<tr><td><strong>" + NombreCompleto + "</strong></td></tr>";
             cadena = cadena + "<tr><td><br></Td></tr>";
-            rptAnteriores.DataSource = ds;
+            var lAnteriores = NotaClinicaDAO.GetAllByFicha(new NotaClinicaDTO { Id_FichaIdentificacion = Id_FichaIdentificacion });
+            foreach (var y in lAnteriores)
+            {
+                y.lDiagnosticos = loadDiagnosticos(y);
+            }
+            rptAnteriores.DataSource = lAnteriores;
             rptAnteriores.DataBind();
             comando = new SqlCommand(@"select distinct a.Fecha_Consulta, a.Id_FichaIdentificacion, a.Id_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
                    a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,b.Dosis_ConsultaReceta,
@@ -304,7 +313,12 @@ namespace MedicalManagement
             DataTable dtB = new DataTable();
             da = new SqlDataAdapter(comando);
             da.Fill(dtB);
-            rptActual.DataSource = dtB;
+            var lNotas = NotaClinicaDAO.GetOneByConsulta(new NotaClinicaDTO { Id_Consulta = Id_Agenda, Id_Agenda = Id_Agenda });
+            if (lNotas.Count != 0)
+            {
+                lNotas[0].lDiagnosticos = loadDiagnosticos();
+            }
+            rptActual.DataSource = lNotas;
             rptActual.DataBind();
             foreach (DataRow row in ds.Rows)
             {
@@ -367,124 +381,138 @@ namespace MedicalManagement
 
         }
 
-//        public void GridViewActivos()
-//        {
-//            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+        private List<ConsultaDiagnosticoDTO> loadDiagnosticos()
+        {
+            var oneConsultadia = new ConsultaDiagnosticoDTO();
+            oneConsultadia.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            return ConsultaDiagnosticoDAO.GetAllByPaciente(oneConsultadia).Where(x => x.Id_Consulta == Id_Agenda).ToList();
+        }
 
-//            SqlConnection cnn;
-//            cnn = new SqlConnection(conexion);
+        private List<ConsultaDiagnosticoDTO> loadDiagnosticos(NotaClinicaDTO oneNota)
+        {
+            var oneConsultadia = new ConsultaDiagnosticoDTO();
+            oneConsultadia.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            return ConsultaDiagnosticoDAO.GetAllByPaciente(oneConsultadia).Where(x => x.Id_Consulta == oneNota.Id_Agenda).ToList();
+        }
 
-//            cnn.Open();
+        //        public void GridViewActivos()
+        //        {
+        //            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
-//            string sentencia1 = "select Id_Consulta from Tabla_Registro_Consulta where Id_FichaIdentificacion="+Id_FichaIdentificacion+"";
-//            SqlCommand comando1 = new SqlCommand(sentencia1, cnn);
-//            SqlDataAdapter da1= new SqlDataAdapter(comando1);
-//            DataTable ds1 = new DataTable();
-//            da1.Fill(ds1);
-//            int sentenciaIdConsulta=0;
+        //            SqlConnection cnn;
+        //            cnn = new SqlConnection(conexion);
 
-//            string sentencia="";
-//            //SqlCommand comando = new SqlCommand(sentencia, cnn);
-//            //SqlDataAdapter da = new SqlDataAdapter(comando);
-//            DataTable ds = new DataTable();
-//            DataRow row1;
-//            row1 = ds.NewRow();
-//            DataColumn column;
-//            column = new DataColumn();
-//            column.DataType = System.Type.GetType("System.Int32");
-//            column.ColumnName = "id";
-//            ds.Columns.Add(column);
-//            SqlDataReader reader;
+        //            cnn.Open();
 
-//            foreach (DataRow row in ds1.Rows)
-//            {
+        //            string sentencia1 = "select Id_Consulta from Tabla_Registro_Consulta where Id_FichaIdentificacion="+Id_FichaIdentificacion+"";
+        //            SqlCommand comando1 = new SqlCommand(sentencia1, cnn);
+        //            SqlDataAdapter da1= new SqlDataAdapter(comando1);
+        //            DataTable ds1 = new DataTable();
+        //            da1.Fill(ds1);
+        //            int sentenciaIdConsulta=0;
 
-//                sentenciaIdConsulta = Convert.ToInt32(row["Id_Consulta"]);
+        //            string sentencia="";
+        //            //SqlCommand comando = new SqlCommand(sentencia, cnn);
+        //            //SqlDataAdapter da = new SqlDataAdapter(comando);
+        //            DataTable ds = new DataTable();
+        //            DataRow row1;
+        //            row1 = ds.NewRow();
+        //            DataColumn column;
+        //            column = new DataColumn();
+        //            column.DataType = System.Type.GetType("System.Int32");
+        //            column.ColumnName = "id";
+        //            ds.Columns.Add(column);
+        //            SqlDataReader reader;
 
-//                sentencia = @"select a.Id_AnalisisClinico, b.Descripcion_AnalisisClinico,a.Estatus_ConsultaAnalisisClinico,c.Fecha_Consulta from Tabla_Registro_ConsultaAnalisisClinico a join Tabla_Catalogo_AnalisisClinico b                               
-//                               on a.Id_AnalisisClinico=b.Id_AnalisisClinico
-//                               join Tabla_Registro_Consulta c
-//                               on a.Id_FichaIdentificacion= c.Id_FichaIdentificacion
-//                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaAnalisisClinico=1 and c.Id_Consulta=" + sentenciaIdConsulta + "";
+        //            foreach (DataRow row in ds1.Rows)
+        //            {
 
-//                int a=0 ;
-//                string b="";  
-//                string c="" ;
-//                DateTime c1;
+        //                sentenciaIdConsulta = Convert.ToInt32(row["Id_Consulta"]);
 
-//                SqlCommand comando = new SqlCommand(sentencia, cnn);
-//                comando.CommandType = CommandType.Text;
-//                SqlDataAdapter da = new SqlDataAdapter(comando);
-                
-//                //reader = comando.ExecuteReader();
-//                //if (reader.Read())
-//                //{
-//                //    a = reader.GetInt32(reader.GetOrdinal("Id_AnalisisClinico"));
-//                //    b = reader.GetString(reader.GetOrdinal("Descripcion_AnalisisClinico")).Trim();
-//                //    c = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToShortDateString();
-//                //    c1 = Convert.ToDateTime(c);                    
-                  
-//                //}
+        //                sentencia = @"select a.Id_AnalisisClinico, b.Descripcion_AnalisisClinico,a.Estatus_ConsultaAnalisisClinico,c.Fecha_Consulta from Tabla_Registro_ConsultaAnalisisClinico a join Tabla_Catalogo_AnalisisClinico b                               
+        //                               on a.Id_AnalisisClinico=b.Id_AnalisisClinico
+        //                               join Tabla_Registro_Consulta c
+        //                               on a.Id_FichaIdentificacion= c.Id_FichaIdentificacion
+        //                               where a.Id_FichaIdentificacion=" + Id_FichaIdentificacion + "and Estatus_ConsultaAnalisisClinico=1 and c.Id_Consulta=" + sentenciaIdConsulta + "";
 
-//                //row1["Id_AnalisisClinico"] = a;
-//                //row1["Descripcion_AnalisisClinico"] = b;
-//                //row1["Fecha_Consulta"] = c;
-//                //row1 = row;
-//                da.Fill(ds);
-//                //ds.Rows.Add(row1);
-//                //reader.Close();
-//                comando = null;
-//            }
-            
-            
-//            //da.Fill(ds);
-            
+        //                int a=0 ;
+        //                string b="";  
+        //                string c="" ;
+        //                DateTime c1;
 
-//            GridViewDiagnosticosActivos.Visible = true;
-//            GridViewDiagnosticosActivos.DataSource = ds;
+        //                SqlCommand comando = new SqlCommand(sentencia, cnn);
+        //                comando.CommandType = CommandType.Text;
+        //                SqlDataAdapter da = new SqlDataAdapter(comando);
 
-//            GridViewDiagnosticosActivos.Columns[0].Visible = true;
-//            GridViewDiagnosticosActivos.Columns[2].Visible = true;
-//            GridViewDiagnosticosActivos.DataBind();
+        //                //reader = comando.ExecuteReader();
+        //                //if (reader.Read())
+        //                //{
+        //                //    a = reader.GetInt32(reader.GetOrdinal("Id_AnalisisClinico"));
+        //                //    b = reader.GetString(reader.GetOrdinal("Descripcion_AnalisisClinico")).Trim();
+        //                //    c = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToShortDateString();
+        //                //    c1 = Convert.ToDateTime(c);                    
 
-//            CheckBox chseleccionado;
+        //                //}
 
-//            foreach (GridViewRow row in GridViewDiagnosticosActivos.Rows)
-//            {
-//                bool valorcheck = false;
-//                valorcheck = Convert.ToBoolean(row.Cells[2].Text);
-//                chseleccionado = row.FindControl("CheckBoxelegir") as CheckBox;
-//                if (valorcheck == true)
-//                {
-//                    chseleccionado.Checked = true;
-
-//                }
-//                else
-//                {
-//                    chseleccionado.Checked = false;
-//                }
-//            }
-
-//            GridViewDiagnosticosActivos.Columns[0].Visible = false;
-//            GridViewDiagnosticosActivos.Columns[2].Visible = false;
-//            ds.Dispose();
-//            //da.Dispose();
-//            cnn.Close();
-//        }
+        //                //row1["Id_AnalisisClinico"] = a;
+        //                //row1["Descripcion_AnalisisClinico"] = b;
+        //                //row1["Fecha_Consulta"] = c;
+        //                //row1 = row;
+        //                da.Fill(ds);
+        //                //ds.Rows.Add(row1);
+        //                //reader.Close();
+        //                comando = null;
+        //            }
 
 
-        
-         ////////////GRIDS DEL MENU CONSULTAS///////////////////////////////////////////
-        
+        //            //da.Fill(ds);
+
+
+        //            GridViewDiagnosticosActivos.Visible = true;
+        //            GridViewDiagnosticosActivos.DataSource = ds;
+
+        //            GridViewDiagnosticosActivos.Columns[0].Visible = true;
+        //            GridViewDiagnosticosActivos.Columns[2].Visible = true;
+        //            GridViewDiagnosticosActivos.DataBind();
+
+        //            CheckBox chseleccionado;
+
+        //            foreach (GridViewRow row in GridViewDiagnosticosActivos.Rows)
+        //            {
+        //                bool valorcheck = false;
+        //                valorcheck = Convert.ToBoolean(row.Cells[2].Text);
+        //                chseleccionado = row.FindControl("CheckBoxelegir") as CheckBox;
+        //                if (valorcheck == true)
+        //                {
+        //                    chseleccionado.Checked = true;
+
+        //                }
+        //                else
+        //                {
+        //                    chseleccionado.Checked = false;
+        //                }
+        //            }
+
+        //            GridViewDiagnosticosActivos.Columns[0].Visible = false;
+        //            GridViewDiagnosticosActivos.Columns[2].Visible = false;
+        //            ds.Dispose();
+        //            //da.Dispose();
+        //            cnn.Close();
+        //        }
+
+
+
+        ////////////GRIDS DEL MENU CONSULTAS///////////////////////////////////////////
+
         public void GridViewActivos()
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
-            
+
             SqlConnection cnn;
             cnn = new SqlConnection(conexion);
 
             cnn.Open();
-                                    
+
 
             string sentencia = @"select a.Id_Diagnostico, a.Id_ConsultaDiagnostico, b.Descripcion_Diagnostico,a.Fecha_ConsultaDiagnostico,a.Estatus_ConsultaDiagnostico from Tabla_Registro_ConsultaDiagnostico a join Tabla_Catalogo_Diagnostico b 
                                on a.Id_Diagnostico=b.Id_Diagnostico
@@ -527,8 +555,8 @@ namespace MedicalManagement
             da.Dispose();
             cnn.Close();
         }
-        
-        
+
+
 
         public void GridViewInactivos()
         {
@@ -605,7 +633,7 @@ namespace MedicalManagement
 
             GridViewProcedimientos.Columns[0].Visible = true;
 
-            GridViewProcedimientos.DataBind();         
+            GridViewProcedimientos.DataBind();
 
             GridViewProcedimientos.Columns[0].Visible = false;
             rptProcedimientos.DataSource = ds;
@@ -646,7 +674,7 @@ namespace MedicalManagement
             cnn.Close();
 
         }
-        
+
         /////////////////////////////////////////////////////////////////////
 
         protected void llenartxtantecedentesnotas()
@@ -677,9 +705,9 @@ namespace MedicalManagement
 
         public void loadUsuario()
         {
-            string query ="select * from Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            string query = "select * from Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
             Helpers h = new Helpers();
-            var oneFicha = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO {Id_FichaIdentificacion = Id_FichaIdentificacion})[0];
+            var oneFicha = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO { Id_FichaIdentificacion = Id_FichaIdentificacion })[0];
             lblNombre.Text = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
             NombreCompleto = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
         }
@@ -694,7 +722,7 @@ namespace MedicalManagement
 
             cnn.Open();
             SqlCommand comando = new SqlCommand(@"select count (Id_ConsultaAntecedentesNotas)from Tabla_Registro_ConsultaAntecedentesNotas
-                                                  where Id_FichaIdentificacion="+Id_FichaIdentificacion+"", cnn);
+                                                  where Id_FichaIdentificacion=" + Id_FichaIdentificacion + "", cnn);
 
 
             comando.CommandType = CommandType.Text;
@@ -706,7 +734,7 @@ namespace MedicalManagement
             SqlCommand comando2 = new SqlCommand("SP_Registro_ConsultasAntecedentesNotas", cnn);
             comando2.CommandType = CommandType.StoredProcedure;
 
-            if (numerocount ==0)
+            if (numerocount == 0)
             {
                 comando2.Parameters.AddWithValue("@Opcion", "INSERTAR");
                 comando2.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
@@ -732,29 +760,33 @@ namespace MedicalManagement
 
         public string testbind(object myValue)
         {
-            string strValue = myValue.ToString();
-            if (strValue == "")
+            if (myValue == null)
             {
-                return "";
+                var strValue = "";
+                if (strValue == "")
+                {
+                    return " ";
+                }
             }
-
             return myValue.ToString();
         }
 
         protected string porConsultar(object myValue)
         {
-            string strValue = myValue.ToString();
-            if (strValue == "")
+            if (myValue == null)
             {
-                return "Por Consultar";
+                var strValue = "";
+                if (strValue == "")
+                {
+                    return " ";
+                }
             }
-
             return myValue.ToString();
         }
 
         protected void upload(object sender, EventArgs e)
         {
-            var oneFicha = FichaDAO.GetOne( new Tabla_Catalogo_FichaIdentificacionDTO {Id_FichaIdentificacion = Id_FichaIdentificacion});
+            var oneFicha = FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO { Id_FichaIdentificacion = Id_FichaIdentificacion });
             string pathToCreate = "~/Pacientes/" + oneFicha.Id_FichaIdentificacion;
             if (!Directory.Exists(Server.MapPath(pathToCreate)))
             {
@@ -781,11 +813,23 @@ namespace MedicalManagement
             {
                 FileDTO oneFile = new FileDTO();
                 oneFile.Nombre = fileName.Remove(0, Server.MapPath(pathToCreate).Count() + 1);
-                oneFile.Download =  fileName;
+                oneFile.Download = fileName;
                 lFiles.Add(oneFile);
             }
             rptFiles.DataSource = lFiles;
             rptFiles.DataBind();
+        }
+
+        protected void changePaciente(object sender, EventArgs e)
+        {
+            Id_FichaIdentificacion = Convert.ToInt32(ddlFichas.SelectedItem.Value);
+            var oneFicha =
+                FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
+                {
+                    Id_FichaIdentificacion = Id_FichaIdentificacion
+                });
+
+            Response.Redirect("ConsultaMenu.aspx?Id_Agenda=0&Id_FichaIdentificacion=" + Id_FichaIdentificacion);
         }
     }
 

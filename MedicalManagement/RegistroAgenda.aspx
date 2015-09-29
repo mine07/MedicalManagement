@@ -21,7 +21,7 @@
     <table>
     </table>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row hidden">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 Id.FichaIdentificacion
             </div>
@@ -30,13 +30,21 @@
                     ReadOnly="True"></asp:TextBox>
             </div>
         </div>
-        <div class="row">
+        <div class="row hidden">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 Nombre Completo
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 <asp:TextBox CssClass="form-control" ID="txtnombrecompleto" runat="server" BackColor="#CCFFCC"
                     ReadOnly="True" Width="200px"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                Paciente
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <asp:DropDownList runat="Server" CssClass="combobox form-control" Id="ddlUsuarios" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion"/>
             </div>
         </div>
         <div class="row">
@@ -213,6 +221,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             console.log(jQuery('.datePicker').val());
+            $(".combobox").combobox();
         });
         jQuery('.datePicker').datetimepicker({
             format: 'd/m/Y H:i'

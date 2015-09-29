@@ -34,6 +34,20 @@ namespace MedicalManagement.Models.DTO
             return lDiags;
         }
 
+        public static List<ConsultaDiagnosticoDTO> GetAllByConsulta(ConsultaDiagnosticoDTO oneConsulta)
+        {
+            string query = "select * from Tabla_Registro_ConsultaDiagnostico where Id_Consulta = @Id_Consulta";
+            Helpers h = new Helpers();
+            var lDiags = h.GetAllParametized(query, oneConsulta);
+            foreach (var y in lDiags)
+            {
+                y.oneDiag = new Tabla_Catalogo_DiagnosticoDTO();
+                y.oneDiag.Id_Diagnostico = y.Id_Diagnostico;
+                y.oneDiag = DiagnosticoDAO.GetOneById(y.oneDiag);
+            }
+            return lDiags;
+        }
+
         public void Insert(ConsultaDiagnosticoDTO oneConsulta)
         {
             string query =

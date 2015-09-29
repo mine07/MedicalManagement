@@ -5,7 +5,15 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<h3>Menu Consulta</h3>
+    <h3>Menu Consulta</h3>
+    <hr />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <asp:DropDownList AutoPostBack="true" runat="server" ID="ddlFichas" OnSelectedIndexChanged="changePaciente" CssClass="col-sm-4 form-control combobox" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" />
+            </div>
+        </div>
+    </div>
     <hr />
     <div class="container-fluid gray-border border-top1-bottom5 no-vertical-padding">
         <div class="row">
@@ -62,31 +70,31 @@
                 </div>
                 <div>
                     <h5>Diagnosticos Activos</h5>
-                        <div class="white-container">
+                    <div class="white-container">
 
-                    <asp:Repeater ID="rptActivos" runat="server">
-                        <ItemTemplate>
-                            <hr />
+                        <asp:Repeater ID="rptActivos" runat="server">
+                            <ItemTemplate>
+                                <hr />
                                 <i onclick="removeDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-remove fa-1x pull-right remove-icon"></i>
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </div>
                 </div>
                 <hr />
                 <div>
                     <h5>Diagnosticos Inactivas</h5>
                     <div class="white-container">
-                    <asp:Repeater ID="rptInactivos" runat="server">
-                        <ItemTemplate>
-                            <hr />
+                        <asp:Repeater ID="rptInactivos" runat="server">
+                            <ItemTemplate>
+                                <hr />
                                 <i onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
                                 <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
                                 <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                        </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
                 </div>
                 <hr />
                 <div>
@@ -111,18 +119,19 @@
                         <asp:Repeater runat="server" ID="rptFiles">
                             <ItemTemplate>
                                 <div class="row">
-                                                <div class="col-xs-12">
-                                                    <a href='<%# Eval("Download") %>' target="_blank" class="label-button" download>
-                                                   <i class="fa-margin-right fa fa-file"></i><label class="packet-name"><%# Eval("Nombre")%></label>
-                                                        </a>
-                                                    <hr />
-                                                </div>
-                                            </div>
+                                    <div class="col-xs-12">
+                                        <a href='<%# Eval("Download") %>' target="_blank" class="label-button" download>
+                                            <i class="fa-margin-right fa fa-file"></i>
+                                            <label class="packet-name"><%# Eval("Nombre")%></label>
+                                        </a>
+                                        <hr />
+                                    </div>
+                                </div>
                             </ItemTemplate>
                         </asp:Repeater>
                     </div>
-                    <asp:FileUpload ID="fleUpload" runat="server" CssClass="form-control padding"/>
-                    <asp:LinkButton OnClick="upload" runat="server" Text='<label class="label pull-right label-success padding">Subir<i class="fa-margin-left fa fa-upload"></i></label>'/>
+                    <asp:FileUpload ID="fleUpload" runat="server" CssClass="form-control padding" />
+                    <asp:LinkButton OnClick="upload" runat="server" Text='<label class="label pull-right label-success padding">Subir<i class="fa-margin-left fa fa-upload"></i></label>' />
                     <hr />
                 </div>
                 <div class="hidden">
@@ -220,7 +229,7 @@
                     <div class="col-xs-12">
                         <asp:Repeater runat="server" ID="rptActual">
                             <ItemTemplate>
-                                <div class="border-top1-bottom5 gray-border">
+                                <div class="border-top1-bottom5 gray-border container-fluid">
                                     <h4>
                                         <span class="label label-primary">
                                             <label class="hidden-xs"><%# porConsultar(Eval("Subjetivo_Consulta")) + " - "%></label>
@@ -228,163 +237,201 @@
                                         </span>
                                     </h4>
                                     <hr class="blue-hr" />
-                                    <div class="container-fluid">
+                                    <div class="container-fluid no-vertical-padding">
                                         <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Objetivo</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Objetivo_Consulta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Diagnostico</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Diagnostico_Consulta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Analisis</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Analisis_Consulta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Plan</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Plan_Consulta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Medicamento</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Medicamento_ConsultaReceta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Dosis</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                                <%#  testbind(Eval("Dosis_ConsultaReceta")) %>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                                <label>Observaciones</label>
-                                            </div>
-                                            <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
-                                                <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
-                                            </div>
-                                            <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
-                                            </div>
-                                        </div>
-                                        <div class="row  pull-right">
                                             <div class="col-xs-12">
-                                                <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
-                                                <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
-                                                <a class="label label-secondary form-control hidden" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <h5>Objetivo</h5>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <label class="packet-name"><%#  testbind(Eval("Objetivo_Consulta")) %></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <h5>Analisis</h5>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <label class="packet-name"><%#  testbind(Eval("Analisis_Consulta")) %></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <h5>Plan</h5>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <label class="packet-name"><%#  testbind(Eval("Plan_Consulta")) %></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <h5>Observaciones</h5>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <label class="packet-name"><%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
+                                                        <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
+                                                        <a class="label label-secondary form-control hidden" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <h4>Diagnosticos</h4>
+                                                        <hr />
+                                                        <div class="col-xs-12 gray-container">
+                                                            <asp:Repeater runat="server" ID="rptDiag" DataSource='<%# Eval("lDiagnosticos")%>'>
+                                                                <ItemTemplate>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12">
+                                                                            <label class="small-label"><%# Eval("oneDiag.Descripcion_Diagnostico")%></label>
+                                                                            <hr />
+                                                                        </div>
+                                                                    </div>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-6">
+                                                        <h4>Medicamentos y Dosis</h4>
+                                                        <hr />
+                                                        <div class="col-xs-12 gray-container">
+                                                            <asp:Repeater runat="server" ID="Repeater1" DataSource='<%# Eval("lRecetas")%>'>
+                                                                <ItemTemplate>
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12">
+                                                                            <h5><%# Eval("Tem_Medicamento")%></h5>
+                                                                            <h5><%# Eval("Tem_Dosis")%></h5>
+                                                                            <h5><%# Eval("Tem_Notas")%></h5>
+                                                                            <hr />
+                                                                        </div>
+                                                                    </div>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </ItemTemplate>
                         </asp:Repeater>
-                        <hr class="blue-hr" />
+
                     </div>
+                    <hr class="blue-hr" />
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <label class="label label-primary">Historial</label>
-                        <hr class="blue-hr" />
-                    </div>
-                </div>
-                <div id="accordion">
-                    <asp:Repeater runat="server" ID="rptAnteriores">
-                        <ItemTemplate>
-                            <h3>
-                                <span class="label label-primary">
-                                    <label class="hidden-xs"><%# porConsultar(Eval("Subjetivo_Consulta")) + " - "%></label>
-                                    <label><%# Eval("Fecha_Consulta")%></label>
-                                </span>
-                            </h3>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Objetivo</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%#  testbind(Eval("Objetivo_Consulta")) %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Diagnosticos</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%#  testbind(Eval("Diagnostico_Consulta")) %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Analisis</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%#  testbind(Eval("Analisis_Consulta")) %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Plan</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%#  testbind(Eval("Plan_Consulta")) %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Medicamento</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%#  testbind(Eval("Medicamento_ConsultaReceta")) %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Dosis</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-9 col-sm-9 col-lg-9">
-                                        <%#  testbind(Eval("Dosis_ConsultaReceta")) %>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3 text-right">
-                                        <label>Observaciones</label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3 col-sm-3 col-lg-3">
-                                        <%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %>
-                                    </div>
-                                    <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
-                                    </div>
-                                </div>
-                                <div class="row  pull-right">
-                                    <div class="col-xs-12">
-                                        <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
-                                        <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
-                                        <a class="label label-secondary form-control hidden" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
-                                    </div>
-                                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <label class="label label-primary">Historial</label>
+                            <hr class="blue-hr" />
+
+                            <div id="accordion">
+                                <asp:Repeater runat="server" ID="rptAnteriores">
+                                    <ItemTemplate>
+                                        <h4>
+                                            <span class="label label-primary">
+                                                <label class="hidden-xs"><%# porConsultar(Eval("Subjetivo_Consulta")) + " - "%></label>
+                                                <label><%# testbind(Eval("Fecha_Consulta"))%></label>
+                                            </span>
+                                        </h4>
+                                        <div class="border-top1-bottom5 gray-border container-fluid text-left">
+                                            <div class="container-fluid no-vertical-padding">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <h5>Objetivo</h5>
+                                                            </div>
+                                                            <div class="col-xs-12">
+                                                                <label class="packet-name"><%#  testbind(Eval("Objetivo_Consulta")) %></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <h5>Analisis</h5>
+                                                            </div>
+                                                            <div class="col-xs-12">
+                                                                <label class="packet-name"><%#  testbind(Eval("Analisis_Consulta")) %></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <h5>Plan</h5>
+                                                            </div>
+                                                            <div class="col-xs-12">
+                                                                <label class="packet-name"><%#  testbind(Eval("Plan_Consulta")) %></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <h5>Observaciones</h5>
+                                                            </div>
+                                                            <div class="col-xs-12">
+                                                                <label class="packet-name"><%#  testbind(Eval("Observaciones_ConsultaDiagnostico")) %></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + lblNombre.Text %>'>Nota Clinica</a>
+                                                                <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
+                                                                <a class="label label-secondary form-control hidden" href='<%# "ConsultaAnalisisClinico.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + lblNombre.Text + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Analisis Clinico</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <div class="row">
+                                                            <div class="col-xs-6">
+                                                                <h4>Diagnosticos</h4>
+                                                                <hr />
+                                                                <div class="col-xs-12 gray-container">
+                                                                    <asp:Repeater runat="server" ID="rptDiag" DataSource='<%# Eval("lDiagnosticos")%>'>
+                                                                        <ItemTemplate>
+                                                                            <div class="row">
+                                                                                <div class="col-xs-12">
+                                                                                    <label class="small-label"><%# Eval("oneDiag.Descripcion_Diagnostico")%></label>
+                                                                                    <hr />
+                                                                                </div>
+                                                                            </div>
+                                                                        </ItemTemplate>
+                                                                    </asp:Repeater>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-xs-6">
+                                                                <h4>Medicamentos y Dosis</h4>
+                                                                <hr />
+                                                                <div class="col-xs-12 gray-container">
+                                                                    <asp:Repeater runat="server" ID="Repeater1" DataSource='<%# Eval("lRecetas")%>'>
+                                                                        <ItemTemplate>
+                                                                            <div class="row">
+                                                                                <div class="col-xs-12">
+                                                                                    <h5><%# Eval("Tem_Medicamento")%></h5>
+                                                                                    <h5><%# Eval("Tem_Dosis")%></h5>
+                                                                                    <h5><%# Eval("Tem_Notas")%></h5>
+                                                                                    <hr />
+                                                                                </div>
+                                                                            </div>
+                                                                        </ItemTemplate>
+                                                                    </asp:Repeater>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
                             </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -423,6 +470,10 @@
                 dataType: "json"
             });
         }
+
+        $(document).ready(function () {
+            $(".combobox").combobox();
+        });
 
         function success() {
             location.reload();
