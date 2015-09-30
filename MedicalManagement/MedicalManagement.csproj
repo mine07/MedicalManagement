@@ -217,6 +217,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\jqota2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.8.3.js" />
     <None Include="Properties\PublishProfiles\cesarMedical.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />

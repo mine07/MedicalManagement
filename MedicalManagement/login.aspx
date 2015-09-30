@@ -8,10 +8,12 @@
     <title></title>
 	<meta charset="utf-8" />
     <link href="Styles/CSSLogin.css" rel="stylesheet" type="text/css" />
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript">/**
+    <link href="Styles/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+  /**
  * Particleground
  *
  * @author Jonathan Nicol - @mrjnicol
