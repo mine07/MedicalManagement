@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MaintainScrollPositionOnPostBack = "true" ClientIDMode="AutoID" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Consulta_AnalisisClinico.aspx.cs" Inherits="MedicalManagement.Consulta_AnalisisClinico" %>
+﻿<%@ Page Language="C#" MaintainScrollPositionOnPostback="true" ClientIDMode="AutoID" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Consulta_AnalisisClinico.aspx.cs" Inherits="MedicalManagement.Consulta_AnalisisClinico" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <asp:ScriptManager runat="server" />
@@ -78,6 +78,8 @@
                                         </ItemTemplate>
                                     </asp:Repeater>
                                 </div>
+                                <h5>
+                                    <label data-toggle="modal" data-target="#myModal" class="label label-success label-button">Guardar Nuevo Paquete<i class="fa fa-save fa-margin-left"></i></label></h5>
                                 <hr />
                             </div>
                         </div>
@@ -99,18 +101,45 @@
                                 <label class="label lbl-hvr-icn label-button label-success">Guardar<i class="fa fa-save fa-margin-left"></i></label>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <div class="row">
-                            <div class="col-xs-12 text-right text-uppercase">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Guardar Paquete</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                                <label>Nombre Paquete</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-8">
+                                <input type="text" class="form-control" runat="server" id="txtNombre" />
                                 <hr />
-                                <label class="fade-hover"><span id="time"></span></label>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Guardar<i class="fa fa-save"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-right text-uppercase">
+            <hr />
+            <label class="fade-hover"><span id="time"></span></label>
+        </div>
+    </div>
     <script>
         $(document).ready(function () {
             setInterval(function () { interval() }, 1000);
