@@ -1,4 +1,4 @@
-﻿    <%@ Page Title="Medical Management" Language="C#" MasterPageFile="Site.master" AutoEventWireup="true"
+﻿<%@ Page Title="Medical Management" Language="C#" MasterPageFile="Site.master" AutoEventWireup="true"
     CodeBehind="MenuInicial.aspx.cs" Inherits="MedicalManagement.MenuInicial" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -9,7 +9,9 @@
     <table width="100%" border="0">
         <td colspan="2" align="center" runat="Server" id="Alerta"></td>
     </table>
-    <span><label class="h3">Menu Inicial </label><label class="h4"><i class="fa fa-calendar-times-o fa-margin-left fa-margin-right"></i>Consultas</label></span>
+    <span>
+        <label class="h3">Menu Inicial </label>
+        <label class="h4"><i class="fa fa-calendar-times-o fa-margin-left fa-margin-right"></i>Consultas</label></span>
     <hr />
     <div class="container-fluid border-top1-bottom5 gray-border no-vertical-padding">
         <div class="row hidden">
@@ -24,15 +26,15 @@
                         </div>
                     </div>
                 </div>
-                <hr/>
+                <hr />
                 <div class="container-fluid searchContainer border-top1-bottom5">
                 </div>
                 <hr />
             </div>
         </div>
-        
-        
-         <div class="row" id="calendarConsulta">
+
+
+        <div class="row" id="calendarConsulta">
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 left-panel">
                 <div class="responsive-calendar contCalendar consCalendar">
                     <div class="controls">
@@ -103,7 +105,7 @@
         }
 
         $(document).ready(function () {
-            loadToday();
+            loadTodayCons();
             $("#calendarAgenda").hide();
             var jsonObject;
             var eventB = {};
@@ -166,6 +168,7 @@
 
         function fillAgendaB(data) {
             var jsonObject = $.parseJSON(data.d);
+            console.log("Hola");
             $('#consContainer').empty().hide();
             $('#consContainer').fadeIn(200);
             $('#consContainer').append(
@@ -224,7 +227,6 @@
             var day = dateObj.getUTCDate();
             var year = dateObj.getUTCFullYear();
             var getItem = { day: day, month: month, year: year };
-            console.log(getItem);
             $.ajax({
                 type: "POST",
                 url: "GetDates.asmx/GetAgendaItems",
@@ -243,7 +245,7 @@
             var day = dateObj.getUTCDate();
             var year = dateObj.getUTCFullYear();
             var getItem = { day: day, month: month, year: year };
-            console.log(getItem);
+            console.log("prueba");
             $.ajax({
                 type: "POST",
                 url: "GetDates.asmx/GetConsultaItems",
@@ -276,7 +278,7 @@
         <label class="small-label"><*= this.Descripcion_Agenda*></label>
         </div>
         <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 center-text">
-            <a class="label label-secondary form-control" href='<*= "RegistroAgenda.aspx?Id_Agenda=" + this.Id_Agenda + "&Id_FichaIdentificacion=" + this.UsuarioDTO.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO.Nombre_FichaIdentificacion + " " + this.UsuarioDTO.ApPaterno_FichaIdentificacion + " " + this.UsuarioDTO.ApMaterno_FichaIdentificacion *>'>Editar</a>
+            
         </div>
         </div>
         <hr/>
@@ -304,19 +306,23 @@
         <hr/>
     ]]>
     </script>
-     <script type="text/x-jqote-template" id="templateCalendarCons">
+    <script type="text/x-jqote-template" id="templateCalendarCons">
     <![CDATA[
-        <div class="row ">        
-            <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4 <*= this.AgendaDTO._estatus *>">
+        <div class="row container-fluid" style="padding-top:10px;">        
+            <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4 <*= this.AgendaDTO._estatus *> row">
+         <div class="col-xs-12 text-center">
                 <label><*= this.UsuarioDTO.Nombre_FichaIdentificacion + " " + this.UsuarioDTO.ApPaterno_FichaIdentificacion + " " + this.UsuarioDTO.ApMaterno_FichaIdentificacion *>                
-            </div>        
+        </label>
+         </div>           
+         <div class="col-xs-12">
+                    <label class=""><*= this.AgendaDTO.InicioCita + " - " + this.AgendaDTO.FinCita*></label> 
+                    </div>   
+            </div>
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="row">
+                <div class="row">                   
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label class="small-label"><*= this.AgendaDTO.InicioCita + " - " + this.AgendaDTO.FinCita*></label> 
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label class="small-label"><*= "Estado - " + this.AgendaDTO.EstadoCitas_Agenda + " Prioridad - " + this.AgendaDTO.Prioridad_Agenda*></label> 
+                    <label class="small-label"><*= "Estado - " + this.AgendaDTO.EstadoCitas_Agenda  *></label>
+                    <label class="small-label"><*= "Prioridad - " + this.AgendaDTO.Prioridad_Agenda*></label> 
                     </div>
                 </div>            
         </div>
@@ -324,7 +330,8 @@
         <label class="small-label"><*= this.AgendaDTO.Descripcion_Agenda*></label>
         </div>        
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
-        <a class="label label-secondary form-control" href='<*= "ConsultaMenu.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Menu Consulta</a>        
+        <a class="label label-secondary form-control" href='<*= "RegistroAgenda.aspx?Id_Agenda=" + this.Id_Agenda + "&Id_FichaIdentificacion=" + this.UsuarioDTO.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO.Nombre_FichaIdentificacion + " " + this.UsuarioDTO.ApPaterno_FichaIdentificacion + " " + this.UsuarioDTO.ApMaterno_FichaIdentificacion *>'>Editar</a>
+        <a class="label label-secondary form-control" href='<*= "ConsultaMenu.aspx?Id_Agenda=" + this.AgendaDTO.Id_Agenda + "&Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.UsuarioDTO._NombreCompleto *>'>Menu Consulta</a>                
                 </div>
         
         </div>
@@ -332,15 +339,6 @@
     ]]>
     </script>
     <style>
-         .badge-calendar {
-            background: WHITE;
-            color: #1d86c8;
-            border-radius: 0px;
-            font-size: 9px;
-            border-bottom-left-radius: 4px;
-            padding: 3px 5px;
-        }
-
         .contCalendar {
             padding: 5px;
         }

@@ -1,125 +1,145 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RegistroConsulta.aspx.cs" Inherits="MedicalManagement.RegistroConsulta" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Consulta.Master" AutoEventWireup="true" CodeBehind="RegistroConsulta.aspx.cs" Inherits="MedicalManagement.RegistroConsulta" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <table width="100%" border="0" class="hidden">
-
-        <tr>
-            <td align="left"><font color="red">Configuración\Consulta\Agregar</font></td>
-            <td align="right">
-                <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png" ToolTip="Grabar EstadoCivil" OnClick="btnGuardar_Consulta_Click"></asp:ImageButton>&nbsp;
-        <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png" ToolTip="Regresar" OnClick="btnRegresar_Consulta_Click"></asp:ImageButton>
-            </td>
-        </tr>
-    </table>
-    <table class="hidden">
-        <tr>
-            <td></td>
-        </tr>
-
-        <tr>
-            <td>Fecha
-            </td>
-        </tr>
-        <tr class="hidden">
-            <td></td>
-            <td>
-                <asp:LinkButton ID="LinkDiagnostico" runat="server" OnClick="LinkDiagnostico_Click"
-                    Visible="False">Diagnostico</asp:LinkButton>
-            </td>
-            <td>
-                <asp:LinkButton ID="LinkProcedimiento" runat="server" OnClick="LinkProcedimiento_Click"
-                    Visible="False">Procedimiento</asp:LinkButton>
-            </td>
-        </tr>
+<asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
 
 
-    </table>
-    <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'><label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
+
+    <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "&Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'>
+        <label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
     <h3>Nota Clinica</h3>
     <hr />
-    <div class="container-fluid border-top1-bottom 5 gray-border">
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Fecha</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC"
-                    ReadOnly="True" CssClass="form-control"></asp:TextBox>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Nombre</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtnombre" runat="server" BackColor="#CCFFCC"
-                    ReadOnly="True" CssClass="form-control"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Subjetivo</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtsubjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Objetivo</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtobjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Diagnostico</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
+    </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="rightSide" runat="server">
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Fecha</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC"
+                            ReadOnly="True" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
                 <hr />
-                <div class="container-fluid searchContainer border-top1-bottom5">
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Nombre</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtnombre" runat="server" BackColor="#CCFFCC"
+                            ReadOnly="True" CssClass="form-control"></asp:TextBox>
+
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Subjetivo</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtsubjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Objetivo</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtobjetivo" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+
+                    </div>
+                </div>
+                <hr />
+
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Analisis</label>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtanalisis" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                        <hr />
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-sm-offset-2">
+                        <label>Diagnostico</label>
+                    </div>
+                    <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">
+                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
+                        <hr />
+                        <div class="container-fluid searchContainer searchDiag border-top1-bottom5">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10 col-sm-offset-2">
+                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Diagnostico<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="addDiagnostico"></asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 col-sm-offset-4">
+                        <div class="gray-container">
+                            <asp:Repeater runat="server" ID="rptDiag">
+                                <ItemTemplate>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <asp:LinkButton runat="server" Text='<i class="fa fa-margin-left fa-remove remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_ConsultaDiagnostico") %>' OnClick="deleteDiag" />
+                                            <label class="packet-name"><%# Eval("oneDiag.Descripcion_Diagnostico")%></label>
+                                            <hr />
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Plan</label>
+                        <div class="padding">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
+                        <asp:TextBox ID="txtplan" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                        <hr />
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-sm-offset-2">
+                        <label>Procedimiento</label>
+                    </div>
+                    <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">
+                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox1" placeholder="Buscar Procedimiento..." autocomplete="off"></asp:TextBox>
+                        <hr />
+                        <div class="container-fluid searchContainer searchProc border-top1-bottom5">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10 col-sm-offset-2">
+                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Procedimiento<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="addDiagnostico"></asp:LinkButton>
+                    </div>
+                    <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 col-sm-offset-4">
+                        <div class="gray-container">
+                            <asp:Repeater runat="server" ID="Repeater1">
+                                <ItemTemplate>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <asp:LinkButton runat="server" Text='<i class="fa fa-margin-left fa-remove remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_ConsultaDiagnostico") %>' OnClick="deleteDiag" />
+                                            <label class="packet-name"><%# Eval("oneDiag.Descripcion_Diagnostico")%></label>
+                                            <hr />
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                    </div>
+
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label class="pull-right label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
+                        <asp:LinkButton runat="server" OnClick="btnGuardar_Consulta_Click" Text='<label class="fa-margin-right label pull-right label-success label-button">Guardar<i class="fa fa-margin-left fa-save"></i></label>'></asp:LinkButton>
+                    </div>
                 </div>
             </div>
-
+            <hr />
         </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Analisis</label>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtanalisis" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                <label>Plan</label>
-                <div class="padding">
-                    <label class="pull-right label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
-                <asp:TextBox ID="txtplan" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
-
-            </div>
-        </div>
-        <hr />
-    </div>
+    
 
     <div class="modal fade no-radius" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -149,7 +169,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                Asunto:
+                                Asunto
                             </div>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 <asp:TextBox CssClass="form-control" ID="txtasunto" runat="server"></asp:TextBox>
@@ -193,16 +213,13 @@
                             </div>
 
                         </div>
-                        <div class="row">
+                        <div class="row hidden">
                             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">Estado de Cita</div>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                <asp:DropDownList ID="DropDownEstadoCitas" CssClass="form-control" runat="server">
+                                <asp:DropDownList ID="DropDownEstadoCitas" CssClass="form-control" runat="server" Enabled="false">
                                     <asp:ListItem>Por confirmar</asp:ListItem>
-                                    <asp:ListItem>Confirmado</asp:ListItem>
-                                    <asp:ListItem>Cancelado</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
-
                         </div>
 
                         <div class="row">
@@ -306,7 +323,7 @@
                 </div>
                 <div class="modal-footer">
                     <label class="label label-danger" data-dismiss="modal">Cancelar<i class="fa fa-remove fa-margin-left"></i></label>
-                    <asp:LinkButton runat="server" OnClick="btnSave" Text='<label class="pull-right label label-button label-success">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>'/>
+                    <asp:LinkButton runat="server" OnClick="btnSave" Text='<label class="pull-right label label-button label-success">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>' />
                 </div>
             </div>
         </div>
@@ -318,7 +335,7 @@
             var value = $('[id$=txtSearch]').val();
             clearTimeout($this.data('timer'));
             if (value === " ") {
-                $('.searchContainer').slideUp().empty();
+                $('.searchDiag').slideUp().empty();
             }
             if (value.substr(value.length - 1) !== " ") {
                 delay = 500;
@@ -346,23 +363,23 @@
                     }
                 });
             } else {
-                $('.searchContainer').slideUp().empty();
+                $('.searchDiag').slideUp().empty();
             }
         }
 
         function appendData(data) {
             var jsonObject = $.parseJSON(data.d);
             if (jsonObject[0] != null) {
-                $('.searchContainer').empty();
-                $('.searchContainer').append(
+                $('.searchDiag').empty();
+                $('.searchDiag').append(
                     $('#template').jqote(jsonObject, '*')
                 ).slideDown();
             } else {
-                $('.searchContainer').slideUp();
+                $('.searchDiag').slideUp();
             }
         }
         $(document).mouseup(function (e) {
-            var container = $(".searchContainer");
+            var container = $(".searchDiag");
             var containerB = $("[id$=txtSearch]");
             if (!container.is(e.target) // if the target of the click isn't the container...
                 && container.has(e.target).length === 0 && !containerB.is(e.target)) // ... nor a descendant of the container
@@ -376,8 +393,8 @@
         });
 
         $("[id$=txtSearch]").focus(function () {
-            if ($('.searchContainer').children().length !== 0) {
-                $('.searchContainer').slideDown();
+            if ($('.searchDiag').children().length !== 0) {
+                $('.searchDiag').slideDown();
             }
         });
 
@@ -388,6 +405,39 @@
         jQuery('.datePicker').datetimepicker({
             format: 'd/m/Y H:i'
         });
+
+        function removeDiagnostico(Id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "GetDates.asmx/RemoveActive",
+                data: JSON.stringify({ 'Id_Diagnostico': Id }),
+                success: success,
+                error: error,
+                dataType: "json"
+            });
+        }
+
+        function AddDiagnostico(Id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "GetDates.asmx/RemoveInActive",
+                data: JSON.stringify({ 'Id_Diagnostico': Id }),
+                success: success,
+                error: error,
+                dataType: "json"
+            });
+        }
+
+        function success() {
+            location.reload();
+        }
+
+        function error() {
+            alert("A ocurrido un error, favor de volver a intentarlo.");
+            location.reload();
+        }
 
     </script>
     <script type="text/x-jqote-template" id="template">
@@ -401,15 +451,25 @@
     ]]>
     </script>
     <style>
-        .row {
-            padding: 5px;
-        }
-
         .searchContainer {
             max-height: 300px;
             overflow-x: auto;
             position: absolute;
             width: 100%;
+        }
+
+        .modal-body .row {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #c8c8c8;
+        }
+
+        .ui-accordion-header {
+            border-color: #c8c8c8 !important;
+        }
+
+        .padding {
+            margin: 5px 0;
         }
     </style>
 </asp:Content>

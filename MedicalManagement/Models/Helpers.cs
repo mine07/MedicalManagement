@@ -6,12 +6,14 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Data;
 
 namespace MedicalManagement.Models
 {
     public class Helpers
     {
         public static string connection = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+        SqlConnection Koenigsegg = new SqlConnection(ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString);
         public static SqlCommand dataReader(string query)
         {
             var cmd = new SqlCommand();
@@ -271,7 +273,33 @@ namespace MedicalManagement.Models
         }
 
 
+        public void bulkinsertPagos(DataTable DTPagos) {
+            Koenigsegg.Open();
+            //creating object of SqlBulkCopy
+            SqlBulkCopy objbulk = new SqlBulkCopy(Koenigsegg);
+            //assigning Destination table name
+            objbulk.DestinationTableName = "facturas";
+            //Mapping Table column
 
+            //objbulk.ColumnMappings.Add("Id_Pagos", "empresaID");
+            objbulk.ColumnMappings.Add("Id_FichaIdentificacion", "empresaNAME");
+            objbulk.ColumnMappings.Add("Id_Usuario", "empresaRFC");
+            objbulk.ColumnMappings.Add("Id_Consulta", "empresaRFC");
+            objbulk.ColumnMappings.Add("Id_FormaPago", "empresaRFC");
+            objbulk.ColumnMappings.Add("FechaAlta_Pagos", "empresaRFC");
+            objbulk.ColumnMappings.Add("Descripcion_Pagos", "empresaRFC");
+            objbulk.ColumnMappings.Add("Origen_Pagos", "empresaRFC");
+            objbulk.ColumnMappings.Add("Importe_Pagos", "empresaRFC");
+            objbulk.ColumnMappings.Add("Pagado_Pagos", "empresaRFC");
+            objbulk.ColumnMappings.Add("Debe_Pagos", "empresaRFC");
+            objbulk.ColumnMappings.Add("FechaParaPagar_Pagos", "empresaRFC");
+            objbulk.ColumnMappings.Add("FechaPagado_Pagos", "empresaRFC");
+            objbulk.ColumnMappings.Add("Id_ConceptoPago", "empresaRFC");
+
+            objbulk.WriteToServer(DTPagos);
+            
+            Koenigsegg.Close();
+        }
 
 
         public class propiedades

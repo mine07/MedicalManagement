@@ -102,17 +102,17 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             {
                 query =
                     "Select * From Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
-                y.UsuarioDTO = new Tabla_Catalogo_FichaIdentificacionDTO
+                y.oneUsuario = new Tabla_Catalogo_FichaIdentificacionDTO
                 {
                     Id_FichaIdentificacion = y.Id_FichaIdentificacion
                 };
-                y.UsuarioDTO = h.GetAllParametized(query, y.UsuarioDTO)[0];
+                y.oneUsuario = h.GetAllParametized(query, y.oneUsuario)[0];
                 y.FinCita = y.Fin_Agenda.ToShortTimeString();
                 y.InicioCita = y.Inicio_Agenda.ToShortTimeString();
 
-                y.UsuarioDTO.Nombre_FichaIdentificacion = y.UsuarioDTO.Nombre_FichaIdentificacion.Trim();
-                y.UsuarioDTO.ApMaterno_FichaIdentificacion = y.UsuarioDTO.ApMaterno_FichaIdentificacion.Trim();
-                y.UsuarioDTO.ApPaterno_FichaIdentificacion = y.UsuarioDTO.ApPaterno_FichaIdentificacion.Trim();
+                y.oneUsuario.Nombre_FichaIdentificacion = y.oneUsuario.Nombre_FichaIdentificacion.Trim();
+                y.oneUsuario.ApMaterno_FichaIdentificacion = y.oneUsuario.ApMaterno_FichaIdentificacion.Trim();
+                y.oneUsuario.ApPaterno_FichaIdentificacion = y.oneUsuario.ApPaterno_FichaIdentificacion.Trim();
                 y._estatus = "pnd";
                 if (y.EstadoCitas_Agenda.Trim() == "Confirmado")
                 {
@@ -285,8 +285,4 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
         public int year { get; set; }
     }
 
-    public class ConsultaDiagnosticoDTO
-    {
-        public int Id_ConsultaDiagnostico { get; set; }
-    }
 }

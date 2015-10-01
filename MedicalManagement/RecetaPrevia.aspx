@@ -2,57 +2,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ScriptManager runat="server" />
-    <div class="hidden">
-        <table width="100%">
-            <tr>
-                <td align="left" colspan="6">Receta Previa&nbsp;:&nbsp;<asp:TextBox ID="txtBuscar_RecetaPrevia" runat="server" Columns="100" OnTextChanged="txt_OnTextChanged" AutoPostBack="true"></asp:TextBox>&nbsp;
-            <asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip="Buscar Receta Previa"></asp:ImageButton>&nbsp;
-            <asp:ImageButton ID="AgregarRecetaPrevia" runat="Server" ImageUrl="IMG/agregar.png" OnClick="btnAgregarRecetaPrevia_Click" ToolTip="Agregar Receta Previa"></asp:ImageButton>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td align="center" colspan="6">
-                    <asp:GridView ID="Grid_RecetaPrevia" runat="server" AutoGenerateColumns="False"
-                        OnRowCommand="RowCommand" OnRowDeleting="RowDeleting"
-                        OnPageIndexChanging="Grid_RecetaPrevia_PageIndexChanging" AllowPaging="False"
-                        OnPageIndexChanged="Grid_RecetaPrevia_PageIndexChanged" CssClass="mGrid footable"
-                        PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None">
-
-
-                        <Columns>
-                            <asp:BoundField HeaderText="Id" DataField="Id_ConsultaRecetaPrevia" />
-                            <asp:BoundField DataField="Nombre_ConsultaRecetaPrevia" HeaderText="Nombre/Descripcion"
-                                SortExpression="Nombre_ConsultaRecetaPrevia" />
-                            <asp:BoundField DataField="Descripcion_Diagnostico" HeaderText="Diagnostico"
-                                SortExpression="Descripcion_Diagnostico" />
-                            <asp:ButtonField ButtonType="Button" CommandName="Edit" HeaderText="Editar"
-                                ShowHeader="True" Text="Editar" ItemStyle-HorizontalAlign="Center" />
-                            <asp:ButtonField ButtonType="Button" CommandName="Delete" HeaderText="Eliminar"
-                                ShowHeader="True" Text="Eliminar" ItemStyle-HorizontalAlign="Center" />
-                        </Columns>
-                    </asp:GridView>
-
-
-
-                </td>
-            </tr>
-        </table>
-        <div class="container-fluid">
-            <div class="col-xs-12">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Buscar: </span>
-                    <asp:TextBox autocomplete="off" ID="txtSearchB" runat="server" CssClass="form-control"></asp:TextBox>
-                    <%--<a href="RegistroFichaIdentificacion.aspx" class="input-group-addon no-sub">Agregar</a>--%>
-                </div>
-            </div>
-
-        </div>
-        <hr />
-        <div class="container-fluid searchContainer  border-top1-bottom5"></div>
-        <hr />
-    </div>
+    <h3>Template Recetas</h3>
+    <hr />
     <asp:UpdatePanel runat="server">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" />
@@ -130,7 +81,7 @@
                                     <hr />
                                 </div>
                             </div>
-                            <div class="row gray-container">
+                            <div class="row gray-container" style="max-height:600px;">
                             <asp:Repeater runat="server" ID="rptTemporal">
                                 <ItemTemplate>
                                     <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3" style="background-color: white;">
@@ -153,7 +104,7 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                                 </div>
-                            <div class="row" runat="server" visible="false" id="cancelRow">
+                            <div class="row" runat="server" visible="false" id="cancelRow" style="margin-top: 10px;">
                                 <div class="col-xs-12">
                                     <asp:LinkButton OnClick="cancelEdit" ID="LinkButton3" runat="server" Text='<label style="font-size:16px;" class="label label-danger pull-right label-button">Cancelar<i class="fa fa-close"></i></label>' />
                                     <hr />
@@ -218,6 +169,38 @@
                 $('.combobox').combobox();
                 $("[id$=ddlTemplate]").change();
             });
+            $("[id$=ddlTemplate]").on("change", function () {
+                var x = $("[id$=ddlTemplate]").val();
+                $.ajax({
+                    type: "POST",
+                    url: "GetDates.asmx/loadTemplate",
+                    data: "{'Id_Template':'" + x + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        appendTemplate(data);
+                    }
+                });
+            });
+            $('[id$=txtSearch]').bind('input keyup', function () {
+                var $this = $(this);
+                var delay; // 2 seconds delay after last input
+                var value = $('[id$=txtSearch]').val();
+                clearTimeout($this.data('timer'));
+                if (value === " ") {
+                    $('.searchContainer').hide().empty();
+                }
+                if (value.substr(value.length - 1) !== " ") {
+                    delay = 500;
+                } else {
+                    delay = 1;
+                }
+                $this.data('timer', setTimeout(function () {
+                    $this.removeData('timer');
+                    diagSearch(value);
+                }, delay));
+            });
+
         });
         $('[id$=txtSearch]').bind('input keyup', function () {
             var $this = $(this);

@@ -1,0 +1,91 @@
+aqui se ven las ips en el sql studio, son las
+mismas que las maquinas virtuales
+
+el programa esta hecho en c#, wpf 
+
+el boton generar llama el timer, lo inizializ
+y tambien a la barra de progreso
+
+el proceso asincrono refresh es quien inicia 
+todo el programa creando la variable 
+instances se genera un hilo nuevo
+en donde se llena el objeto 
+TabList
+
+El txt2 es la cantidad de querys que se piden
+a cada servidor
+
+Este es el objeto TabList
+
+La parte seleccionada crea una lista de strings
+con los datasources de los servidores que estan
+en la maquina virtual
+
+La funcion randomItem genera un objeto aleatorio
+con propiedades aleatorias, este es el
+que se va a buscar en la base de datos
+
+Ya teniendo la lista de los objetos meidante este for
+se van creando objetos TabItem
+
+este objeto viene siendo cada pestaña del tab,
+tiene las propiedades header, string, y contennido, tipo content
+
+La propiedad content tiene las propiedades
+lDatos, una lista con los datos
+query, el query de esa pestaña
+y la cantidad
+
+se agrega el objeto servidor a la lista Tabs
+se le da un nombre l header
+
+y mediante tasks se va llenado el contenido
+de cada objeto tabitem
+
+la funcion getContenido
+crea un objeto tipo content, 
+una query, la funcion random query
+crea una query tipo select
+con n selectores where, ya sean AND o OR
+
+se crean los parametro del sql
+
+se executa el reader
+
+la funcion readall resive el objeto datareader
+y genera una lista de objetos tipo
+item, ahi se guardan todos los datos que trajo
+la query de la base deseada
+
+una ves terminada la tarea tk1, 
+sigue con los n servidores dados de alta en la 
+lista "conneciones"
+
+El wpf esta hecho para usar mucho lo que vienen siendo
+los bindeos
+
+En este tabcontrol se vindea como itemsource
+el Objeto TABS que viene de l clase tablist el datatemplate es el header
+en este caso 
+
+y el content template usa un usercontrol 
+llamado contenido, este user control
+es donde sem uestran todos los datos 
+
+Aqui se bindea la lista lDatos de la propiedd contenido
+se bindea el label query, y la cantidad de datos
+que tiene la lista.
+
+asi funciona, al darle 1 query por servidor realizara
+todo el proceso antes descrito, una vez para cada
+servidor, el timpo es proporcional a la cantidad de datos
+totales que trae de cada servidor
+
+Las demas clases como llenado prueba etc, son 
+solo pruebas que el programa no usa al final
+
+aqui se puede apreciar la carga de memoria
+como va aumentando mientras el programa
+va guardando mas datos, con ciertas pruebas 
+alcazo hasta 4 gigas de memoria en ram el proceso
+vshost.

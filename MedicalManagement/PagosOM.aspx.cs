@@ -9,6 +9,7 @@ using System.Web.Services;
 using MedicalManagement.Models;
 using MedicalManagement.Models.DTO;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace MedicalManagement
 {
@@ -20,6 +21,7 @@ namespace MedicalManagement
             {
                 loadData();
                 AddDefaultFirstRecord();
+                AddDefaultFirstRecordHist();
 
 
             }
@@ -158,7 +160,6 @@ namespace MedicalManagement
             mpeThePopup.Show();
         }
 
-        
         protected void btnClean_Click(object sender, EventArgs e)
         {
             ViewState.Clear();
@@ -238,6 +239,46 @@ namespace MedicalManagement
         {
 
 
+        }
+
+        private void AddDefaultFirstRecordHist()
+        {
+
+            //There should be a selection where we get the value of the history of payments 
+            //of the pacient
+
+            //creating DataTable
+            DataTable dt = new DataTable();
+            DataRow dr;
+            dt.TableName = "HISTORIAL";
+            //creating columns for DataTable
+            dt.Columns.Add(new DataColumn("Fecha", typeof(string)));
+            dt.Columns.Add(new DataColumn("Descripcion", typeof(string)));
+            dt.Columns.Add(new DataColumn("Origen", typeof(string)));
+            dt.Columns.Add(new DataColumn("Importe", typeof(string)));
+            dt.Columns.Add(new DataColumn("Pagado", typeof(string)));
+            dt.Columns.Add(new DataColumn("Debe", typeof(string)));
+            dt.Columns.Add(new DataColumn("FPP", typeof(string)));
+            dt.Columns.Add(new DataColumn("FP", typeof(string)));
+            dt.Columns.Add(new DataColumn("Factura", typeof(string)));
+            dr = dt.NewRow();
+            dt.Rows.Add(dr);
+
+            gvHistPagos.DataSource = dt;
+            gvHistPagos.DataBind();
+            int columncount = gvHistPagos.Rows[0].Cells.Count;
+            ViewState["HISTORIAL"] = dt;
+            gvHistPagos.Rows[0].Cells.Clear();
+
+            gvHistPagos.FooterRow.Cells[0].Text = "SIN PAGOS";
+            gvHistPagos.FooterRow.Cells[0].Attributes.CssStyle["text-align"] = "Center";
+        }
+
+        private void BulkInsertToDataBase()
+        {
+            
+            DataTable dtProductSold = (DataTable)ViewState["ProductsSold"];
+           
         }
     }
 }

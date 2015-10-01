@@ -22,7 +22,7 @@
             Height:200px; 
         }    
     </style> 
-      <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
     <link href="~/Styles/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css" />

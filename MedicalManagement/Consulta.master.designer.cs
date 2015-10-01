@@ -10,123 +10,159 @@
 namespace MedicalManagement {
     
     
-    public partial class RecetaPrevia {
+    public partial class Consulta {
         
         /// <summary>
-        /// ddlTemplate control.
+        /// Header control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTemplate;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Header;
         
         /// <summary>
-        /// txtNombre control.
+        /// lblNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombre;
+        protected global::System.Web.UI.WebControls.Label lblNombre;
         
         /// <summary>
-        /// txtSearch control.
+        /// GridViewFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.GridView GridViewFecha;
         
         /// <summary>
-        /// ddlMedicamento control.
+        /// txtantecedentes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMedicamento;
+        protected global::System.Web.UI.WebControls.TextBox txtantecedentes;
         
         /// <summary>
-        /// txtDos control.
+        /// txtnotasrelevantes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDos;
+        protected global::System.Web.UI.WebControls.TextBox txtnotasrelevantes;
         
         /// <summary>
-        /// txtNot control.
+        /// btnantecedentes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNot;
+        protected global::System.Web.UI.WebControls.Button btnantecedentes;
         
         /// <summary>
-        /// btnSave control.
+        /// LinkNotaClinica control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSave;
+        protected global::System.Web.UI.WebControls.LinkButton LinkNotaClinica;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// LinkReceta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton LinkReceta;
         
         /// <summary>
-        /// rptTemporal control.
+        /// rptActivos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptTemporal;
+        protected global::System.Web.UI.WebControls.Repeater rptActivos;
         
         /// <summary>
-        /// cancelRow control.
+        /// rptInactivos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cancelRow;
+        protected global::System.Web.UI.WebControls.Repeater rptInactivos;
         
         /// <summary>
-        /// LinkButton3 control.
+        /// rptProcedimientos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.Repeater rptProcedimientos;
         
         /// <summary>
-        /// rptTemplate control.
+        /// rptFiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptTemplate;
+        protected global::System.Web.UI.WebControls.Repeater rptFiles;
         
         /// <summary>
-        /// LinkButton2 control.
+        /// fleUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.FileUpload fleUpload;
+        
+        /// <summary>
+        /// GridViewDiagnosticosActivos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewDiagnosticosActivos;
+        
+        /// <summary>
+        /// GridViewDiagnosticosInactivos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewDiagnosticosInactivos;
+        
+        /// <summary>
+        /// GridViewProcedimientos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewProcedimientos;
+        
+        /// <summary>
+        /// rightSide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder rightSide;
     }
 }

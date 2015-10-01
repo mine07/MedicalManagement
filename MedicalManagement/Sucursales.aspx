@@ -4,9 +4,9 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <font color="red">Configuración\Sucursales</font>
-
-<table width="100%" border="1">
+    <h3>Sucursales</h3>
+    <hr />
+<table width="100%">
     <tr><td>
 
     <table width="100%">
@@ -30,7 +30,7 @@
  <asp:GridView ID="Grid_Sucursales" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Sucursales_PageIndexChanging" AllowPaging ="False"
-        onpageindexchanged="Grid_Sucursales_PageIndexChanged" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
+        onpageindexchanged="Grid_Sucursales_PageIndexChanged" CssClass="table table-hover table-responsive" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
     
         <Columns>
 
@@ -58,5 +58,5 @@
             </td></tr>
     </table>
     </td></tr>
-
+    </table>
 </asp:Content>

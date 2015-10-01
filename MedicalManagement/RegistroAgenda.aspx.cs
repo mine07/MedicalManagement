@@ -22,7 +22,7 @@ namespace MedicalManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             bool estatuspermiso = false;
             estatuspermiso = Convert.ToBoolean(Session["estatuspermiso"]);
             int usuario = Convert.ToInt32(Session["inicio"]);
@@ -74,10 +74,13 @@ namespace MedicalManagement
                     Session["alerta"] = "<p style=\"color: white;background-color: blue\">No tiene permiso para acceder a 'Agenda'</p>";
                     Response.Redirect("MenuInicial.aspx");
                 }
+
             }
 
             if (!IsPostBack)
             {
+                ddlUsuarios.DataSource = FichaDAO.GetAll();
+                ddlUsuarios.DataBind();
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
                 DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
@@ -88,12 +91,7 @@ namespace MedicalManagement
                 DropDownMesFinal.SelectedIndex = (hoy.Month) - 1;
                 DropDownAnioFinal.SelectedValue = hoy.Year.ToString();
                 rbNormal.Checked = true;
-
-
-
                 LlenarCMBCategoria();
-                LlenarCmbDiaMesAnioHoraMinuto();
-
                 if (Id_Agenda != 0)
                 {
                     string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -170,28 +168,7 @@ namespace MedicalManagement
             Response.Redirect("Agenda.aspx");
         }
 
-        protected void btnGuardar_FichaIdentificacion_Click(object sender, EventArgs e)
-        {
-            if (txtasunto.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado: Favor de Capturar el Asunto</p>";
-            }
-
-            else if (txtdescripcionagenda.Text.Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado: Favor de Capturar una Descripcion</p>";
-            }
-            else if (ddlCategoria.SelectedIndex == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado: Favor de Seleccionar una Categoria</p>";
-            }
-            else
-            {
-                GrabarAgenda();
-            }
-        }
-
-        public void GrabarAgenda()
+        public void GrabarAgenda(object sender, EventArgs eventArgs)
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
@@ -200,13 +177,17 @@ namespace MedicalManagement
             cnn.Open();
             SqlCommand comando = new SqlCommand("SP_Registro_Agenda", cnn);
             comando.CommandType = CommandType.StoredProcedure;
-
+            var overlap = checkOverlap();
+            if (overlap)
+            {
+                return;
+            }
             DateTime hoy = DateTime.Now;
             fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
             DateTime fecha_actual1 = hoy;
             if (txtaltaagenda.Value != "")
             {
-                 fecha_actual1 = Convert.ToDateTime(txtaltaagenda.Value);
+                fecha_actual1 = Convert.ToDateTime(txtaltaagenda.Value);
             }
             bool validConsulta = false;
             if (Id_Agenda == 0)
@@ -225,6 +206,7 @@ namespace MedicalManagement
             DateTime fechaAgendaComienzo1 = Convert.ToDateTime(txtDiaComienzo.Value);
             //string fechaAgendaFinal = Convert.ToDateTime(DropDownAnioFinal.SelectedValue + "/" + DropDownMesFinal.SelectedValue + "/" + DropDownDiaFinal.SelectedValue+" "+DropDownHoraFinal.SelectedValue+":"+DropDownMinutoFinal.SelectedValue+" "+DropDowndiatardeFinal.SelectedValue).ToString("yyyy/MM/dd hh:mm tt");
             DateTime fechaAgendaFinal1 = Convert.ToDateTime(txtDiaFinal.Value);
+            fechaAgendaFinal1 = fechaAgendaComienzo1.Date + fechaAgendaFinal1.TimeOfDay;
             string prioridad = "";
 
             if (rbNormal.Checked == true)
@@ -239,14 +221,14 @@ namespace MedicalManagement
             comando.Parameters.AddWithValue("@Fecha_Agenda", fecha_actual1);
             comando.Parameters.AddWithValue("@Inicio_Agenda", fechaAgendaComienzo1);
             comando.Parameters.AddWithValue("@Fin_Agenda", fechaAgendaFinal1);
-            comando.Parameters.AddWithValue("@Id_FichaIdentificacion", Id_FichaIdentificacion);
+            comando.Parameters.AddWithValue("@Id_FichaIdentificacion", ddlUsuarios.SelectedItem.Value);
             comando.Parameters.AddWithValue("@Id_Categoria", ddlCategoria.SelectedValue);
             comando.Parameters.AddWithValue("@Descripcion_Agenda", txtdescripcionagenda.Text.Trim());
             comando.Parameters.AddWithValue("@Asunto_Agenda", txtasunto.Text.Trim());
             comando.Parameters.AddWithValue("@Prioridad_Agenda", prioridad);
             comando.Parameters.AddWithValue("@EstadoCitas_Agenda", DropDownEstadoCitas.SelectedValue);
             var oneConsulta = new Tabla_Registro_ConsultaDTO();
-            
+
 
             SqlDataReader reader = comando.ExecuteReader();
             reader.Read();
@@ -290,7 +272,7 @@ namespace MedicalManagement
             {
                 grabarConsulta();
             }
-            Response.Redirect("Agenda.aspx");
+            Response.Redirect("MenuInicial.aspx");
         }
 
         private void grabarConsulta()
@@ -298,7 +280,7 @@ namespace MedicalManagement
             string query = @"insert into Tabla_Registro_Consulta(Id_Agenda,Fecha_Consulta, Id_FichaIdentificacion)
   values((SELECT top 1 (Id_Agenda) FROM [Tabla_Registro_Agenda] ORDER BY Id_Agenda DESC), (SELECT top 1 (Fecha_Agenda) FROM [Tabla_Registro_Agenda] ORDER BY Id_Agenda DESC), @Id_FichaIdentificacion)";
             Tabla_Registro_ConsultaDTO oneCons = new Tabla_Registro_ConsultaDTO();
-            oneCons.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            oneCons.Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedItem.Value);
             oneCons.Fecha_Consulta = Convert.ToDateTime(txtaltaagenda.Value);
             Helpers h = new Helpers();
             h.ExecuteNonQueryParam(query, oneCons);
@@ -329,81 +311,7 @@ namespace MedicalManagement
 
         }
 
-        public void LlenarCmbDiaMesAnioHoraMinuto()
-        {
-            var listadia = new List<Int32>();
-            for (int i = 1; i <= 31; i++)
-            {
-                listadia.Add(i);
-
-            }
-            DropDownDiaComienzo.DataSource = listadia;
-            DropDownDiaComienzo.DataBind();
-
-            DropDownDiaFinal.DataSource = listadia;
-            DropDownDiaFinal.DataBind();
-
-            //var listames = new List<Int32>();
-            //for (int i = 1; i <= 12; i++)
-            //{
-            //    listames.Add(i);
-
-            //}
-            //DropDownMesComienzo.DataSource = listames;
-            //DropDownMesComienzo.DataBind();
-
-            //DropDownMesFinal.DataSource = listames;
-            //DropDownMesFinal.DataBind();
-
-            var listaanio = new List<Int32>();
-            for (int i = 1900; i <= 2100; i++)
-            {
-                listaanio.Add(i);
-
-            }
-            DropDownAnioComienzo.DataSource = listaanio;
-            DropDownAnioComienzo.DataBind();
-            DropDownAnioComienzo.SelectedValue = "2015";
-
-            DropDownAnioFinal.DataSource = listaanio;
-            DropDownAnioFinal.DataBind();
-            DropDownAnioFinal.SelectedValue = "2015";
-
-            var listahora = new List<Int32>();
-            for (int i = 1; i <= 12; i++)
-            {
-                listahora.Add(i);
-
-            }
-            DropDownHoraComienzo.DataSource = listahora;
-            DropDownHoraComienzo.DataBind();
-
-            DropDownHoraFinal.DataSource = listahora;
-            DropDownHoraFinal.DataBind();
-
-            var listaminuto = new List<string>();
-            string numero;
-            for (int i = 0; i <= 59; i++)
-            {
-                if (i < 10)
-                {
-                    numero = "0" + i;
-                    listaminuto.Add(numero);
-
-                }
-                else
-                {
-                    numero = i.ToString();
-                    listaminuto.Add(numero);
-                }
-            }
-            DropDownMinutoComienzo.DataSource = listaminuto;
-            DropDownMinutoComienzo.DataBind();
-
-            DropDownMinutoFinal.DataSource = listaminuto;
-            DropDownMinutoFinal.DataBind();
-        }
-
+      
         protected void rbNormal_CheckedChanged(object sender, EventArgs e)
         {
             if (rbNormal.Checked == true)
@@ -418,6 +326,29 @@ namespace MedicalManagement
             {
                 rbNormal.Checked = false;
             }
+        }
+
+        protected bool checkOverlap()
+        {
+            if (txtDiaFinal.Value == "" || txtDiaComienzo.Value == "") return true;
+            var lAgendas = AgendaDAO.GetAll();
+            var actual = new Tabla_Registro_AgendaDTO();
+            actual.Inicio_Agenda = Convert.ToDateTime(txtDiaComienzo.Value);
+            DateTime fechaAgendaFinal1 = Convert.ToDateTime(txtDiaFinal.Value);
+            actual.Fin_Agenda = actual.Inicio_Agenda.Date + fechaAgendaFinal1.TimeOfDay;
+            var tEndB = actual.Fin_Agenda;
+            var tStartB = actual.Inicio_Agenda;
+            foreach (var y in lAgendas)
+            {
+                var tStartA = y.Inicio_Agenda;
+                var tEndA = y.Fin_Agenda;
+                var overlap = tStartA < tEndB && tStartB < tEndA;
+                if (overlap)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
