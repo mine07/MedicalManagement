@@ -20,17 +20,21 @@ namespace MedicalManagement.Models.DTO
         public bool Estatus_Agenda { get; set; }
         public string InicioCita { get; set; }
         public string FinCita { get; set; }
-        public Tabla_Catalogo_FichaIdentificacionDTO UsuarioDTO { get; set; }
+        public Tabla_Catalogo_FichaIdentificacionDTO oneUsuario { get; set; }
         public string _estatus { get; set; }
     }
 
     public class AgendaDAO
     {
-        public List<Tabla_Registro_AgendaDTO> GetAll()
+        public static List<Tabla_Registro_AgendaDTO> GetAll()
         {
             string query = "select * from Tabla_Registro_Agenda";
             Helpers h = new Helpers();
             var lAgendas = h.GetAllParametized(query, new Tabla_Registro_AgendaDTO());
+            foreach (var y in lAgendas)
+            {
+                y.oneUsuario = FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO{Id_FichaIdentificacion = y.Id_FichaIdentificacion});
+            }
             return lAgendas;
         }
 

@@ -13,33 +13,6 @@ namespace MedicalManagement {
     public partial class RegistroAgenda {
         
         /// <summary>
-        /// ImageGrabar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageGrabar;
-        
-        /// <summary>
-        /// ImageRegresar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageRegresar;
-        
-        /// <summary>
-        /// Alerta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell Alerta;
-        
-        /// <summary>
         /// txtidfichaidentificacion control.
         /// </summary>
         /// <remarks>

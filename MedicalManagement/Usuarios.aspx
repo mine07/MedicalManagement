@@ -4,9 +4,9 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <font color="red">Configuración\Usuarios</font>
-
-<table width="100%" border="1">
+    <h3>Usuarios</h3>
+    <hr />
+<table width="100%">
     <tr><td>
 
     <table width="100%">
@@ -23,7 +23,7 @@
  <asp:GridView ID="Grid_Usuarios" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Usuarios_PageIndexChanging" AllowPaging ="False"
-        onpageindexchanged="Grid_Usuarios_PageIndexChanged" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
+        onpageindexchanged="Grid_Usuarios_PageIndexChanged" CssClass="table table-hover table-responsive" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
     
         <Columns>
 
@@ -56,5 +56,5 @@
             </td></tr>
     </table>
     </td></tr>
-
+    </table>
 </asp:Content>

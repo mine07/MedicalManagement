@@ -80,6 +80,7 @@ namespace MedicalManagement
         public void loadSelected()
         {
             var lTemporal = (List<AnalisisClinicoDTO>)Session["lAnalisis"];
+            lTemporal = lTemporal.GroupBy(x => x.Id_AnalisisClinico).Select(y=> y.First()).ToList();
             rptSeleccionados.DataSource = lTemporal;
             rptSeleccionados.DataBind();
         }
@@ -91,6 +92,39 @@ namespace MedicalManagement
             lTemporal = lTemporal.Where(x => x.Id_AnalisisClinico != id).ToList();
             Session["lAnalisis"] = lTemporal;
             loadSelected();
+        }
+
+        protected void addToUpdatePaquete(object sender, RepeaterItemEventArgs e)
+        {
+            ScriptManager scriptMan = ScriptManager.GetCurrent(this);
+            LinkButton btn = e.Item.FindControl("btnAdd") as LinkButton;
+            if (btn != null)
+            {
+                btn.Click += addTemporalPaquete;
+                scriptMan.RegisterAsyncPostBackControl(btn);
+            }
+        }
+
+        protected void addToUpdateDiag(object sender, RepeaterItemEventArgs e)
+        {
+            ScriptManager scriptMan = ScriptManager.GetCurrent(this);
+            LinkButton btn = e.Item.FindControl("btnAdd") as LinkButton;
+            if (btn != null)
+            {
+                btn.Click += addTemporal;
+                scriptMan.RegisterAsyncPostBackControl(btn);
+            }
+        }
+
+        protected void addToUpdateRemove(object sender, RepeaterItemEventArgs e)
+        {
+            ScriptManager scriptMan = ScriptManager.GetCurrent(this);
+            LinkButton btn = e.Item.FindControl("btnAdd") as LinkButton;
+            if (btn != null)
+            {
+                btn.Click += removeSelected;
+                scriptMan.RegisterAsyncPostBackControl(btn);
+            }
         }
     }
 }

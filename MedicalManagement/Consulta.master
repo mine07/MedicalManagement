@@ -1,0 +1,274 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Consulta.master.cs" Inherits="MedicalManagement.Consulta" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ContentPlaceHolder runat="server" ID="Header" />
+    <asp:ScriptManager runat="Server" />
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="container-fluid gray-border border-top1-bottom5 no-vertical-padding">
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 col-sm-4 col-lg-4 left-panel">
+                        <hr class="blue-hr" />
+                        <div class=" text-center">
+                            <label class="label-primary label">
+                                <i class="fa fa-user fa-margin-right"></i>
+                                <asp:Label ID="lblNombre" runat="server" Text=""></asp:Label></label>
+                        </div>
+                        <hr class="blue-hr" />
+                        <div class="hidden">
+                            <asp:GridView ID="GridViewFecha" runat="server" AutoGenerateColumns="false">
+                                <Columns>
+                                    <asp:BoundField DataField="Id_Consulta" HeaderText="Id.Consulta"
+                                        SortExpression="Id_Consulta" />
+                                    <asp:BoundField DataField="Fecha_Consulta" HeaderText="Fecha de Consultas"
+                                        SortExpression="Fecha_Consulta" />
+                                </Columns>
+
+                            </asp:GridView>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
+                                    <h5>Antecedentes</h5>
+                                    <asp:TextBox placeholder="Sin Antecedentes..." ID="txtantecedentes" CssClass="form-control" runat="server" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                                </div>
+                                <br />
+                                <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
+                                    <h5>Notas Relevantes</h5>
+                                    <asp:TextBox placeholder="Sin Notas Relevantes..." ID="txtnotasrelevantes" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                                </div>
+                                <div class="col-xs-12 col-md-12 col-lg-12 text-right h5">
+                                    <asp:Button ID="btnantecedentes" runat="server" Text=""
+                                        OnClick="btnantecedentes_Click" CssClass="btn btn-primary" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div>
+                        </div>
+                        <div class="hidden">
+                            <div>
+                                <asp:LinkButton ID="LinkNotaClinica" runat="server" CssClass="label label-secondary"
+                                    OnClick="LinkNotaClinica_Click">Nota Clinica</asp:LinkButton>
+                            </div>
+                            <div>
+                                <asp:LinkButton ID="LinkReceta" runat="server" OnClick="LinkReceta_Click" CssClass="label label-secondary"
+                                    Visible="False">Receta Medica</asp:LinkButton>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div>
+                            <h5>Diagnosticos Activos</h5>
+                            <div class="white-container">
+
+                                <asp:Repeater ID="rptActivos" runat="server" >
+                                    <ItemTemplate>
+                                        <hr />
+                                        <i onclick="removeDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-remove fa-1x pull-right remove-icon"></i>
+                                        <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
+                                        <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </div>
+                        <hr />
+                        <div>
+                            <h5>Diagnosticos Inactivas</h5>
+                            <div class="white-container">
+                                <asp:Repeater ID="rptInactivos" runat="server">
+                                    <ItemTemplate>
+                                        <hr />
+                                        <i onclick="AddDiagnostico(<%#Eval("Id_ConsultaDiagnostico") %>)" class="fa fa-check fa-1x pull-right remove-icon"></i>
+                                        <label class="small-label"><%# Eval("Descripcion_Diagnostico") %></label>
+                                        <label class="small-label"><%# Eval("Fecha_ConsultaDiagnostico") %></label>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </div>
+                        <hr />
+                        <div>
+                            <h5>Procedimientos</h5>
+                            <asp:Repeater ID="rptProcedimientos" runat="server">
+                                <ItemTemplate>
+                                    <div class="border-top1-bottom5">
+                                        <label class="small-label"><%# Eval("Descripcion_Procedimiento") %></label>
+                                        <label class="small-label"><%# Eval("Fecha_ConsultaProcedimiento") %></label>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </div>
+                        <hr />
+                        <div>
+                            <h5>Analisis Clinico<a href='<%= "Consulta_AnalisisClinico.aspx?Id_Paciente="+ Id_FichaIdentificacion %>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>
+                            <hr />
+                        </div>
+                        <div>
+                            <h5>Archivos Adjuntos</h5>
+                            <div class="container-fluid white-container">
+                                <asp:Repeater runat="server" ID="rptFiles">
+                                    <ItemTemplate>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <a href='<%# Eval("Download") %>' target="_blank" class="label-button" download>
+                                                    <i class="fa-margin-right fa fa-file"></i>
+                                                    <label class="packet-name"><%# Eval("Nombre")%></label>
+                                                </a>
+                                                <hr />
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                            <asp:FileUpload ID="fleUpload" runat="server" CssClass="form-control padding" />
+
+                            <hr />
+                            <asp:LinkButton OnClick="upload" runat="server" Text='<label class="label pull-right label-success padding">Subir<i class="fa-margin-left fa fa-upload"></i></label>' />
+                        </div>
+                        <div class="hidden">
+                            <asp:GridView ID="GridViewDiagnosticosActivos" runat="server"
+                                AutoGenerateColumns="False">
+                                <Columns>
+
+                                    <asp:BoundField DataField="Id_Diagnostico" HeaderText="Id.Diagnostico"
+                                        SortExpression="Id_Diagnostico" />
+
+                                    <asp:BoundField DataField="Descripcion_Diagnostico" HeaderText="Activo              "
+                                        SortExpression="Descripcion_Diagnostico" />
+
+                                    <asp:BoundField DataField="Estatus_ConsultaDiagnostico" HeaderText="Estatus.ConsultaDiagnostico"
+                                        SortExpression="Estatus_ConsultaDiagnostico" />
+
+                                    <asp:BoundField DataField="Fecha_ConsultaDiagnostico" HeaderText="Fecha"
+                                        SortExpression="Fecha_Diagnostico" />
+
+
+
+                                    <asp:TemplateField HeaderText="Elegir">
+                                        <HeaderTemplate>
+                                            Elegir
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:CheckBox ID="CheckBoxelegir" runat="server" OnCheckedChanged="CheckBoxactivo_CheckedChanged" AutoPostBack="true" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+
+
+                        <div class="hidden">
+                            <asp:GridView ID="GridViewDiagnosticosInactivos" runat="server" AutoGenerateColumns="False">
+                                <Columns>
+
+                                    <asp:BoundField DataField="Id_Diagnostico" HeaderText="Id.Diagnostico"
+                                        SortExpression="Id_Diagnostico" />
+
+                                    <asp:BoundField DataField="Descripcion_Diagnostico" HeaderText="Inactivo            "
+                                        SortExpression="Descripcion_Diagnostico" />
+
+                                    <asp:BoundField DataField="Estatus_ConsultaDiagnostico" HeaderText="Estatus.ConsultaDiagnostico"
+                                        SortExpression="Estatus_ConsultaDiagnostico" />
+
+                                    <asp:BoundField DataField="Fecha_ConsultaDiagnostico" HeaderText="Fecha"
+                                        SortExpression="Fecha_Diagnostico0" />
+
+                                    <asp:TemplateField HeaderText="Elegir">
+                                        <HeaderTemplate>
+                                            Elegir
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:CheckBox ID="CheckBoxelegir" runat="server" OnCheckedChanged="CheckBoxinactivo_CheckedChanged" AutoPostBack="true" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                </Columns>
+
+                            </asp:GridView>
+                        </div>
+
+                        <div class="hidden">
+                            <asp:GridView ID="GridViewProcedimientos" runat="server" AutoGenerateColumns="false">
+                                <Columns>
+
+                                    <asp:BoundField DataField="Id_Procedimiento" HeaderText="Id.Procedimiento"
+                                        SortExpression="Id_Procedimiento" />
+
+                                    <asp:BoundField DataField="Descripcion_Procedimiento" HeaderText="Procedimiento"
+                                        SortExpression="Descripcion_Procedimiento" />
+
+                                    <asp:BoundField DataField="Fecha_ConsultaProcedimiento" HeaderText="Fecha Procedimientos"
+                                        SortExpression="Fecha_ConsultaProcedimiento" />
+                                </Columns>
+
+                            </asp:GridView>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8 padding">
+                        <asp:ContentPlaceHolder runat="server" ID="rightSide" />
+                    </div>
+                </div>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <script>
+        $("#accordion").accordion({
+            collapsible: true,
+            heightStyle: "content"
+        });
+
+
+        $(document).ready(function () {
+            $(".combobox").combobox();
+        });
+
+
+        function removeDiagnostico(Id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "GetDates.asmx/RemoveActive",
+                data: JSON.stringify({ 'Id_Diagnostico': Id }),
+                success: success,
+                error: error,
+                dataType: "json"
+            });
+        }
+
+        function AddDiagnostico(Id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "GetDates.asmx/RemoveInActive",
+                data: JSON.stringify({ 'Id_Diagnostico': Id }),
+                success: success,
+                error: error,
+                dataType: "json"
+            });
+        }
+
+        function success() {
+            location.reload();
+        }
+
+        function error() {
+            alert("A ocurrido un error, favor de volver a intentarlo.");
+            location.reload();
+        }
+    </script>
+    <style>
+        textarea {
+            resize: none;
+            margin-bottom: 5px;
+        }
+
+        .padding {
+            margin: 5px 0;
+        }
+    </style>
+</asp:Content>

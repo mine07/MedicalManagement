@@ -674,3 +674,7 @@ input[readonly] {
         opacity: 1;
     }
 
+    .border-top1-bottom5 .border-top1-bottom5 {
+        box-shadow: 3px 3px 0px #c8c8c8;
+    }
+

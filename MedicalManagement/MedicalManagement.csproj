@@ -218,6 +218,7 @@
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\jqota2.js" />
     <Content Include="Scripts\jquery-1.8.3.js" />
+    <Content Include="Consulta.master" />
     <None Include="Properties\PublishProfiles\cesarMedical.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -503,6 +504,13 @@
     </Compile>
     <Compile Include="ConceptoPago.aspx.designer.cs">
       <DependentUpon>ConceptoPago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consulta.master.cs">
+      <DependentUpon>Consulta.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Consulta.master.designer.cs">
+      <DependentUpon>Consulta.master</DependentUpon>
     </Compile>
     <Compile Include="ConsultaAnalisisClinico.aspx.cs">
       <DependentUpon>ConsultaAnalisisClinico.aspx</DependentUpon>

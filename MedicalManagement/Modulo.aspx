@@ -2,6 +2,8 @@
 
 <asp:Content runat="Server" ContentPlaceHolderID="MainContent">
     <asp:ScriptManager runat="server"/>
+    <h3>Modulo</h3>
+    <hr />
     <asp:UpdatePanel runat="server">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnNew"/>

@@ -4,22 +4,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table width="100%" border="0">
-        <tr>
-            <td align="left"><font color="red">Configuración\Agenda\Agregar</font></td>
-            <td align="right">
-                <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png" ToolTip="Grabar EstadoCivil" OnClick="btnGuardar_FichaIdentificacion_Click"></asp:ImageButton>&nbsp;
-        <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png" ToolTip="Regresar" OnClick="btnRegresar_FichaIdentificacion_Click"></asp:ImageButton>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2" align="center" runat="Server" id="Alerta"></td>
-        </tr>
-    </table>
-
-    <table>
-    </table>
+    <h3>Nueva Cita</h3>
+    <hr />
     <div class="container-fluid">
         <div class="row hidden">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
@@ -44,7 +30,7 @@
                 Paciente
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <asp:DropDownList runat="Server" CssClass="combobox form-control" Id="ddlUsuarios" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion"/>
+                <asp:DropDownList runat="Server" CssClass="combobox form-control" ID="ddlUsuarios" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" />
             </div>
         </div>
         <div class="row">
@@ -115,6 +101,7 @@
 
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 <input id="txtDiaComienzo" type="text" class="datePicker form-control" runat="server" />
+
                 <div class="hidden">
                     <asp:DropDownList ID="DropDownDiaComienzo" runat="server">
                     </asp:DropDownList>
@@ -155,33 +142,33 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                Finalizacion:
+                Finalización:
             </div>
 
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <input id="txtDiaFinal" type="text" class="datePicker form-control" runat="server" />
+                <input id="txtDiaFinal" type="text" class="datePickerTime form-control" runat="server" />
                 <div class="hidden">
-                <asp:DropDownList ID="DropDownDiaFinal" runat="server">
-                </asp:DropDownList>
+                    <asp:DropDownList ID="DropDownDiaFinal" runat="server">
+                    </asp:DropDownList>
 
-                <asp:DropDownList ID="DropDownMesFinal" runat="server">
-                    <asp:ListItem>Enero</asp:ListItem>
-                    <asp:ListItem>Febrero</asp:ListItem>
-                    <asp:ListItem>Marzo</asp:ListItem>
-                    <asp:ListItem>Abril</asp:ListItem>
-                    <asp:ListItem>Mayo</asp:ListItem>
-                    <asp:ListItem>Junio</asp:ListItem>
-                    <asp:ListItem>Julio</asp:ListItem>
-                    <asp:ListItem>Agosto</asp:ListItem>
-                    <asp:ListItem>Septiembre</asp:ListItem>
-                    <asp:ListItem>Octubre</asp:ListItem>
-                    <asp:ListItem>Noviembre</asp:ListItem>
-                    <asp:ListItem>Diciembre</asp:ListItem>
-                </asp:DropDownList>
+                    <asp:DropDownList ID="DropDownMesFinal" runat="server">
+                        <asp:ListItem>Enero</asp:ListItem>
+                        <asp:ListItem>Febrero</asp:ListItem>
+                        <asp:ListItem>Marzo</asp:ListItem>
+                        <asp:ListItem>Abril</asp:ListItem>
+                        <asp:ListItem>Mayo</asp:ListItem>
+                        <asp:ListItem>Junio</asp:ListItem>
+                        <asp:ListItem>Julio</asp:ListItem>
+                        <asp:ListItem>Agosto</asp:ListItem>
+                        <asp:ListItem>Septiembre</asp:ListItem>
+                        <asp:ListItem>Octubre</asp:ListItem>
+                        <asp:ListItem>Noviembre</asp:ListItem>
+                        <asp:ListItem>Diciembre</asp:ListItem>
+                    </asp:DropDownList>
 
-                <asp:DropDownList ID="DropDownAnioFinal" runat="server">
-                </asp:DropDownList>
-                    </div>
+                    <asp:DropDownList ID="DropDownAnioFinal" runat="server">
+                    </asp:DropDownList>
+                </div>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 hidden">
                 <asp:DropDownList ID="DropDownHoraFinal" runat="server">
@@ -199,11 +186,15 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                Descripcion
+                Descripción
             </div>
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
                 <asp:TextBox CssClass="form-control" ID="txtdescripcionagenda" runat="server" Width="100%" TextMode="multiline"></asp:TextBox>
             </div>
+        </div>
+        <div class="row">
+            <hr />
+            <asp:LinkButton runat="Server" Text='<label class="label label-success label-button">Guardar<i class="fa fa-save fa-margin-left"></i></label>' OnClick="GrabarAgenda"/>
         </div>
     </div>
     <style>
@@ -219,12 +210,17 @@
         }
     </style>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             console.log(jQuery('.datePicker').val());
             $(".combobox").combobox();
         });
         jQuery('.datePicker').datetimepicker({
             format: 'd/m/Y H:i'
+        });
+
+        jQuery('.datePickerTime').datetimepicker({
+            datepicker: false,
+            format: 'H:i'
         });
     </script>
 </asp:Content>

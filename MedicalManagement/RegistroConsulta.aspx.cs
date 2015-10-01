@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 using MedicalManagement.Models.DTO;
 
 namespace MedicalManagement
@@ -61,8 +62,6 @@ namespace MedicalManagement
                         txtSearch.Text = reader.IsDBNull(reader.GetOrdinal("Diagnostico_Consulta")) ? "" : reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim();
                         txtanalisis.Text = reader.IsDBNull(reader.GetOrdinal("Analisis_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
                         txtplan.Text = reader.IsDBNull(reader.GetOrdinal("Plan_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
-                        LinkDiagnostico.Visible = true;
-                        LinkProcedimiento.Visible = true;
                         Session["Fechaconsulta"] = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                     }
                 }
@@ -75,7 +74,6 @@ namespace MedicalManagement
                     Session["Fechaconsulta"] = fecha_actual;
                 }
                 cnn.Close();
-                
             }
         }
 
@@ -144,20 +142,6 @@ namespace MedicalManagement
             objsqlcommand.ExecuteNonQuery();
             cnn.Close();
         }
-
-        //protected void btnreceta_Click(object sender, EventArgs e)
-        //{
-        //    Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
-
-        //    Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "");
-        //    //Response.Redirect("ConsultaReceta.aspx?Id_Consulta=" + Id_Consulta + "");
-        //}
-
-        //protected void btnanalisis_Click(object sender, EventArgs e)
-        //{
-        //    Id_Consulta = Convert.ToInt32(Session["Id_Consultas"]);
-        //    Response.Redirect("ConsultaAnalisisClinico.aspx?Id_Consulta=" + Id_Consulta + " &Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "");
-        //}
 
         protected void btnSave(object sender, EventArgs e)
         {

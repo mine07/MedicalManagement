@@ -5,7 +5,7 @@
 <head id="Head1" runat="server">
     <title></title>
     <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
-    <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"    ></script>
+    <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
     <link href="~/Styles/jquery-ui-1.9.2.custom.css" rel="stylesheet" type="text/css" />
     <script src="Scripts/bootstrap.js" type="text/javascript"></script>
@@ -18,7 +18,7 @@
     <script src="Scripts/responsive-calendar.js" type="text/javascript"></script>
     <link href="Styles/responsive-calendar.css" rel="Stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-    
+
     <script src="Scripts/jqota2.js" type="text/javascript"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,8 +67,7 @@
                         <li class="message-preview">
                             <a href="#">
                                 <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    <span class="pull-left">                                        
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading"><strong>Mensajes</strong>
@@ -84,8 +83,29 @@
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs">Proximas Consultas</span><i class=" fa-margin-left fa fa-bell"></i><b class="caret"></b></a>
+                <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs">Hoy</span><i class=" fa-margin-left fa fa-bell"></i><b class="caret"></b><span class="badge badge-calendar fa-margin-left" runat="server" id="bdgHoy"></span></a>
+                    <ul class="dropdown-menu message-dropdown no-radius custom-scroll">
+                        <asp:Repeater runat="server" ID="rptProximas">
+                            <ItemTemplate>
+                                <li class="message-preview">
+                            <a href='<%# "ConsultaMenu.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + Eval("oneUsuario._NombreCompleto")%>'>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong><%# Eval("oneUsuario._NombreCompleto") %></strong></h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o fa-margin-right"></i><%# "De " + Eval("Inicio_Agenda",  "{0:HH:mm}") + " a " + Eval("Fin_Agenda",  "{0:HH:mm}") %></p>
+                                        <p  class="small text-muted"><%# Eval("EstadoCitas_Agenda") %> </p>
+                                        <p><%# Eval("Descripcion_Agenda") %></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                         <li class="message-footer text-right">
+                            <a href="RegistroAgenda.Aspx">Nueva Consulta<i class="fa fa-calendar-plus-o fa-margin-left"></i></a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-margin-right"></i><asp:Label runat="server" ID="lblUsuario"></asp:Label><b class="caret"></b></a>
@@ -122,7 +142,7 @@
                     </li>
                     <li class="li-main">
                         <a href="javascript:;" data-toggle="collapse" data-target="#ddOperaciones" class="dropdown-title"><i class="fa fa-fw fa-medkit"></i> Operaciones</a>
-                        <ul id="ddOperaciones" class="collapse in">
+                        <ul id="ddOperaciones" class="collapse">
                             <li class="divider"></li>
                             <li>
                                 <a href="FichaIdentificacion.aspx"><i class="fa fa-fw fa-user"></i> Pacientes</a>
@@ -132,6 +152,27 @@
                             </li>
                             <li>
                                 <a href="Pagos.Aspx"><i class="fa fa-fw fa-money"></i> Pagos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="li-main">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ddOperacionesSist" class="dropdown-title"><i class="fa fa-fw fa-cog"></i> Operaciones del Sistema</a>
+                        <ul id="ddOperacionesSist" class="collapse">
+                            <li class="divider"></li>
+                            <li>
+                                <a href="Perfles.aspx"><i class="fa fa-fw fa-users"></i> Perfiles</a>
+                            </li>
+                            <li>
+                                <a href="PermisosPorPerfil.Aspx"><i class="fa fa-fw fa-user-secret"></i> Permisos</a>
+                            </li>
+                            <li>
+                                <a href="Usuarios.Aspx"><i class="fa fa-fw fa-user-plus"></i> Usuarios</a>
+                            </li>
+                            <li>
+                                <a href="Modulo.Aspx"><i class="fa fa-fw fa-cubes"></i> Modulos</a>
+                            </li>
+                            <li>
+                                <a href="Sucursales.Aspx"><i class="fa fa-fw fa-building"></i> Sucursales</a>
                             </li>
                         </ul>
                     </li>
@@ -200,7 +241,7 @@
                     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
                 </div>
                 <!-- /.container-fluid -->
-               
+
             </div>
             <!-- /#page-wrapper -->
 
@@ -217,7 +258,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12">
-                    <hr />
+                    <hr class="ftr" />
                 </div>
                 <div class="col-xs-12 text-right">
                     <label class="h6">©Footer</label>
@@ -235,8 +276,22 @@
     });
 </script>
 <style>
+    .ftr:after {
+        content: "Hola";
+        text-align: right;
+    }
+
     body {
         background-color: white;
+    }
+
+    .badge-calendar {
+        background: WHITE;
+        color: #1d86c8;
+        border-radius: 0px;
+        font-size: 9px;
+        border-bottom-left-radius: 4px;
+        padding: 3px 5px;
     }
 </style>
 

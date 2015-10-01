@@ -2,6 +2,8 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <asp:ScriptManager runat="server" />
+    <h3>Permisos</h3>
+    <hr />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <div class="container-fluid border-top1-bottom5 gray-border no-radius no-vertical-padding">

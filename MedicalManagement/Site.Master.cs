@@ -20,6 +20,7 @@ namespace MedicalManagement
             {
                 lblUsuario.Text = Convert.ToString(Session["NombreUsuario"]);
                 checkPermission();
+                loadToday();
             }
         }
 
@@ -87,5 +88,17 @@ namespace MedicalManagement
             Response.Redirect("login.aspx");
             Session["Perfil"] = null;
         }
+
+        public void loadToday()
+        {
+            var lAgenda = AgendaDAO.GetAll();
+            DateTime hoy = DateTime.Now;
+            lAgenda = lAgenda.Where(x => x.Inicio_Agenda.Date == hoy.Date).ToList();
+            bdgHoy.InnerText = lAgenda.Count.ToString();
+            rptProximas.DataSource = lAgenda;
+            rptProximas.DataBind();
+        }
+
+
     }
 }
