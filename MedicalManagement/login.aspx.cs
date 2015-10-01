@@ -67,6 +67,7 @@ namespace MedicalManagement
             else
             {
                 Response.Redirect("MenuInicial.aspx");
+
             }                    
                                               
             
