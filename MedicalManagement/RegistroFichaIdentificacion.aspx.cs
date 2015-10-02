@@ -137,6 +137,7 @@ namespace MedicalManagement
                         txtNuExtIdent.Text = reader.GetString(reader.GetOrdinal("Direccion_NoExt_FichaIdentificacion")).Trim();
                         txtColoIdent.Text = reader.GetString(reader.GetOrdinal("Direccion_Colonia_FichaIdentificacion")).Trim();
                         txtMuniIdent.Text = reader.GetString(reader.GetOrdinal("Direccion_Municipio_FichaIdentificacion")).Trim();
+                        txtEstIdent.Text = reader.GetString(reader.GetOrdinal("Direccion_Estado_FichaIdentificacion")).Trim();
                         txtPaisIdent.Text = reader.GetString(reader.GetOrdinal("Direccion_Pais_FichaIdentificacion")).Trim();
                         txtCoPosIdent.Text = reader.GetString(reader.GetOrdinal("Direccion_CP_FichaIdentificacion")).Trim();
 
@@ -398,6 +399,7 @@ namespace MedicalManagement
             comando.Parameters.AddWithValue("@Direccion_NoExt_FichaIdentificacion", txtNuExtIdent.Text.Trim());
             comando.Parameters.AddWithValue("@Direccion_Colonia_FichaIdentificacion", txtColoIdent.Text.Trim());
             comando.Parameters.AddWithValue("@Direccion_Municipio_FichaIdentificacion", txtMuniIdent.Text.Trim());
+            comando.Parameters.AddWithValue("@Direccion_Estado_FichaIdentificacion", txtEstIdent.Text.Trim());
             comando.Parameters.AddWithValue("@Direccion_Pais_FichaIdentificacion", txtPaisIdent.Text.Trim());
             comando.Parameters.AddWithValue("@Direccion_CP_FichaIdentificacion", txtCoPosIdent.Text.Trim());
 

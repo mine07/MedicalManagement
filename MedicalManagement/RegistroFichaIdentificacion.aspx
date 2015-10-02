@@ -9,8 +9,13 @@
         <tr>
             <td align="left"><font color="red">Configuración\FichaIdentificacion\Agregar</font></td>
             <td align="right">
-                <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png" ToolTip="Grabar EstadoCivil" OnClick="btnGuardar_FichaIdentificacion_Click"></asp:ImageButton>&nbsp;
-        <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png" ToolTip="Regresar" OnClick="btnRegresar_FichaIdentificacion_Click"></asp:ImageButton>
+
+               <!-- <label class="pull-right label label-success label-button" style="font-size: 16px;" OnClick="btnGuardar_FichaIdentificacion_Click">Guardar<i class="fa fa-margin-left fa-save"></i></label> -->
+                <asp:LinkButton runat="server" ID="Guardar" OnClick="btnGuardar_FichaIdentificacion_Click" Text='<label class="pull-right label label-success label-button" style="font-size: 16px;" runat="server">Guardar <i class="fa fa-margin-left fa-save"></i></label>'/>
+                <a href='<%= "javascript:history.back(-1);" %>'><label class="pull-right label label-primary label-button" style="font-size: 16px;">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a><br><br>
+                
+                <!-- <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png" ToolTip="Grabar EstadoCivil" OnClick="btnGuardar_FichaIdentificacion_Click"></asp:ImageButton>&nbsp;
+                <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png" ToolTip="Regresar" OnClick="btnRegresar_FichaIdentificacion_Click"></asp:ImageButton> -->
             </td>
         </tr>
 
@@ -21,11 +26,12 @@
 
 
     <div class="container-fluid">
+        
         <div class="row">
             <div class="col-xs-12 col-lg-6 col-sm-6 col-md-6">
                 <div class="container-fluid">
                     <div class="row">
-
+                        <br><br><br>
                         <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">
                             <label>Clave Identificacion </label>
                         </div>
@@ -225,6 +231,15 @@
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <asp:TextBox CssClass="form-control" ID="txtMuniIdent" runat="server" Columns="25"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <label>Estado</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <asp:TextBox CssClass="form-control" ID="txtEstIdent" runat="server" Columns="25"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">

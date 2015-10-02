@@ -118,7 +118,7 @@
                         <div class="form-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-								<asp:LinkButton runat="server" ID="BtnEntrar" OnClick="btnEntrar_Click" Text='<label class="btn btn-primary pull-right" runat="server">Entrar <i class="glyphicon glyphicon-log-in"></i></label>'/> 
+							<asp:LinkButton runat="server" ID="BtnEntrar" OnClick="btnEntrar_Click" Text='<label class="btn btn-primary pull-right" runat="server">Entrar <i class="glyphicon glyphicon-log-in"></i></label>'/><a href='<%= "javascript:history.back(-1);" %>'></a>
                             </div>
                         </div>
 
