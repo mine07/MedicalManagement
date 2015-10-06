@@ -13,24 +13,6 @@ namespace prototipo {
     public partial class RegistroUsuarios {
         
         /// <summary>
-        /// Control ImageGrabar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageGrabar;
-        
-        /// <summary>
-        /// Control ImageRegresar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageRegresar;
-        
-        /// <summary>
         /// Control Guardar.
         /// </summary>
         /// <remarks>

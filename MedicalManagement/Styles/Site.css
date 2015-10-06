@@ -529,7 +529,7 @@ input[readonly] {
 
 .fa-margin-left {
     margin-left: 10px;
-}
+} 
 
 .left-panel .white-container {
     background-color: white;
@@ -678,3 +678,10 @@ input[readonly] {
         box-shadow: 3px 3px 0px #c8c8c8;
     }
 
+.blah
+        {
+                max-width: 200px;
+                max-height: 140px;
+                width: auto;
+                height: auto;
+        }

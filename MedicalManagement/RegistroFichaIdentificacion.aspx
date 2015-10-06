@@ -5,18 +5,21 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="Scripts\imagen.js">
+
+    <script type="text/javascript" src="Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="Scripts/imagen.js"></script>
+
     <table width="100%" border="0">
         <tr>
             <td align="left"><font color="red">Configuración\FichaIdentificacion\Agregar</font></td>
             <td align="right">
-
-               <!-- <label class="pull-right label label-success label-button" style="font-size: 16px;" OnClick="btnGuardar_FichaIdentificacion_Click">Guardar<i class="fa fa-margin-left fa-save"></i></label> -->
-                <asp:LinkButton runat="server" ID="Guardar" OnClick="btnGuardar_FichaIdentificacion_Click" Text='<label class="pull-right label label-success label-button" style="font-size: 16px;" runat="server">Guardar <i class="fa fa-margin-left fa-save"></i></label>'/>
-                <a href='<%= "javascript:history.back(-1);" %>'><label class="pull-right label label-primary label-button" style="font-size: 16px;">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a><br><br>
-                
-                <!-- <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png" ToolTip="Grabar EstadoCivil" OnClick="btnGuardar_FichaIdentificacion_Click"></asp:ImageButton>&nbsp;
-                <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png" ToolTip="Regresar" OnClick="btnRegresar_FichaIdentificacion_Click"></asp:ImageButton> -->
+                <asp:LinkButton runat="server" ID="Guardar" OnClick="btnGuardar_FichaIdentificacion_Click" Text='<label class="pull-right label label-success label-button" style="font-size: 16px;" runat="server">Guardar <i class="fa fa-margin-left fa-save"></i></label>'/>              
             </td>
+            <td width="9%" align="left">
+                <a href='<%= "javascript:history.back(-1);" %>'><label class="pull-right label label-primary label-button" style="font-size: 16px;">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
+                </td>
         </tr>
 
         <tr>
@@ -119,7 +122,7 @@
                             <asp:Label ID="Alerta2" runat="server" Text=""></asp:Label>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
-                            <asp:Image ID="Image1" runat="server" Width="80px" Height="90px" align="MIDDLE" />
+                           <asp:Image ID="Image1" runat="server" Width="80px" Height="90px" align="MIDDLE" CssClass="blah" />
                         </div>
                     </div>
 
@@ -128,8 +131,8 @@
                         <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
                             <label>Cargar Foto</label>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
-                            <asp:FileUpload CssClass="btn btn-default file" ID="FileUpload1" runat="server" />
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">               
+                            <asp:FileUpload CssClass="btn btn-default file" ID="FileUpload1" runat="server" onchange="readURL(this)"  />
                         </div>
                     </div>
 
@@ -364,8 +367,8 @@
         </div>
     </div>
     <script type="text/javascript">
-
-        jQuery('.datePicker').datetimepicker({
+  
+            jQuery('.datePicker').datetimepicker({
             timepicker: false,
             format: 'd-m-Y'
         });

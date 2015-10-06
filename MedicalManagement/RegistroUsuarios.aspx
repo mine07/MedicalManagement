@@ -7,14 +7,13 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
 
 <table width="100%" border="0"><tr><td align="left"><font color="red">Configuración\Usuarios\Agregar</font></td>
-<td align="right">
-<!-- <asp:ImageButton ID="ImageGrabar" runat="Server" ImageUrl="IMG/Grabar.png"  ToolTip = "Grabar Usuario" onclick="btnGuardar_Usuario_Click"></asp:ImageButton>&nbsp;
-<asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_Usuario_Click"></asp:ImageButton>-->
-
-    <asp:LinkButton runat="server" ID="Guardar" OnClick="btnGuardar_Usuario_Click" Text='<label class="pull-right label label-success label-button" style="font-size: 16px;" runat="server">Guardar <i class="fa fa-margin-left fa-save"></i></label>'/>
-    <a href='<%= "javascript:history.back(-1);" %>'><label class="pull-right label label-primary label-button" style="font-size: 16px;">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a><br><br>
-
-</td>
+    <td align="right">
+        <asp:LinkButton runat="server" ID="Guardar" OnClick="btnGuardar_Usuario_Click" Text='<label class="pull-right label label-success label-button" style="font-size: 16px;" runat="server">Guardar <i class="fa fa-margin-left fa-save"></i></label>'/>
+    </td>
+    
+    <td width="9%" align="left">
+        <a href='<%= "javascript:history.back(-1);" %>'><label class="pull-right label label-primary label-button" style="font-size: 16px;">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
+    </td>
 </tr>
 <tr>
     <td colspan="2" align ="center" runat="Server" id="Alerta">

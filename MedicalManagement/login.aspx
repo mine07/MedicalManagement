@@ -72,16 +72,8 @@
                 proximity: 100, // How close two dots need to be before they join
                 parallax: false
             });
-
-<<<<<<< HEAD
 });</script>
 
-=======
-        });
-    </script>
-</head>
-<body>
->>>>>>> de0bbd7da324274d6f110fb830e5578252e93683
     <div class="container">
 
         <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
