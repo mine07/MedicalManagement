@@ -272,6 +272,20 @@ namespace MedicalManagement.Models
             cmd.ExecuteNonQuery();
         }
 
+        public DataTable GetData(SqlCommand cmd)
+        {
+
+            DataTable dt = new DataTable();
+
+            SqlDataAdapter sda = new SqlDataAdapter();
+            cmd.Connection = Koenigsegg;
+            Koenigsegg.Open();
+            sda.SelectCommand = cmd;
+            sda.Fill(dt);
+            Koenigsegg.Close();
+            return dt;
+
+        }
 
         public void bulkinsertPagos(DataTable DTPagos) {
             Koenigsegg.Open();
@@ -280,7 +294,6 @@ namespace MedicalManagement.Models
             //assigning Destination table name
             objbulk.DestinationTableName = "facturas";
             //Mapping Table column
-
             //objbulk.ColumnMappings.Add("Id_Pagos", "empresaID");
             objbulk.ColumnMappings.Add("Id_FichaIdentificacion", "empresaNAME");
             objbulk.ColumnMappings.Add("Id_Usuario", "empresaRFC");

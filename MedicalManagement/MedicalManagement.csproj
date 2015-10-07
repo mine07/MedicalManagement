@@ -177,7 +177,6 @@
     <Content Include="Modulos.aspx" />
     <Content Include="Ocupacion.aspx" />
     <Content Include="PagosIndividuales.aspx" />
-    <Content Include="Pagos.aspx" />
     <Content Include="Paquetes.aspx" />
     <Content Include="Perfles.aspx" />
     <Content Include="PermisoPerfil2.aspx" />
@@ -382,7 +381,7 @@
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Sucursales.aspx" />
-    <Content Include="PagosOM.aspx" />
+    <Content Include="Pagos.aspx" />
     <Content Include="Usuarios.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -717,13 +716,6 @@
     <Compile Include="PagosIndividuales.aspx.designer.cs">
       <DependentUpon>PagosIndividuales.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pagos.aspx.cs">
-      <DependentUpon>Pagos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pagos.aspx.designer.cs">
-      <DependentUpon>Pagos.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Paquetes.aspx.cs">
       <DependentUpon>Paquetes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -995,12 +987,12 @@
     <Compile Include="Sucursales.aspx.designer.cs">
       <DependentUpon>Sucursales.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PagosOM.aspx.cs">
-      <DependentUpon>PagosOM.aspx</DependentUpon>
+    <Compile Include="Pagos.aspx.cs">
+      <DependentUpon>Pagos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PagosOM.aspx.designer.cs">
-      <DependentUpon>PagosOM.aspx</DependentUpon>
+    <Compile Include="Pagos.aspx.designer.cs">
+      <DependentUpon>Pagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

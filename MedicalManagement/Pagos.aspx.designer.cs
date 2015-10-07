@@ -10,7 +10,7 @@
 namespace MedicalManagement {
     
     
-    public partial class Pagos {
+    public partial class testUDW {
         
         /// <summary>
         /// Control ScriptManager1.
@@ -22,13 +22,22 @@ namespace MedicalManagement {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// Control UpdatePanel1.
+        /// Control udpOutterUpdatePanel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel udpOutterUpdatePanel;
+        
+        /// <summary>
+        /// Control mpeThePopup.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeThePopup;
         
         /// <summary>
         /// Control gvHistPagos.
@@ -47,6 +56,24 @@ namespace MedicalManagement {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFichas;
+        
+        /// <summary>
+        /// Control CalendarExtender1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        
+        /// <summary>
+        /// Control CalendarExtender2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
         
         /// <summary>
         /// Control txtFPP.
@@ -103,31 +130,13 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.Button btnSavePagos;
         
         /// <summary>
-        /// Control popup.
+        /// Control pnlModalPopUpPanel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender popup;
-        
-        /// <summary>
-        /// Control pnlAddEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAddEdit;
-        
-        /// <summary>
-        /// Control udpInnerUpdatePanel.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpInnerUpdatePanel;
+        protected global::System.Web.UI.WebControls.Panel pnlModalPopUpPanel;
         
         /// <summary>
         /// Control ddlConceptos.
@@ -166,15 +175,6 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.TextBox txtDescuento;
         
         /// <summary>
-        /// Control btnSave.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
-        
-        /// <summary>
         /// Control btntest.
         /// </summary>
         /// <remarks>
@@ -184,12 +184,12 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.Button btntest;
         
         /// <summary>
-        /// Control btnCancel.
+        /// Control btnCancelModalPopup.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button btnCancelModalPopup;
     }
 }

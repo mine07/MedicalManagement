@@ -20,6 +20,7 @@ namespace MedicalManagement.Models.DTO
         public decimal Debe_Pagos { get; set; }
         public DateTime FechaParaPagar_Pagos { get; set; }
         public DateTime FechaPagado_Pagos { get; set; }
+        public int Id_ConceptoPago { get; set; }
         public Tabla_Catalogo_FichaIdentificacionDTO oneUsuario { get; set; }
         public List<Tabla_Registro_ConsultaConceptoPagoDTO> lConceptos { get; set; }
     }
