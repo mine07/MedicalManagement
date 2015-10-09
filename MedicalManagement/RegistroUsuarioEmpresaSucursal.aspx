@@ -8,7 +8,7 @@
 
 <table width="100%" border="0"><tr><td align="left"><font color="red">Configuración\Usuarios\Empresa Sucursal</font></td>
 <td align="right">
-<asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_UsuarioEmpresaSucursal_Click"></asp:ImageButton>
+<a href='<%= "javascript:history.back(-1);" %>'><label class="pull-right label label-primary label-button" style="font-size: 16px;">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
 </td>
 </tr>
 </table>

@@ -4,6 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
     <h3>Nueva Cita</h3>
     <hr />
     <div class="container-fluid">
@@ -197,6 +198,7 @@
             <asp:LinkButton runat="Server" Text='<label class="label label-success label-button">Guardar<i class="fa fa-save fa-margin-left"></i></label>' OnClick="GrabarAgenda"/>
         </div>
     </div>
+
     <style>
         .row {
             padding: 5px;
@@ -208,8 +210,17 @@
             -o-resize: none;
             resize: none;
         }
+
     </style>
-    <script type="text/javascript">
+    <script type="text/javascript">  
+
+        //////////////////
+        function llamaralerta() {
+            $("#alert").removeClass("hidden");
+            $("#alerta2").text("¡ERROR!");
+        }
+        //////////////////
+
         $(document).ready(function () {
             console.log(jQuery('.datePicker').val());
             $(".combobox").combobox();

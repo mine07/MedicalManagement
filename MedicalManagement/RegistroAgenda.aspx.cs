@@ -180,6 +180,9 @@ namespace MedicalManagement
             var overlap = checkOverlap();
             if (overlap)
             {
+                //SCRIPT MANAGER
+                string script = "llamaralerta();";
+                ScriptManager.RegisterStartupScript(this, GetType(),"ServerControlScript", script, true);
                 return;
             }
             DateTime hoy = DateTime.Now;
