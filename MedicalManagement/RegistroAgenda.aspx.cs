@@ -275,7 +275,7 @@ namespace MedicalManagement
             {
                 grabarConsulta();
             }
-            Response.Redirect("MenuInicial.aspx");
+            Response.Redirect("MenuInicial.aspx?name=ok");
         }
 
         private void grabarConsulta()

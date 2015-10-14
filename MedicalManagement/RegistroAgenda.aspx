@@ -217,7 +217,7 @@
         //////////////////
         function llamaralerta() {
             $("#alert").removeClass("hidden");
-            $("#alerta2").text("¡ERROR!");
+            $("#alerta2").text("¡ERROR!, ya existe una cita a esta hora, por favor verifica el horario para continuar.");
         }
         //////////////////
 

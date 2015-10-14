@@ -56,7 +56,7 @@
             <!-- ALERTAS -->
             <div id="alert" class="alert alert-danger alert-dismissible hidden" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong id="alerta2"></strong> Ya existe una cita a esta hora, por favor verifica el horario para continuar.
+                <strong id="alerta2"></strong>
             </div>
             <!-- ALERTAS -->
 

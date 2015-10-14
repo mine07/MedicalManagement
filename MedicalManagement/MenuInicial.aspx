@@ -6,6 +6,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <div id="alert" class="alert alert-danger alert-dismissible hidden" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong id="alerta2"></strong>
+            </div>
+
     <table width="100%" border="0">
         <td colspan="2" align="center" runat="Server" id="Alerta"></td>
     </table>
@@ -65,7 +70,14 @@
             </div>
         </div>
     </div>
+
     <script>
+
+        //ALERTA
+        function llamaralerta2() {
+          $("#alerta").text("¡ERROR!, ya existe una cita a esta hora, por favor verifica el horario para continuar.");
+        };
+        //ALERTA
 
         $("#lblAgenda").click(function () {
             $("#calendarAgenda").slideDown();

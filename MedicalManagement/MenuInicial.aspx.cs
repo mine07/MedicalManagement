@@ -11,6 +11,19 @@ namespace MedicalManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            string success = Request.QueryString["name"];
+
+            string script2 = "llamaralerta2();";
+            ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script2, true);
+            //SCRIPT MANAGER
+            /*if (success=="ok")
+            {
+                string script2 = "llamaralerta2();";
+                ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script2, true);
+            }*/
+
+
             Alerta.InnerHtml = Convert.ToString(Session["alerta"]);
             Session["alerta"] = null;
 
