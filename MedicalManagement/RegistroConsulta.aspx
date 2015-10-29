@@ -9,16 +9,20 @@
     <h3>Nota Clinica</h3>
     <hr />
     </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="rightSide" runat="server">
+    <asp:Panel ID="Panel1" runat="server">
                 <div class="row">
-                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
-                        <label>Fecha</label>
+                    <div class="auto-style1">
+                        <label>
+                        Fecha</label>
                     </div>
                     <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                         <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC"
                             ReadOnly="True" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
+         </asp:Panel>
                 <hr />
                 <div class="row">
                     <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
@@ -127,20 +131,21 @@
                             </asp:Repeater>
                         </div>
                     </div>
-
                 </div>
                 <hr />
+       
                 <div class="row">
                     <div class="col-xs-12">
                         <label class="pull-right label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
                         <asp:LinkButton runat="server" OnClick="btnGuardar_Consulta_Click" Text='<label class="fa-margin-right label pull-right label-success label-button">Guardar<i class="fa fa-margin-left fa-save"></i></label>'></asp:LinkButton>
                     </div>
                 </div>
-            </div>
-            <hr />
-        </div>
-    
 
+            <hr />
+
+    
+     <a  href='<%= "ImprimirNotaClinica.aspx?Id_Agenda="+ Id_Agenda%>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
+ 
     <div class="modal fade no-radius" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -440,6 +445,9 @@
         }
 
     </script>
+
+
+
     <script type="text/x-jqote-template" id="template">
     <![CDATA[        
         <div class="row row-hover" onclick="upText(this);">
@@ -449,6 +457,26 @@
         </div>       
         </div>
     ]]>
+    </script>
+
+     <script type = "text/javascript">
+        function PrintPanel() {
+
+            var panel = document.getElementById("<%=Panel1.ClientID %>");
+            //var panel2 = document.getElementById("<%=Panel1.ClientID %>");
+            var printWindow = window.open('', '', 'height=400,width=800');
+            //printWindow.document.write('Nombre: ');
+            //printWindow.document.write('Fecha:');
+            //printWindow.document.write('</head><body >');
+            //printWindow.document.write(panel2.innerHTML);
+            printWindow.document.write(panel.innerHTML);
+            //printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            setTimeout(function () {
+                printWindow.print();
+            }, 500);
+            return false;  
+        }
     </script>
     <style>
         .searchContainer {
@@ -470,6 +498,10 @@
 
         .padding {
             margin: 5px 0;
+        }
+        .auto-style1 {
+            left: -1px;
+            top: 0px;
         }
     </style>
 </asp:Content>

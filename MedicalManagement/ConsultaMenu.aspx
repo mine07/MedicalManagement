@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Consulta.Master" AutoEventWireup="true" CodeBehind="ConsultaMenu.aspx.cs" Inherits="MedicalManagement.ConsultaMenu" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Header" runat="server">
-    <h3>Menu Consulta</h3>
+    <div>
+        <a href="#" onClick="history.back();" __designer:mapid="696"><label class="pull-right label label-primary label-button" __designer:mapid="697">Volver<i class="fa fa-arrow-left fa-margin-left" __designer:mapid="698"></i></label></a><div class="hidden"></div>
+        <h3>Menu Consulta</h3>
+    </div>       
     <hr />
     <div class="container-fluid">
         <div class="row">

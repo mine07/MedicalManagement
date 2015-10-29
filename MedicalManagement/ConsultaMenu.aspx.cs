@@ -91,7 +91,7 @@ namespace MedicalManagement
             DataTable dt = new DataTable();
             //SqlCommand comando = new SqlCommand("SP_Registro_Agenda", cnn);select * from Tabla_Registro_Consulta
             //comando.CommandType = CommandType.StoredProcedure;
-            SqlCommand comando = new SqlCommand(@"select distinct a.Fecha_Consulta, a.Id_FichaIdentificacion, a.Id_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
+            SqlCommand comando = new SqlCommand(@"select distinct a.Fecha_Consulta, a.Id_FichaIdentificacion, a.Id_Consulta, a.Subjetivo_Consulta, a.Objetivo_Consulta,
                    a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,b.Dosis_ConsultaReceta,
                    b.Notas_ConsultaReceta,c.Observaciones_ConsultaDiagnostico, d.Id_Agenda
                    from Tabla_Registro_Consulta a

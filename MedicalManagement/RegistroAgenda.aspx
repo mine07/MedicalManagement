@@ -198,7 +198,6 @@
             <asp:LinkButton runat="Server" Text='<label class="label label-success label-button">Guardar<i class="fa fa-save fa-margin-left"></i></label>' OnClick="GrabarAgenda"/>
         </div>
     </div>
-
     <style>
         .row {
             padding: 5px;

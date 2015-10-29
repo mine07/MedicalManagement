@@ -4,7 +4,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ScriptManager runat="server" />
+    <div> 
+    <a href="#" onClick="history.back();" __designer:mapid="696"><label class="pull-right label label-primary label-button" __designer:mapid="697">Volver<i class="fa fa-arrow-left fa-margin-left" __designer:mapid="698"></i></label></a>
+        <h2>Receta</h2>  
+    </div> 
+    <asp:ScriptManager runat="server" /> 
     <div class="hidden">
         <table width="100%" border="0">
             <tr>
@@ -14,19 +18,21 @@
         <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png" ToolTip="Regresar" OnClick="btnRegresar_ConsultasRecetas_Click"></asp:ImageButton>
                 </td>
             </tr>
-
+              
             <tr>
                 <td colspan="2" align="center" runat="Server" id="Alerta"></td>
             </tr>
         </table>
 
         <div class="container-fluid">
-
+            <div class="row">
+                
+            </div>
+            
             <div class="row">
                 <asp:TextBox ID="txtBuscar_Receta" runat="server" Columns="40"></asp:TextBox>
                 <asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip="Buscar Receta"></asp:ImageButton>
             </div>
-
             <div class="row">
                 <asp:GridView ID="GridViewRecetaPrevia" runat="server" AutoGenerateColumns="false"
                     OnRowCommand="RowCommand">
@@ -65,10 +71,7 @@
             <div class="row">
                 <asp:TextBox ID="txtnotas" runat="server" Width="800" TextMode="MultiLine" Rows="3"></asp:TextBox>
             </div>
-
-
             <div class="row">
-
                 <asp:LinkButton ID="LinkRecetaPrevia" runat="server" OnClick="LinkRecetaPrevia_Click">Agregar de Receta Previa</asp:LinkButton>
             </div>
             <div class="row">
@@ -76,18 +79,27 @@
             </div>
         </div>
     </div>
+
     <asp:UpdatePanel runat="server">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" />
             <asp:AsyncPostBackTrigger ControlID="rptTemporal" />
         </Triggers>
         <ContentTemplate>
-            <a href='<%= "ConsultaMenu.aspx?Id_Agenda="+ Id_Agenda +"&Id_FichaIdentificacion=" + Id_FichaIdentificacion %>'><label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
-            <h3>Receta</h3>
+
             <hr />
             <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
                 <div class="row">
                     <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4 left-panel">
+                        
+                <hr class="blue-hr" />
+                <div class=" text-center">      
+                <label class="label-primary label">  
+                    <i class="fa fa-user fa-margin-right"></i>
+                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                </label>
+                </div>  
+                <hr class="blue-hr" />
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-xs-12">
@@ -97,7 +109,10 @@
                                         <asp:DropDownList runat="server" ID="ddlTemplate" CssClass="form-control combobox" DataTextField="Tem_Nombre" DataValueField="Id_Template" />
                                     </div>
                                     <h4>
-                                        <label class="label label-success pull-right label-button" data-toggle="modal" data-target="#modalRecPrevia">Ver Receta<i class="fa fa-search"></i></label></h4>
+                                        <label class="label label-success pull-right label-button" data-toggle="modal" data-target="#modalRecPrevia">Ver Receta<i class="fa fa-search"></i></label><h4></h4>
+                                        <h4></h4>
+                                        <h4></h4>
+                                    </h4>
                                 </div>
                                 <div class="col-xs-12">
                                     <hr />
@@ -126,6 +141,7 @@
                             </div>
                             <div class="row" style="padding-top: 5px;">
                                 <div class="col-xs-12">
+                                    
                                     <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' />
                                 </div>
                             </div>
@@ -139,6 +155,7 @@
                                     <hr />
                                 </div>
                             </div>
+                            <asp:Panel id ="pnlImprimir" runat ="server">
                             <div class="gray-container" style="max-height: 450px;">
                                 <asp:Repeater runat="server" ID="rptTemporal">
                                     <ItemTemplate>
@@ -163,15 +180,17 @@
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
-                            <hr />
-                            <label class="pull-right label label-success label-button" style="font-size: 16px;">Guardar<i class="fa fa-margin-left fa-save"></i></label>
+                                </asp:Panel>
+                            <hr />               
                         </div>
                     </div>
                 </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+    <a  href='<%= "ImprimirReceta.aspx?Id_Agenda="+ Id_Agenda +"&Id_FichaIdentificacion=" + Id_FichaIdentificacion%>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -227,6 +246,13 @@
         </div>
     </div>
     <script>
+
+
+        function AlertaGuardar() {
+            $("#alert1").removeClass("hidden");
+            $("#alerta3").text("Guardado");
+        }
+
         $(document).ready(function () {
             $('.combobox').combobox();
             $("[id$=ddlTemplate]").change();

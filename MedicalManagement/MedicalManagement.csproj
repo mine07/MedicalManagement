@@ -53,6 +53,9 @@
       <HintPath>..\packages\AjaxControlToolkit.15.1.3.0\lib\net40\AjaxControlToolkit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -168,6 +171,8 @@
     <Content Include="IMG\Logotipo_iCh.jpg" />
     <Content Include="IMG\ui-icons_FF1919_256x240.png" />
     <Content Include="IMG\Ui-icons_ffffff_256x240.png" />
+    <Content Include="ImprimirNotaClinica.aspx" />
+    <Content Include="ImprimirReceta.aspx" />
     <Content Include="login.aspx" />
     <Content Include="login2.aspx" />
     <Content Include="logintest.html" />
@@ -634,6 +639,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ImprimirNotaClinica.aspx.cs">
+      <DependentUpon>ImprimirNotaClinica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImprimirNotaClinica.aspx.designer.cs">
+      <DependentUpon>ImprimirNotaClinica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImprimirReceta.aspx.cs">
+      <DependentUpon>ImprimirReceta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImprimirReceta.aspx.designer.cs">
+      <DependentUpon>ImprimirReceta.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

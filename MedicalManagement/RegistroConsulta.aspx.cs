@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
 using MedicalManagement.Models.DTO;
+using MedicalManagement.Models;
 
 namespace MedicalManagement
 {
@@ -75,7 +76,16 @@ namespace MedicalManagement
                 }
                 cnn.Close();
             }
+
+
+
+            ///////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////
+            
         }
+
+
+        
 
         protected void btnRegresar_Consulta_Click(object sender, EventArgs e)
         {
@@ -207,5 +217,7 @@ namespace MedicalManagement
             Delete.Delete(oneConsultadia);
             loadDiagnosticos();
         }
+
     }
-}
+
+ }
