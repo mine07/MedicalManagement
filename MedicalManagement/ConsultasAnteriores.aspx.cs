@@ -36,7 +36,7 @@ namespace MedicalManagement
             //SqlCommand comando = new SqlCommand("SP_Registro_Agenda", cnn);select * from Tabla_Registro_Consulta
             //comando.CommandType = CommandType.StoredProcedure;
             SqlCommand comando = new SqlCommand(@"select distinct a.Fecha_Consulta,a.Subjetivo_Consulta,a.Objetivo_Consulta,
-                                                a.Diagnostico_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,
+                                                a.Diagnostico_Consulta,a.Procedimiento_Consulta,a.Analisis_Consulta,a.Plan_Consulta,b.Medicamento_ConsultaReceta,
                                                 b.Dosis_ConsultaReceta,b.Cada_ConsultaReceta,
                                                 c.Observaciones_ConsultaAnalisisClinico 
                                                 from Tabla_Registro_Consulta a left join Tabla_Registro_ConsultaReceta b
@@ -60,6 +60,7 @@ namespace MedicalManagement
             string subjetivo="";
             string objetivo="";
             string diagnostico="";
+            string procedimiento = "";
             string analisis="";
             string plan="";
             string medicamento="";
@@ -75,7 +76,8 @@ namespace MedicalManagement
                 fechaconsulta = Convert.ToDateTime(row["Fecha_Consulta"]);
                 subjetivo = Convert.ToString(row["Subjetivo_Consulta"]);
                 objetivo = Convert.ToString(row["Objetivo_Consulta"]);
-                diagnostico= Convert.ToString(row["Diagnostico_Consulta"]);
+                diagnostico = Convert.ToString(row["Diagnostico_Consulta"]);
+                procedimiento = Convert.ToString(row["Procedimiento_Consulta"]);
                 analisis = Convert.ToString(row["Analisis_Consulta"]);
                 plan = Convert.ToString(row["Plan_Consulta"]);
                 medicamento = Convert.ToString(row["Medicamento_ConsultaReceta"]);

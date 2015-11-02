@@ -41,7 +41,7 @@
                                     <asp:TextBox placeholder="Sin Notas Relevantes..." ID="txtnotasrelevantes" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
                                 </div>
                                 <div class="col-xs-12 col-md-12 col-lg-12 text-right h5">
-                                    <asp:Button ID="btnantecedentes" runat="server" Text="No se que sea esto" OnClick="btnantecedentes_Click" CssClass="btn btn-primary" />
+                                    <asp:Button ID="btnantecedentes" runat="server" Text="Guardar" OnClick="btnantecedentes_Click" CssClass="btn btn-primary" />
                                 </div>
 
                             </div>

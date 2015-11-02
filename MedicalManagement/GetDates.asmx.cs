@@ -64,6 +64,20 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             string json = JsonConvert.SerializeObject(lDiag);
             return json;
         }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetProcedimientoItems(string search)
+        {
+            List<string> lSearch = search.Split(new char[] { ' ' }).ToList();
+            var oneProcedimiento = new Tabla_Catalogo_ProcedimientoDTO();
+            oneProcedimiento.Descripcion_Procedimiento = "%" + search.Trim() + "%";
+            string query =
+                "Select * from Tabla_Catalogo_Procedimiento where Descripcion_Procedimiento like @Descripcion_Procedimiento";
+            Helpers h = new Helpers();
+            var lPro = h.GetAllParametized(query, oneProcedimiento);
+            string json = JsonConvert.SerializeObject(lPro);
+            return json;
+        }
 
 
 
@@ -236,6 +250,16 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
         }
 
         [WebMethod(EnableSession = true)]
+        public void RemoveActiveP(int Id_Procedimiento)
+        {
+            string query = "Update Tabla_Registro_ConsultaProcedimiento SET Estatus_ConsultaProcedimiento = 'False' where Id_ConsultaProcedimiento = @Id_ConsultaProcedimiento";
+            Helpers h = new Helpers();
+            ConsultaProcedimientoDTO oneProcedimiento = new ConsultaProcedimientoDTO();
+            oneProcedimiento.Id_ConsultaProcedimiento = Id_Procedimiento;
+            h.ExecuteNonQueryParam(query, oneProcedimiento);
+        }
+
+        [WebMethod(EnableSession = true)]
         public void RemoveInActive(int Id_Diagnostico)
         {
             string query = "Update Tabla_Registro_ConsultaDiagnostico SET Estatus_ConsultaDiagnostico = 'True' where Id_ConsultaDiagnostico = @Id_ConsultaDiagnostico";
@@ -243,6 +267,16 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             ConsultaDiagnosticoDTO oneConsulta = new ConsultaDiagnosticoDTO();
             oneConsulta.Id_ConsultaDiagnostico = Id_Diagnostico;
             h.ExecuteNonQueryParam(query, oneConsulta);
+        }
+
+        [WebMethod(EnableSession = true)]
+        public void RemoveInActiveP(int Id_Procedimiento)
+        {
+            string query = "Update Tabla_Registro_ConsultaProcedimiento SET Estatus_ConsultaProcedimiento = 'True' where Id_ConsultaProcedimiento = @Id_ConsultaProcedimiento";
+            Helpers h = new Helpers();
+            ConsultaProcedimientoDTO oneProcedimiento = new ConsultaProcedimientoDTO();
+            oneProcedimiento.Id_ConsultaProcedimiento = Id_Procedimiento;
+            h.ExecuteNonQueryParam(query, oneProcedimiento);
         }
 
         [WebMethod]

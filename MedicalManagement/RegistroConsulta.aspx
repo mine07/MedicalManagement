@@ -3,26 +3,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
 
 
-
-    <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "&Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'>
-        <label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
-    <h3>Nota Clinica</h3>
+    <div>
+    
+        <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "&Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'>
+            <label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
+        <h3>Nota Clinica</h3>
+    </div>
     <hr />
     </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="rightSide" runat="server">
-    <asp:Panel ID="Panel1" runat="server">
                 <div class="row">
-                    <div class="auto-style1">
-                        <label>
-                        Fecha</label>
+                    <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
+                        <label>Fecha</label>
                     </div>
                     <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10">
                         <asp:TextBox ID="txtfechaconsulta" runat="server" BackColor="#CCFFCC"
                             ReadOnly="True" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
-         </asp:Panel>
                 <hr />
                 <div class="row">
                     <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
@@ -108,22 +106,22 @@
                         <label>Procedimiento</label>
                     </div>
                     <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">
-                        <asp:TextBox CssClass="form-control" runat="server" ID="TextBox1" placeholder="Buscar Procedimiento..." autocomplete="off"></asp:TextBox>
+                        <asp:TextBox CssClass="form-control" runat="server" ID="txtProc" placeholder="Buscar Procedimiento..." autocomplete="off"></asp:TextBox>
                         <hr />
                         <div class="container-fluid searchContainer searchProc border-top1-bottom5">
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10 col-sm-offset-2">
-                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Procedimiento<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="addDiagnostico"></asp:LinkButton>
+                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Procedimiento<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="addProcedimiento"></asp:LinkButton>
                     </div>
                     <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 col-sm-offset-4">
                         <div class="gray-container">
-                            <asp:Repeater runat="server" ID="Repeater1">
+                            <asp:Repeater runat="server" ID="rptProc1">
                                 <ItemTemplate>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <asp:LinkButton runat="server" Text='<i class="fa fa-margin-left fa-remove remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_ConsultaDiagnostico") %>' OnClick="deleteDiag" />
-                                            <label class="packet-name"><%# Eval("oneDiag.Descripcion_Diagnostico")%></label>
+                                            <asp:LinkButton runat="server" Text='<i class="fa fa-margin-left fa-remove remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_ConsultaProcedimiento") %>' OnClick="deleteProc" />
+                                            <label class="packet-name"><%# Eval("onePro.Descripcion_Procedimiento")%></label>
                                             <hr />
                                         </div>
                                     </div>
@@ -131,21 +129,19 @@
                             </asp:Repeater>
                         </div>
                     </div>
+
                 </div>
                 <hr />
-       
                 <div class="row">
                     <div class="col-xs-12">
                         <label class="pull-right label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
                         <asp:LinkButton runat="server" OnClick="btnGuardar_Consulta_Click" Text='<label class="fa-margin-right label pull-right label-success label-button">Guardar<i class="fa fa-margin-left fa-save"></i></label>'></asp:LinkButton>
                     </div>
                 </div>
-
             <hr />
-
     
-     <a  href='<%= "ImprimirNotaClinica.aspx?Id_Agenda="+ Id_Agenda%>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
- 
+    <a  href='<%= "ImprimirNotaClinica.aspx?Id_Agenda="+ Id_Agenda %>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
+
     <div class="modal fade no-radius" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -435,6 +431,111 @@
             });
         }
 
+         /////////////////////////////////////////////
+        //////////// PROCEDIMIENTO //////////////////
+       /////////////////////////////////////////////
+
+        $('[id$=txtProc]').bind('input keyup', function () {
+            var $this = $(this);
+            var delay; // 2 seconds delay after last input
+            var value = $('[id$=txtProc]').val1();
+            clearTimeout($this.data('timer'));
+            if (value === " ") {
+                $('.txtProc').slideUp().empty();
+            }
+            if (value.substr(value.length - 1) !== " ") {
+                delay = 500;
+            } else {
+                delay = 1;
+            }
+            $this.data('timer', setTimeout(function () {
+                $this.removedata('timer');
+
+                procSearch(value);
+            }, delay));
+        });
+
+        function procSearch(x) {
+            var nombre = x;
+            if (nombre !== "") {
+                $.ajax({
+                    type: "POST",
+                    url: "GetDates.asmx/GetProcedimientoItems",
+                    data: "{'search':'" + nombre + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        appendData2(data);
+                    }
+                });
+            } else {
+                $('.searchProc').slideUp().empty();
+            }
+        }
+
+        function appendData2(data) {
+            var jsonObject = $.parseJSON(data.d);
+            if (jsonObject[0] != null) {
+                $('.searchProc').empty();
+                $('.searchProc').append(
+                    $('#templateP').jqote(jsonObject, '*')
+                ).slideDown();
+            } else {
+                $('.searchProc').slideUp();
+            }
+        }
+        $(document).mouseup(function (e) {
+            var container = $(".searchProc");
+            var containerB = $("[id$=txtProc]");
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0 && !containerB.is(e.target)) // ... nor a descendant of the container
+            {
+                container.slideUp();
+            }
+            var containerC = $("h5");
+            if (containerC.is(e.target)) {
+                container.slideUp();
+            }
+        });
+
+        $("[id$=txtProc]").focus(function () {
+            if ($('.searchProc').children().length !== 0) {
+                $('.searchProc').slideDown();
+            }
+        });
+
+        function upText1(x) {
+            var val1 = $(x).closest('.row').find('h5');
+            $("[id$=txtProc]").val1(val1.html());
+        }
+        jQuery('.datePicker').datetimepicker({
+            format: 'd/m/Y H:i'
+        });
+
+        function removeProcedimiento(Id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "GetDates.asmx/RemoveActiveP",
+                data: JSON.stringify({ 'Id_Procedimiento': Id }),
+                success: success,
+                error: error,
+                dataType: "json"
+            });
+        }
+
+        function AddProcedimiento(Id) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "GetDates.asmx/RemoveInActiveP",
+                data: JSON.stringify({ 'Id_Procedimiento': Id }),
+                success: success,
+                error: error,
+                dataType: "json"
+            });
+        }
+
         function success() {
             location.reload();
         }
@@ -445,38 +546,26 @@
         }
 
     </script>
-
-
-
     <script type="text/x-jqote-template" id="template">
     <![CDATA[        
         <div class="row row-hover" onclick="upText(this);">
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
-        <h5><*= this.Descripcion_Diagnostico*></h5>
+        <h5><*= this.Descripcion_Procedimiento*></h5>
         <hr />
         </div>       
         </div>
     ]]>
     </script>
 
-     <script type = "text/javascript">
-        function PrintPanel() {
-
-            var panel = document.getElementById("<%=Panel1.ClientID %>");
-            //var panel2 = document.getElementById("<%=Panel1.ClientID %>");
-            var printWindow = window.open('', '', 'height=400,width=800');
-            //printWindow.document.write('Nombre: ');
-            //printWindow.document.write('Fecha:');
-            //printWindow.document.write('</head><body >');
-            //printWindow.document.write(panel2.innerHTML);
-            printWindow.document.write(panel.innerHTML);
-            //printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            setTimeout(function () {
-                printWindow.print();
-            }, 500);
-            return false;  
-        }
+    <script type="text/x-jqote-template" id="templateP">
+    <![CDATA[        
+        <div class="row row-hover" onclick="upText1(this);">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
+       <h5><*= this.Descripcion_Procedimiento*></h5>
+        <hr />
+        </div>       
+        </div>
+    ]]>
     </script>
     <style>
         .searchContainer {
@@ -498,10 +587,6 @@
 
         .padding {
             margin: 5px 0;
-        }
-        .auto-style1 {
-            left: -1px;
-            top: 0px;
         }
     </style>
 </asp:Content>

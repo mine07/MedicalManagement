@@ -686,6 +686,7 @@
     <Compile Include="Models\DTO\AnalisisEnPaquetesDTO.cs" />
     <Compile Include="Models\DTO\ConsultaDiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\ConsultaMenu.cs" />
+    <Compile Include="Models\DTO\ConsultaProcedimientoDTO.cs" />
     <Compile Include="Models\DTO\ModuloDTO.cs" />
     <Compile Include="Models\DTO\NotaClinicaDTO.cs" />
     <Compile Include="Models\DTO\PaquetesDTO.cs" />
@@ -696,6 +697,7 @@
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_MedicamentoDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Catalogo_ProcedimientoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AgendaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaConceptoPagoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaDTO.cs" />

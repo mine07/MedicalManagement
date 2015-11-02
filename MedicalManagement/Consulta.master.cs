@@ -249,11 +249,11 @@ namespace MedicalManagement
             return ConsultaDiagnosticoDAO.GetAllByPaciente(oneConsultadia).Where(x => x.Id_Consulta == Id_Agenda).ToList();
         }
 
-        private List<ConsultaDiagnosticoDTO> loadDiagnosticos(NotaClinicaDTO oneNota)
+        private List<ConsultaProcedimientoDTO> loadProcedimiento(NotaClinicaDTO oneNota)
         {
-            var oneConsultadia = new ConsultaDiagnosticoDTO();
-            oneConsultadia.Id_FichaIdentificacion = Id_FichaIdentificacion;
-            return ConsultaDiagnosticoDAO.GetAllByPaciente(oneConsultadia).Where(x => x.Id_Consulta == oneNota.Id_Agenda).ToList();
+            var oneConsultapro = new ConsultaProcedimientoDTO();
+            oneConsultapro.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            return ConsultaProcedimientoDAO.GetAllByPaciente(oneConsultapro).Where(x => x.Id_Consulta == oneNota.Id_Agenda).ToList();
         }
 
         //        public void GridViewActivos()
