@@ -188,6 +188,7 @@ namespace MedicalManagement
             oneConsultaDiag.Observaciones_ConsultaDiagnostico = "";
             ConsultaDiagnosticoDAO Insert = new ConsultaDiagnosticoDAO();
             Insert.Insert(oneConsultaDiag);
+            txtSearch.Text="";
             loadDiagnosticos();
         }
 
@@ -229,6 +230,7 @@ namespace MedicalManagement
             oneConsultaPro.Observaciones_ConsultaProcedimiento = "";
             ConsultaProcedimientoDAO Insert = new ConsultaProcedimientoDAO();
             Insert.Insert(oneConsultaPro);
+            txtProc.Text = "";
             loadProcedimiento();
         }
 

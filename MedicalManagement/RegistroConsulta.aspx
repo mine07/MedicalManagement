@@ -1,10 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Consulta.Master" AutoEventWireup="true" CodeBehind="RegistroConsulta.aspx.cs" Inherits="MedicalManagement.RegistroConsulta" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
-
-
     <div>
-    
         <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "&Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'>
             <label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
         <h3>Nota Clinica</h3>
@@ -140,8 +137,7 @@
                 </div>
             <hr />
     
-    <a  href='<%= "ImprimirNotaClinica.aspx?Id_Agenda="+ Id_Agenda %>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
-
+    <a  href='<%= "ImprimirNotaClinica.aspx?Id_Agenda="+ Id_Agenda%>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
     <div class="modal fade no-radius" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -438,10 +434,10 @@
         $('[id$=txtProc]').bind('input keyup', function () {
             var $this = $(this);
             var delay; // 2 seconds delay after last input
-            var value = $('[id$=txtProc]').val1();
+            var value = $('[id$=txtProc]').val();
             clearTimeout($this.data('timer'));
             if (value === " ") {
-                $('.txtProc').slideUp().empty();
+                $('.searchProc').slideUp().empty();
             }
             if (value.substr(value.length - 1) !== " ") {
                 delay = 500;
@@ -478,7 +474,7 @@
             if (jsonObject[0] != null) {
                 $('.searchProc').empty();
                 $('.searchProc').append(
-                    $('#templateP').jqote(jsonObject, '*')
+                    $('#template').jqote(jsonObject, '*')
                 ).slideDown();
             } else {
                 $('.searchProc').slideUp();
@@ -505,8 +501,8 @@
         });
 
         function upText1(x) {
-            var val1 = $(x).closest('.row').find('h5');
-            $("[id$=txtProc]").val1(val1.html());
+            var val = $(x).closest('.row').find('h5');
+            $("[id$=txtProc]").val(val.html());
         }
         jQuery('.datePicker').datetimepicker({
             format: 'd/m/Y H:i'
@@ -550,7 +546,10 @@
     <![CDATA[        
         <div class="row row-hover" onclick="upText(this);">
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
-        <h5><*= this.Descripcion_Procedimiento*></h5>
+        <h5><*= this.Descripcion_Diagnostico*></h5>
+        <div class="row row-hover" onclick="upText1(this);">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
+       <h5><*= this.Descripcion_Procedimiento*></h5>
         <hr />
         </div>       
         </div>

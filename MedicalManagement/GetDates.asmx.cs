@@ -81,7 +81,7 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
 
 
 
-        [WebMethod]
+       [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string GetRecetaPreviaItems(string search)
         {
