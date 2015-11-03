@@ -189,6 +189,7 @@
     <Content Include="PermisosPerfil.aspx" />
     <Content Include="PermisosPorPerfil.aspx" />
     <Content Include="Procedimiento.aspx" />
+    <Content Include="ProcedimientoEdit.aspx" />
     <Content Include="Prueba.aspx" />
     <Content Include="RecetaPrevia.aspx" />
     <Content Include="ReferidoPor.aspx" />
@@ -785,6 +786,13 @@
     </Compile>
     <Compile Include="Procedimiento.aspx.designer.cs">
       <DependentUpon>Procedimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcedimientoEdit.aspx.cs">
+      <DependentUpon>ProcedimientoEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProcedimientoEdit.aspx.designer.cs">
+      <DependentUpon>ProcedimientoEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Prueba.aspx.cs">

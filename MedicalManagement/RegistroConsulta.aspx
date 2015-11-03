@@ -369,7 +369,7 @@
             if (jsonObject[0] != null) {
                 $('.searchDiag').empty();
                 $('.searchDiag').append(
-                    $('#template').jqote(jsonObject, '*')
+                    $('#templateD').jqote(jsonObject, '*')
                 ).slideDown();
             } else {
                 $('.searchDiag').slideUp();
@@ -434,12 +434,12 @@
         $('[id$=txtProc]').bind('input keyup', function () {
             var $this = $(this);
             var delay; // 2 seconds delay after last input
-            var value = $('[id$=txtProc]').val();
+            var valueP = $('[id$=txtProc]').val();
             clearTimeout($this.data('timer'));
-            if (value === " ") {
+            if (valueP === " ") {
                 $('.searchProc').slideUp().empty();
             }
-            if (value.substr(value.length - 1) !== " ") {
+            if (valueP.substr(valueP.length - 1) !== " ") {
                 delay = 500;
             } else {
                 delay = 1;
@@ -447,17 +447,17 @@
             $this.data('timer', setTimeout(function () {
                 $this.removedata('timer');
 
-                procSearch(value);
+                procSearch(valueP);
             }, delay));
         });
 
         function procSearch(x) {
-            var nombre = x;
-            if (nombre !== "") {
+            var nombreP = x;
+            if (nombreP !== "") {
                 $.ajax({
                     type: "POST",
                     url: "GetDates.asmx/GetProcedimientoItems",
-                    data: "{'search':'" + nombre + "'}",
+                    data: "{'search':'" + nombreP + "'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
@@ -474,23 +474,23 @@
             if (jsonObject[0] != null) {
                 $('.searchProc').empty();
                 $('.searchProc').append(
-                    $('#template').jqote(jsonObject, '*')
+                    $('#templateP').jqote(jsonObject, '*')
                 ).slideDown();
             } else {
                 $('.searchProc').slideUp();
             }
         }
         $(document).mouseup(function (e) {
-            var container = $(".searchProc");
-            var containerB = $("[id$=txtProc]");
-            if (!container.is(e.target) // if the target of the click isn't the container...
-                && container.has(e.target).length === 0 && !containerB.is(e.target)) // ... nor a descendant of the container
+            var containerP = $(".searchProc");
+            var containerBP = $("[id$=txtProc]");
+            if (!containerP.is(e.target) // if the target of the click isn't the container...
+                && containerP.has(e.target).length === 0 && !containerBP.is(e.target)) // ... nor a descendant of the container
             {
-                container.slideUp();
+                containerP.slideUp();
             }
-            var containerC = $("h5");
-            if (containerC.is(e.target)) {
-                container.slideUp();
+            var containerCP = $("h5");
+            if (containerCP.is(e.target)) {
+                containerP.slideUp();
             }
         });
 
@@ -501,8 +501,8 @@
         });
 
         function upText1(x) {
-            var val = $(x).closest('.row').find('h5');
-            $("[id$=txtProc]").val(val.html());
+            var valP = $(x).closest('.row').find('h5');
+            $("[id$=txtProc]").valP(valP.html());
         }
         jQuery('.datePicker').datetimepicker({
             format: 'd/m/Y H:i'
@@ -542,14 +542,11 @@
         }
 
     </script>
-    <script type="text/x-jqote-template" id="template">
+    <script type="text/x-jqote-template" id="templateD">
     <![CDATA[        
         <div class="row row-hover" onclick="upText(this);">
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
         <h5><*= this.Descripcion_Diagnostico*></h5>
-        <div class="row row-hover" onclick="upText1(this);">
-        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
-       <h5><*= this.Descripcion_Procedimiento*></h5>
         <hr />
         </div>       
         </div>

@@ -11,7 +11,7 @@ namespace MedicalManagement.Models.DTO
         public string Descripcion_Procedimiento { get; set; }
         public bool Estatus_Procedimiento { get; set; }
     }
-
+    
     public class ProcedimientoDAO
     {
         public static List<Tabla_Catalogo_ProcedimientoDTO> GetAll()

@@ -199,6 +199,9 @@
                         <ul id="ddCatalogos" class="collapse">
                             <li class="divider"></li>
                             <li>
+                                <a href="ConsultaDiagnostico.aspx"><i class="fa fa-fw fa-heartbeat"></i> Diagnosticos</a>
+                            </li>
+                            <li>
                                 <a href="Procedimiento.aspx"><i class="fa fa-fw fa-ambulance"></i> Procedimientos</a>
                             </li>
                            
