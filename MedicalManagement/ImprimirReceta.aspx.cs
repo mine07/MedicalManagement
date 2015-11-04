@@ -200,7 +200,8 @@ namespace MedicalManagement
         }
 
         ////////////DETALLES DE RECETA PREVIA///////////////////////////////////////////////////////////////////////////////////////////
-
+ 
+            /*
         protected void RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Elegir")
@@ -232,7 +233,7 @@ namespace MedicalManagement
 
             }
 
-        }
+        }*/
 
         
 
@@ -266,11 +267,11 @@ namespace MedicalManagement
             SqlDataAdapter da = new SqlDataAdapter(comando);
             DataTable ds = new DataTable();
             da.Fill(ds);
-            GridViewRecetaPrevia.Visible = true;
-            GridViewRecetaPrevia.DataSource = ds;
+           // GridViewRecetaPrevia.Visible = true;
+           // GridViewRecetaPrevia.DataSource = ds;
            // GridViewRecetaPrevia.Columns[0].Visible = true;
 
-            GridViewRecetaPrevia.DataBind();
+           // GridViewRecetaPrevia.DataBind();
 
             //GridViewRecetaPrevia.Columns[0].Visible = false;
 

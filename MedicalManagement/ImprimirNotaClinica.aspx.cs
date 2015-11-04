@@ -9,6 +9,10 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
 using MedicalManagement.Models.DTO;
+using MedicalManagement.Models;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace MedicalManagement
 {
@@ -32,9 +36,9 @@ namespace MedicalManagement
                     });
             if (!IsPostBack)
             {
-                loadCategoria();
                 loadDiagnosticos();
                 loadProcedimiento();
+                loadUsuario();
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
                 cnn.Open();
@@ -54,16 +58,16 @@ namespace MedicalManagement
                     SqlDataReader reader = comando2.ExecuteReader();
                     if (reader.Read())
                     {
-                        txtnombre.Text = NombreCompleto;
-                        txtnombrecompleto.Text = NombreCompleto;
-                        txtfechaconsulta.Text = reader.IsDBNull(reader.GetOrdinal("Fecha_Consulta")) ? String.Empty : reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
-                        txtsubjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Subjetivo_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Subjetivo_Consulta")).ToString().Trim();
-                        txtobjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Objetivo_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Objetivo_Consulta")).ToString().Trim();
+                        lblNombre.Text = NombreCompleto;
+                        //lblNombrecompleto.Text = NombreCompleto;
+                        lblfechaconsulta.Text = reader.IsDBNull(reader.GetOrdinal("Fecha_Consulta")) ? String.Empty : reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
+                        lblsubjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Subjetivo_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Subjetivo_Consulta")).ToString().Trim();
+                        lblobjetivo.Text = reader.IsDBNull(reader.GetOrdinal("Objetivo_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Objetivo_Consulta")).ToString().Trim();
                         //txtdiagnostico.Text = reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim(); Se elimino el txtdiagnostico
                         //txtSearch.Text = reader.IsDBNull(reader.GetOrdinal("Diagnostico_Consulta")) ? "" : reader.GetString(reader.GetOrdinal("Diagnostico_Consulta")).ToString().Trim();
                         //txtProc.Text = reader.IsDBNull(reader.GetOrdinal("Procedimiento_Consulta")) ? "" : reader.GetString(reader.GetOrdinal("Procedimiento_Consulta")).ToString().Trim();
-                        txtanalisis.Text = reader.IsDBNull(reader.GetOrdinal("Analisis_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
-                        txtplan.Text = reader.IsDBNull(reader.GetOrdinal("Plan_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
+                        lblanalisis.Text = reader.IsDBNull(reader.GetOrdinal("Analisis_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Analisis_Consulta")).ToString().Trim();
+                        lblplan.Text = reader.IsDBNull(reader.GetOrdinal("Plan_Consulta")) ? " " : reader.GetString(reader.GetOrdinal("Plan_Consulta")).ToString().Trim();
                         Session["Fechaconsulta"] = reader.GetDateTime(reader.GetOrdinal("Fecha_Consulta")).ToString();
                     }
                 }
@@ -71,8 +75,8 @@ namespace MedicalManagement
                 {
                     DateTime hoy = DateTime.Now;
                     fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
-                    txtfechaconsulta.Text = fecha_actual;
-                    txtnombre.Text = NombreCompleto;
+                    lblfechaconsulta.Text = fecha_actual;
+                    lblNombre.Text = NombreCompleto;
                     Session["Fechaconsulta"] = fecha_actual;
                 }
                 cnn.Close();
@@ -82,30 +86,6 @@ namespace MedicalManagement
         protected void btnRegresar_Consulta_Click(object sender, EventArgs e)
         {
             Response.Redirect("Consultas.aspx");
-        }
-
-
-        protected void btnGuardar_Consulta_Click(object sender, EventArgs e)
-        {
-            GrabarConsulta();
-
-        }
-
-
-        public void GrabarConsulta()
-        {
-            NotaClinicaDTO oneNota = new NotaClinicaDTO();
-            oneNota.Id_Agenda = Id_Agenda;
-            oneNota.Id_Consulta = Id_Agenda;
-            oneNota.Id_FichaIdentificacion = Id_FichaIdentificacion;
-            oneNota.Subjetivo_Consulta = txtsubjetivo.Text.Trim();
-            oneNota.OBjetivo_Consulta = txtobjetivo.Text.Trim();
-            oneNota.Analisis_Consulta = txtanalisis.Text.Trim();
-            oneNota.Plan_consulta = txtplan.Text.Trim();
-            NotaClinicaDAO Update = new NotaClinicaDAO();
-            Update.Update(oneNota);
-            Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
-
         }
 
         protected void LinkDiagnostico_Click(object sender, EventArgs e)
@@ -122,61 +102,11 @@ namespace MedicalManagement
             Response.Redirect("ConsultaProcedimiento.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + "&NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "&Fecha_Consulta=" + fecha_actual + "");
         }
 
-        public void loadCategoria()
-        {
-            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
-
-            SqlConnection cnn;
-            cnn = new SqlConnection(conexion);
-            cnn.Open();
-            SqlCommand objsqlcommand = new SqlCommand("SP_Catalogo_Categoria", cnn);
-            objsqlcommand.CommandType = CommandType.StoredProcedure;
-            objsqlcommand.Parameters.AddWithValue("@Opcion", "COMBO");
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(objsqlcommand);
-            DataTable dt = new DataTable();
-            sqlDataAdapter.Fill(dt);
-            ddlCategoria.DataTextField = "Descripcion_Categoria";
-            ddlCategoria.DataValueField = "Id_Categoria";
-            ddlCategoria.DataSource = dt;
-            ddlCategoria.DataBind();
-            ddlCategoria.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
-            ddlCategoria.SelectedIndex = 0;
-            objsqlcommand.ExecuteNonQuery();
-            cnn.Close();
-        }
-
-        protected void btnSave(object sender, EventArgs e)
-        {
-            string prioridad = "Normal";
-            if (rbUrgente.Checked)
-            {
-                prioridad = "Urgente";
-            }
-            Tabla_Registro_AgendaDTO oneAgenda = new Tabla_Registro_AgendaDTO();
-            oneAgenda.Id_FichaIdentificacion = Id_FichaIdentificacion;
-            oneAgenda.Asunto_Agenda = txtasunto.Text;
-            oneAgenda.Id_Categoria = Convert.ToInt32(ddlCategoria.SelectedItem.Value);
-            oneAgenda.Prioridad_Agenda = prioridad;
-            oneAgenda.Fecha_Agenda = DateTime.Now;
-            oneAgenda.Inicio_Agenda = Convert.ToDateTime(txtDiaComienzo.Value);
-            oneAgenda.Fin_Agenda = Convert.ToDateTime(txtDiaFinal.Value);
-            oneAgenda.Descripcion_Agenda = txtdescripcionagenda.Text;
-            oneAgenda.EstadoCitas_Agenda = DropDownEstadoCitas.SelectedItem.Text;
-            AgendaDAO Insert = new AgendaDAO();
-            Insert.Insert(oneAgenda);
-            oneAgenda = Insert.GetLastById_Ficha(oneAgenda);
-            NotaClinicaDTO oneConsulta = new NotaClinicaDTO();
-            oneConsulta.Id_Agenda = oneAgenda.Id_Agenda;
-            oneConsulta.Id_FichaIdentificacion = oneAgenda.Id_FichaIdentificacion;
-            oneConsulta.Fecha_Consulta = DateTime.Now;
-            NotaClinicaDAO InsertConsulta = new NotaClinicaDAO();
-            InsertConsulta.Insert(oneConsulta);
-        }
+        
 
         protected void addDiagnostico(object sender, EventArgs e)
         {
             var oneDiagnostico = new Tabla_Catalogo_DiagnosticoDTO();
-            oneDiagnostico.Descripcion_Diagnostico = txtSearch.Text;
             oneDiagnostico = DiagnosticoDAO.GetOneByName(oneDiagnostico);
             ConsultaDiagnosticoDTO oneConsultaDiag = new ConsultaDiagnosticoDTO();
             oneConsultaDiag.Id_ConsultaDiagnostico = Id_Agenda;
@@ -189,6 +119,7 @@ namespace MedicalManagement
             ConsultaDiagnosticoDAO Insert = new ConsultaDiagnosticoDAO();
             Insert.Insert(oneConsultaDiag);
             loadDiagnosticos();
+            loadUsuario();
         }
 
         private void loadDiagnosticos()
@@ -208,6 +139,7 @@ namespace MedicalManagement
             ConsultaDiagnosticoDAO Delete = new ConsultaDiagnosticoDAO();
             Delete.Delete(oneConsultadia);
             loadDiagnosticos();
+            loadUsuario();
         }
 
         /////////////////////////////////////////////
@@ -217,7 +149,6 @@ namespace MedicalManagement
         protected void addProcedimiento(object sender, EventArgs e)
         {
             var oneProcedimiento = new Tabla_Catalogo_ProcedimientoDTO();
-            oneProcedimiento.Descripcion_Procedimiento = txtProc.Text;
             oneProcedimiento = ProcedimientoDAO.GetOneByName(oneProcedimiento);
             ConsultaProcedimientoDTO oneConsultaPro = new ConsultaProcedimientoDTO();
             oneConsultaPro.Id_ConsultaProcedimiento = Id_Agenda;
@@ -249,6 +180,15 @@ namespace MedicalManagement
             ConsultaProcedimientoDAO Delete = new ConsultaProcedimientoDAO();
             Delete.Delete(oneConsultapro);
             loadProcedimiento();
+        }
+
+        public void loadUsuario()
+        {
+            string query = "select * from Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            Helpers h = new Helpers();
+            var oneFicha = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO { Id_FichaIdentificacion = Id_FichaIdentificacion })[0];
+            lblNombre.Text = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
+            NombreCompleto = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
         }
     }
 }

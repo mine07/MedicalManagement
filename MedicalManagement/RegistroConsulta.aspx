@@ -137,7 +137,8 @@
                 </div>
             <hr />
     
-    <a  href='<%= "ImprimirNotaClinica.aspx?Id_Agenda="+ Id_Agenda%>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
+    <a  href='<%= "ImprimirNotaClinica.aspx?Id_Agenda="+ Id_Agenda +"&Id_FichaIdentificacion=" + Id_FichaIdentificacion%>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
+                                                                                                        
     <div class="modal fade no-radius" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -8,13 +8,7 @@
   </div>
 
 <asp:ScriptManager runat="server" />  
-    <div class="container-fluid">
-            <div class="row">
-                <asp:GridView ID="GridViewRecetaPrevia" runat="server" AutoGenerateColumns="false"
-                    OnRowCommand="RowCommand">
-                </asp:GridView>
-            </div>
-        </div>
+
 
     <asp:UpdatePanel runat="server">
    
@@ -27,21 +21,19 @@
                          <tr>
                              <td>
                                  Nombre:
-                                 <asp:Label ID="Label1" runat="server" Text=""></asp:Label></label>
+                                 <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                              </td>
                              <td>
                                  Fecha: 
                                  <asp:Label ID="Label3" runat="server" Text= "" ></asp:Label>
                            
                              </td>
-                         </tr>
-                            
-                         </div>
-                             </table>
+                         
+                         </tr> 
+                         </table>
                          <div class="container-fluid padding" id="Medicine-Container">
-                            
-                                <div></div>
-                                <asp:Label ID="Label2" runat="server" Text=""></asp:Label></label>
+
+                                <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
                                 <div class="gray-container" style="max-height: 450px;">
                                 <table width="100%" border="0">
                                             <tr>

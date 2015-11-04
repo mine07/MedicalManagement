@@ -7,7 +7,7 @@
 
     <table width="100%">
         <tr>
-            <td align="left"colspan="6" onload="window.setTimeout('timerEvent()',500);">Procedimiento&nbsp;:&nbsp;<asp:TextBox ID="txtBuscar_Procedimiento" runat="server" Columns="100" OnTextChanged="txt_OnTextChanged"  AutoPostBack=true></asp:TextBox>&nbsp;
+            <td align="left"colspan="6">Procedimiento&nbsp;:&nbsp;<asp:TextBox ID="txtBuscar_Procedimiento" runat="server" Columns="100" OnTextChanged="txt_OnTextChanged"  AutoPostBack=true></asp:TextBox>&nbsp;
             
                 <!--<asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip = "Buscar Perfil"></asp:ImageButton>&nbsp;
                 <asp:ImageButton ID="AgregarProcedimiento" runat="Server" ImageUrl="IMG/agregar.png" OnClick="btnAgregarProcedimiento_Click" ToolTip = "Agregar Procedimiento"></asp:ImageButton>-->
@@ -68,20 +68,4 @@
             
             </td></tr>
     </table>
-    <script type="text/javascript" src="ClientTime.js"></script>
-<script type="text/javascript">
-// activando un "Timer"
-function timerEvent()
-{
-    showClientTime();
-    // hace continuo el Timer
-    window.setTimeout("timerEvent()",1000);
-}
-function showClientTime()
-{
-    t = clientTime();
-    var r = document.getElementById("txtBuscar_Procedimiento");
-    r.value = t;
-}
-</script>
 </asp:Content>
