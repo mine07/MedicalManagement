@@ -20,11 +20,12 @@
             <td align="center"colspan="6">
  <asp:GridView ID="Grid_Procedimiento" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
-        onpageindexchanging ="Grid_Procedimiento_PageIndexChanging" AllowPaging="True" pagesize="12"
-        onpageindexchanged="Grid_Procedimiento_PageIndexChanged" CssClass="table table-hover" 
+        onpageindexchanging ="Grid_Procedimiento_PageIndexChanging" AllowPaging="True" pagesize="15"
+        onpageindexchanged="Grid_Procedimiento_PageIndexChanged" CssClass="mGrid" 
                     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" CellPadding="4" ForeColor="#333333" >
                     
-    
+   
+
 <AlternatingRowStyle CssClass="alt" BackColor="White"></AlternatingRowStyle>
                     
     

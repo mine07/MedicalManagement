@@ -695,10 +695,10 @@
     <Compile Include="Models\DTO\PermisosDTO.cs" />
     <Compile Include="Models\DTO\Taba_Receta_Template.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConsultaRecetaPreviaDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Catalogo_ProcedimientoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_MedicamentoDTO.cs" />
-    <Compile Include="Models\DTO\Tabla_Catalogo_ProcedimientoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AgendaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaConceptoPagoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaDTO.cs" />

@@ -72,8 +72,9 @@ namespace MedicalManagement
 
         protected void btnGuardar_ConsultaDiagnostico_Click(object sender, EventArgs e)
         {
-            GuardarDiagnosticos();
+            //GuardarDiagnosticos();
             System.Web.HttpContext.Current.Response.Write("<script>javascript: alert('Datos modificados');</script>");
+            Response.Redirect("RegistroDiagnostico.aspx");
 
         }
 

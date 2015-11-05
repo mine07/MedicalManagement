@@ -13,31 +13,22 @@ namespace MedicalManagement {
     public partial class RegistroDiagnostico {
         
         /// <summary>
-        /// Control ImageGrabar.
+        /// Control LinkButton1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageGrabar;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
-        /// Control ImageRegresar.
+        /// Control Td1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageRegresar;
-        
-        /// <summary>
-        /// Control Alerta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell Alerta;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell Td1;
         
         /// <summary>
         /// Control Label3.

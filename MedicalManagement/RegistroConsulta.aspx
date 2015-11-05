@@ -327,6 +327,10 @@
         </div>
     </div>
     <script>
+        //////////////////////////////////////////////////
+        ///////// DIAGNOSTICO /////////////////////////
+        /////////////////////////////////////////////////
+
         $('[id$=txtSearch]').bind('input keyup', function () {
             var $this = $(this);
             var delay; // 2 seconds delay after last input
@@ -427,16 +431,15 @@
                 dataType: "json"
             });
         }
-
-         /////////////////////////////////////////////
-        //////////// PROCEDIMIENTO //////////////////
-       /////////////////////////////////////////////
-
+        
+        //////////////////////////////////////////////////
+        ///////// PROCEDIMIENTO /////////////////////////
+        /////////////////////////////////////////////////
         $('[id$=txtProc]').bind('input keyup', function () {
-            var $this = $(this);
+            var $thisP = $(this);
             var delay; // 2 seconds delay after last input
             var valueP = $('[id$=txtProc]').val();
-            clearTimeout($this.data('timer'));
+            clearTimeout($thisP.data('timer'));
             if (valueP === " ") {
                 $('.searchProc').slideUp().empty();
             }
@@ -445,24 +448,24 @@
             } else {
                 delay = 1;
             }
-            $this.data('timer', setTimeout(function () {
-                $this.removedata('timer');
+            $thisP.data('timer', setTimeout(function () {
+                $thisP.removeData('timer');
 
                 procSearch(valueP);
             }, delay));
         });
 
         function procSearch(x) {
-            var nombreP = x;
-            if (nombreP !== "") {
+            var nombre = x;
+            if (nombre !== "") {
                 $.ajax({
                     type: "POST",
                     url: "GetDates.asmx/GetProcedimientoItems",
-                    data: "{'search':'" + nombreP + "'}",
+                    data: "{'search':'" + nombre + "'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data) {
-                        appendData2(data);
+                        appendDataP(data);
                     }
                 });
             } else {
@@ -470,7 +473,7 @@
             }
         }
 
-        function appendData2(data) {
+        function appendDataP(data) {
             var jsonObject = $.parseJSON(data.d);
             if (jsonObject[0] != null) {
                 $('.searchProc').empty();
@@ -482,16 +485,16 @@
             }
         }
         $(document).mouseup(function (e) {
-            var containerP = $(".searchProc");
-            var containerBP = $("[id$=txtProc]");
-            if (!containerP.is(e.target) // if the target of the click isn't the container...
-                && containerP.has(e.target).length === 0 && !containerBP.is(e.target)) // ... nor a descendant of the container
+            var container = $(".searchProc");
+            var containerB = $("[id$=txtProc]");
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0 && !containerB.is(e.target)) // ... nor a descendant of the container
             {
-                containerP.slideUp();
+                container.slideUp();
             }
-            var containerCP = $("h5");
-            if (containerCP.is(e.target)) {
-                containerP.slideUp();
+            var containerC = $("h5");
+            if (containerC.is(e.target)) {
+                container.slideUp();
             }
         });
 
@@ -501,9 +504,9 @@
             }
         });
 
-        function upText1(x) {
+        function upTextP(x) {
             var valP = $(x).closest('.row').find('h5');
-            $("[id$=txtProc]").valP(valP.html());
+            $("[id$=txtProc]").val(valP.html());
         }
         jQuery('.datePicker').datetimepicker({
             format: 'd/m/Y H:i'
@@ -533,6 +536,7 @@
             });
         }
 
+
         function success() {
             location.reload();
         }
@@ -553,10 +557,9 @@
         </div>
     ]]>
     </script>
-
-    <script type="text/x-jqote-template" id="templateP">
+        <script type="text/x-jqote-template" id="templateP">
     <![CDATA[        
-        <div class="row row-hover" onclick="upText1(this);">
+        <div class="row row-hover" onclick="upTextP(this);">
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
        <h5><*= this.Descripcion_Procedimiento*></h5>
         <hr />
@@ -564,6 +567,10 @@
         </div>
     ]]>
     </script>
+
+    
+
+
     <style>
         .searchContainer {
             max-height: 300px;
