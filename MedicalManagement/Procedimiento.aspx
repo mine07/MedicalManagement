@@ -4,20 +4,39 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.quicksearch.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          $(document).ready(function () {
+              var txtFiltro = '#' + '<%=txtBuscar_Procedimiento.ClientID %>';
+              var grillaJedis = '#' + 'Tabla';
+              $(txtFiltro).quicksearch(grillaJedis + ' tbody tr');
+          });	
+         
+    </script>
+     
+    <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">            
+        Procedimiento&nbsp;:&nbsp; <asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar_Procedimiento" Columns="100" OnTextChanged="txt_OnTextChanged" placeholder="Buscar..." autocomplete="off"></asp:TextBox>&nbsp;     
 
-    <table width="100%">
-        <tr>
-            <td align="left"colspan="6">Procedimiento&nbsp;:&nbsp;<asp:TextBox ID="txtBuscar_Procedimiento" runat="server" Columns="100" OnTextChanged="txt_OnTextChanged"  AutoPostBack=true></asp:TextBox>&nbsp;
-            
-                <!--<asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip = "Buscar Perfil"></asp:ImageButton>&nbsp;
-                <asp:ImageButton ID="AgregarProcedimiento" runat="Server" ImageUrl="IMG/agregar.png" OnClick="btnAgregarProcedimiento_Click" ToolTip = "Agregar Procedimiento"></asp:ImageButton>-->
-                <asp:LinkButton runat="server" OnClick="btnAgregarProcedimiento_Click" Text='<label class="fa-margin-right label pull-right label label-primary"><i class="fa fa-margin-left fa-plus-circle"></i></label>' BackColor="#3333FF"></asp:LinkButton>
-               <asp:LinkButton runat="server" OnClick="txt_OnTextChanged" Text='<label class="fa-margin-right label pull-right label-success label-button"><i class="fa fa-margin-left fa-search"></i></label>'></asp:LinkButton>                                                                                          
+        <!--<asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip = "Buscar Perfil"></asp:ImageButton>&nbsp;
+           <asp:ImageButton ID="AgregarProcedimiento" runat="Server" ImageUrl="IMG/agregar.png" OnClick="btnAgregarProcedimiento_Click" ToolTip = "Agregar Procedimiento"></asp:ImageButton>-->
+        <asp:LinkButton runat="server" OnClick="btnAgregarProcedimiento_Click" Text='<label class="fa-margin-right label pull-right label label-primary"><i class="fa fa-margin-left fa-plus-circle"></i></label>' BackColor="#3333FF"></asp:LinkButton>
+        <asp:LinkButton runat="server" OnClick="txt_OnTextChanged" Text='<label class="fa-margin-right label pull-right label-success label-button"><i class="fa fa-margin-left fa-search"></i></label>'></asp:LinkButton>                                                                                                
+        <hr />      
+        <div class="container-fluid searchContainer searchDiag border-top1-bottom5">       
+        </div>         
+    </div>
+
+    <table id="Tabla" width="100%">
+        <!--<tr>
+            <td align="left"colspan="6">
             </td>
-        </tr>
+        </tr>-->
 
         <tr>
             <td align="center"colspan="6">
+
+
  <asp:GridView ID="Grid_Procedimiento" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
         onpageindexchanging ="Grid_Procedimiento_PageIndexChanging" AllowPaging="True" pagesize="15"
@@ -69,4 +88,5 @@
             
             </td></tr>
     </table>
+   
 </asp:Content>

@@ -33,8 +33,8 @@ namespace MedicalManagement
 
         protected void txt_OnTextChanged(object sender, EventArgs e)
         {
-            GuardarDiagnosticos();
-            LlenarGridDiagnostico();
+            //GuardarDiagnosticos();
+            //LlenarGridDiagnostico();
         }
 
 

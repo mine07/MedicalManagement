@@ -18,6 +18,11 @@ namespace MedicalManagement
             estatuspermiso = Convert.ToBoolean(Session["estatuspermiso"]);
             int usuario = Convert.ToInt32(Session["inicio"]);
 
+            if(!Page.IsPostBack){
+                
+                LlenarGridProcedimiento();
+            }
+
             if (Session["inicio"] == null || usuario == 0)
             {
                 Response.Redirect("Default.aspx");
