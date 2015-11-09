@@ -22,6 +22,15 @@ namespace MedicalManagement {
         protected global::System.Web.UI.WebControls.TextBox txtBuscar_Diagnostico;
         
         /// <summary>
+        /// Control txtBuscar_Diagnostico2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Diagnostico2;
+        
+        /// <summary>
         /// Control ImageRegresar.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace MedicalManagement {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton ImageRegresar;
+        
+        /// <summary>
+        /// Control Buscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Buscar;
         
         /// <summary>
         /// Control Grid_Diagnostico.

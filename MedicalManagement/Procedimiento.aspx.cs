@@ -14,14 +14,11 @@ namespace MedicalManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+
             bool estatuspermiso = false;
             estatuspermiso = Convert.ToBoolean(Session["estatuspermiso"]);
             int usuario = Convert.ToInt32(Session["inicio"]);
-
-            if(!Page.IsPostBack){
-                
-                LlenarGridProcedimiento();
-            }
 
             if (Session["inicio"] == null || usuario == 0)
             {
@@ -72,6 +69,7 @@ namespace MedicalManagement
                 }
 
             }
+            //Buscar.Focus();
 
             if (!IsPostBack)
             {
@@ -237,6 +235,8 @@ namespace MedicalManagement
             Grid_Procedimiento.DataBind();
             ds.Dispose();
             da.Dispose();
+            txtBuscar_Procedimiento.Focus();
+           
         }
     }
 }

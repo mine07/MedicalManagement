@@ -19,12 +19,21 @@ namespace MedicalManagement
 
         int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
 
+      //  protected System.Web.UI.WebControls.Button Button2;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Buscar.Focus();
+            // Button2 = FindControl("Button2") as Button;
             if (!IsPostBack)
             {
+                
                 LlenarGridDiagnostico();
             }
+
+            //if (!Page.IsPostBack)
+           // {
+              //  this.Form.DefaultButton = Button2.UniqueID;
+           // }
 
         }
 
@@ -34,7 +43,7 @@ namespace MedicalManagement
         protected void txt_OnTextChanged(object sender, EventArgs e)
         {
             //GuardarDiagnosticos();
-            //LlenarGridDiagnostico();
+            LlenarGridDiagnostico();
         }
 
 
@@ -47,7 +56,7 @@ namespace MedicalManagement
         protected void Grid_Diagnostico_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
 
-            GuardarDiagnosticos();
+            //GuardarDiagnosticos();
             Grid_Diagnostico.PageIndex = e.NewPageIndex;
             Grid_Diagnostico.DataBind();
             LlenarGridDiagnostico();
@@ -216,6 +225,7 @@ namespace MedicalManagement
             Grid_Diagnostico.DataBind();
             ds.Dispose();
             da.Dispose();
+            txtBuscar_Diagnostico.Focus();
         }
     }
 }
