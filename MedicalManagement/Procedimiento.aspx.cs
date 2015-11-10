@@ -212,13 +212,25 @@ namespace MedicalManagement
             SqlCommand comando = new SqlCommand("SP_Catalogo_Procedimiento", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-            if (txtBuscar_Procedimiento.Text == "")
+            if (!(txtBuscar_Procedimiento.Text == ""))
             {
-                comando.Parameters.AddWithValue("@Descripcion_Procedimiento", "");
+                string s = txtBuscar_Procedimiento.Text;
+                string[] palabras = s.Split(' ');
+                string primera = palabras[0];
+                string segunda = palabras[1];
+                //string tercera = palabras[2];
+                //string cuarta = palabras[3];
+                // string quinta = palabras[4];
+
+                comando.Parameters.AddWithValue("@Descripcion_Procedimiento", primera);
+                comando.Parameters.AddWithValue("@Descripcion_Procedimiento1", segunda);
+               // comando.Parameters.AddWithValue("@Descripcion_Procedimiento", txtBuscar_Procedimiento.Text);
+              //  comando.Parameters.AddWithValue("@Descripcion_Procedimiento", txtBuscar_Procedimiento.Text);
+              //  comando.Parameters.AddWithValue("@Descripcion_Procedimiento", txtBuscar_Procedimiento.Text);
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion_Procedimiento", txtBuscar_Procedimiento.Text);
+                comando.Parameters.AddWithValue("@Descripcion_Procedimiento", "");
             }
             /*
                 0  Id_Empresa

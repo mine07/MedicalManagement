@@ -80,10 +80,16 @@
     <script src="Scripts/jquery.quicksearch.js" type="text/javascript"></script>
     <script type="text/javascript">
           
-          $(document).keyup(function (event) {
-              Actualizar()
+       // $(document).keyup(function (event) {
+           // Actualizar();
+       // });
 
-          });
+        $(document).keyup(function (tecla) {
+            if (tecla.keyCode == 32) {
+                //alert('Tecla X presionada');
+                Actualizar();
+            }
+        });
 
           function Actualizar() {
               var boton = document.getElementById('<%=Buscar.ClientID%>');

@@ -202,13 +202,28 @@ namespace MedicalManagement
             SqlCommand comando = new SqlCommand("SP_Catalogo_Diagnostico", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-            if (txtBuscar_Diagnostico.Text == "")
+            
+            if (!(txtBuscar_Diagnostico.Text == ""))
             {
-                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", "");
+                string s = txtBuscar_Diagnostico.Text;
+                string[] palabras = s.Split(' ');
+                string primera = palabras[0];
+                string segunda = palabras[1];
+                //string tercera = palabras[2];
+                //string cuarta = palabras[3];
+               // string quinta = palabras[4];
+
+                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", primera);
+                comando.Parameters.AddWithValue("@Descripcion_Diagnostico1", segunda);
+               // comando.Parameters.AddWithValue("@Descripcion_Diagnostico2", tercera);
+               // comando.Parameters.AddWithValue("@Descripcion_Diagnostico3", cuarta);
+               // comando.Parameters.AddWithValue("@Descripcion_Diagnostico4", quinta);
+
+
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", txtBuscar_Diagnostico.Text);
+                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", "");
             }
             /*
                 0  Id_Empresa
@@ -229,3 +244,4 @@ namespace MedicalManagement
         }
     }
 }
+
