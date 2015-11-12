@@ -146,7 +146,7 @@ namespace prototipo
             Grid_Sucursales.Columns[0].Visible = false;
             ds.Dispose();
             da.Dispose();
-
+            Buscar_Sucursal.Focus();
 
         }
         protected void txt_OnTextChanged(object sender, EventArgs e)

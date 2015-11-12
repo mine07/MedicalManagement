@@ -5,8 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-     
+   
     <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
@@ -25,31 +24,37 @@
             
             <table id="Tabla" width="100%">
                 <tr>
+                    <th style ="width:10%"></th>
+                    <th style ="width:60%"></th>
+                    <th style ="width:15%"></th>
+                    <th style ="width:15%"></th>
+                </tr>
+                <tr>
                     <td align="center"colspan="6">
                         <asp:GridView ID="Grid_Diagnostico" runat="server" AutoGenerateColumns="False" 
                             onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
                             onpageindexchanging ="Grid_Diagnostico_PageIndexChanging" AllowPaging="True" pagesize="25"
-                            onpageindexchanged="Grid_Diagnostico_PageIndexChanged" CssClass="mGrid" 
+                            onpageindexchanged="Grid_Diagnostico_PageIndexChanged"  CssClass="table table-hover"
                             PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" CellPadding="4" ForeColor="#333333" >
                             <AlternatingRowStyle CssClass="alt" BackColor="White"></AlternatingRowStyle>
 
 
                             <Columns>
 
-                                <asp:BoundField DataField="Id_Diagnostico" HeaderText="Id.Diagnostico" 
-                                    SortExpression="Id_Diagnostico" />
+                                <asp:BoundField DataField="Id_Diagnostico" HeaderText="Id" 
+                                    SortExpression="Id_Diagnostico" ItemStyle-Width="5%"/>
             
                                 <asp:BoundField DataField="Descripcion_Diagnostico" HeaderText="Descripcion Diagnostico" 
-                                    SortExpression="Descripcion_Diagnostico" />    
+                                    SortExpression="Descripcion_Diagnostico" ItemStyle-Width="65%"/>    
             
                                 <asp:ButtonField ButtonType="Button" CommandName="Edit" HeaderText="Editar" 
                                     ShowHeader="True" Text="Editar" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    <ItemStyle HorizontalAlign="Center" Width="15"></ItemStyle>
                                 </asp:ButtonField>
 
                                 <asp:ButtonField ButtonType="Button" CommandName="Delete" HeaderText="Eliminar" 
                                     ShowHeader="True" Text="Eliminar" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    <ItemStyle HorizontalAlign="Center" Width="15"></ItemStyle>
                                 </asp:ButtonField>
             
                             </Columns>
@@ -85,7 +90,7 @@
        // });
 
         $(document).keyup(function (tecla) {
-            if (tecla.keyCode == 32) {
+            if (tecla.keyCode == 32 || tecla.keyCode == 8 || tecla.keyCode == 13) {
                 //alert('Tecla X presionada');
                 Actualizar();
             }

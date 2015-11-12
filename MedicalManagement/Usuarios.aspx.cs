@@ -119,6 +119,7 @@ namespace prototipo
             ds.Dispose();
             da.Dispose();
             cnn.Close();
+            Buscar_Usuario.Focus();
 
         }
         protected void txt_OnTextChanged(object sender, EventArgs e)

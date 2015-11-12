@@ -92,13 +92,26 @@ namespace prototipo
             SqlCommand comando = new SqlCommand("SP_Catalogo_Perfil", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-            if (Buscar_Perfil.Text == "")
+            if (!(Buscar_Perfil.Text == ""))
             {
-                comando.Parameters.AddWithValue("@Descripcion_Perfil", "");
+
+                string s = Buscar_Perfil.Text;
+                string[] palabras = s.Split(' ');
+                int i = 0;
+                foreach (string palabra in palabras)
+                {
+                    if (i <= 4)
+                    {
+                        string NDescripcion = "@Descripcion_Perfil" + i;
+                        comando.Parameters.AddWithValue(NDescripcion, palabra);
+                        i++;
+                        Console.WriteLine(palabra);
+                    }
+                }
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion_Perfil", Buscar_Perfil.Text);
+                comando.Parameters.AddWithValue("@Descripcion_Perfil", "");
             }
             /*
                 0  Id_Perfil
@@ -115,7 +128,7 @@ namespace prototipo
             Grid_Perfiles.DataBind();
             ds.Dispose();
             da.Dispose();
-
+            Buscar_Perfil.Focus();
 
         }
         protected void txt_OnTextChanged(object sender, EventArgs e)

@@ -208,13 +208,25 @@ namespace MedicalManagement
              SqlCommand comando = new SqlCommand("SP_Catalogo_AnalisisClinico", cnn);
              comando.CommandType = CommandType.StoredProcedure;
              comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-             if (txtBuscar_AnalisisClinico.Text == "")
+             if (!(txtBuscar_AnalisisClinico.Text == ""))
              {
-                 comando.Parameters.AddWithValue("@Descripcion_AnalisisClinico", "");
-             }
+                string s = txtBuscar_AnalisisClinico.Text;
+                string[] palabras = s.Split(' ');
+                int i = 0;
+                foreach (string palabra in palabras)
+                {
+                    if (i <= 4)
+                    {
+                        string NDescripcion = "@Descripcion_AnalisisClinico" + i;
+                        comando.Parameters.AddWithValue(NDescripcion, palabra);
+                        i++;
+                        Console.WriteLine(palabra);
+                    }
+                }
+            }
              else
              {
-                 comando.Parameters.AddWithValue("@Descripcion_AnalisisClinico", txtBuscar_AnalisisClinico.Text);
+                 comando.Parameters.AddWithValue("@Descripcion_AnalisisClinico0", "");
              }
              /*
                  0  Id_Empresa
@@ -231,6 +243,7 @@ namespace MedicalManagement
              Grid_AnalisisClinico.DataBind();
              ds.Dispose();
              da.Dispose();
-         }
+             txtBuscar_AnalisisClinico.Focus();
+        }
     }
 }

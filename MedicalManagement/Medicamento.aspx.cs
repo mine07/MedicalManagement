@@ -102,7 +102,7 @@ namespace MedicalManagement
 
         protected void Grid_Medicamento_PageIndexChanged(object sender, EventArgs e)//EventArgs
         {
-
+            LlenarGridMedicamento();
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -152,8 +152,9 @@ namespace MedicalManagement
 
                 }
                 Eliminar(Convert.ToString(selectedRowE.Cells[0].Text));
-                LlenarGridMedicamento();
+                
             }
+            LlenarGridMedicamento();
         }
 
         protected void Eliminar(string Id_Medicamento)
@@ -193,6 +194,7 @@ namespace MedicalManagement
             comandoBitacora = null;
 
             cnn.Close();
+            LlenarGridMedicamento();
 
         }
 
@@ -208,13 +210,26 @@ namespace MedicalManagement
             SqlCommand comando = new SqlCommand("SP_Catalogo_Medicamento", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-            if (txtBuscar_Medicamento.Text == "")
+            if (!(txtBuscar_Medicamento.Text == ""))
             {
-                comando.Parameters.AddWithValue("@Descripcion_Medicamento", "");
+                string s = txtBuscar_Medicamento.Text;
+                string[] palabras = s.Split(' ');
+                int i = 0;
+                foreach (string palabra in palabras)
+                {
+                    if (i <= 4)
+                    {
+                        string NDescripcion = "@Descripcion_Medicamento" + i;
+                        comando.Parameters.AddWithValue(NDescripcion, palabra);
+                        i++;
+                        Console.WriteLine(palabra);
+                    }
+                }
+                
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion_Medicamento", txtBuscar_Medicamento.Text);
+                comando.Parameters.AddWithValue("@Descripcion_Medicamento", "");
             }
             /*
                 0  Id_Empresa
@@ -231,6 +246,7 @@ namespace MedicalManagement
             Grid_Medicamento.DataBind();
             ds.Dispose();
             da.Dispose();
+            txtBuscar_Medicamento.Focus();
         }
     }
 }

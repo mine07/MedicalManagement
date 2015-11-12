@@ -26,26 +26,28 @@
                         <asp:GridView ID="Grid_Procedimiento" runat="server" AutoGenerateColumns="False"      
                             onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
                             onpageindexchanging ="Grid_Procedimiento_PageIndexChanging" AllowPaging="True" pagesize="25"
-                            onpageindexchanged="Grid_Procedimiento_PageIndexChanged" CssClass="mGrid" 
+                            onpageindexchanged="Grid_Procedimiento_PageIndexChanged" CssClass="table table-hover" 
                             PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" CellPadding="4" ForeColor="#333333" >
                             <AlternatingRowStyle CssClass="alt" BackColor="White"></AlternatingRowStyle>
                     
    
                             <Columns>
-                                <asp:BoundField DataField="Id_Procedimiento" HeaderText="Id.Procedimiento" 
-                                    SortExpression="Id_Procedimiento" />
+                                
+                                <asp:BoundField DataField="Id_Procedimiento" HeaderText="Id" 
+                                    SortExpression="Id_Procedimiento" ItemStyle-Width="5%"/>
+
 
                                 <asp:BoundField DataField="Descripcion_Procedimiento" HeaderText="Descripcion Procedimiento" 
-                                    SortExpression="Descripcion_Procedimiento" /> 
+                                    SortExpression="Descripcion_Procedimiento" ItemStyle-Width="65%"/>
                                   
                                 <asp:ButtonField ButtonType="Button" CommandName="Edit" HeaderText="Editar" 
                                     ShowHeader="True" Text="Editar" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    <ItemStyle HorizontalAlign="Center" Width="15"></ItemStyle>
                                 </asp:ButtonField>
 
                                 <asp:ButtonField ButtonType="Button" CommandName="Delete" HeaderText="Eliminar" 
                                     ShowHeader="True" Text="Eliminar" ItemStyle-HorizontalAlign="Center">
-                                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    <ItemStyle HorizontalAlign="Center" Width="15"></ItemStyle>
                                 </asp:ButtonField>
 
                             </Columns>
@@ -54,8 +56,8 @@
                             <EditRowStyle BackColor="#2461BF" />
                             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                             <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        
                             <PagerSettings FirstPageText="&amp;nbsp;Primero&amp;nbsp;" LastPageText="&amp;nbsp;Ultimo&amp;nbsp;" Mode="NextPreviousFirstLast" NextPageText="&amp;nbsp;Siguiente&amp;nbsp;" PreviousPageText="&amp;nbsp;Anterior&amp;nbsp;" />
-
                             <PagerStyle CssClass="pgr" BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center"></PagerStyle>
                             <RowStyle BackColor="#EFF3FB" />
                             <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
@@ -81,7 +83,7 @@
        // });
 
         $(document).keyup(function (tecla) {
-            if (tecla.keyCode == 32) {
+            if (tecla.keyCode == 32||tecla.keyCode==8||tecla.keyCode==13) {
                 //alert('Tecla X presionada');
                 Actualizar();
             }
