@@ -31,7 +31,7 @@
                 Paciente
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                <asp:DropDownList runat="Server" CssClass="combobox form-control" ID="ddlUsuarios" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" />
+                <asp:DropDownList AutoPostBack="true" runat="Server" CssClass="combobox form-control" ID="ddlUsuarios" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" />
             </div>
         </div>
         <div class="row">

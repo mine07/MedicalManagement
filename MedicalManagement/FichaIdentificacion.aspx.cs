@@ -134,6 +134,25 @@ namespace MedicalManagement
 
 
             }
+
+            if (e.CommandName == "Agendar")
+            {
+
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                GridViewRow selectedRow = Grid_FichaIdentificacion.Rows[index];
+
+
+                /*
+                    0  Id_Empresa
+                    1  Comercial_Nombre_Empresa
+                 */
+
+                System.Web.HttpContext.Current.Response.Redirect("RegistroAgenda.aspx?Id_FichaIdentificacion=" + selectedRow.Cells[0].Text);
+
+
+            }
+
             if (e.CommandName == "Delete")
             {
 
@@ -244,6 +263,7 @@ namespace MedicalManagement
             ds.Dispose();
             da.Dispose();
             cnn.Close();
+            txtBuscar_FichaIdentificacion.Focus();
 
         }
     }

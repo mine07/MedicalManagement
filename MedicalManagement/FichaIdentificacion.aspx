@@ -5,98 +5,100 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-
-    <table width="100%" class="footable footableB hidden">
-        <tr>
-            <td align="left" colspan="6">
-                <div style="vertical-align: middle;" class="row">
-                    FichaIdentificacion&nbsp;:&nbsp;
-            <asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip="Buscar Perfil"></asp:ImageButton>&nbsp;
-            <asp:ImageButton ID="AgregarFichaIdentiificacion" runat="Server" ImageUrl="IMG/agregar.png" OnClick="btnAgregarFichaIdentificacion_Click" ToolTip="Agregar Ficha Identificacion"></asp:ImageButton>
+    <h3>Ficha Identificacion</h3>
+    <hr />
+    <asp:ScriptManager runat="server" />
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <triggers>
+                <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">            
+                    <asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar_FichaIdentificacion" Columns="100" OnTextChanged="txt_OnTextChanged" placeholder="Buscar..." autocomplete="off" onfocus="ponerAlfinal(this);"></asp:TextBox>&nbsp;     
+                    <asp:LinkButton ID="AgregarFichaIdentiificacion" runat="server" OnClick="btnAgregarFichaIdentificacion_Click" ToolTip = "Agregar Ficha Identificacion" Text='<label class="fa-margin-right label pull-right label label-primary"><i class="fa fa-margin-left fa-plus-circle"></i></label>' BackColor="#3333FF"></asp:LinkButton>
+                    <asp:LinkButton ID = "ImageButton1" runat="server" OnClick ="txt_OnTextChanged" ToolTip = "Buscar Perfil" Text='<label class="fa-margin-right label pull-right label-success label-button"><i class="fa fa-margin-left fa-search"></i></label>'></asp:LinkButton> 
+                    <hr />  
                 </div>
-            </td>
-        </tr>
-    </table>
-    <div class="container-fluid">
-        <div class="col-xs-12">
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Buscar: </span>
-                <asp:TextBox ID="txtBuscar_FichaIdentificacion" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                <a href="RegistroFichaIdentificacion.aspx" class="input-group-addon no-sub">Agregar</a>
-            </div>
-        </div>
-    </div>
+            </triggers>
+
+    
     <hr />
     <div class="container-fluid  searchContainer border-top1-bottom5">
     </div>
     <hr />
     <asp:GridView ID="Grid_FichaIdentificacion" runat="server" AutoGenerateColumns="False"
         OnRowCommand="RowCommand" OnRowDeleting="RowDeleting"
-        OnPageIndexChanging="Grid_FichaIdentificacion_PageIndexChanging" AllowPaging="False"
+        OnPageIndexChanging="Grid_FichaIdentificacion_PageIndexChanging" AllowPaging="True" pagesize="25"
         OnPageIndexChanged="Grid_FichaIdentificacion_PageIndexChanged" CssClass="table table-hover"
         PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None">
+        <AlternatingRowStyle CssClass="alt" BackColor="White"></AlternatingRowStyle>
+
         <Columns>
-            <asp:BoundField DataField="Id_FichaIdentificacion" HeaderText="Id.FichaIdentificacion" ControlStyle-CssClass="expand"
-                SortExpression="Id_FichaIdentificacion" />
+            <asp:BoundField DataField="Id_FichaIdentificacion" HeaderText="Id" ControlStyle-CssClass="expand"
+                SortExpression="Id_FichaIdentificacion" ItemStyle-Width="5%"/>
+
             <asp:BoundField DataField="NombreCompleto" HeaderText="NombreCompleto"
-                SortExpression="NombreCompleto" />
+                SortExpression="NombreCompleto" ItemStyle-Width="65%"/>
+            
+            <asp:ButtonField ButtonType="Button" CommandName="Agendar" HeaderText="Agendar" ItemStyle-Width="10%"
+                ShowHeader="True" Text="Agendar" ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="btn btn-primary" />
+
             <asp:ButtonField ButtonType="Button" CommandName="Edit" HeaderText="Editar" ItemStyle-Width="10%"
                 ShowHeader="True" Text="Editar" ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="btn btn-primary" />
+
             <asp:ButtonField ButtonType="Button" ItemStyle-Width="10%" CommandName="Delete" HeaderText="Eliminar"
                 ShowHeader="True" Text="Eliminar" ItemStyle-HorizontalAlign="Center" ControlStyle-CssClass="btn btn-primary" />
+
         </Columns>
-    </asp:GridView>
-    <script>
-        $("[id$=txtBuscar_FichaIdentificacion]").keyup(function (e) {
-            var nombre = $("[id$=txtBuscar_FichaIdentificacion]").val();
-            if (nombre !== "") {
-                $.ajax({
-                    type: "POST",
-                    url: "GetDates.asmx/GetFichas",
-                    data: "{'search':'" + nombre + "'}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        appendData(data);
-                    }
-                });
-            } else {
-                $('.searchContainer').slideUp().empty();
+
+        
+                            <EditRowStyle BackColor="#2461BF" />
+                            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+        
+                            <PagerSettings FirstPageText="&amp;nbsp;Primero&amp;nbsp;" LastPageText="&amp;nbsp;Ultimo&amp;nbsp;" Mode="NextPreviousFirstLast" NextPageText="&amp;nbsp;Siguiente&amp;nbsp;" PreviousPageText="&amp;nbsp;Anterior&amp;nbsp;" />
+                            <PagerStyle CssClass="pgr" BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center"></PagerStyle>
+                            <RowStyle BackColor="#EFF3FB" />
+                            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+
+                        </asp:GridView>
+           
+                    </td>
+                </tr>
+            </table>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+
+<script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.quicksearch.js" type="text/javascript"></script> 
+    <script type="text/javascript">
+          
+          // $(document).keyup(function (event) {
+           // Actualizar();
+       // });
+
+        $(document).keyup(function (tecla) {
+            if (tecla.keyCode == 32||tecla.keyCode==8||tecla.keyCode==13) {
+                //alert('Tecla X presionada');
+                Actualizar();
             }
         });
 
-        function appendData(data) {
-            var jsonObject = $.parseJSON(data.d);
-            if (jsonObject[0] != null) {
-                $('.searchContainer').empty();
-                $('.searchContainer').append(
-                    $('#template').jqote(jsonObject, '*')
-                ).slideDown();
-            } else {
-                $('.searchContainer').slideUp();
-            }
-        }
-    </script>
-    <script type="text/x-jqote-template" id="template">
-    <![CDATA[
-        <div class="row">        
-            <div class="col-xs-10 col-sm-4 col-md-3 col-lg-3">
-                <label><*= this.Id_FichaIdentificacion + " - " + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>                
-            </div>        
-        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-        <label class="small-label"><*= this.Direccion_Calle_FichaIdentificacion + ", " + this.Direccion_Colonia_FichaIdentificacion + ", " + this.Direccion_Municipio_FichaIdentificacion + ", " + this.Direccion_Pais_FichaIdentificacion *>                
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-2 col-lg2">
-        <label class="small-label"><*= "Casa - " + this.TelefonoCasa_FichaIdentificacion*></label>
-        <label class="small-label"><*= "Movil - " + this.TelefonoMovil_FichaIdentificacion*></label>
-        </div>
-        <div class="col-xs-12 col-sm-1 col-md-2 col-lg-2">
-        <a class="label label-secondary form-control" href='<*= "RegistroFichaIdentificacion.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion*>'>Editar</a>
-        <a class="label label-secondary form-control" href='<*= "RegistroAgenda.aspx?Id_FichaIdentificacion=" + this.Id_FichaIdentificacion + "&NombreCompleto=" + this.Nombre_FichaIdentificacion + " " + this.ApPaterno_FichaIdentificacion + " " + this.ApMaterno_FichaIdentificacion *>'>Agendar</a>
-        
-        </div>
-        </div>
-        <hr/>
-    ]]>
+          function Actualizar() {
+              var boton = document.getElementById('<%=ImageButton1.ClientID%>');
+              boton.click();
+              return;
+          }
+
+          function ponerAlfinal(campo) {
+              with (campo) {
+                  selectionStart = selectionEnd = value.length;
+                  focus();
+              }
+
+          }
     </script>
 </asp:Content>

@@ -27,6 +27,13 @@ namespace MedicalManagement
             estatuspermiso = Convert.ToBoolean(Session["estatuspermiso"]);
             int usuario = Convert.ToInt32(Session["inicio"]);
 
+
+            if (Id_FichaIdentificacion != 0)
+            {
+                loadUsuario();
+                    changePaciente();
+            }
+
             if (Session["inicio"] == null || usuario == 0)
             {
                 Response.Redirect("Default.aspx");
@@ -81,6 +88,7 @@ namespace MedicalManagement
             {
                 ddlUsuarios.DataSource = FichaDAO.GetAll();
                 ddlUsuarios.DataBind();
+                ddlUsuarios.Text = NombreCompleto;
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
                 DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
@@ -153,7 +161,8 @@ namespace MedicalManagement
                 if (Id_FichaIdentificacion != 0)
                 {
                     txtidfichaidentificacion.Text = Id_FichaIdentificacion.ToString();
-                    txtnombrecompleto.Text = NombreCompleto.ToString();
+                    ddlUsuarios.Text = NombreCompleto;
+                    //txtnombrecompleto.Text = Id_FichaIdentificacion.ToString();
                 }
 
             }
@@ -166,6 +175,15 @@ namespace MedicalManagement
         protected void btnRegresar_FichaIdentificacion_Click(object sender, EventArgs e)
         {
             Response.Redirect("Agenda.aspx");
+        }
+
+        public void loadUsuario()
+        {
+            string query = "select * from Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            Helpers h = new Helpers();
+            var oneFicha = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO { Id_FichaIdentificacion = Id_FichaIdentificacion })[0];
+
+            NombreCompleto = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
         }
 
         public void GrabarAgenda(object sender, EventArgs eventArgs)
@@ -352,6 +370,19 @@ namespace MedicalManagement
                 }
             }
             return false;
+        }
+
+
+        protected void changePaciente()
+        {
+            //Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedItem.Value);
+            var oneFicha =
+                FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
+                {
+                    Id_FichaIdentificacion = Id_FichaIdentificacion
+                });
+
+            //Response.Redirect("ConsultaMenu.aspx?Id_Agenda=0&Id_FichaIdentificacion=" + Id_FichaIdentificacion);
         }
     }
 }

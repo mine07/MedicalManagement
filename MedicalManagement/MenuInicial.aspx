@@ -180,7 +180,7 @@
 
         function fillAgendaB(data) {
             var jsonObject = $.parseJSON(data.d);
-            console.log("Hola");
+
             $('#consContainer').empty().hide();
             $('#consContainer').fadeIn(200);
             $('#consContainer').append(

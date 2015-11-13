@@ -11,7 +11,6 @@
         <ContentTemplate>
             <triggers>
                 <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">            
-                    Procedimiento&nbsp;:&nbsp; 
                     <asp:TextBox CssClass="form-control" runat="server" ID="Buscar_Perfil" Columns="100" OnTextChanged="txt_OnTextChanged" placeholder="Buscar..." autocomplete="off" onfocus="ponerAlfinal(this);"></asp:TextBox>&nbsp;     
                     <asp:LinkButton runat="server" OnClick="btnAgregarPerfil_Click" ToolTip = "Agregar Perfil" Text='<label class="fa-margin-right label pull-right label label-primary"><i class="fa fa-margin-left fa-plus-circle"></i></label>' BackColor="#3333FF"></asp:LinkButton>
                     <asp:LinkButton ID = "Buscar" runat="server" OnClick ="txt_OnTextChanged" ToolTip = "Buscar Perfil" Text='<label class="fa-margin-right label pull-right label-success label-button"><i class="fa fa-margin-left fa-search"></i></label>'></asp:LinkButton> 
@@ -24,8 +23,9 @@
             <td align="center"colspan="6">
  <asp:GridView ID="Grid_Perfiles" runat="server" AutoGenerateColumns="False" 
         onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
-        onpageindexchanging ="Grid_Perfiles_PageIndexChanging" AllowPaging ="False"
-        onpageindexchanged="Grid_Perfiles_PageIndexChanged" CssClass="table table-hover table-responsive" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
+        onpageindexchanging ="Grid_Perfiles_PageIndexChanging" AllowPaging ="true" pagesize="25"
+        onpageindexchanged="Grid_Perfiles_PageIndexChanged" CssClass="table table-hover table-responsive" 
+     PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" >
         <AlternatingRowStyle CssClass="alt" BackColor="White"></AlternatingRowStyle>
                     
         <Columns>

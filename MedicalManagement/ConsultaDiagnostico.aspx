@@ -5,13 +5,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-   
+   <h3>Diagnosticos</h3>
+    <hr />
     <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <triggers>      
                 <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8"> 
-                    Diagnostico&nbsp;:&nbsp;
                     <asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar_Diagnostico" Columns="100" OnTextChanged="txt_OnTextChanged" placeholder="Buscar..." autocomplete="off" onfocus="ponerAlfinal(this);"></asp:TextBox>&nbsp;     
                     <!--<asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar_Diagnostico2" Columns="100" OnTextChanged="txt_OnTextChanged" placeholder="Buscar..." autocomplete="off" onfocus="ponerAlfinal(this);"></asp:TextBox>&nbsp;     
                     <asp:ImageButton ID="ImageRegresar" runat="Server" ImageUrl="IMG/Regresar.png"  ToolTip = "Regresar" onclick="btnRegresar_ConsultasDiagnostico_Click"></asp:ImageButton>-->

@@ -13,10 +13,10 @@
 
     <table width="100%" border="0">
         <tr>
-            <td align="left"><font color="red">Configuración\FichaIdentificacion\Agregar</font></td>
+            <td align="left"><h3>Nuevo Paciente</h3></td>
             <td align="right">
                 <asp:LinkButton runat="server" ID="Guardar" OnClick="btnGuardar_FichaIdentificacion_Click" Text='<label class="pull-right label label-success label-button" style="font-size: 16px;" runat="server">Guardar <i class="fa fa-margin-left fa-save"></i></label>'/>              
-            </td>
+            </td> 
             <td width="9%" align="left">
                 <a href='<%= "javascript:history.back(-1);" %>'><label class="pull-right label label-primary label-button" style="font-size: 16px;">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
                 </td>
@@ -27,7 +27,7 @@
 
         </tr>
     </table>
-
+<hr />
 
     <div class="container-fluid">
         

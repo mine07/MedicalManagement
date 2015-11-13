@@ -4,13 +4,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-     
+     <h3>Procedimientos</h3>
+    <hr />
     <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <triggers>
                 <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">            
-                    Procedimiento&nbsp;:&nbsp; 
                     <asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar_Procedimiento" Columns="100" OnTextChanged="txt_OnTextChanged" placeholder="Buscar..." autocomplete="off" onfocus="ponerAlfinal(this);"></asp:TextBox>&nbsp;     
                     <!--<asp:ImageButton ID="ImageButton1" runat="Server" ImageUrl="IMG/buscarf.jpg" OnClick="txt_OnTextChanged" ToolTip = "Buscar Perfil"></asp:ImageButton>&nbsp;
                     <asp:ImageButton ID="AgregarProcedimiento" runat="Server" ImageUrl="IMG/agregar.png" OnClick="btnAgregarProcedimiento_Click" ToolTip = "Agregar Procedimiento"></asp:ImageButton>-->
@@ -27,7 +27,7 @@
                             onrowcommand="RowCommand" onrowdeleting="RowDeleting"          
                             onpageindexchanging ="Grid_Procedimiento_PageIndexChanging" AllowPaging="True" pagesize="25"
                             onpageindexchanged="Grid_Procedimiento_PageIndexChanged" CssClass="table table-hover" 
-                            PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" CellPadding="4" ForeColor="#333333" >
+                            PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt" GridLines="None" CellPadding="5" ForeColor="#333333" >
                             <AlternatingRowStyle CssClass="alt" BackColor="White"></AlternatingRowStyle>
                     
    
@@ -39,7 +39,7 @@
 
                                 <asp:BoundField DataField="Descripcion_Procedimiento" HeaderText="Descripcion Procedimiento" 
                                     SortExpression="Descripcion_Procedimiento" ItemStyle-Width="65%"/>
-                                  
+
                                 <asp:ButtonField ButtonType="Button" CommandName="Edit" HeaderText="Editar" 
                                     ShowHeader="True" Text="Editar" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle HorizontalAlign="Center" Width="15"></ItemStyle>

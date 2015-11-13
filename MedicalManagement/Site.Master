@@ -321,7 +321,7 @@
 </script>
 <style>
     .ftr:after {
-        content: "Hola";
+
         text-align: right;
     }
 
