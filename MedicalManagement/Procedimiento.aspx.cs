@@ -147,16 +147,17 @@ namespace MedicalManagement
 
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow selectedRowE = Grid_Procedimiento.Rows[index];
+ 
                 try
                 {
                     Response.Write("<script language=javascript>confirm('Esta seguro que quiere eliminar Procedimiento?');</script>");
                 }
                 catch (Exception ex)
                 {
-
+                    
                 }
                 Eliminar(Convert.ToString(selectedRowE.Cells[0].Text));
-                LlenarGridProcedimiento();
+                //Response.Redirect("Procedimiento.aspx");
             }
         }
 
@@ -197,7 +198,7 @@ namespace MedicalManagement
             comandoBitacora = null;
 
             cnn.Close();
-
+            
         }
 
         public void LlenarGridProcedimiento()

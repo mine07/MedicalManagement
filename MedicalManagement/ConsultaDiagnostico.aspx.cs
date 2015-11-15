@@ -67,6 +67,9 @@ namespace MedicalManagement
 
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         protected void btnRegresar_ConsultasDiagnostico_Click(object sender, ImageClickEventArgs e)
@@ -76,6 +79,86 @@ namespace MedicalManagement
 
         protected void RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            if (e.CommandName == "Edit")
+            {
+
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                GridViewRow selectedRow = Grid_Diagnostico.Rows[index];
+
+
+                /*
+                    0  Id_Empresa
+                    1  Comercial_Nombre_Empresa
+                 */
+
+                System.Web.HttpContext.Current.Response.Redirect("RegistroDiagnostico.aspx?Id_Diagnostico=" + selectedRow.Cells[0].Text);
+
+
+            }
+
+            if (e.CommandName == "Delete")
+            {
+
+                /*
+                    0  Id_Empresa
+                    1  Comercial_Nombre_Empresa
+                 */
+
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow selectedRowE = Grid_Diagnostico.Rows[index];
+
+                try
+                {
+                    Response.Write("<script language=javascript>confirm('Esta seguro que quiere eliminar Procedimiento?');</script>");
+                }
+                catch (Exception ex)
+                {
+
+                }
+                Eliminar(Convert.ToString(selectedRowE.Cells[0].Text));
+                Response.Redirect("ConsultaDiagnostico.aspx");
+            }
+        }
+
+        protected void Eliminar(string Id_Procedimiento)
+        {
+
+            /*SqlConnection cnn = new SqlConnection(ConfigurationManager.AppSettings.Get("strConnection"));*/
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+
+            cnn.Open();
+
+
+            SqlCommand command = new SqlCommand("SP_Catalogo_Diagnostico", cnn);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@Opcion", "BAJA");
+            command.Parameters.AddWithValue("@Id_Diagnostico", Id_Procedimiento);
+            command.ExecuteNonQuery();
+            command = null;
+
+            String Registro_Operacion_Btacora = "SP_Catalogo_Diagnostico"
+                                            + "@Opcion" + " = " + "BAJA"
+                                            + "@Id_Diagnostico" + " = " + Convert.ToString(Id_Procedimiento).Trim();
+
+            SqlCommand comandoBitacora = new SqlCommand("SP_Registro_Bitacora", cnn);
+            comandoBitacora.CommandType = CommandType.StoredProcedure;
+            comandoBitacora.Parameters.AddWithValue("@Id_Empresa", Convert.ToInt32(Session["Id_Empresa"]));
+            comandoBitacora.Parameters.AddWithValue("@Id_Sucursal", Convert.ToInt32(Session["Id_Sucursal"]));
+            comandoBitacora.Parameters.AddWithValue("@Id_Usuario", Convert.ToInt32(Session["Id_Usuario"]));
+            comandoBitacora.Parameters.AddWithValue("@Registro_Operacion_Btacora", Registro_Operacion_Btacora);
+            comandoBitacora.Parameters.AddWithValue("@Descripcion_Bitacora", "Baja Diagnostico nuevo");
+
+            SqlDataReader readerBitacora = comandoBitacora.ExecuteReader();
+            readerBitacora.Read();
+            readerBitacora.Close();
+            comandoBitacora = null;
+
+            cnn.Close();
+            //LlenarGridProcedimiento();
         }
 
 

@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using MedicalManagement.Models.DTO;
 using MedicalManagement.Models;
+using System.IO;
+
 
 namespace MedicalManagement
 {
@@ -27,11 +29,12 @@ namespace MedicalManagement
             estatuspermiso = Convert.ToBoolean(Session["estatuspermiso"]);
             int usuario = Convert.ToInt32(Session["inicio"]);
 
+            loadPacientes();
 
             if (Id_FichaIdentificacion != 0)
             {
+                ddlUsuarios.SelectedValue = Id_FichaIdentificacion.ToString();
                 loadUsuario();
-                    changePaciente();
             }
 
             if (Session["inicio"] == null || usuario == 0)
@@ -86,9 +89,9 @@ namespace MedicalManagement
 
             if (!IsPostBack)
             {
-                ddlUsuarios.DataSource = FichaDAO.GetAll();
-                ddlUsuarios.DataBind();
-                ddlUsuarios.Text = NombreCompleto;
+               // ddlUsuarios.DataSource = FichaDAO.GetAll();
+               // ddlUsuarios.DataBind();
+               // ddlUsuarios.Text = NombreCompleto;
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
                 DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
@@ -103,7 +106,6 @@ namespace MedicalManagement
                 if (Id_Agenda != 0)
                 {
                     string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
-
                     SqlConnection cnn;
                     cnn = new SqlConnection(conexion);
                     cnn.Open();
@@ -158,12 +160,13 @@ namespace MedicalManagement
                     }
                 }
 
-                if (Id_FichaIdentificacion != 0)
+
+                /*if (Id_FichaIdentificacion != 0)
                 {
                     txtidfichaidentificacion.Text = Id_FichaIdentificacion.ToString();
                     ddlUsuarios.Text = NombreCompleto;
                     //txtnombrecompleto.Text = Id_FichaIdentificacion.ToString();
-                }
+                }*/
 
             }
             if (txtaltaagenda.Value == "")
@@ -175,6 +178,12 @@ namespace MedicalManagement
         protected void btnRegresar_FichaIdentificacion_Click(object sender, EventArgs e)
         {
             Response.Redirect("Agenda.aspx");
+        }
+
+        private void loadPacientes()
+        {
+            ddlUsuarios.DataSource = FichaDAO.GetAll();
+            ddlUsuarios.DataBind();
         }
 
         public void loadUsuario()
@@ -373,16 +382,15 @@ namespace MedicalManagement
         }
 
 
-        protected void changePaciente()
+        protected void changePaciente(object sender, EventArgs e)
         {
-            //Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedItem.Value);
+            Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedItem.Value);
             var oneFicha =
                 FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
                 {
                     Id_FichaIdentificacion = Id_FichaIdentificacion
                 });
 
-            //Response.Redirect("ConsultaMenu.aspx?Id_Agenda=0&Id_FichaIdentificacion=" + Id_FichaIdentificacion);
         }
     }
 }

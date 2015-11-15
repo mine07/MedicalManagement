@@ -7,7 +7,7 @@
      <h3>Procedimientos</h3>
     <hr />
     <asp:ScriptManager runat="server" />
-    <asp:UpdatePanel runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <triggers>
                 <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">            
@@ -18,8 +18,8 @@
                     <asp:LinkButton ID = "Buscar" runat="server" OnClick ="txt_OnTextChanged" ToolTip = "Buscar Perfil" Text='<label class="fa-margin-right label pull-right label-success label-button"><i class="fa fa-margin-left fa-search"></i></label>'></asp:LinkButton> 
                     <hr />  
                 </div>
+                
             </triggers>
-    
             <table id="Tabla" width="100%">
                 <tr>
                     <td align="center"colspan="6">
@@ -45,7 +45,7 @@
                                     <ItemStyle HorizontalAlign="Center" Width="15"></ItemStyle>
                                 </asp:ButtonField>
 
-                                <asp:ButtonField ButtonType="Button" CommandName="Delete" HeaderText="Eliminar" 
+                                <asp:ButtonField ButtonType="Button" CommandName="Delete" HeaderText="Eliminar"
                                     ShowHeader="True" Text="Eliminar" ItemStyle-HorizontalAlign="Center">
                                     <ItemStyle HorizontalAlign="Center" Width="15"></ItemStyle>
                                 </asp:ButtonField>
