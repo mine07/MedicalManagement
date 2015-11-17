@@ -175,6 +175,7 @@ namespace MedicalManagement
 
         protected void addDiagnostico(object sender, EventArgs e)
         {
+
             var oneDiagnostico = new Tabla_Catalogo_DiagnosticoDTO();
             oneDiagnostico.Descripcion_Diagnostico = txtSearch.Text;
             oneDiagnostico = DiagnosticoDAO.GetOneByName(oneDiagnostico);

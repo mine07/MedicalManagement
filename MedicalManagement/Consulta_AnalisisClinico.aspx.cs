@@ -61,6 +61,7 @@ namespace MedicalManagement
             lTemporal.Add(oneAnalisis);
             loadSelected();
         }
+        
 
         protected void addTemporalPaquete(object sender, EventArgs e)
         {
@@ -85,6 +86,17 @@ namespace MedicalManagement
             rptSeleccionados.DataBind();
         }
 
+        protected void insertPacket(object sender, EventArgs e)
+        {
+            PaquetesDTO onePaquete = new PaquetesDTO();
+            onePaquete.Descripcion_AnalisisClinicoPaquetes = txtNombre.Value;
+            PaquetesDAO Paquete = new PaquetesDAO();
+            Paquete.Insert("", onePaquete);
+            loadPaquetes();
+            //limpiar();
+            // ddlPaquetes.SelectedIndex = ddlPaquetes.Items.Count - 1;
+            //loadItems();
+        }
         protected void removeSelected(object sender, EventArgs e)
         {
             var id = Convert.ToInt32(((LinkButton)sender).CommandArgument);

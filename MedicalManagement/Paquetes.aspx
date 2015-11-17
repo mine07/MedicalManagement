@@ -49,7 +49,7 @@
                                             <input type="text" runat="server" class="form-control" id="txtNombre" />
                                         </div>
                                         <div class="col-xs-10 col-xs-offset-2 padding">
-                                            <asp:LinkButton runat="server" OnClick="insertPacket" Text='<label class=" pull-right label label-button label-success" runat="server">Crear<i class="fa fa-plus"></i></label>' />
+                                            <asp:LinkButton runat="server" OnClick="insertPacket" Text='<label class=" pull-right label label-button label-success">Crear<i class="fa fa-plus"></i></label>' />
                                             <hr />
                                         </div>
                                     </div>

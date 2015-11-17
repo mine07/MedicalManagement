@@ -79,7 +79,8 @@
                                     </asp:Repeater>
                                 </div>
                                 <h5>
-                                    <label data-toggle="modal" data-target="#myModal" class="label label-success label-button">Guardar Nuevo Paquete<i class="fa fa-save fa-margin-left"></i></label></h5>
+                                    <asp:LinkButton data-toggle="modal" data-target="#myModal" runat="server" Text='<label class="label label-success label-button">Guardar Nuevo Paquete<i class="fa fa-save fa-margin-left"></i></label>' />  
+                                    
                                 <hr />
                             </div>
                         </div>
@@ -129,7 +130,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Guardar<i class="fa fa-save"></i></button>
+                    <asp:LinkButton OnClick="insertPacket" runat="server" Text='<label class="label label-success label-button">Guardar Nuevo<i class="fa fa-save fa-margin-left"></i></label>' />  
+                              
                 </div>
             </div>
         </div>

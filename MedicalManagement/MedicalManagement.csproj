@@ -90,6 +90,7 @@
     <Content Include="Bitacora.aspx" />
     <Content Include="Categoria.aspx" />
     <Content Include="ConceptoPago.aspx" />
+    <Content Include="ConsultaAnalisis.aspx" />
     <Content Include="ConsultaAnalisisClinico.aspx" />
     <Content Include="ConsultaAnalisisClinico2.aspx" />
     <Content Include="ConsultaDiagnostico.aspx" />
@@ -518,6 +519,13 @@
     </Compile>
     <Compile Include="Consulta.master.designer.cs">
       <DependentUpon>Consulta.master</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaAnalisis.aspx.cs">
+      <DependentUpon>ConsultaAnalisis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultaAnalisis.aspx.designer.cs">
+      <DependentUpon>ConsultaAnalisis.aspx</DependentUpon>
     </Compile>
     <Compile Include="ConsultaAnalisisClinico.aspx.cs">
       <DependentUpon>ConsultaAnalisisClinico.aspx</DependentUpon>
