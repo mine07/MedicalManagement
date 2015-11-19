@@ -33,7 +33,7 @@ namespace MedicalManagement
             if (!IsPostBack)
             {
                 MostrarGridRecetaPrevia();
-
+                Label1.Text = NombreCompleto;
 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -46,7 +46,7 @@ namespace MedicalManagement
 
                 if (Id_ConsultaReceta != 0)
                 {
-
+                    
                     SqlCommand comando2 = new SqlCommand("SP_Registro_ConsultasRecetas", cnn);
                     comando2.CommandType = CommandType.StoredProcedure;
                     comando2.Parameters.AddWithValue("@Opcion", "ENCONTRAR");
@@ -168,39 +168,6 @@ namespace MedicalManagement
             reader.Read();
             reader.Close();
             comando = null;
-
-            /*
-            String Registro_Operacion_Btacora = "";
-            string Descripcion_Bitacora = "";
-            if (Id_FichaIdentificacion == 0)
-            {
-                Registro_Operacion_Btacora = "SP_Catalogo_FichaIdentificacion"
-                                                + "@Opcion" + " = " + "INSERTAR"
-                                                + "@Descripcion_EdoCivil" + " = " + txtasunto.Text;
-                Descripcion_Bitacora = "Inserta FichaIdentificacion nueva";
-            }
-            else
-            {
-                Registro_Operacion_Btacora = "SP_Catalogo_FichaIdentificacion"
-                                                + "@Opcion" + " = " + "ACTUALIZAR"
-                                                + "@Id_FichaIdentificacion" + " = " + Convert.ToString(Id_FichaIdentificacion).Trim()
-                + "@Descripcion_EdoCivil" + " = " + txtasunto.Text;
-
-                Descripcion_Bitacora = "Actualizar FichaIdentificacion";
-            }
-            SqlCommand comandoBitacora = new SqlCommand("SP_Registro_Bitacora", cnn);
-            comandoBitacora.CommandType = CommandType.StoredProcedure;
-            comandoBitacora.Parameters.AddWithValue("@Id_Empresa", Convert.ToInt32(Session["Id_Empresa"]));
-            comandoBitacora.Parameters.AddWithValue("@Id_Sucursal", Convert.ToInt32(Session["Id_Sucursal"]));
-            comandoBitacora.Parameters.AddWithValue("@Id_Usuario", Convert.ToInt32(Session["Id_Usuario"]));
-            comandoBitacora.Parameters.AddWithValue("@Registro_Operacion_Btacora", Registro_Operacion_Btacora);
-            comandoBitacora.Parameters.AddWithValue("@Descripcion_Bitacora", Descripcion_Bitacora);
-
-            SqlDataReader readerBitacora = comandoBitacora.ExecuteReader();
-            readerBitacora.Read();
-            readerBitacora.Close();
-            comandoBitacora = null;
-            */
             cnn.Close();
 
             Response.Redirect("ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + " &Id_FichaIdentificacion=" + Id_FichaIdentificacion + " &NombreCompleto=" + NombreCompleto + "&Id_Consulta=" + Id_Consulta + "");
@@ -336,17 +303,17 @@ namespace MedicalManagement
 
         private void loadTemporal()
         {
-            string query = @"select a.*, b.Descripcion_Medicamento as Tem_Medicamento from tabla_temporal_receta a
-                            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where a.Id_FichaIdentificacion = @Id_FichaIdentificacion and a.Id_Consulta = @Id_Consulta";
+            //string query = @"select a.*, b.Descripcion_Medicamento as Tem_Medicamento from tabla_temporal_receta a
+                           // left join Tabla_Catalogo_AnalisisClinico b on b.Id_Medicamento = a.Id_Medicamento where a.Id_FichaIdentificacion = @Id_FichaIdentificacion and a.Id_Consulta = @Id_Consulta";
             var oneTemp = new Tabla_Temporal_RecetaDTO();
             oneTemp.Id_Consulta = Id_Consulta;
             oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
             Helpers h = new Helpers();
-            var lTemporal = h.GetAllParametized(query, oneTemp);
-            rptTemporal.DataSource = lTemporal;
+           // var lTemporal = h.GetAllParametized(query, oneTemp);
+           // rptTemporal.DataSource = lTemporal;
             rptTemporal.DataBind();
-            string queryTemplate = "select Id_Template, Tem_Nombre from tabla_receta_template group by Id_Template , Tem_Nombre";
-            var lTemplates = h.GetAllParametized(queryTemplate, new Tabla_Receta_TemplateDTO());
+            string queryTemplate = "select Id_Template, Tem_Nombre from tabla_analisis_template group by Id_Template , Tem_Nombre";
+            var lTemplates = h.GetAllParametized(queryTemplate, new Tabla_Analsis_TemplateDTO());
             ddlTemplate.DataSource = lTemplates;
             ddlTemplate.DataBind();
             loadTemplate();

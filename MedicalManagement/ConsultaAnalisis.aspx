@@ -102,7 +102,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <label>Receta Previa</label>
+                                    <label>Paquete Previo</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-1x fa-search"></i></span>
                                         <asp:DropDownList runat="server" ID="ddlTemplate" CssClass="form-control combobox" DataTextField="Tem_Nombre" DataValueField="Id_Template" />
@@ -119,7 +119,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <label>Medicamento</label>
+                                    <label>Analisis</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-1x fa-search"></i></span>
                                         <asp:DropDownList runat="server" ID="ddlMedicamento" CssClass="form-control combobox" DataTextField="Descripcion_Medicamento" DataValueField="Id_Medicamento" />
@@ -150,7 +150,7 @@
                         <div class="container-fluid padding" id="Medicine-Container">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Guardar Como Receta Previa<i class="fa fa-save"></i></label>
+                                    <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Guardar Como Paquete Previo<i class="fa fa-save"></i></label>
                                     <hr />
                                 </div>
                             </div>

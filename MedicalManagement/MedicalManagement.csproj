@@ -702,6 +702,7 @@
     <Compile Include="Models\DTO\PerfilDTO.cs" />
     <Compile Include="Models\DTO\PermisosDTO.cs" />
     <Compile Include="Models\DTO\Taba_Receta_Template.cs" />
+    <Compile Include="Models\DTO\Tabla_Analisis_Template.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConsultaRecetaPreviaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ProcedimientoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />

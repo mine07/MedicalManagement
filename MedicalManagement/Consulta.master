@@ -103,8 +103,8 @@
                         </div>
                         <hr />
                         <div>
-                            <!--<h5>Analisis Clinico<a href='<%= "Consulta_AnalisisClinico.aspx?Id_Paciente="+ Id_FichaIdentificacion %>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>-->
-                            <h5>Analisis Clinico<a href='<%= "ConsultaAnalisis.aspx?Id_Paciente="+ Id_FichaIdentificacion %>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>
+                            <h5>Analisis Clinico<a href='<%= "Consulta_AnalisisClinico.aspx?Id_Paciente="+ Id_FichaIdentificacion %>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>
+                           <!-- <h5>Analisis Clinico<a href='<%= "ConsultaAnalisis.aspx?Id_Paciente="+ Id_FichaIdentificacion +"&NombreCompleto="+ NombreCompleto%>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>-->
                             <hr />
                         </div>
                         <div>

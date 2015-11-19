@@ -92,13 +92,26 @@ namespace prototipo
             SqlCommand comando = new SqlCommand("SP_Catalogo_Usuario", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-            if (Buscar_Usuario.Text == "")
+            if (!(Buscar_Usuario.Text == ""))
             {
-                comando.Parameters.AddWithValue("@NombreCompleto_Usuario", "");
+
+                string s = Buscar_Usuario.Text;
+                string[] palabras = s.Split(' ');
+                int i = 0;
+                foreach (string palabra in palabras)
+                {
+                    if (i <= 4)
+                    {
+                        string NDescripcion = "NombreCompleto_Usuario" + i;
+                        comando.Parameters.AddWithValue(NDescripcion, palabra);
+                        i++;
+                        Console.WriteLine(palabra);
+                    }
+                }
             }
             else
             {
-                comando.Parameters.AddWithValue("@NombreCompleto_Usuario", Buscar_Usuario.Text);
+                comando.Parameters.AddWithValue("NombreCompleto_Usuario0", "");
             }
             /*
                 0  Id_Usuario

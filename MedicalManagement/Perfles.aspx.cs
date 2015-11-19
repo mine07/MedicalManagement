@@ -100,7 +100,7 @@ namespace prototipo
                 int i = 0;
                 foreach (string palabra in palabras)
                 {
-                    if (i <= 4)
+                    if (i <= 1)
                     {
                         string NDescripcion = "@Descripcion_Perfil" + i;
                         comando.Parameters.AddWithValue(NDescripcion, palabra);
@@ -111,7 +111,7 @@ namespace prototipo
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion_Perfil", "");
+                comando.Parameters.AddWithValue("@Descripcion_Perfil0", "");
             }
             /*
                 0  Id_Perfil

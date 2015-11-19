@@ -234,14 +234,31 @@ namespace MedicalManagement
             SqlCommand comando = new SqlCommand("SP_Catalogo_FichaIdentificacion", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
-            if (txtBuscar_FichaIdentificacion.Text == "")
+
+            if (!(txtBuscar_FichaIdentificacion.Text == ""))
             {
-                comando.Parameters.AddWithValue("@Nombre_FichaIdentificacion", "");
+                string s = txtBuscar_FichaIdentificacion.Text;
+                string[] palabras = s.Split(' ');
+                int i = 0;
+                foreach (string palabra in palabras)
+                {
+                    if (i <= 2)
+                    {
+                        string NDescripcion = "@Nombre_FichaIdentificacion" + i;
+                        comando.Parameters.AddWithValue(NDescripcion, palabra);
+                        i++;
+                    }
+
+                }
+
+
             }
             else
             {
-                comando.Parameters.AddWithValue("@Nombre_FichaIdentificacion", txtBuscar_FichaIdentificacion.Text);
+                comando.Parameters.AddWithValue("@Nombre_FichaIdentificacion0", "");
             }
+
+
             /*
                 0  Id_Empresa
                 1  Nombre_Empresa
@@ -255,10 +272,10 @@ namespace MedicalManagement
             Grid_FichaIdentificacion.Columns[0].Visible = true;
             Grid_FichaIdentificacion.Columns[1].Visible = true;
             Grid_FichaIdentificacion.DataBind();
-            Grid_FichaIdentificacion.HeaderRow.Cells[0].Attributes["data-class"] = "expand";
-            Grid_FichaIdentificacion.HeaderRow.Cells[2].Attributes["data-hide"] = "phone";
-            Grid_FichaIdentificacion.HeaderRow.Cells[3].Attributes["data-hide"] = "phone";
-            Grid_FichaIdentificacion.HeaderRow.TableSection = TableRowSection.TableHeader;
+            //Grid_FichaIdentificacion.HeaderRow.Cells[0].Attributes["data-class"] = "expand";
+            //Grid_FichaIdentificacion.HeaderRow.Cells[2].Attributes["data-hide"] = "phone";
+            //Grid_FichaIdentificacion.HeaderRow.Cells[3].Attributes["data-hide"] = "phone";
+            //Grid_FichaIdentificacion.HeaderRow.TableSection = TableRowSection.TableHeader;
 
             ds.Dispose();
             da.Dispose();
