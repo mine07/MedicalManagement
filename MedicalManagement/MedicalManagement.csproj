@@ -86,6 +86,7 @@
     <Content Include="AgendaElegirFicha.aspx" />
     <Content Include="AnalisisClinico.aspx" />
     <Content Include="AnalisisClinicoPaquetes.aspx" />
+    <Content Include="AnalisisConsulta.aspx" />
     <Content Include="Aseguradora.aspx" />
     <Content Include="Bitacora.aspx" />
     <Content Include="Categoria.aspx" />
@@ -485,6 +486,13 @@
     <Compile Include="AnalisisClinicoPaquetes.aspx.designer.cs">
       <DependentUpon>AnalisisClinicoPaquetes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AnalisisConsulta.aspx.cs">
+      <DependentUpon>AnalisisConsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AnalisisConsulta.aspx.designer.cs">
+      <DependentUpon>AnalisisConsulta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aseguradora.aspx.cs">
       <DependentUpon>Aseguradora.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -713,6 +721,7 @@
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaSeguimientoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_PagosDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Temporal_AnalisisClinicoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Temporal_RecetaDTO.cs" />
     <Compile Include="Models\Extensiones.cs" />
     <Compile Include="Models\Helpers.cs" />

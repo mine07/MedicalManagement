@@ -18,7 +18,7 @@ namespace MedicalManagement
         public int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         public string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
-        int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
+        public int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,6 +28,7 @@ namespace MedicalManagement
                 
                 if (Id_FichaIdentificacion != 0)
                 {
+                    lblNombre.Text = NombreCompleto;
                     loadUsuario();
                     lblNombre.Text = NombreCompleto;
                     GridViewActivos();

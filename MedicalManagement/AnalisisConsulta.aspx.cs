@@ -8,12 +8,18 @@ using MedicalManagement.Models.DTO;
 
 namespace MedicalManagement
 {
-    public partial class Paquetes : System.Web.UI.Page
-    {
+	public partial class AnalisisConsulta1 : System.Web.UI.Page
+	{
+        public int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
+        public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Paciente"]);
+        public string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
+        public int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["IdConsulta"]);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                lblNombre.Text = NombreCompleto;
                 loadPaquetes();
                 loadItems();
             }
@@ -60,12 +66,23 @@ namespace MedicalManagement
             ddlPaquetes.SelectedIndex = 0;
         }
 
-        protected void addAnalisis(object sender, EventArgs e)
+        /*protected void addAnalisis(object sender, EventArgs e)
         {
             AnalisisEnPaquetesDTO oneAnaPaquete = new AnalisisEnPaquetesDTO();
             oneAnaPaquete.Id_AnalisisClinicoPaquetes = Convert.ToInt32(ddlPaquetes.SelectedItem.Value);
             oneAnaPaquete.Id_AnalisisClinico = Convert.ToInt32(ddlAnalisis.SelectedItem.Value);
+            oneAnaPaquete.Estatus_AnalisisClinicoPaquetes = true;
             AnalisisEnPaquetesDAO Insert = new AnalisisEnPaquetesDAO();
+            Insert.Insert("", oneAnaPaquete);
+            loadItems();
+        }*/
+        protected void addAnalisis(object sender, EventArgs e)
+        {
+            Tabla_Temporal_AnalisisClinicoDTO oneAnaPaquete = new Tabla_Temporal_AnalisisClinicoDTO();
+            oneAnaPaquete.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            oneAnaPaquete.Id_AnalisisClinico = Convert.ToInt32(ddlAnalisis.SelectedItem.Value);
+            oneAnaPaquete.Id_Consulta = Id_Consulta;
+            Tabla_Temporal_AnalisisClinicoDAO Insert = new Tabla_Temporal_AnalisisClinicoDAO();
             Insert.Insert("", oneAnaPaquete);
             loadItems();
         }

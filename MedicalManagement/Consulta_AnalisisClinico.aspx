@@ -3,7 +3,8 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <asp:ScriptManager runat="server" />
     <a href='<%= "ConsultaMenu.aspx?Id_Agenda=0&Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'>
-        <label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
+    <a href="#" onClick="history.back();" __designer:mapid="696"><label class="pull-right label label-primary label-button" __designer:mapid="697">Volver<i class="fa fa-arrow-left fa-margin-left" __designer:mapid="698"></i></label></a><div class="hidden"></div>
+        
     <h3>Analisis Clinico</h3>
     <hr />
     <h4 style="margin: 0px; margin-left: 1px;">
