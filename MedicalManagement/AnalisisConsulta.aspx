@@ -68,10 +68,10 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 container-fluid padding">
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-xs-12">
 
-                                <asp:LinkButton runat="server" OnClick="deletePacket" Text='<label class="label label-danger pull-right label-button pull-right" style="font-size: 16px;">Eliminar<i class="fa fa-scissors"></i></label>' />
+                                <asp:LinkButton runat="server" Text='<label class="label label-danger pull-right label-button pull-right" style="font-size: 16px;">Eliminar<i class="fa fa-scissors"></i></label>' />
                                 <hr />
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                                 <h3>Analis Clinicos<i class="fa fa-stethoscope fa-margin-left fa-margin-right"></i>-<label runat="server" id="lblPaqueteNombre"></label></h3>
                                 <hr />
                             </div>
-                        </div>
+                        </div>-->
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="gray-container">
@@ -89,7 +89,7 @@
                                         <div class="col-xs-12 col-md-4 col-sm-6 col-lg-3 container-fluid " style="padding: 10px;">
                                             <div class="row">
                                                 <div class="col-xs-12">
-                                                    <asp:LinkButton runat="server" Text='<i class="fa fa-close remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_AnalisisClinicoPaquetesdatos")%>' OnClick="deleteItem" />
+                                                    <asp:LinkButton runat="server" Text='<i class="fa fa-close remove-icon pull-right"></i>' CommandArgument='<%# Eval("Id_Temporal_AnalisisClinico")%>' OnClick="deleteItem" />
                                                     <hr />
                                                     <label class="h5"><i class="fa fa-stethoscope fa-margin-right"></i><%# Eval("oneAnalisis.Descripcion_AnalisisClinico") %></label>
                                                 </div>

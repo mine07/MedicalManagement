@@ -27,8 +27,8 @@ namespace MedicalManagement
 
         private void loadItems()
         {
-            string queryIf = "where Id_AnalisisClinicoPaquetes = @Id_AnalisisClinicoPaquetes";
-            rptItems.DataSource = AnalisisEnPaquetesDAO.GetAll(queryIf, new AnalisisEnPaquetesDTO { Id_AnalisisClinicoPaquetes = Convert.ToInt32(ddlPaquetes.SelectedItem.Value) });
+            string queryIf = "where Id_Consulta = @Id_Consulta";
+            rptItems.DataSource = Tabla_Temporal_AnalisisClinicoDAO.GetAll(queryIf, new Tabla_Temporal_AnalisisClinicoDTO { Id_Consulta = Id_Consulta });
             rptItems.DataBind();
             lblPaqueteNombre.InnerText = ddlPaquetes.SelectedItem.Text;
         }
@@ -89,15 +89,15 @@ namespace MedicalManagement
 
         protected void deleteItem(object sender, EventArgs e)
         {
-            var Id_AnalisisClinicoPaquetesdatos = Convert.ToInt32(((LinkButton)sender).CommandArgument);
-            var oneAnaPaquete = new AnalisisEnPaquetesDTO();
-            oneAnaPaquete.Id_AnalisisClinicoPaquetesdatos = Id_AnalisisClinicoPaquetesdatos;
-            AnalisisEnPaquetesDAO Delete = new AnalisisEnPaquetesDAO();
+            var Id_Temporal_AnalisisClinico = Convert.ToInt32(((LinkButton)sender).CommandArgument);
+            var oneAnaPaquete = new Tabla_Temporal_AnalisisClinicoDTO();
+            oneAnaPaquete.Id_Temporal_AnalisisClinico = Id_Temporal_AnalisisClinico;
+            Tabla_Temporal_AnalisisClinicoDAO Delete = new Tabla_Temporal_AnalisisClinicoDAO();
             Delete.delete("", oneAnaPaquete);
             loadItems();
         }
 
-        protected void deletePacket(object sender, EventArgs e)
+        /*protected void deletePacket(object sender, EventArgs e)
         {
             var Id_Paquete = ddlPaquetes.SelectedItem.Value;
             PaquetesDTO onePaquet = new PaquetesDTO();
@@ -107,6 +107,6 @@ namespace MedicalManagement
             loadPaquetes();
             loadItems();
             limpiar();
-        }
+        }*/
     }
 }
