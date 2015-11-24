@@ -89,6 +89,7 @@
     <Content Include="AnalisisConsulta.aspx" />
     <Content Include="Aseguradora.aspx" />
     <Content Include="Bitacora.aspx" />
+    <Content Include="BuscarPaquete.aspx" />
     <Content Include="Categoria.aspx" />
     <Content Include="ConceptoPago.aspx" />
     <Content Include="ConsultaAnalisis.aspx" />
@@ -506,6 +507,13 @@
     </Compile>
     <Compile Include="Bitacora.aspx.designer.cs">
       <DependentUpon>Bitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BuscarPaquete.aspx.cs">
+      <DependentUpon>BuscarPaquete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuscarPaquete.aspx.designer.cs">
+      <DependentUpon>BuscarPaquete.aspx</DependentUpon>
     </Compile>
     <Compile Include="Categoria.aspx.cs">
       <DependentUpon>Categoria.aspx</DependentUpon>
@@ -1077,6 +1085,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

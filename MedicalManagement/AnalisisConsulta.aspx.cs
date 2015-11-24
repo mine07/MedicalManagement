@@ -5,6 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MedicalManagement.Models.DTO;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using MedicalManagement.Models;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace MedicalManagement
 {
@@ -108,5 +116,33 @@ namespace MedicalManagement
             loadItems();
             limpiar();
         }*/
+
+        protected void saveToUse(object sender, EventArgs e)
+        {
+            int Id_Template = Convert.ToInt32(ddlPaquetes.SelectedItem.Value);
+            string query = @"select  a.*, b.Descripcion_Medicamento as Tem_Medicamento from Tabla_receta_Template a
+            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where Id_Template = @Id_Template";
+            var oneTemp = new Tabla_Receta_TemplateDTO();
+            oneTemp.Id_Template = Id_Template;
+            Helpers h = new Helpers();
+            var lTemporal = h.GetAllParametized(query, oneTemp);
+            string queryInsert = "insert into Tabla_Temporal_Receta (Id_FichaIdentificacion, Tem_Dosis, Tem_Notas, Id_Medicamento, Id_Consulta) values (@Id_FichaIdentificacion, @Tem_Dosis, @Tem_Notas, @Id_Medicamento, @Id_Consulta)";
+            string queryDelete = "delete from Tabla_Temporal_Receta where Id_Consulta = @Id_Consulta and Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            h.ExecuteNonQueryParam(queryDelete, new Tabla_Temporal_RecetaDTO { Id_FichaIdentificacion = Id_FichaIdentificacion, Id_Consulta = Id_Consulta });
+            foreach (var y in lTemporal)
+            {
+                var oneTe = new Tabla_Temporal_RecetaDTO();
+                oneTe.Id_Consulta = Id_Consulta;
+                oneTe.Id_FichaIdentificacion = Id_FichaIdentificacion;
+                oneTe.Id_Medicamento = y.Id_Medicamento;
+                oneTe.Tem_Dosis = y.Tem_Dosis;
+                oneTe.Tem_Notas = y.Tem_Notas;
+                h.ExecuteNonQueryParam(queryInsert, oneTe);
+                //loadTemporal();
+            }
+            string script = "AlertaGuardar();";
+            ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+            return;
+        }
     }
 }

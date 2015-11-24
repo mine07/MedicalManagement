@@ -9,7 +9,7 @@ namespace MedicalManagement.Models.DTO
     {
         public int Id_Temporal_AnalisisClinico { get; set; }
         public int Id_FichaIdentificacion { get; set; }
-        public int Id_AnalisisClinico { get; set; }
+        public int Id_AnalisisClinico { get; set; } 
         public int Id_Consulta { get; set; }
         public AnalisisClinicoDTO oneAnalisis { get; set; }
     }

@@ -28,8 +28,11 @@
                                     <label class="h5">Lista de Paquetes<i class="fa fa-cubes fa-margin-left"></i></label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-1x fa-search"></i></span>
-                                        <asp:DropDownList runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlChanged" ID="ddlPaquetes" CssClass="form-control combobox does-postback" DataTextField="Descripcion_AnalisisClinicoPaquetes" DataValueField="Id_AnalisisClinicoPaquetes" />
+                                        
+                                        <asp:DropDownList runat="server" OnSelectedIndexChanged="ddlChanged" ID="ddlPaquetes" CssClass="form-control combobox" DataTextField="Descripcion_AnalisisClinicoPaquetes" DataValueField="Id_AnalisisClinicoPaquetes" />
+                                    
                                     </div>
+                                    <label class="label label-success pull-right label-button" data-toggle="modal" data-target="#modalRecPrevia">Ver Paquete<i class="fa fa-search"></i></label><h4></h4>
                                 </div>
                                 <div class="col-xs-12">
                                     <hr />
@@ -105,6 +108,31 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    <div class="modal fade" id="modalRecPrevia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Receta: <span class="label label-primary recetaNombre"></span></h4>
+                </div>
+                <div class="modal-body contaienr-fluid">
+                    <div class="container-fluid" id="Template-Container">
+                        <asp:Repeater runat="server" ID="rptTemplate">
+                            <ItemTemplate>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <h4>
+                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label></h4>
+                    <asp:LinkButton OnClick="saveToUse" ID="LinkButton2" runat="server" Text='<h4><label class="label label-success pull-right label-button">Usar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function () {
             $(".combobox").combobox();
