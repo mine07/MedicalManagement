@@ -103,12 +103,12 @@
                         </div>
                         <hr />
                         <div>
-                           <!--<h5>Analisis Clinico<a href='<%= "Consulta_AnalisisClinico.aspx?Id_Paciente="+ Id_FichaIdentificacion %>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>
-                             <h5>Analisis Clinico<a href='<%= "AnalisisConsulta.aspx?Id_Paciente="+ Id_FichaIdentificacion +"&NombreCompleto="+ NombreCompleto+"&IdConsulta="+ Id_Consulta%>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>-->
-                            <h5>Analisis Clinico<a href='<%= "BuscarPaquete.aspx?Id_Paciente="+ Id_FichaIdentificacion +"&NombreCompleto="+ NombreCompleto+"&IdConsulta="+ Id_Consulta%>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5
-                            
+                           <!--<h5>Analisis Clinico<a href='<%= "Consulta_AnalisisClinico.aspx?Id_Paciente="+ Id_FichaIdentificacion %>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>-->
+                             <h5>Analisis Clinico<a href='<%= "AnalisisConsulta.aspx?Id_Paciente="+ Id_FichaIdentificacion +"&NombreCompleto="+ NombreCompleto+"&IdConsulta="+ Id_Consulta%>'><label class="icon-add pull-right  label label-success">Pedir<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5>
+                            <!--<h5>Analisis Clinico<a href='<%= "BuscarPaquete.aspx?Id_Paciente="+ Id_FichaIdentificacion +"&NombreCompleto="+ NombreCompleto+"&IdConsulta="+ Id_Consulta%>'><label class="icon-add pull-right  label label-success">PedirT<i class="fa fa-stethoscope fa-margin-left"></i></label></a></h5                           -->
                             <hr />
                         </div>
+                        <hr />
                         <div>
                             <h5>Archivos Adjuntos</h5>
                             <div class="container-fluid white-container">

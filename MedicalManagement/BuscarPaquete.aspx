@@ -107,9 +107,8 @@
                                         <asp:DropDownList runat="server" ID="ddlTemplate" CssClass="form-control combobox" DataTextField="Tem_Nombre" DataValueField="Id_Template" />
                                     </div>
                                     <h4>
-                                        <label class="label label-success pull-right label-button" data-toggle="modal" data-target="#modalRecPrevia">Ver Receta<i class="fa fa-search"></i></label><h4></h4>
-                                        <h4></h4>
-                                        <h4></h4>
+                                        <label class="label label-success pull-right label-button" data-toggle="modal" data-target="#modalRecPrevia">Ver Paquete<i class="fa fa-search"></i></label><h4></h4>
+
                                     </h4>
                                 </div>
                                 <div class="col-xs-12">
@@ -257,11 +256,11 @@
         });
 
         $("[id$=ddlTemplate]").change(function () {
-            var x = $("[id$=ddlTemplate]").val();
+            var x = 2;
             $.ajax({
                 type: "POST",
-                url: "GetDates.asmx/loadTemplate",
-                data: "{'Id_Template':'" + x + "'}",
+                url: "GetDates.asmx/loadPaquete",
+                data: "{'Id_AnalisisClinicoPaquetes':'" + x + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -284,17 +283,10 @@
         <div class="col-xs-12 col-md-5 col-lg-5 col-sm-5  border-right3-bottom3">
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <label class="h5">Medicamento</label>
+                                            <label class="h5">Analisis</label>
                                             <label><*= this.Tem_Medicamento*></label>
                                         </div>
-                                        <div class="col-xs-12">
-                                            <label class="h5">Dosis</label>
-                                            <label><*= this.Tem_Dosis*></label>
-                                        </div>
-                                        <div class="col-xs-12">
-                                            <label class="h5">Notas</label>
-                                            <label><*= this.Tem_Notas *></label>
-                                        </div>
+                                       
                                     </div>
                                 </div>
         ]]>

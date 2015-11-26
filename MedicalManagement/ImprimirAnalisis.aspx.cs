@@ -16,8 +16,8 @@ using System.IO;
 
 namespace MedicalManagement
 {
-	public partial class AnalisisConsulta1 : System.Web.UI.Page
-	{
+    public partial class ImprimirAnalisis : System.Web.UI.Page
+    {
         public int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Paciente"]);
         public string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
@@ -27,7 +27,8 @@ namespace MedicalManagement
         {
             if (!IsPostBack)
             {
-                lblNombre.Text = NombreCompleto;
+                Label1.Text = NombreCompleto;
+                Label3.Text = DateTime.Now.ToString();
                 loadPaquetes();
                 loadItems();
             }
@@ -38,15 +39,15 @@ namespace MedicalManagement
             string queryIf = "where Id_Consulta = @Id_Consulta";
             rptItems.DataSource = Tabla_Temporal_AnalisisClinicoDAO.GetAll(queryIf, new Tabla_Temporal_AnalisisClinicoDTO { Id_Consulta = Id_Consulta });
             rptItems.DataBind();
-            lblPaqueteNombre.InnerText = ddlPaquetes.SelectedItem.Text;
+          //  lblPaqueteNombre.InnerText = ddlPaquetes.SelectedItem.Text;
         }
 
         private void loadPaquetes()
         {
-            ddlAnalisis.DataSource = AnalisisClinicoDAO.GetAll("", new AnalisisClinicoDTO());
-            ddlAnalisis.DataBind();
-            ddlPaquetes.DataSource = PaquetesDAO.GetAll("", new PaquetesDTO());
-            ddlPaquetes.DataBind();
+            //ddlAnalisis.DataSource = AnalisisClinicoDAO.GetAll("", new AnalisisClinicoDTO());
+           // ddlAnalisis.DataBind();
+           // ddlPaquetes.DataSource = PaquetesDAO.GetAll("", new PaquetesDTO());
+           // ddlPaquetes.DataBind();
         }
 
         protected void ddlChanged(object sender, EventArgs e)
@@ -57,21 +58,21 @@ namespace MedicalManagement
         protected void insertPacket(object sender, EventArgs e)
         {
             PaquetesDTO onePaquete = new PaquetesDTO();
-            onePaquete.Descripcion_AnalisisClinicoPaquetes = txtNombre.Value;
+          //  onePaquete.Descripcion_AnalisisClinicoPaquetes = txtNombre.Value;
             onePaquete.Estatus_AnalisisClinicoPaquetes = true;
             PaquetesDAO Paquete = new PaquetesDAO();
             Paquete.Insert("", onePaquete);
             loadPaquetes();
             limpiar();
-            ddlPaquetes.SelectedIndex = ddlPaquetes.Items.Count - 1;
+           // ddlPaquetes.SelectedIndex = ddlPaquetes.Items.Count - 1;
             loadItems();
         }
 
         public void limpiar()
         {
-            txtNombre.Value = "";
-            ddlAnalisis.SelectedIndex = 0;
-            ddlPaquetes.SelectedIndex = 0;
+           // txtNombre.Value = "";
+          //  ddlAnalisis.SelectedIndex = 0;
+           // ddlPaquetes.SelectedIndex = 0;
         }
 
         /*protected void addAnalisis(object sender, EventArgs e)
@@ -88,7 +89,7 @@ namespace MedicalManagement
         {
             Tabla_Temporal_AnalisisClinicoDTO oneAnaPaquete = new Tabla_Temporal_AnalisisClinicoDTO();
             oneAnaPaquete.Id_FichaIdentificacion = Id_FichaIdentificacion;
-            oneAnaPaquete.Id_AnalisisClinico = Convert.ToInt32(ddlAnalisis.SelectedItem.Value);
+            //oneAnaPaquete.Id_AnalisisClinico = Convert.ToInt32(ddlAnalisis.SelectedItem.Value);
             oneAnaPaquete.Id_Consulta = Id_Consulta;
             Tabla_Temporal_AnalisisClinicoDAO Insert = new Tabla_Temporal_AnalisisClinicoDAO();
             Insert.Insert("", oneAnaPaquete);
@@ -121,11 +122,11 @@ namespace MedicalManagement
 
         protected void saveToUse(object sender, EventArgs e)
         {
-            int Id_AnalisisClinicoPaquetes = Convert.ToInt32(ddlPaquetes.SelectedItem.Value);
+            //int Id_AnalisisClinicoPaquetes = Convert.ToInt32(ddlPaquetes.SelectedItem.Value);
             string query = @"select  a.*, b.Descripcion_AnalisisClinico as Tem_Medicamento from Tabla_Registro_AnalisisClinicoPaquetes a
             left join Tabla_Catalogo_AnalisisClinico b on b.Id_AnalisisClinico = a.Id_AnalisisClinico where Id_AnalisisClinicoPaquetes = @Id_AnalisisClinicoPaquetes";
             var oneTemp = new Tabla_Registro_AnalisisClinicoPaquetesDTO();
-            oneTemp.Id_AnalisisClinicoPaquetes = Id_AnalisisClinicoPaquetes;
+           // oneTemp.Id_AnalisisClinicoPaquetes = Id_AnalisisClinicoPaquetes;
             Helpers h = new Helpers();
             var lTemporal = h.GetAllParametized(query, oneTemp);
             string queryInsert = "insert into Tabla_Temporal_AnalisisClinico (Id_FichaIdentificacion, Id_AnalisisClinico, Id_Consulta) values (@Id_FichaIdentificacion, @Id_AnalisisClinico, @Id_Consulta)";

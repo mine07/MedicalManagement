@@ -174,6 +174,7 @@
     <Content Include="IMG\Logotipo_iCh.jpg" />
     <Content Include="IMG\ui-icons_FF1919_256x240.png" />
     <Content Include="IMG\Ui-icons_ffffff_256x240.png" />
+    <Content Include="ImprimirAnalisis.aspx" />
     <Content Include="ImprimirNotaClinica.aspx" />
     <Content Include="ImprimirReceta.aspx" />
     <Content Include="login.aspx" />
@@ -665,6 +666,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ImprimirAnalisis.aspx.cs">
+      <DependentUpon>ImprimirAnalisis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImprimirAnalisis.aspx.designer.cs">
+      <DependentUpon>ImprimirAnalisis.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ImprimirNotaClinica.aspx.cs">
       <DependentUpon>ImprimirNotaClinica.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -719,12 +727,14 @@
     <Compile Include="Models\DTO\PermisosDTO.cs" />
     <Compile Include="Models\DTO\Taba_Receta_Template.cs" />
     <Compile Include="Models\DTO\Tabla_Analisis_Template.cs" />
+    <Compile Include="Models\DTO\Tabla_Catalogo_AnalisisClinico.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ConsultaRecetaPreviaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_ProcedimientoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_MedicamentoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AgendaDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Registro_AnalisisClinicoPaquetes.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaConceptoPagoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaSeguimientoDTO.cs" />

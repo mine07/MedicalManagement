@@ -13,7 +13,7 @@ namespace MedicalManagement.Models.DTO
         public int Id_Diagnostico { get; set; }
         public string Tem_Nombre { get; set; }
         public string Tem_Dosis {get;set;}
-        public string Tem_Notas {get;set;}
+        public string Tem_Notas {get;set;} 
         public Tabla_Catalogo_MedicamentoDTO oneMedicamento {get;set;}
         public string Tem_Medicamento { get; set; }
     }

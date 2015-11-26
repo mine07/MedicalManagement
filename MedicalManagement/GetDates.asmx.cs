@@ -292,12 +292,14 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             string json = JsonConvert.SerializeObject(lTemporal);
             return json;
         }
-        public string loadPaquete(int Id_AnalisisClinicoPaquetes) ///Tarabajando en esto
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string loadPaquete(int Id_AnalisisClinicoPaquetes)
         {
             string query = @"select  a.*, b.Descripcion_AnalisisClinico as Tem_Medicamento from Tabla_Registro_AnalisisClinicoPaquetes a
-            left join Tabla_Catalogo_AnalisisClinico b on b.Id_AnalisisClinico = a.Id_AnalisisClinico where Id_AnalisisClinicoPaquetes = @Id_Template";
-            var oneTemp = new Tabla_Receta_TemplateDTO();
-            oneTemp.Id_Template = Id_AnalisisClinicoPaquetes;
+            left join Tabla_Catalogo_AnalisisClinico b on b.Id_AnalisisClinico = a.Id_AnalisisClinico where Id_AnalisisClinicoPaquetes = @Id_AnalisisClinicoPaquetes";
+            var oneTemp = new Tabla_Registro_AnalisisClinicoPaquetesDTO();
+            oneTemp.Id_AnalisisClinicoPaquetes = Id_AnalisisClinicoPaquetes;
             Helpers h = new Helpers();
             var lTemporal = h.GetAllParametized(query, oneTemp);
             string json = JsonConvert.SerializeObject(lTemporal);
