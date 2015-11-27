@@ -380,11 +380,16 @@ namespace MedicalManagement
 
         protected void saveTo(object sender, EventArgs e)
         {
+
+            var oneMedicamento = new Tabla_Catalogo_MedicamentoDTO();
+            oneMedicamento.Descripcion_Medicamento = txtSearch.Text;
+            oneMedicamento = MedicamentoDAO.GetOneByName(oneMedicamento);
+
             var oneTemp = new Tabla_Temporal_RecetaDTO();
             oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
             oneTemp.Tem_Dosis = txtDos.Value;
             oneTemp.Tem_Notas = txtNot.Value;
-            oneTemp.Id_Medicamento = Convert.ToInt32(ddlMedicamento.SelectedItem.Value);
+            oneTemp.Id_Medicamento = oneMedicamento.Id_Medicamento;
             oneTemp.Id_Consulta = Id_Consulta;
             string query = "insert into Tabla_Temporal_Receta (Id_FichaIdentificacion, Tem_Dosis, Tem_Notas, Id_Medicamento, Id_Consulta) values (@Id_FichaIdentificacion, @Tem_Dosis, @Tem_Notas, @Id_Medicamento, @Id_Consulta)";
             Helpers h = new Helpers();
@@ -392,6 +397,7 @@ namespace MedicalManagement
             loadTemporal();
             txtDos.Value = "";
             txtNot.Value = "";
+            txtSearch.Text= "";
             ddlMedicamento.SelectedIndex = 0;
             string script = "AlertaGuardar();";
             ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);

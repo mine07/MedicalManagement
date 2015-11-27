@@ -50,10 +50,12 @@ namespace MedicalManagement.Models.DTO
 
         public void Insert(ConsultaDiagnosticoDTO oneConsulta)
         {
+            if (oneConsulta.Id_Diagnostico>0) { 
             string query =
                 "insert into Tabla_Registro_ConsultaDiagnostico(Id_Consulta, Id_Diagnostico, Id_FichaIdentificacion, Fecha_ConsultaDiagnostico, Observaciones_ConsultaDiagnostico, Estatus_ConsultaDiagnostico) values(@Id_Consulta, @Id_Diagnostico, @Id_FichaIdentificacion, @Fecha_ConsultaDiagnostico, @Observaciones_ConsultaDiagnostico, @Estatus_ConsultaDiagnostico)";
             Helpers h = new Helpers();
             h.ExecuteNonQueryParam(query, oneConsulta);
+            }
         }
 
         public void Delete(ConsultaDiagnosticoDTO oneConsulta)

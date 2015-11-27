@@ -79,10 +79,12 @@
             //printWindow.document.write('Fecha:');
             //printWindow.document.write('</head><body >');
             //printWindow.document.write(panel2.innerHTML);
+
             printWindow.document.write(panel.innerHTML);
             //printWindow.document.write('</body></html>');
             printWindow.document.close();
             setTimeout(function () {
+
                 printWindow.print();
                 printWindow.window.close();
             }, 500);

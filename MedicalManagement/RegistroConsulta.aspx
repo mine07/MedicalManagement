@@ -4,7 +4,8 @@
     <div>
         <a href='<%= "ConsultaMenu.aspx?Id_Agenda=" + Id_Agenda + "&Id_FichaIdentificacion=" + oneUser.Id_FichaIdentificacion %>'>
             <label class="pull-right label label-primary label-button">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
-        <h3>Nota Clinica</h3>
+        <h3>Nota Clinica<asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+        </h3>
     </div>
     <hr />
     </asp:Content>

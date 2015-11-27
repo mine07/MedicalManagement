@@ -88,7 +88,7 @@
                             <div class="col-xs-12">
                                 <div class="row">
                                 <div class="col-xs-12">
-                                    <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Guardar Como Receta Previa<i class="fa fa-save"></i></label>
+                                    <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Guardar Como Receta Previa (Pendiente)<i class="fa fa-save"></i></label>
                                     <hr />
                                 </div>
                             </div>

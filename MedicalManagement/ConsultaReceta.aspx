@@ -121,9 +121,15 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <label>Medicamento</label>
-                                    <div class="input-group">
+                                    <!--<div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-1x fa-search"></i></span>
                                         <asp:DropDownList runat="server" ID="ddlMedicamento" CssClass="form-control combobox" DataTextField="Descripcion_Medicamento" DataValueField="Id_Medicamento" />
+                                    </div>-->
+                                    <div >
+                                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Medicamento..." autocomplete="off"></asp:TextBox>
+                                        <hr />
+                                        <div class="container-fluid searchContainer searchProc border-top1-bottom5">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -204,15 +210,15 @@
                             <input type="text" class="form-control" runat="server" id="txtNombre" />
                         </div>
                     </div>
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-xs-12">
                             <label>Diagnostico</label>
-                            <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch2" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
                             <hr />
                             <div class="container-fluid searchContainer border-top1-bottom5">
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="modal-footer">
                     <h4>
@@ -281,7 +287,7 @@
             if (nombre !== "") {
                 $.ajax({
                     type: "POST",
-                    url: "GetDates.asmx/GetDiagnosticoItems",
+                    url: "GetDates.asmx/GetMedicamentoItems",
                     data: "{'search':'" + nombre + "'}",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -356,7 +362,7 @@
     <![CDATA[        
         <div class="row row-hover" onclick="upText(this);">
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
-        <h5 uid="<*= this.Id_Diagnostico *>"><*= this.Descripcion_Diagnostico*></h5>
+        <h5 uid="<*= this.Id_Medicamento *>"><*= this.Descripcion_Medicamento*></h5>
         <hr />
         </div>       
         </div>
@@ -388,6 +394,7 @@
             overflow-x: auto;
             position: absolute;
             width: 90%;
+
         }
     </style>
 </asp:Content>

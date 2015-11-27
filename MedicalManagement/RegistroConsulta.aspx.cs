@@ -187,8 +187,11 @@ namespace MedicalManagement
             oneConsultaDiag.Estatus_ConsultaDiagnostico = true;
             oneConsultaDiag.Id_Diagnostico = oneDiagnostico.Id_Diagnostico;
             oneConsultaDiag.Observaciones_ConsultaDiagnostico = "";
+            Label1.Text = oneDiagnostico.Id_Diagnostico.ToString();
+            if (oneConsultaDiag.Id_Diagnostico > 0) { 
             ConsultaDiagnosticoDAO Insert = new ConsultaDiagnosticoDAO();
             Insert.Insert(oneConsultaDiag);
+            }
             txtSearch.Text="";
             loadDiagnosticos();
         }
@@ -218,6 +221,7 @@ namespace MedicalManagement
 
         protected void addProcedimiento(object sender, EventArgs e)
         {
+            
             var oneProcedimiento = new Tabla_Catalogo_ProcedimientoDTO();
             oneProcedimiento.Descripcion_Procedimiento = txtProc.Text;
             oneProcedimiento = ProcedimientoDAO.GetOneByName(oneProcedimiento);

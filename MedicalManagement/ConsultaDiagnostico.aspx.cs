@@ -298,7 +298,6 @@ namespace MedicalManagement
                         string NDescripcion = "@Descripcion_Diagnostico" + i;
                         comando.Parameters.AddWithValue(NDescripcion, palabra);
                         i++;
-                        Console.WriteLine(palabra);
                     }
 
                 }
