@@ -28,7 +28,32 @@ namespace MedicalManagement.Models.DTO
 
         public static Tabla_Catalogo_DiagnosticoDTO GetOneByName(Tabla_Catalogo_DiagnosticoDTO oneDiagnostico)
         {
-            if (oneDiagnostico.Id_Diagnostico > 0) { 
+            try
+            {
+                string query = "Select * from Tabla_Catalogo_Diagnostico where Descripcion_Diagnostico = @Descripcion_Diagnostico";
+                Helpers h = new Helpers();
+                return h.GetAllParametized(query, oneDiagnostico)[0];
+            }
+            catch
+            {
+                string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+                SqlConnection cnn;
+                cnn = new SqlConnection(conexion);
+                cnn.Open();
+                SqlCommand comando = new SqlCommand("SP_Catalogo_Diagnostico", cnn);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
+                comando.Parameters.AddWithValue("@Descripcion_Diagnostico", oneDiagnostico.Descripcion_Diagnostico);
+                SqlDataReader reader = comando.ExecuteReader();
+                reader.Read();
+                reader.Close();
+
+                string query = "Select * from Tabla_Catalogo_Diagnostico where Descripcion_Diagnostico = @Descripcion_Diagnostico";
+                Helpers h = new Helpers();
+                return h.GetAllParametized(query, oneDiagnostico)[0];
+            }
+            /*if (oneDiagnostico.Id_Diagnostico > 0) { 
             }
             else
             {
@@ -48,7 +73,7 @@ namespace MedicalManagement.Models.DTO
 
             string query = "Select * from Tabla_Catalogo_Diagnostico where Descripcion_Diagnostico = @Descripcion_Diagnostico";
             Helpers h = new Helpers();
-            return h.GetAllParametized(query, oneDiagnostico)[0];
+            return h.GetAllParametized(query, oneDiagnostico)[0];*/
         }
 
         public static Tabla_Catalogo_DiagnosticoDTO GetOneById(Tabla_Catalogo_DiagnosticoDTO oneDiagnostico)

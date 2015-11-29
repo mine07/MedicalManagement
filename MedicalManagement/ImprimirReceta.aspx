@@ -10,7 +10,7 @@
 <asp:ScriptManager runat="server" />  
 
 
-    <asp:UpdatePanel runat="server">
+    <asp:UpdatePanel runat="server" >
    
         <ContentTemplate>    
             <hr />
@@ -68,7 +68,7 @@
                 </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <asp:LinkButton ID="btnPrint" runat="server" Text='<h4><label class="label label-success pull-right label-button">Imprimir<i class="fa fa-margin-left fa-print"></i></label></h4>' OnClientClick = "return PrintPanel();" />  
+    <asp:LinkButton ID="btnPrint" runat="server"  Text='<h4><label class="label label-success pull-right label-button">Imprimir<i class="fa fa-margin-left fa-print"></i></label></h4>' OnClientClick = "return PrintPanel();" />  
 
     <script type = "text/javascript">
         function PrintPanel() {
@@ -103,6 +103,8 @@
             position: absolute;
             width: 90%;
         }
+
+        
     </style>
 </asp:Content>
 

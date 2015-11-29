@@ -52,7 +52,7 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public string GetDiagnosticoItems1(string search)
+        public string GetDiagnosticoItems(string search)
         {
             List<string> lSearch = search.Split(new char[] { ' ' }).ToList();
             var oneDiagnostico = new Tabla_Catalogo_DiagnosticoDTO();
