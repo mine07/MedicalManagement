@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10 col-sm-offset-2">
-                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Diagnostico<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="addDiagnostico"></asp:LinkButton>
+                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Diagnostico<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="saveTo"></asp:LinkButton>
                     </div>
                     <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 col-sm-offset-4">
                         <div class="gray-container">
@@ -327,6 +327,52 @@
             </div>
         </div>
     </div>
+
+
+   <div class="modal fade" id="modalAgregarDiag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Receta: <span class="label label-primary DiagNombre"></span></h4>
+                </div>
+                <div class="modal-body contaienr-fluid">
+                    <div class="container-fluid">
+                        Este Diagnostico no existe, desea agregarlo al catalogo.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <h4>
+                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label></h4>
+                    <asp:LinkButton OnClick="InsertarDiagnostico" ID="LinkButton2" runat="server" Text='<h4><label class="label label-success pull-right label-button">Usar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAgregarProc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Receta: <span class="label label-primary ProcNombre"></span></h4>
+                </div>
+                <div class="modal-body contaienr-fluid">
+                    <div class="container-fluid">
+                        Este Procedimiento no existe, desea agregarlo al catalogo.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <h4>
+                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label></h4>
+                    <asp:LinkButton OnClick="addProcedimiento" ID="LinkButton1" runat="server" Text='<h4><label class="label label-success pull-right label-button">Usar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <script>
         //////////////////////////////////////////////////
         ///////// DIAGNOSTICO /////////////////////////
@@ -545,6 +591,18 @@
         function error() {
             alert("A ocurrido un error, favor de volver a intentarlo.");
             location.reload();
+        }
+
+
+        function EjecutarModalDiag() {
+            var DiagnosticoNom = $('[id$=txtSearch]').val();
+            $(".DiagNombre").text(DiagnosticoNom);
+            $('#modalAgregarDiag').modal('show')
+        }
+        function EjecutarProc() {
+            var ProcedimientoNom = $('[id$=txtProc]').val();
+            $(".ProcNombre").text(ProcedimientoNom);
+            $('#modalAgregarProc').modal('show')
         }
 
     </script>

@@ -173,7 +173,68 @@ namespace MedicalManagement
             InsertConsulta.Insert(oneConsulta);
         }
 
-        protected void addDiagnostico(object sender, EventArgs e)
+        protected void saveTo(object sender, EventArgs e)
+        {
+
+            if (!Existe(txtSearch.Text))
+            {
+                //registro no existe
+                string script = @"<script type ='text/javascript'>
+                                EjecutarModalDiag();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+
+            }
+
+            else
+
+            {
+                //registro si existe
+                addDiagnostico();
+            }
+
+        }
+
+        public bool Existe(string Diagnostico)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            string sql = "select count(*)from Tabla_Catalogo_Diagnostico where Descripcion_Diagnostico=@Descripcion_Diagnostico";
+            using (SqlConnection conn = new SqlConnection(conexion))
+            {
+                conn.Open();
+                SqlCommand query = new SqlCommand(sql, conn);
+                query.Parameters.AddWithValue("@Descripcion_Diagnostico", txtSearch.Text);
+
+
+                int count = Convert.ToInt32(query.ExecuteScalar());
+                if (count == 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        protected void InsertarDiagnostico(object sender, EventArgs e)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+            SqlCommand comando = new SqlCommand("SP_Catalogo_Diagnostico", cnn);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
+            comando.Parameters.AddWithValue("@Descripcion_Diagnostico", txtSearch.Text);
+            SqlDataReader reader = comando.ExecuteReader();
+            reader.Read();
+            reader.Close();
+
+            addDiagnostico();
+            return;
+        }
+
+        public void addDiagnostico()
         {
 
             var oneDiagnostico = new Tabla_Catalogo_DiagnosticoDTO();
@@ -187,13 +248,11 @@ namespace MedicalManagement
             oneConsultaDiag.Estatus_ConsultaDiagnostico = true;
             oneConsultaDiag.Id_Diagnostico = oneDiagnostico.Id_Diagnostico;
             oneConsultaDiag.Observaciones_ConsultaDiagnostico = "";
-            Label1.Text = oneDiagnostico.Id_Diagnostico.ToString();
-            if (oneConsultaDiag.Id_Diagnostico > 0) { 
             ConsultaDiagnosticoDAO Insert = new ConsultaDiagnosticoDAO();
             Insert.Insert(oneConsultaDiag);
-            }
             txtSearch.Text="";
             loadDiagnosticos();
+            return;
         }
 
         private void loadDiagnosticos()

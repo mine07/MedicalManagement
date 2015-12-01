@@ -15,7 +15,6 @@ using iTextSharp.text.pdf;
 using System.IO;
 
 
-
 namespace MedicalManagement
 {
     public partial class ConsultaReceta : System.Web.UI.Page
@@ -23,7 +22,6 @@ namespace MedicalManagement
         public int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
-
         int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
         int Id_ConsultaReceta = 0;
 
@@ -100,6 +98,7 @@ namespace MedicalManagement
                 }
             }
         }
+
 
         public void loadUsuario()
         {
@@ -380,6 +379,66 @@ namespace MedicalManagement
 
         protected void saveTo(object sender, EventArgs e)
         {
+           
+            if (!Existe(txtSearch.Text))
+            {
+                //registro no existe
+                string script = @"<script type ='text/javascript'>
+                                EjecutarModal();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+
+            }
+
+            else
+
+            {
+                //registro si existe
+               InsertarMedicamento();
+            }
+            
+        }
+
+        protected void agregraMedi(object sender, EventArgs e)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+            SqlCommand comando = new SqlCommand("SP_Catalogo_Medicamento", cnn);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
+            comando.Parameters.AddWithValue("@Descripcion_Medicamento", txtSearch.Text);
+            SqlDataReader reader = comando.ExecuteReader();
+            reader.Read();
+            reader.Close();
+
+            InsertarMedicamento();
+
+        }
+
+        public bool Existe(string Medicamento)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            string sql = "select count(*)from Tabla_Catalogo_Medicamento where Descripcion_Medicamento=@Descripcion_Medicamento";
+            using (SqlConnection conn = new SqlConnection(conexion))
+            {
+                conn.Open();
+                SqlCommand query = new SqlCommand(sql, conn);
+                query.Parameters.AddWithValue("@Descripcion_Medicamento", txtSearch.Text);
+
+
+                int count = Convert.ToInt32(query.ExecuteScalar());
+                if (count == 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+        protected void InsertarMedicamento()
+        {
 
             var oneMedicamento = new Tabla_Catalogo_MedicamentoDTO();
             oneMedicamento.Descripcion_Medicamento = txtSearch.Text;
@@ -394,13 +453,14 @@ namespace MedicalManagement
             string query = "insert into Tabla_Temporal_Receta (Id_FichaIdentificacion, Tem_Dosis, Tem_Notas, Id_Medicamento, Id_Consulta) values (@Id_FichaIdentificacion, @Tem_Dosis, @Tem_Notas, @Id_Medicamento, @Id_Consulta)";
             Helpers h = new Helpers();
             h.ExecuteNonQueryParam(query, oneTemp);
-            loadTemporal();
             txtDos.Value = "";
             txtNot.Value = "";
             txtSearch.Text= "";
             ddlMedicamento.SelectedIndex = 0;
-            string script = "AlertaGuardar();";
-            ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+            //string script = "AlertaGuardar();";
+            // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+            
+            loadTemporal();
             return;
         }
 
@@ -434,9 +494,10 @@ namespace MedicalManagement
                 oneTemplate.Id_Template = oneT.Id_Template;
                 h.ExecuteNonQueryParam(queryInsert, oneTemplate);
             }
+            
+           // string script = "AlertaGuardar();";
+           // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
             loadTemporal();
-            string script = "AlertaGuardar();";
-            ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
             return;
         }
 
@@ -470,10 +531,11 @@ namespace MedicalManagement
                 oneTe.Tem_Dosis = y.Tem_Dosis;
                 oneTe.Tem_Notas = y.Tem_Notas;
                 h.ExecuteNonQueryParam(queryInsert, oneTe);
-                loadTemporal();
+             
             }
-            string script = "AlertaGuardar();";
-            ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+            //string script = "AlertaGuardar();";
+           // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+            loadTemporal();
             return;
         }
 

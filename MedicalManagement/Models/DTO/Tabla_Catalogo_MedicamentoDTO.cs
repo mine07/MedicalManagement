@@ -37,7 +37,7 @@ namespace MedicalManagement.Models.DTO
             }
             catch
             {
-                string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+                /*string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -48,7 +48,7 @@ namespace MedicalManagement.Models.DTO
                 comando.Parameters.AddWithValue("@Descripcion_Medicamento", oneMedicamento.Descripcion_Medicamento);
                 SqlDataReader reader = comando.ExecuteReader();
                 reader.Read();
-                reader.Close();
+                reader.Close();*/
 
                 string query = "Select * from Tabla_Catalogo_Medicamento where Descripcion_Medicamento = @Descripcion_Medicamento";
                 Helpers h = new Helpers();

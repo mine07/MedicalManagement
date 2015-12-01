@@ -9,7 +9,7 @@
         <h2>Receta</h2>  
     </div> 
     <asp:ScriptManager runat="server" /> 
-    <div class="hidden">
+    <div class="hidden"> 
         <table width="100%" border="0">
             <tr>
                 <td align="left"><font color="red">Operaciones\Consultas\ConsultasRecetas</font></td>
@@ -112,11 +112,13 @@
                                         <label class="label label-success pull-right label-button" data-toggle="modal" data-target="#modalRecPrevia">Ver Receta<i class="fa fa-search"></i></label><h4></h4>
                                         <h4></h4>
                                         <h4></h4>
+                                        <h4></h4>
                                     </h4>
                                 </div>
                                 <div class="col-xs-12">
                                     <hr />
                                 </div>
+                               
                             </div>
                             <div class="row">
                                 <div class="col-xs-12">
@@ -251,6 +253,27 @@
             </div>
         </div>
     </div>
+
+     <div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ageregar Medicamento: <span class="label label-primary MediNombre"></span></h4>
+                </div>
+                 <div class="modal-body contaienr-fluid">
+                    <div class="container-fluid">
+                        <!--<span class="MediNombre"></span>-->
+                        Este medicamento no existe, desea agregarlo al catalogo.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label>
+                    <asp:LinkButton OnClick="agregraMedi" ID="LinkButton3" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
 
 
@@ -355,7 +378,11 @@
             $(".recetaNombre").text(Tem_Nombre);
             $('#Template-Container').empty().append($('#templateTemplate').jqote(jsonObject, '*'));
         }
-
+        function EjecutarModal() {
+            var MedicamentoNom = $('[id$=txtSearch]').val();
+            $(".MediNombre").text(MedicamentoNom);
+            $('#modalAgregar').modal('show')
+        }
 
     </script>
     <script type="text/x-jqote-template" id="template">
