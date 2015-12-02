@@ -79,6 +79,20 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             string json = JsonConvert.SerializeObject(lMed);
             return json;
         }
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetAnalisisItems(string search)
+        {
+            List<string> lSearch = search.Split(new char[] { ' ' }).ToList();
+            var oneAnalisisClinico = new Tabla_Catalogo_AnalisisClinicoDTO();
+            oneAnalisisClinico.Descripcion_AnalisisClinico = "%" + search.Trim() + "%";
+            string query =
+                "Select * from Tabla_Catalogo_AnalisisClinico where Descripcion_AnalisisClinico like @Descripcion_AnalisisClinico";
+            Helpers h = new Helpers();
+            var lAna = h.GetAllParametized(query, oneAnalisisClinico);
+            string json = JsonConvert.SerializeObject(lAna);
+            return json;
+        }
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]

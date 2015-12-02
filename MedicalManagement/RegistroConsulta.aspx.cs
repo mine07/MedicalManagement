@@ -229,12 +229,39 @@ namespace MedicalManagement
             SqlDataReader reader = comando.ExecuteReader();
             reader.Read();
             reader.Close();
+            comando = null;
+
+            String Registro_Operacion_Btacora = "";
+            string Descripcion_Bitacora = "";
+
+                Registro_Operacion_Btacora = "SP_Catalogo_Diagnostico"
+                                                + "@Opcion" + " = " + "INSERTAR"
+                                                + "@Descripcion_Diagnostico" + " = " + txtSearch.Text;
+                Descripcion_Bitacora = "Inserta Diagnostico nuevo";
+
+            SqlCommand comandoBitacora = new SqlCommand("SP_Registro_Bitacora", cnn);
+            comandoBitacora.CommandType = CommandType.StoredProcedure;
+            comandoBitacora.Parameters.AddWithValue("@Id_Empresa", Convert.ToInt32(Session["Id_Empresa"]));
+            comandoBitacora.Parameters.AddWithValue("@Id_Sucursal", Convert.ToInt32(Session["Id_Sucursal"]));
+            comandoBitacora.Parameters.AddWithValue("@Id_Usuario", Convert.ToInt32(Session["Id_Usuario"]));
+            comandoBitacora.Parameters.AddWithValue("@Registro_Operacion_Btacora", Registro_Operacion_Btacora);
+            comandoBitacora.Parameters.AddWithValue("@Descripcion_Bitacora", Descripcion_Bitacora);
+
+            SqlDataReader readerBitacora = comandoBitacora.ExecuteReader();
+            readerBitacora.Read();
+            readerBitacora.Close();
+            comandoBitacora = null;
+
+            cnn.Close();
 
             addDiagnostico();
-            return;
+            /*NOTA
+            Tiene un refresh
+            por que el modal no se cierra por completo y queda inhabilitado todo la pagina*/
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
-        public void addDiagnostico()
+        protected void addDiagnostico()
         {
 
             var oneDiagnostico = new Tabla_Catalogo_DiagnosticoDTO();
@@ -253,6 +280,7 @@ namespace MedicalManagement
             txtSearch.Text="";
             loadDiagnosticos();
             return;
+  
         }
 
         private void loadDiagnosticos()
@@ -262,6 +290,7 @@ namespace MedicalManagement
             var lConsultasDiag = ConsultaDiagnosticoDAO.GetAllByPaciente(oneConsultadia).Where(x => x.Id_Consulta == Id_Agenda).ToList();
             rptDiag.DataSource = lConsultasDiag;
             rptDiag.DataBind();
+            loadCategoria();
         }
 
         protected void deleteDiag(object sender, EventArgs e)
@@ -277,8 +306,93 @@ namespace MedicalManagement
         /////////////////////////////////////////////
         //////////// PROCEDIMIENTO //////////////////
         /////////////////////////////////////////////
+        protected void saveToPro(object sender, EventArgs e)
+        {
 
-        protected void addProcedimiento(object sender, EventArgs e)
+            if (!ExistePro(txtProc.Text))
+            {
+                //registro no existe
+                string script = @"<script type ='text/javascript'>
+                                EjecutarModalProc();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+
+            }
+
+            else
+
+            {
+                //registro si existe
+               // addProcedimiento();
+            }
+
+        }
+
+        public bool ExistePro(string Procedimiento)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            string sql = "select count(*)from Tabla_Catalogo_Procedimiento where Descripcion_Procedimiento=@Descripcion_Procedimiento";
+            using (SqlConnection conn = new SqlConnection(conexion))
+            {
+                conn.Open();
+                SqlCommand query = new SqlCommand(sql, conn);
+                query.Parameters.AddWithValue("@Descripcion_Procedimiento", txtProc.Text);
+
+
+                int count2 = Convert.ToInt32(query.ExecuteScalar());
+                if (count2 == 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+        protected void InsertarProcedimeinto(object sender, EventArgs e)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+            SqlCommand comando = new SqlCommand("SP_Catalogo_Procedimiento", cnn);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
+            comando.Parameters.AddWithValue("@Descripcion_Procedimiento", txtProc.Text);
+            SqlDataReader reader = comando.ExecuteReader();
+            reader.Read();
+            reader.Close();
+
+            comando = null;
+
+            String Registro_Operacion_Btacora = "";
+            string Descripcion_Bitacora = "";
+
+                Registro_Operacion_Btacora = "SP_Catalogo_Procedimiento"
+                                                + "@Opcion" + " = " + "INSERTAR"
+                                                + "@Descripcion_Procedimiento" + " = " + txtProc.Text;
+                Descripcion_Bitacora = "Inserta Procedimiento nuevo";
+
+            SqlCommand comandoBitacora = new SqlCommand("SP_Registro_Bitacora", cnn);
+            comandoBitacora.CommandType = CommandType.StoredProcedure;
+            comandoBitacora.Parameters.AddWithValue("@Id_Empresa", Convert.ToInt32(Session["Id_Empresa"]));
+            comandoBitacora.Parameters.AddWithValue("@Id_Sucursal", Convert.ToInt32(Session["Id_Sucursal"]));
+            comandoBitacora.Parameters.AddWithValue("@Id_Usuario", Convert.ToInt32(Session["Id_Usuario"]));
+            comandoBitacora.Parameters.AddWithValue("@Registro_Operacion_Btacora", Registro_Operacion_Btacora);
+            comandoBitacora.Parameters.AddWithValue("@Descripcion_Bitacora", Descripcion_Bitacora);
+
+            SqlDataReader readerBitacora = comandoBitacora.ExecuteReader();
+            readerBitacora.Read();
+            readerBitacora.Close();
+            comandoBitacora = null;
+
+            cnn.Close();
+            addProcedimiento();
+            /*NOTA
+            Tiene un refresh
+            por que el modal no se cierra por completo y queda inhabilitado todo la pagina*/
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+        }
+        protected void addProcedimiento()
         {
             
             var oneProcedimiento = new Tabla_Catalogo_ProcedimientoDTO();

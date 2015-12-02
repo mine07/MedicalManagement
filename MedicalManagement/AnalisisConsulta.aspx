@@ -41,10 +41,16 @@
                             <div class="row">
                                 <div class="col-xs-10 col-xs-offset-2">
                                     <label class="h6">Agregar Auxiliar</label>
-                                    <asp:DropDownList runat="server" ID="ddlAnalisis" CssClass="form-control combobox" DataTextField="Descripcion_AnalisisClinico" DataValueField="Id_AnalisisClinico" />
+                                    <!--<asp:DropDownList runat="server" ID="ddlAnalisis" CssClass="form-control combobox" DataTextField="Descripcion_AnalisisClinico" DataValueField="Id_AnalisisClinico" />-->
+                                    <div >
+                                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Medicamento..." autocomplete="off"></asp:TextBox>
+                                        <hr />
+                                        <div class="container-fluid searchContainer searchProc border-top1-bottom5">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-xs-10 col-xs-offset-2 padding">
-                                    <asp:LinkButton runat="server" ID="btnAdd" OnClick="addAnalisis" Text='<label class=" pull-right label label-button label-success" runat="server">Agregar<i class="fa fa-arrow-right"></i></label>' />
+                                    <asp:LinkButton runat="server" ID="btnAdd" OnClick="saveTo" Text='<label class=" pull-right label label-button label-success" runat="server">Agregar<i class="fa fa-arrow-right"></i></label>' />
                                     <hr />
                                 </div>
                             </div>
@@ -142,11 +148,34 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ageregar Analisis Clinico: <span class="label label-primary AnaliNombre"></span></h4>
+                </div>
+                 <div class="modal-body contaienr-fluid">
+                    <div class="container-fluid">
+                        <!--<span class="MediNombre"></span>-->
+                        Este Analisis Clinico no existe, desea agregarlo al catalogo.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label>
+                    <asp:LinkButton OnClick="InsertarMedicamento" ID="LinkButton3" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
 
         $(document).ready(function () {
             $('.combobox').combobox();
             $("[id$=ddlPaquetes]").change();
+            $("[id$=ddlTemplate]").change();
         });
 
         $("[id$=ddlPaquetes]").change(function () {
@@ -158,11 +187,11 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    appendTemplate(data);
+                    appendTemplateP(data);
                 }
             });
         });
-        function appendTemplate(data) {
+        function appendTemplateP(data) {
             var jsonObject = $.parseJSON(data.d);
             var Descripcion_AnalisisClinicoPaquete = jsonObject[0].Descripcion_AnalisisClinicoPaquete;
             $(".recetaNombre").text(Descripcion_AnalisisClinicoPaquete);
@@ -170,6 +199,104 @@
         }
 
 
+
+        $('[id$=txtSearch]').bind('input keyup', function () {
+            var $this = $(this);
+            var delay; // 2 seconds delay after last input
+            var value = $('[id$=txtSearch]').val();
+            clearTimeout($this.data('timer'));
+            if (value === " ") {
+                $('.searchContainer').hide().empty();
+            }
+            if (value.substr(value.length - 1) !== " ") {
+                delay = 500;
+            } else {
+                delay = 1;
+            }
+            $this.data('timer', setTimeout(function () {
+                $this.removeData('timer');
+                diagSearch(value);
+            }, delay));
+        });
+
+        function diagSearch(x) {
+            var nombre = x;
+            if (nombre !== "") {
+                $.ajax({
+                    type: "POST",
+                    url: "GetDates.asmx/GetAnalisisItems",
+                    data: "{'search':'" + nombre + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        appendData(data);
+                    }
+                });
+            } else {
+                $('.searchContainer').hide().empty();
+            }
+        }
+
+        function appendData(data) {
+            var jsonObject = $.parseJSON(data.d);
+            if (jsonObject[0] != null) {
+                $('.searchContainer').empty();
+                $('.searchContainer').append(
+                    $('#template').jqote(jsonObject, '*')
+                ).show();
+            } else {
+                $('.searchContainer').hide();
+            }
+        }
+        $(document).mouseup(function (e) {
+            var container = $(".searchContainer");
+            var containerB = $("[id$=txtSearch]");
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0 && !containerB.is(e.target)) // ... nor a descendant of the container
+            {
+                container.hide();
+            }
+            var containerC = $("h5");
+            if (containerC.is(e.target)) {
+                container.hide();
+            }
+        });
+
+        $("[id$=txtSearch]").focus(function () {
+            if ($('.searchContainer').children().length !== 0) {
+                $('.s   ').show();
+            }
+        });
+
+        function upText(x) {
+            var val = $(x).closest('.row').find('h5');
+            $("[id$=txtSearch]").val(val.html());
+        }
+
+        $("[id$=ddlTemplate]").change(function () {
+            var x = $("[id$=ddlTemplate]").val();
+            $.ajax({
+                type: "POST",
+                url: "GetDates.asmx/loadTemplate",
+                data: "{'Id_Template':'" + x + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    appendTemplate(data);
+                }
+            });
+        });
+        function appendTemplate(data) {
+            var jsonObject = $.parseJSON(data.d);
+            var Tem_Nombre = jsonObject[0].Tem_Nombre;
+            $(".recetaNombre").text(Tem_Nombre);
+            $('#Template-Container').empty().append($('#templateTemplate').jqote(jsonObject, '*'));
+        }
+        function EjecutarModal() {
+            var MedicamentoNom = $('[id$=txtSearch]').val();
+            $(".AnaliNombre").text(MedicamentoNom);
+            $('#modalAgregar').modal('show')
+        }
     </script>
 
     <script type="text/x-jqote-template" id="templateTemplate">
@@ -184,6 +311,17 @@
                                     </div>
                                 </div>
         ]]>
+    </script>
+
+    <script type="text/x-jqote-template" id="template">
+    <![CDATA[        
+        <div class="row row-hover" onclick="upText(this);">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">        
+        <h5 uid="<*= this.Id_AnalisisClinico *>"><*= this.Descripcion_AnalisisClinico*></h5>
+        <hr />
+        </div>       
+        </div>
+    ]]>
     </script>
     <style>
         .searchContainer {

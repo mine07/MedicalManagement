@@ -84,14 +84,106 @@ namespace MedicalManagement
             Insert.Insert("", oneAnaPaquete);
             loadItems();
         }*/
-        protected void addAnalisis(object sender, EventArgs e)
+        protected void saveTo(object sender, EventArgs e)
         {
+
+            if (!Existe(txtSearch.Text))
+            {
+                //registro no existe
+                string script = @"<script type ='text/javascript'>
+                                EjecutarModal();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+
+            }
+
+            else
+
+            {
+                //registro si existe
+                addAnalisis();
+            }
+        }
+
+
+            public bool Existe(string Medicamento)
+        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            string sql = "select count(*)from Tabla_Catalogo_Medicamento where Descripcion_Medicamento=@Descripcion_Medicamento";
+            using (SqlConnection conn = new SqlConnection(conexion))
+            {
+                conn.Open();
+                SqlCommand query = new SqlCommand(sql, conn);
+                query.Parameters.AddWithValue("@Descripcion_Medicamento", txtSearch.Text);
+
+
+                int count = Convert.ToInt32(query.ExecuteScalar());
+                if (count == 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        protected void InsertarMedicamento(object sender, EventArgs e)        {
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+            SqlCommand comando = new SqlCommand("SP_Catalogo_AnalisisClinico", cnn);
+            comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
+            comando.Parameters.AddWithValue("@Descripcion_AnalisisClinico", txtSearch.Text);
+
+
+            SqlDataReader reader = comando.ExecuteReader();
+            reader.Read();
+            reader.Close();
+
+            //////////////Bitacora////////////////
+            comando = null;
+
+            String Registro_Operacion_Btacora = "";
+            string Descripcion_Bitacora = "";
+
+                Registro_Operacion_Btacora = "SP_Catalogo_AnalisisClinico"
+                                                + "@Opcion" + " = " + "INSERTAR"
+                                                + "@Descripcion_Sexo" + " = " + txtSearch.Text;
+                Descripcion_Bitacora = "Inserta AnalisisClinico nuevo";
+
+            SqlCommand comandoBitacora = new SqlCommand("SP_Registro_Bitacora", cnn);
+            comandoBitacora.CommandType = CommandType.StoredProcedure;
+            comandoBitacora.Parameters.AddWithValue("@Id_Empresa", Convert.ToInt32(Session["Id_Empresa"]));
+            comandoBitacora.Parameters.AddWithValue("@Id_Sucursal", Convert.ToInt32(Session["Id_Sucursal"]));
+            comandoBitacora.Parameters.AddWithValue("@Id_Usuario", Convert.ToInt32(Session["Id_Usuario"]));
+            comandoBitacora.Parameters.AddWithValue("@Registro_Operacion_Btacora", Registro_Operacion_Btacora);
+            comandoBitacora.Parameters.AddWithValue("@Descripcion_Bitacora", Descripcion_Bitacora);
+
+            SqlDataReader readerBitacora = comandoBitacora.ExecuteReader();
+            readerBitacora.Read();
+            readerBitacora.Close();
+            comandoBitacora = null;
+
+            cnn.Close();
+            addAnalisis();
+        }
+        protected void addAnalisis()
+        {
+
+            var oneAnalisisClinico = new Tabla_Catalogo_AnalisisClinicoDTO();
+            oneAnalisisClinico.Descripcion_AnalisisClinico = txtSearch.Text;
+            oneAnalisisClinico = AnalisisClinicosDAO.GetOneByName(oneAnalisisClinico);
+
             Tabla_Temporal_AnalisisClinicoDTO oneAnaPaquete = new Tabla_Temporal_AnalisisClinicoDTO();
             oneAnaPaquete.Id_FichaIdentificacion = Id_FichaIdentificacion;
-            oneAnaPaquete.Id_AnalisisClinico = Convert.ToInt32(ddlAnalisis.SelectedItem.Value);
+            oneAnaPaquete.Id_AnalisisClinico = oneAnalisisClinico.Id_AnalisisClinico;
             oneAnaPaquete.Id_Consulta = Id_Consulta;
             Tabla_Temporal_AnalisisClinicoDAO Insert = new Tabla_Temporal_AnalisisClinicoDAO();
             Insert.Insert("", oneAnaPaquete);
+            txtSearch.Text = "";
             loadItems();
         }
 

@@ -150,7 +150,8 @@
                             <div class="row" style="padding-top: 5px;">
                                 <div class="col-xs-12">
                                     
-                                    <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' />
+                                    <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>
+
                                 </div>
                             </div>
                         </div>
@@ -230,6 +231,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="modalRecPrevia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -274,6 +276,7 @@
             </div>
         </div>
     </div>
+
     <script>
 
 
@@ -350,7 +353,7 @@
 
         $("[id$=txtSearch]").focus(function () {
             if ($('.searchContainer').children().length !== 0) {
-                $('.searchContainer').show();
+                $('.s   ').show();
             }
         });
 
@@ -385,6 +388,7 @@
         }
 
     </script>
+
     <script type="text/x-jqote-template" id="template">
     <![CDATA[        
         <div class="row row-hover" onclick="upText(this);">

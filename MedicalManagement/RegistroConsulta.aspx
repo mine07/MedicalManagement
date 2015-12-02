@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Consulta.Master" AutoEventWireup="true" CodeBehind="RegistroConsulta.aspx.cs" Inherits="MedicalManagement.RegistroConsulta" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Consulta.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="RegistroConsulta.aspx.cs" Inherits="MedicalManagement.RegistroConsulta" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Header" runat="server">
     <div>
@@ -7,9 +7,21 @@
         <h3>Nota Clinica<asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </h3>
     </div>
+
     <hr />
     </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="rightSide" runat="server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="rightSide" runat="server"> 
+    
+    <asp:UpdatePanel runat="server"> 
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btnSaveDiag" />
+            <asp:AsyncPostBackTrigger ControlID="btnGuardarProc" />
+        </Triggers>
+    <ContentTemplate> 
+
+            <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
+                 <hr />
                 <div class="row">
                     <div class="col-xs-12 col-md-2 col-lg-2 col-sm-2">
                         <label>Fecha</label>
@@ -71,8 +83,8 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10 col-sm-offset-2">
-                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Diagnostico<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="saveTo"></asp:LinkButton>
-                    </div>
+                        <asp:LinkButton ID="btnSaveDiag" runat="server" OnClick="saveTo" Text='<label class="label label-button label-success pull-right">Agregar Diagnostico<i class="fa fa-plus fa-margin-left"></i></label>' />
+                    </div>   
                     <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 col-sm-offset-4">
                         <div class="gray-container">
                             <asp:Repeater runat="server" ID="rptDiag">
@@ -110,7 +122,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-10 col-lg-10 col-sm-10 col-sm-offset-2">
-                        <asp:LinkButton runat="server" Text='<label class="label label-button label-success pull-right">Agregar Procedimiento<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="addProcedimiento"></asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="btnGuardarProc"  Text='<label class="label label-button label-success pull-right">Agregar Procedimiento<i class="fa fa-plus fa-margin-left"></i></label>' OnClick="saveToPro" />
                     </div>
                     <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8 col-sm-offset-4">
                         <div class="gray-container">
@@ -133,13 +145,15 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <label class="pull-right label label-button label-success" data-toggle="modal" data-target="#myModal">Nueva Cita<i class="fa fa-plus fa-margin-left"></i></label>
-                        <asp:LinkButton runat="server" OnClick="btnGuardar_Consulta_Click" Text='<label class="fa-margin-right label pull-right label-success label-button">Guardar<i class="fa fa-margin-left fa-save"></i></label>'></asp:LinkButton>
+                        <asp:LinkButton runat="server" OnClick="btnGuardar_Consulta_Click" Text='<label class="fa-margin-right label pull-right label-success label-button">Guardar<i class="fa fa-margin-left fa-save"></i></label>' />
                     </div>
                 </div>
+                </div>
             <hr />
-    
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <a  href='<%= "ImprimirNotaClinica.aspx?Id_Agenda="+ Id_Agenda +"&Id_FichaIdentificacion=" + Id_FichaIdentificacion%>'><h4><label class="label label-success pull-right label-button">Vista Previa<i class="fa fa-margin-left fa-eye"></i></label></h4></a>
-                                                                                                        
+                                                                                                  
     <div class="modal fade no-radius" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -329,43 +343,44 @@
     </div>
 
 
-   <div class="modal fade" id="modalAgregarDiag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        
+    <div class="modal fade" id="modalAgregarDiag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Receta: <span class="label label-primary DiagNombre"></span></h4>
+                    <h4 class="modal-title">Ageregar Diagnostico: <span class="label label-primary DiagNombre"></span></h4>
                 </div>
-                <div class="modal-body contaienr-fluid">
+                 <div class="modal-body contaienr-fluid">
                     <div class="container-fluid">
-                        Este Diagnostico no existe, desea agregarlo al catalogo.
+                        <!--<span class="DiagNombre"></span>-->
+                       Este Diagnostico no existe, desea agregarlo al catalogo.
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <h4>
-                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label></h4>
-                    <asp:LinkButton OnClick="InsertarDiagnostico" ID="LinkButton2" runat="server" Text='<h4><label class="label label-success pull-right label-button">Usar<i class="fa fa-check"></i></label></h4>' />
+                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label>
+                    <asp:LinkButton OnClick="InsertarDiagnostico" ID="LinkButton3" runat="server"  Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-check"></i></label></h4>' />
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="modalAgregarProc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="modalAgregarProc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Receta: <span class="label label-primary ProcNombre"></span></h4>
+                    <h4 class="modal-title">Ageregar Procedimiento: <span class="label label-primary ProcNombre"></span></h4>
                 </div>
-                <div class="modal-body contaienr-fluid">
+                 <div class="modal-body contaienr-fluid">
                     <div class="container-fluid">
-                        Este Procedimiento no existe, desea agregarlo al catalogo.
+                        <!--<span class="ProcNombre"></span>-->
+                       Este Procedimiento no existe, desea agregarlo al catalogo.
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <h4>
-                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label></h4>
-                    <asp:LinkButton OnClick="addProcedimiento" ID="LinkButton1" runat="server" Text='<h4><label class="label label-success pull-right label-button">Usar<i class="fa fa-check"></i></label></h4>' />
+                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label>
+                    <asp:LinkButton OnClick="InsertarProcedimeinto" ID="LinkButton1" runat="server"  Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-check"></i></label></h4>' />
                 </div>
             </div>
         </div>
@@ -373,7 +388,8 @@
 
 
 
-    <script>
+
+    <script type="text/jscript">
         //////////////////////////////////////////////////
         ///////// DIAGNOSTICO /////////////////////////
         /////////////////////////////////////////////////
@@ -599,11 +615,13 @@
             $(".DiagNombre").text(DiagnosticoNom);
             $('#modalAgregarDiag').modal('show')
         }
-        function EjecutarProc() {
+
+        function EjecutarModalProc() {
             var ProcedimientoNom = $('[id$=txtProc]').val();
             $(".ProcNombre").text(ProcedimientoNom);
             $('#modalAgregarProc').modal('show')
         }
+
 
     </script>
     <script type="text/x-jqote-template" id="templateD">
