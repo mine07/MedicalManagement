@@ -35,7 +35,7 @@
             <div class="col-xs-12 col-lg-6 col-sm-6 col-md-6">
                 <div class="container-fluid">
                     <div class="row">
-                        <br><br><br>
+                        <br/><br/><br/>
                         <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">
                             <label>Clave Identificacion </label>
                         </div>

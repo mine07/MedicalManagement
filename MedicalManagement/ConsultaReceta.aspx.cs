@@ -32,6 +32,10 @@ namespace MedicalManagement
 
             if (!IsPostBack)
             {
+                //Tabla imprimir receta
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Nombre");
+                dt.Columns.Add("Fecha");
                 MostrarGridRecetaPrevia();
 
 
@@ -539,7 +543,7 @@ namespace MedicalManagement
             return;
         }
 
-        /*protected void btnPrint(object sender, EventArgs e)
+        protected void btnPrint(object sender, EventArgs e)
         {
             Response.Write("<script>window.print()</script>");
             Document pdfDoc = new Document(PageSize.A4, 10, 10, 10, 10);
@@ -585,6 +589,6 @@ namespace MedicalManagement
             {
                 Response.Write(ex.ToString());
             }
-    }*/
+    }
     }
 }

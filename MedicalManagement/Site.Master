@@ -151,7 +151,7 @@
                                 <a href="RegistroFichaIdentificacion.aspx"><i class="fa fa-fw fa-user-plus"></i> Nuevo Pacientes</a>
                             </li>
                             <li>
-                                <a href="RegistroAgenda.Aspx"><i class="fa fa-fw fa-calendar-plus-o"></i> Nueva Consultas</a>
+                                <a href="RegistroAgenda.Aspx"><i class="fa fa-fw fa-calendar-plus-o"></i> Nueva Consulta</a>
                             </li>
                             <li>
                                 <a href="ConsultaMenu.Aspx"><i class="fa fa-fw fa-desktop"></i> Menu Consulta</a>
@@ -191,6 +191,9 @@
                             </li>
                             <li>
                                 <a href="Sucursales.Aspx"><i class="fa fa-fw fa-building"></i> Sucursales</a>
+                            </li>
+                            <li>
+                                <a href="TemplateImprimirReceta.Aspx"><i class="fa fa-fw fa-file-text"></i> Detalles</a>
                             </li>
                         </ul>
                     </li>

@@ -20,12 +20,10 @@
                          <table width ="100%" border ="0">
                          <tr>
                              <td>
-                                 Nombre:
-                                 <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                                 Nombre:<asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                              </td>
                              <td>
-                                 Fecha: 
-                                 <asp:Label ID="Label3" runat="server" Text= "" ></asp:Label>
+                                 Fecha: <asp:Label ID="Label3" runat="server" Text= "" ></asp:Label>
                            
                              </td>
                          

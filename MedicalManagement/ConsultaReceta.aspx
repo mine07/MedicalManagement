@@ -151,6 +151,7 @@
                                 <div class="col-xs-12">
                                     
                                     <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>
+                                    <asp:LinkButton OnClick="btnPrint" ID="LinkButton4" runat="server" Text='<h4><label class="label label-success pull-right label-button">Imprimir<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>
 
                                 </div>
                             </div>

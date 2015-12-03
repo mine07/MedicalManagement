@@ -393,6 +393,7 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Sucursales.aspx" />
     <Content Include="Pagos.aspx" />
+    <Content Include="TemplateImprimirReceta.aspx" />
     <Content Include="Usuarios.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1066,6 +1067,13 @@
     </Compile>
     <Compile Include="Pagos.aspx.designer.cs">
       <DependentUpon>Pagos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateImprimirReceta.aspx.cs">
+      <DependentUpon>TemplateImprimirReceta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TemplateImprimirReceta.aspx.designer.cs">
+      <DependentUpon>TemplateImprimirReceta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
