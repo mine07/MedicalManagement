@@ -67,6 +67,55 @@ namespace MedicalManagement
             loadItems();
         }
 
+        protected void saveToPaquete(object sender, EventArgs e)
+        {
+            PaquetesDTO onePaquete = new PaquetesDTO();
+            onePaquete.Descripcion_AnalisisClinicoPaquetes = txtNombrePaquete.Value;
+            onePaquete.Estatus_AnalisisClinicoPaquetes = true;
+            PaquetesDAO Paquete = new PaquetesDAO();
+            Paquete.Insert("", onePaquete);
+            loadPaquetes();
+            limpiar();
+            ddlPaquetes.SelectedIndex = ddlPaquetes.Items.Count - 1;
+            LlenarPaquete();
+        }
+
+        public void LlenarPaquete()
+        {
+
+            // Isertar analisis en paquetes
+            string query = "select * from Tabla_Temporal_AnalisisClinico where Id_Consulta = @Id_Consulta and Id_FichaIdentificacion = @Id_FichaIdentificacion";
+            Helpers h = new Helpers();
+            var oneTemp = new Tabla_Temporal_AnalisisClinicoDTO();
+            oneTemp.Id_Consulta = Id_Consulta;
+            oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            var lTemporal = h.GetAllParametized(query, oneTemp);
+            string queryInsert = "insert into Tabla_Registro_AnalisisClinicoPaquetes (Id_AnalisisClinico, Id_AnalisisClinicoPaquetes) values (@Id_AnalisisClinico, @Id_AnalisisClinicoPaquetes)";
+            var oneT = new Tabla_Analsis_TemplateDTO();
+            string queryLast = "SELECT TOP 1 Id_AnalisisClinicoPaquetes FROM Tabla_Registro_AnalisisClinicoPaquetes ORDER BY Id_AnalisisClinicoPaquetes DESC";
+            var lIdTemplate = h.GetAllParametized(queryLast, oneT);
+            if (lIdTemplate.Count == 0)
+            {
+                oneT.Id_AnalisisClinicoPaquetes = 0;
+            }
+            else
+            {
+                oneT.Id_AnalisisClinicoPaquetes = lIdTemplate[0].Id_AnalisisClinicoPaquetes + 1;
+            }
+            foreach (var y in lTemporal)
+            {
+                var oneTemplate = new Tabla_Analsis_TemplateDTO();
+                oneTemplate.Id_AnalisisClinico = y.Id_AnalisisClinico;
+                oneTemplate.Id_AnalisisClinicoPaquetes = oneT.Id_AnalisisClinicoPaquetes;
+                h.ExecuteNonQueryParam(queryInsert, oneTemplate);
+            }
+
+            // string script = "AlertaGuardar();";
+            // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            return;
+        }
+
         public void limpiar()
         {
             txtNombre.Value = "";
@@ -110,12 +159,12 @@ namespace MedicalManagement
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
-            string sql = "select count(*)from Tabla_Catalogo_Medicamento where Descripcion_Medicamento=@Descripcion_Medicamento";
+            string sql = "select count(*)from Tabla_Catalogo_AnalisisClinico where Descripcion_AnalisisClinico=@Descripcion_AnalisisClinico";
             using (SqlConnection conn = new SqlConnection(conexion))
             {
                 conn.Open();
                 SqlCommand query = new SqlCommand(sql, conn);
-                query.Parameters.AddWithValue("@Descripcion_Medicamento", txtSearch.Text);
+                query.Parameters.AddWithValue("@Descripcion_AnalisisClinico", txtSearch.Text);
 
 
                 int count = Convert.ToInt32(query.ExecuteScalar());

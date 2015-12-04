@@ -94,7 +94,7 @@
                             <div class="col-xs-12">
                                 <div class="row">
                                 <div class="col-xs-12">
-                                    <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Guardar Como Receta Previa (Pendiente)<i class="fa fa-save"></i></label>
+                                    <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Guardar Paquete (Pendiente)<i class="fa fa-save"></i></label>
                                     <hr />
                                 </div>
                             </div>
@@ -144,6 +144,39 @@
                     <h4>
                         <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label></h4>
                     <asp:LinkButton OnClick="saveToUse" ID="LinkButton2" runat="server" Text='<h4><label class="label label-success pull-right label-button">Usar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Guardar Paquete</h4>
+                </div>
+                <div class="modal-body contaienr-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" runat="server" id="txtNombrePaquete" />
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="col-xs-12">
+                            <label>Diagnostico</label>
+                            <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch2" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
+                            <hr />
+                            <div class="container-fluid searchContainer border-top1-bottom5">
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="modal-footer">
+                    <h4>
+                        <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label></h4>
+                    <asp:LinkButton OnClick="saveToPaquete" ID="LinkButton1" runat="server" Text='<h4><label class="label label-success pull-right label-button">Guardar<i class="fa fa-save"></i></label></h4>' />
                 </div>
             </div>
         </div>

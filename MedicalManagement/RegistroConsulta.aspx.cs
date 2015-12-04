@@ -278,6 +278,7 @@ namespace MedicalManagement
             ConsultaDiagnosticoDAO Insert = new ConsultaDiagnosticoDAO();
             Insert.Insert(oneConsultaDiag);
             txtSearch.Text="";
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
             loadDiagnosticos();
             return;
   
@@ -291,6 +292,7 @@ namespace MedicalManagement
             rptDiag.DataSource = lConsultasDiag;
             rptDiag.DataBind();
             loadCategoria();
+            return;
         }
 
         protected void deleteDiag(object sender, EventArgs e)
@@ -301,6 +303,7 @@ namespace MedicalManagement
             ConsultaDiagnosticoDAO Delete = new ConsultaDiagnosticoDAO();
             Delete.Delete(oneConsultadia);
             loadDiagnosticos();
+            return;
         }
 
         /////////////////////////////////////////////
@@ -323,7 +326,7 @@ namespace MedicalManagement
 
             {
                 //registro si existe
-               // addProcedimiento();
+               addProcedimiento();
             }
 
         }
@@ -409,6 +412,7 @@ namespace MedicalManagement
             ConsultaProcedimientoDAO Insert = new ConsultaProcedimientoDAO();
             Insert.Insert(oneConsultaPro);
             txtProc.Text = "";
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
             loadProcedimiento();
         }
 

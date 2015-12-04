@@ -15,7 +15,7 @@ namespace MedicalManagement
 {
     public partial class testUDW : System.Web.UI.Page
     {
-
+        public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,7 +24,7 @@ namespace MedicalManagement
                 AddDefaultFirstRecord();
                 //AddDefaultFirstRecordHist();
                 loadHistPagos();
-
+                ddlFichas.SelectedValue = Id_FichaIdentificacion.ToString();
             }
         }
 

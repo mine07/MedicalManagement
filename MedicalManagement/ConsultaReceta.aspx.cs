@@ -463,8 +463,8 @@ namespace MedicalManagement
             ddlMedicamento.SelectedIndex = 0;
             //string script = "AlertaGuardar();";
             // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
-            
-            loadTemporal();
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            //loadTemporal();
             return;
         }
 
@@ -539,7 +539,7 @@ namespace MedicalManagement
             }
             //string script = "AlertaGuardar();";
            // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
-            loadTemporal();
+            
             return;
         }
 

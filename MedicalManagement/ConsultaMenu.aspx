@@ -119,6 +119,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-xs-12 text-right padding">
+                                                        <a class="label label-secondary form-control" href='<%# "Pagos.aspx?Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion")%>'>Pagos</a>
                                                         <a class="label label-secondary form-control" href='<%# "RegistroConsulta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto=" + NombreCompleto %>'>Nota Clinica</a>
                                                         <a class="label label-secondary form-control" href='<%# "ConsultaReceta.aspx?Id_Agenda=" + Eval("Id_Agenda") + "&Id_FichaIdentificacion=" + Eval("Id_FichaIdentificacion") + "&NombreCompleto" + NombreCompleto + "&Id_Consulta=" + Eval("Id_Consulta") %>'>Receta Medica</a>
                                                     </div>
