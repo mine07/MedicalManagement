@@ -113,6 +113,8 @@
                                         <h4></h4>
                                         <h4></h4>
                                         <h4></h4>
+                                        <h4></h4>
+                                        <h4></h4>
                                     </h4>
                                 </div>
                                 <div class="col-xs-12">
@@ -151,7 +153,7 @@
                                 <div class="col-xs-12">
                                     
                                     <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>
-                                    <asp:LinkButton OnClick="btnPrint" ID="LinkButton4" runat="server" Text='<h4><label class="label label-success pull-right label-button">Imprimir<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>
+                                    <%--<asp:LinkButton OnClick="btnPrint" ID="LinkButton4" runat="server" Text='<h4><label class="label label-success pull-right label-button">Imprimir<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>--%>
 
                                 </div>
                             </div>
@@ -278,6 +280,26 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalerror" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Error: <span class="label label-primary ProcNombre"></span></h4>
+                </div>
+                 <div class="modal-body contaienr-fluid">
+                    <div class="container-fluid">
+                        <!---->
+                       Debe ingresar un <span class="Mensaje"></span>.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton data-dismiss="modal" ID="LinkButton4" runat="server"  Text='<h4><label class="label label-success pull-right label-button">Aceptar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
 
 
@@ -386,6 +408,11 @@
             var MedicamentoNom = $('[id$=txtSearch]').val();
             $(".MediNombre").text(MedicamentoNom);
             $('#modalAgregar').modal('show')
+        }
+
+        function ValidarTexBox() {
+            $(".Mensaje").text("Medicamento");
+            $('#modalerror').modal('show')
         }
 
     </script>

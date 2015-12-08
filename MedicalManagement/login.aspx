@@ -99,12 +99,12 @@
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <asp:textbox runat="server" id="txtusuario" class="form-control" name="user" value="" placeholder="Usuario"></asp:textbox>
+                            <asp:TextBox runat="server" id="txtusuario" class="form-control" name="user" value="" placeholder="Usuario"></asp:TextBox>
                         </div><br>
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <asp:textbox runat="server" id="txtcontrasena" type="password" class="form-control" name="password" placeholder="Contraseña"></asp:textbox>
+                            <asp:TextBox runat="server" id="txtcontrasena" type="password" class="form-control" name="password" placeholder="Contraseña"></asp:TextBox>
                         </div><br>
 
                         <div class="form-group">

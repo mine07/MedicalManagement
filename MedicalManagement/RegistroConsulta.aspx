@@ -77,6 +77,7 @@
                         <label>Diagnostico</label>
                     </div>
                     <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">
+                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSearch" EnableClientScript="False" ErrorMessage="RequiredFieldValidator" ForeColor="Red">*Debe ingresar un Diagnostico</asp:RequiredFieldValidator>--%>
                         <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Diagnostico..." autocomplete="off"></asp:TextBox>
                         <hr />
                         <div class="container-fluid searchContainer searchDiag border-top1-bottom5">
@@ -374,13 +375,34 @@
                 </div>
                  <div class="modal-body contaienr-fluid">
                     <div class="container-fluid">
-                        <!--<span class="ProcNombre"></span>-->
+                        
                        Este Procedimiento no existe, desea agregarlo al catalogo.
                     </div>
                 </div>
                 <div class="modal-footer">
                         <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label>
-                    <asp:LinkButton OnClick="InsertarProcedimeinto" ID="LinkButton1" runat="server"  Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-check"></i></label></h4>' />
+                    <asp:LinkButton OnClick="InsertarProcedimeinto" ID="LinkButton1" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalerror" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Error: <span class="label label-primary ProcNombre"></span></h4>
+                </div>
+                 <div class="modal-body contaienr-fluid">
+                    <div class="container-fluid">
+                        <!---->
+                       Debe ingresar un <span class="Mensaje"></span>.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton data-dismiss="modal" ID="LinkButton2" runat="server"  Text='<h4><label class="label label-success pull-right label-button">Aceptar<i class="fa fa-check"></i></label></h4>' />
                 </div>
             </div>
         </div>
@@ -621,7 +643,15 @@
             $(".ProcNombre").text(ProcedimientoNom);
             $('#modalAgregarProc').modal('show')
         }
-
+        function ValidarTexBox1() {
+            $(".Mensaje").text("Procedimiento");
+            $('#modalerror').modal('show')
+        }
+        function ValidarTexBox2() {
+            $(".Mensaje").text("Diagnostico");
+            $('#modalerror').modal('show')
+        }
+        
 
     </script>
     <script type="text/x-jqote-template" id="templateD">

@@ -231,6 +231,7 @@
     <Content Include="Scripts\jquery-1.8.3.js" />
     <Content Include="Consulta.master" />
     <None Include="Properties\PublishProfiles\cesarMedical.pubxml" />
+    <None Include="Properties\PublishProfiles\JorgeSanchez.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

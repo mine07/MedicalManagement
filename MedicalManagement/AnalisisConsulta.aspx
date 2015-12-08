@@ -5,7 +5,10 @@
 <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <h3>Analisis Clinico</h3>
+            <div>
+                <a href="#" onClick="history.back();" __designer:mapid="696"><label class="pull-right label label-primary label-button" __designer:mapid="697">Volver<i class="fa fa-arrow-left fa-margin-left" __designer:mapid="698"></i></label></a><div class="hidden"></div>
+                <h3>Analisis Clinico</h3>
+            </div>
             <hr />
             <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
                 <div class="loading hidden">
@@ -43,7 +46,7 @@
                                     <label class="h6">Agregar Auxiliar</label>
                                     <!--<asp:DropDownList runat="server" ID="ddlAnalisis" CssClass="form-control combobox" DataTextField="Descripcion_AnalisisClinico" DataValueField="Id_AnalisisClinico" />-->
                                     <div >
-                                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Medicamento..." autocomplete="off"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Analsis Clinico..." autocomplete="off"></asp:TextBox>
                                         <hr />
                                         <div class="container-fluid searchContainer searchProc border-top1-bottom5">
                                         </div>
@@ -94,7 +97,7 @@
                             <div class="col-xs-12">
                                 <div class="row">
                                 <div class="col-xs-12">
-                                    <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Guardar Paquete (Pendiente)<i class="fa fa-save"></i></label>
+                                    <label class="label label-success pull-right label-button pull-right" style="font-size: 16px;" data-toggle="modal" data-target="#myModal">Guardar Paquete<i class="fa fa-save"></i></label>
                                     <hr />
                                 </div>
                             </div>
@@ -199,6 +202,26 @@
                 <div class="modal-footer">
                         <label class="label label-danger label-button" data-dismiss="modal">Cerrar</label>
                     <asp:LinkButton OnClick="InsertarMedicamento" ID="LinkButton3" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-check"></i></label></h4>' />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalerror" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Error: <span class="label label-primary ProcNombre"></span></h4>
+                </div>
+                 <div class="modal-body contaienr-fluid">
+                    <div class="container-fluid">
+                        <!---->
+                       Debe ingresar un <span class="Mensaje"></span>.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton data-dismiss="modal" ID="LinkButton4" runat="server"  Text='<h4><label class="label label-success pull-right label-button">Aceptar<i class="fa fa-check"></i></label></h4>' />
                 </div>
             </div>
         </div>
@@ -329,6 +352,11 @@
             var MedicamentoNom = $('[id$=txtSearch]').val();
             $(".AnaliNombre").text(MedicamentoNom);
             $('#modalAgregar').modal('show')
+        }
+
+        function ValidarTexBox() {
+            $(".Mensaje").text("Analisis Clinico");
+            $('#modalerror').modal('show')
         }
     </script>
 

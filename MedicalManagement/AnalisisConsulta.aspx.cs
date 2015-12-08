@@ -135,6 +135,8 @@ namespace MedicalManagement
         }*/
         protected void saveTo(object sender, EventArgs e)
         {
+            if (!(string.IsNullOrEmpty(txtSearch.Text)))
+            {
 
             if (!Existe(txtSearch.Text))
             {
@@ -152,6 +154,17 @@ namespace MedicalManagement
                 //registro si existe
                 addAnalisis();
             }
+
+            }
+            else
+            {
+                string script = @"<script type ='text/javascript'>
+                                ValidarTexBox();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+            }
+      
+
         }
 
 
@@ -232,8 +245,9 @@ namespace MedicalManagement
             oneAnaPaquete.Id_Consulta = Id_Consulta;
             Tabla_Temporal_AnalisisClinicoDAO Insert = new Tabla_Temporal_AnalisisClinicoDAO();
             Insert.Insert("", oneAnaPaquete);
-            txtSearch.Text = "";
             loadItems();
+            txtSearch.Text = "";
+            //Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         protected void deleteItem(object sender, EventArgs e)

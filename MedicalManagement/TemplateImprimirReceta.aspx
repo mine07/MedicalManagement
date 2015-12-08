@@ -18,8 +18,6 @@
             </td>
             <td align="right"></td>
             <td width="9%" align="left">
-                <a href='<%= "javascript:history.back(-1);" %>'>
-                    <label class="pull-right label label-primary label-button" style="font-size: 16px;">Volver<i class="fa fa-arrow-left fa-margin-left"></i></label></a>
             </td>
         </tr>
 
@@ -49,8 +47,6 @@
                     </div>-->
                     <br />
                     <br />
-                    <br />
-
                     <div class="row">
                         <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6">
                             <label>Nombre</label>
@@ -103,7 +99,6 @@
             </div>
             <div class="col-xs-12 col-lg-6 col-sm-6 col-md-6">
                 <div class="container-fluid">
-                    <br />
                     <br />
                     <br />
                     <div class="row">

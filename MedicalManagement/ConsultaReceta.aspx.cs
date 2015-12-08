@@ -383,24 +383,35 @@ namespace MedicalManagement
 
         protected void saveTo(object sender, EventArgs e)
         {
-           
-            if (!Existe(txtSearch.Text))
+            if (!(string.IsNullOrEmpty(txtSearch.Text)))
             {
-                //registro no existe
-                string script = @"<script type ='text/javascript'>
+                if (!Existe(txtSearch.Text))
+                {
+                    //registro no existe
+                    string script = @"<script type ='text/javascript'>
                                 EjecutarModal();
                                 </script>";
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+
+                }
+
+                else
+
+                {
+                    //registro si existe
+                    InsertarMedicamento();
+                }
 
             }
-
             else
-
             {
-                //registro si existe
-               InsertarMedicamento();
+                string script = @"<script type ='text/javascript'>
+                                ValidarTexBox();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
             }
-            
+
+
         }
 
         protected void agregraMedi(object sender, EventArgs e)

@@ -175,22 +175,31 @@ namespace MedicalManagement
 
         protected void saveTo(object sender, EventArgs e)
         {
-
-            if (!Existe(txtSearch.Text))
+            if (!(string.IsNullOrEmpty(txtSearch.Text)))
             {
-                //registro no existe
-                string script = @"<script type ='text/javascript'>
+                if (!Existe(txtSearch.Text))
+                {
+                    //registro no existe
+                    string script = @"<script type ='text/javascript'>
                                 EjecutarModalDiag();
                                 </script>";
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
 
+                }
+
+                else
+
+                {
+                    //registro si existe
+                    addDiagnostico();
+                }
             }
-
             else
-
             {
-                //registro si existe
-                addDiagnostico();
+                string script = @"<script type ='text/javascript'>
+                                ValidarTexBox1();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
             }
 
         }
@@ -311,23 +320,33 @@ namespace MedicalManagement
         /////////////////////////////////////////////
         protected void saveToPro(object sender, EventArgs e)
         {
-
-            if (!ExistePro(txtProc.Text))
+            if (!(string.IsNullOrEmpty(txtProc.Text)))
             {
-                //registro no existe
-                string script = @"<script type ='text/javascript'>
+                if (!ExistePro(txtProc.Text))
+                {
+                    //registro no existe
+                    string script = @"<script type ='text/javascript'>
                                 EjecutarModalProc();
                                 </script>";
-                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
 
+                }
+
+                else
+
+                {
+                    //registro si existe
+                    addProcedimiento();
+                }
             }
-
             else
-
             {
-                //registro si existe
-               addProcedimiento();
+                string script = @"<script type ='text/javascript'>
+                                ValidarTexBox2();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
             }
+
 
         }
 
@@ -393,7 +412,7 @@ namespace MedicalManagement
             /*NOTA
             Tiene un refresh
             por que el modal no se cierra por completo y queda inhabilitado todo la pagina*/
-            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+           // Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
         protected void addProcedimiento()
         {

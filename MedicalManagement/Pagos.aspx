@@ -3,7 +3,11 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <div>
+                <a href="#" onClick="history.back();" __designer:mapid="696"><label class="pull-right label label-primary label-button" __designer:mapid="697">Volver<i class="fa fa-arrow-left fa-margin-left" __designer:mapid="698"></i></label></a><div class="hidden"></div>
+                <h3>Pagos</h3>
+            </div>
+            <hr />
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"> 
     </asp:ScriptManager> 
@@ -16,7 +20,7 @@
                         PopupControlID="pnlModalPopUpPanel" 
                         BackgroundCssClass="modalBackground"                        
                         DropShadow="true" CancelControlID="btnCancelModalPopup"/>
-            <label style="font-weight: bold; font-size: x-large; font-family: Helvetica;">Pagos</label>
+            <%--<label style="font-weight: bold; font-size: x-large; font-family: Helvetica;">Pagos</label>--%>
             <div class="container-fluid border-top1-bottom5">
                      <div class="row">
                          <div class="col-xs-12 col-sm-12 col-lg-2 col-md-2">
