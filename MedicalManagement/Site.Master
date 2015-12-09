@@ -193,7 +193,7 @@
                                 <a href="Sucursales.Aspx"><i class="fa fa-fw fa-building"></i> Sucursales</a>
                             </li>
                             <%--<li>
-                                <a href="TemplateImprimirReceta.Aspx"><i class="fa fa-fw fa-file-text"></i> Detalles</a>
+                                <a href="EspecialistasInfo.Aspx"><i class="fa fa-fw fa-file-text"></i> Detalles</a>
                             </li>--%>
                         </ul>
                     </li>

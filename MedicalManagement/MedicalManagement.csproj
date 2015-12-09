@@ -166,6 +166,7 @@
     <Content Include="EmpresaConvenio.aspx" />
     <Content Include="Empresas.aspx" />
     <Content Include="Escolaridad.aspx" />
+    <Content Include="EspecialistasInfo.aspx" />
     <Content Include="EstadoCivil.aspx" />
     <Content Include="FichaIdentificacion.aspx" />
     <Content Include="FichaIdentificacion2.aspx" />
@@ -644,6 +645,13 @@
     </Compile>
     <Compile Include="Escolaridad.aspx.designer.cs">
       <DependentUpon>Escolaridad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EspecialistasInfo.aspx.cs">
+      <DependentUpon>EspecialistasInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EspecialistasInfo.aspx.designer.cs">
+      <DependentUpon>EspecialistasInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="EstadoCivil.aspx.cs">
       <DependentUpon>EstadoCivil.aspx</DependentUpon>
