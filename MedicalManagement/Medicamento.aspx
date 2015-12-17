@@ -37,14 +37,22 @@
 
 
             <asp:BoundField DataField="Descripcion_Medicamento" HeaderText="Descripcion Medicamento" 
-                SortExpression="Descripcion_Medicamento" ItemStyle-Width="65%"/>    
-            
+                SortExpression="Descripcion_Medicamento" ItemStyle-Width="45%"/> 
+               
+            <asp:BoundField DataField="Existencia" HeaderText="Exixtencia" 
+                SortExpression="Existencia" ItemStyle-Width="10%"/> 
+
+            <asp:BoundField DataField="PrecioCosto" HeaderText="Precio Costo" 
+                SortExpression="PrecioCosto" ItemStyle-Width="10%"/> 
+
+            <asp:BoundField DataField="PrecioVenta" HeaderText="Precio Venta" 
+                SortExpression="PrecioVenta" ItemStyle-Width="10%"/> 
 
             <asp:ButtonField ButtonType="Button" CommandName="Edit" HeaderText="Editar" 
-                ShowHeader="True" Text="Editar" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="15%"/>
+                ShowHeader="True" Text="Editar" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="10%"/>
 
             <asp:ButtonField ButtonType="Button" CommandName="Delete" HeaderText="Eliminar" 
-                 ShowHeader="True" Text="Eliminar" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="15%"/>
+                 ShowHeader="True" Text="Eliminar" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="10%"/>
         </Columns>
 
 

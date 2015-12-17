@@ -21,10 +21,17 @@ namespace MedicalManagement
 
         private void loadItems()
         {
+            try
+            {
             string queryIf = "where Id_AnalisisClinicoPaquetes = @Id_AnalisisClinicoPaquetes";
             rptItems.DataSource = AnalisisEnPaquetesDAO.GetAll(queryIf, new AnalisisEnPaquetesDTO { Id_AnalisisClinicoPaquetes = Convert.ToInt32(ddlPaquetes.SelectedItem.Value) });
             rptItems.DataBind();
             lblPaqueteNombre.InnerText = ddlPaquetes.SelectedItem.Text;
+                
+            }
+            catch 
+            {
+            }
         }
 
         private void loadPaquetes()

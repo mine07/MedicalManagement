@@ -243,6 +243,9 @@ namespace MedicalManagement
             Grid_Medicamento.DataSource = ds;
             Grid_Medicamento.Columns[0].Visible = true;
             Grid_Medicamento.Columns[1].Visible = true;
+            Grid_Medicamento.Columns[2].Visible = true;
+            Grid_Medicamento.Columns[3].Visible = true;
+            Grid_Medicamento.Columns[4].Visible = true;
             Grid_Medicamento.DataBind();
             ds.Dispose();
             da.Dispose();

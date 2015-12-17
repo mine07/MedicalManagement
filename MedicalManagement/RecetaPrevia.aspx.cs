@@ -73,14 +73,21 @@ namespace MedicalManagement
 
         public void loadTemplate()
         {
-            string query = @"select  * from Tabla_receta_Template a
+            try
+            {
+                string query = @"select  * from Tabla_receta_Template a
             left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where Id_Template = @Id_Template";
-            var oneTemp = new Tabla_Receta_TemplateDTO();
-            oneTemp.Id_Template = Convert.ToInt32(ddlTemplate.SelectedItem.Value);
-            Helpers h = new Helpers();
-            var lTemporal = h.GetAllParametized(query, oneTemp);
-            rptTemplate.DataSource = lTemporal;
-            rptTemplate.DataBind();
+                var oneTemp = new Tabla_Receta_TemplateDTO();
+                oneTemp.Id_Template = Convert.ToInt32(ddlTemplate.SelectedItem.Value);
+                Helpers h = new Helpers();
+                var lTemporal = h.GetAllParametized(query, oneTemp);
+                rptTemplate.DataSource = lTemporal;
+                rptTemplate.DataBind();
+            }
+            catch 
+            {
+
+            }
         }
 
         public void RemoveTemporal(object sender, EventArgs e)
