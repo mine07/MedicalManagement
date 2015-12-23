@@ -203,6 +203,8 @@ namespace MedicalManagement
             catch (Exception ex) {
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert", "alert('ERROR,'"+ ex + "')", true);
             }
+            ViewState.Clear();
+            Response.Redirect(Request.RawUrl);
         }
 
 

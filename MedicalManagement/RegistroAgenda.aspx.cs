@@ -94,9 +94,9 @@ namespace MedicalManagement
                // ddlUsuarios.Text = NombreCompleto;
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
-                DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
-                DropDownMesComienzo.SelectedIndex = (hoy.Month) - 1;
-                DropDownAnioComienzo.SelectedValue = hoy.Year.ToString();
+                //DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
+               // DropDownMesComienzo.SelectedIndex = (hoy.Month) - 1;
+                //DropDownAnioComienzo.SelectedValue = hoy.Year.ToString();
 
                 DropDownDiaFinal.SelectedValue = hoy.Day.ToString();
                 DropDownMesFinal.SelectedIndex = (hoy.Month) - 1;
@@ -120,12 +120,12 @@ namespace MedicalManagement
 
                         DateTime inicioagenda = reader.GetDateTime(reader.GetOrdinal("Inicio_Agenda"));
                         txtDiaComienzo.Value = inicioagenda.ToString();
-                        DropDownDiaComienzo.SelectedValue = inicioagenda.Day.ToString();
-                        DropDownMesComienzo.SelectedIndex = (inicioagenda.Month) - 1;
-                        DropDownAnioComienzo.SelectedValue = inicioagenda.Year.ToString();
-                        DropDownHoraComienzo.SelectedValue = inicioagenda.ToString("%h");
-                        DropDownMinutoComienzo.SelectedValue = inicioagenda.ToString("mm");
-                        DropDowndiatardeComienzo.SelectedValue = inicioagenda.ToString("tt");
+                        //DropDownDiaComienzo.SelectedValue = inicioagenda.Day.ToString();
+                        //DropDownMesComienzo.SelectedIndex = (inicioagenda.Month) - 1;
+                        //DropDownAnioComienzo.SelectedValue = inicioagenda.Year.ToString();
+                        //DropDownHoraComienzo.SelectedValue = inicioagenda.ToString("%h");
+                        //DropDownMinutoComienzo.SelectedValue = inicioagenda.ToString("mm");
+                        //DropDowndiatardeComienzo.SelectedValue = inicioagenda.ToString("tt");
 
                         string prioridad = reader.GetString(reader.GetOrdinal("Prioridad_Agenda")).Trim();
 
@@ -390,7 +390,7 @@ namespace MedicalManagement
                 {
                     Id_FichaIdentificacion = Id_FichaIdentificacion
                 });
-
+            //System.Web.HttpContext.Current.Response.Redirect("RegistroAgenda.aspx?Id_FichaIdentificacion=" +  Id_FichaIdentificacion);
         }
     }
 }

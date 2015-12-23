@@ -42,6 +42,10 @@ namespace MedicalManagement
                 int valoridperfildeusuario = 0;
                 valoridperfildeusuario = Convert.ToInt32(Session["inicioidperfil"]);
 
+
+
+
+
                 string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
                 SqlConnection cnn;
@@ -177,9 +181,9 @@ namespace MedicalManagement
             //Para verificar el correo electronico
             String expresion;
             expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(txtCorreoIdent.Text.Trim(), expresion))
-            {
-                if (Regex.Replace(txtCorreoIdent.Text.Trim(), expresion, String.Empty).Length == 0)
+            //if (Regex.IsMatch(txtCorreoIdent.Text.Trim(), expresion))
+            //{
+                if (!(Regex.Replace(txtCorreoIdent.Text.Trim(), expresion, String.Empty).Length == 0))
                 {
 
                 }
@@ -188,12 +192,12 @@ namespace MedicalManagement
                     Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Correo Electronico correctamente</p>";
                     goto etiqueta;
                 }
-            }
-            else
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Correo Electronico correctamente</p>";
-                goto etiqueta;
-            }
+            //}
+            //else
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Correo Electronico correctamente</p>";
+            //    goto etiqueta;
+            //}
             ////////////////////////////////////////////
             //Para verificar formato fotografia
             if (FileUpload1.HasFile)
@@ -379,14 +383,14 @@ namespace MedicalManagement
 
 
             //comando.Parameters.AddWithValue("@Cve_FichaIdentificacion", txtClaveIdent.Text.Trim());
-            comando.Parameters.AddWithValue("@Fecha_FichaIdentificacion", Convert.ToDateTime(fechafichaidentificacion).ToString("yyyy/MM/dd"));
+            comando.Parameters.AddWithValue("@Fecha_FichaIdentificacion", Convert.ToDateTime(fechafichaidentificacion));
             comando.Parameters.AddWithValue("@Nombre_FichaIdentificacion", txtNombreIdent.Text.Trim());
             comando.Parameters.AddWithValue("@ApPaterno_FichaIdentificacion", txtApPaIdent.Text.Trim());
             comando.Parameters.AddWithValue("@ApMaterno_FichaIdentificacion", txtApMaIdent.Text.Trim());
             comando.Parameters.AddWithValue("@LugarNacimiento_FichaIdentificacion", txtLugarNaIdent.Text.Trim());
-            comando.Parameters.AddWithValue("@FechaNacimiento_FichaIdentificacion", Convert.ToDateTime(txtFechaNaIdent.Value).ToString("yyyy/MM/dd"));
-            comando.Parameters.AddWithValue("@FechaPrimeraVisita_FichaIdentificacion", Convert.ToDateTime(txtFechaPriIdent.Value).ToString("yyyy/MM/dd"));
-
+            comando.Parameters.AddWithValue("@FechaNacimiento_FichaIdentificacion", Convert.ToDateTime(txtFechaNaIdent.Value));
+            comando.Parameters.AddWithValue("@FechaPrimeraVisita_FichaIdentificacion", Convert.ToDateTime(txtFechaPriIdent.Value));
+            //Convert.ToDateTime(txtDiaComienzo.Value);
             comando.Parameters.AddWithValue("@TelefonoCasa_FichaIdentificacion", txtTelCaIdent.Text.Trim());
             comando.Parameters.AddWithValue("@TelefonoOfinica_FichaIdentificacion", txtTelOfiIdent.Text.Trim());
             comando.Parameters.AddWithValue("@TelefonoMovil_FichaIdentificacion", txtTelMovIndent.Text.Trim());

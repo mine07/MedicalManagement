@@ -101,7 +101,7 @@
                                     <label>Usuario</label>
                                 </div>
                                 <div class="col-xs-12 col-md-8 col-sm-8 col-lg-8">
-                                    <asp:DropDownList runat="server" ID="ddlFichas" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" CssClass="form-control" OnSelectedIndexChanged="ddlFichas_SelectedIndexChanged"></asp:DropDownList><hr />
+                                    <asp:DropDownList runat="server" ID="ddlFichas" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" CssClass="form-control" OnSelectedIndexChanged="ddlFichas_SelectedIndexChanged" EnableTheming="True"></asp:DropDownList><hr />
                                 </div>
                             </div>
                             <div class="row">
@@ -204,7 +204,7 @@
                 <hr class="blue-hr" />
                 <div class="col-xs-12 text-right">
                     <asp:Button ID="btnClean" runat="server" Text="Limpiar" CssClass="btn-primary" OnClick="btnClean_Click" />
-                    <asp:Button ID="btnSavePagos" runat="server" Text="Guardar Pago" CssClass="btn-primary" OnClick="btnSavePagos_Click" />
+                    <asp:Button ID="btnSavePagos" runat="server" Text="Guardar Pago" CssClass="btn-primary" OnClick="btnSavePagos_Click"/>
                 </div>
             </div>
             <%--Modal para agregar nuevos conceptos de pago--%>

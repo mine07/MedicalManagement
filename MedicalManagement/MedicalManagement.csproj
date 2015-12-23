@@ -168,6 +168,7 @@
     <Content Include="Escolaridad.aspx" />
     <Content Include="EspecialistasInfo.aspx" />
     <Content Include="EstadoCivil.aspx" />
+    <Content Include="FarmaciaProductos.aspx" />
     <Content Include="FichaIdentificacion.aspx" />
     <Content Include="FichaIdentificacion2.aspx" />
     <Content Include="IMG\calendar.png" />
@@ -397,6 +398,7 @@
     <Content Include="Pagos.aspx" />
     <Content Include="TemplateImprimirReceta.aspx" />
     <Content Include="Usuarios.aspx" />
+    <Content Include="Ventas.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -659,6 +661,13 @@
     </Compile>
     <Compile Include="EstadoCivil.aspx.designer.cs">
       <DependentUpon>EstadoCivil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FarmaciaProductos.aspx.cs">
+      <DependentUpon>FarmaciaProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FarmaciaProductos.aspx.designer.cs">
+      <DependentUpon>FarmaciaProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="FichaIdentificacion.aspx.cs">
       <DependentUpon>FichaIdentificacion.aspx</DependentUpon>
@@ -1090,6 +1099,13 @@
     </Compile>
     <Compile Include="Usuarios.aspx.designer.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas.aspx.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ventas.aspx.designer.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebPrueba.aspx.cs">
       <DependentUpon>WebPrueba.aspx</DependentUpon>

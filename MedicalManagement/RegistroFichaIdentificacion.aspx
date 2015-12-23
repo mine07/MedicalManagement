@@ -111,8 +111,6 @@
                             <input id="txtFechaPriIdent" type="text" class="datePicker form-control" runat="server" />
                         </div>
                     </div>
-
-
                 </div>
             </div>
             <div class="col-xs-12 col-lg-6 col-sm-6 col-md-6">

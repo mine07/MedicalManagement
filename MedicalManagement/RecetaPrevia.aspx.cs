@@ -153,6 +153,7 @@ namespace MedicalManagement
             ddlTemplate.Enabled = true;
             cancelRow.Visible = false;
             txtNombre.Value = "";
+            txtSearch.Text = "";
         }
 
         protected void loadMedicamentos()

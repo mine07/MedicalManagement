@@ -14,10 +14,9 @@ using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
 using System.IO;
 
-
 namespace MedicalManagement
 {
-    public partial class ConsultaReceta : System.Web.UI.Page
+    public partial class Ventas : System.Web.UI.Page
     {
         public int Id_Agenda = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Agenda"]);
         public int Id_FichaIdentificacion = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_FichaIdentificacion"]);
@@ -27,7 +26,7 @@ namespace MedicalManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
             if (!IsPostBack)
@@ -474,13 +473,8 @@ namespace MedicalManagement
             h.ExecuteNonQueryParam(query, oneTemp);
             txtDos.Value = "";
             txtNot.Value = "";
-            txtSearch.Text= "";
-            try
-            {
+            txtSearch.Text = "";
             ddlMedicamento.SelectedIndex = 0;
-            }
-            catch { }
-
             //string script = "AlertaGuardar();";
             // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
@@ -518,9 +512,9 @@ namespace MedicalManagement
                 oneTemplate.Id_Template = oneT.Id_Template;
                 h.ExecuteNonQueryParam(queryInsert, oneTemplate);
             }
-            
-           // string script = "AlertaGuardar();";
-           // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+
+            // string script = "AlertaGuardar();";
+            // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
             loadTemporal();
             return;
         }
@@ -545,7 +539,7 @@ namespace MedicalManagement
             var lTemporal = h.GetAllParametized(query, oneTemp);
             string queryInsert = "insert into Tabla_Temporal_Receta (Id_FichaIdentificacion, Tem_Dosis, Tem_Notas, Id_Medicamento, Id_Consulta) values (@Id_FichaIdentificacion, @Tem_Dosis, @Tem_Notas, @Id_Medicamento, @Id_Consulta)";
             string queryDelete = "delete from Tabla_Temporal_Receta where Id_Consulta = @Id_Consulta and Id_FichaIdentificacion = @Id_FichaIdentificacion";
-            h.ExecuteNonQueryParam(queryDelete, new Tabla_Temporal_RecetaDTO {Id_FichaIdentificacion = Id_FichaIdentificacion, Id_Consulta = Id_Consulta});
+            h.ExecuteNonQueryParam(queryDelete, new Tabla_Temporal_RecetaDTO { Id_FichaIdentificacion = Id_FichaIdentificacion, Id_Consulta = Id_Consulta });
             foreach (var y in lTemporal)
             {
                 var oneTe = new Tabla_Temporal_RecetaDTO();
@@ -555,11 +549,11 @@ namespace MedicalManagement
                 oneTe.Tem_Dosis = y.Tem_Dosis;
                 oneTe.Tem_Notas = y.Tem_Notas;
                 h.ExecuteNonQueryParam(queryInsert, oneTe);
-             
+
             }
             //string script = "AlertaGuardar();";
             // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
-            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+
             return;
         }
 
@@ -609,6 +603,6 @@ namespace MedicalManagement
             {
                 Response.Write(ex.ToString());
             }
-    }
+        }
     }
 }

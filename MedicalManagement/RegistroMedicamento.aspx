@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 Precio Venta:
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="PrecioVenta" ErrorMessage="RegularExpressionValidator" ForeColor="Red" ValidationExpression="([0-9]|)*">Ingrese el Costo</asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="PrecioVenta" ErrorMessage="RegularExpressionValidator" ForeColor="Red" ValidationExpression="([0-9]|.)*">Ingrese el Costo</asp:RegularExpressionValidator>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 <asp:TextBox CssClass="form-control" ID="PrecioVenta" runat="server"></asp:TextBox>

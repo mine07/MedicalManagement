@@ -148,7 +148,7 @@
                         <ul id="ddFast" class="collaps in">
                             <li class="divider"></li>
                             <li>
-                                <a href="RegistroFichaIdentificacion.aspx"><i class="fa fa-fw fa-user-plus"></i> Nuevo Pacientes</a>
+                                <a href="RegistroFichaIdentificacion.aspx"><i class="fa fa-fw fa-user-plus"></i> Nuevo Paciente</a>
                             </li>
                             <li>
                                 <a href="RegistroAgenda.Aspx"><i class="fa fa-fw fa-calendar-plus-o"></i> Nueva Consulta</a>
@@ -170,6 +170,15 @@
                             </li>
                             <li>
                                 <a href="Pagos.Aspx"><i class="fa fa-fw fa-money"></i> Pagos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="li-main">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#ddVentas" class="dropdown-title"><i class="fa fa-fw fa-usd"></i> Ventas</a>
+                        <ul id="ddVentas" class="collapse">
+                            <li class="divider"></li>
+                            <li>
+                                <a href="Ventas.aspx"><i class="fa fa-fw fa-user"></i> Farmacia</a>
                             </li>
                         </ul>
                     </li>
@@ -201,6 +210,9 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#ddCatalogos" class="dropdown-title"><i class="fa fa-fw fa-edit"></i>Catalogos</a>
                         <ul id="ddCatalogos" class="collapse">
                             <li class="divider"></li>
+                            <li>
+                                <a href="FarmaciaProductos.aspx"><i class="fa fa-fw fa-heartbeat"></i> Productos Farmacia</a>
+                            </li>
                             <li>
                                 <a href="ConsultaDiagnostico.aspx"><i class="fa fa-fw fa-heartbeat"></i> Diagnosticos</a>
                             </li>
