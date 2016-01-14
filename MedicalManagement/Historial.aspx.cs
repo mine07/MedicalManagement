@@ -10,29 +10,28 @@ using System.Configuration;
 
 namespace MedicalManagement
 {
-    public partial class FarmaciaProductos : System.Web.UI.Page
+    public partial class Historial : System.Web.UI.Page
     {
+        public decimal Subtotal = 0;
         protected void Page_Load(object sender, EventArgs e)
-        
         {
-
-            
+            sumar();
             if (!IsPostBack)
             {
+                sumar();
                 //LlenarGridMedicamento();
             }
 
 
         }
-        protected void AccessDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
-        {
-            e.Command.Parameters["Descripcion"].Value = "des";
-        }
+
         protected void txt_OnTextChanged(object sender, EventArgs e)
         {
             //GuardarDiagnosticos();
             //LlenarGridMedicamento();
             txtBuscar_Medicamento.Focus();
+            sumar();
+
         }
 
         protected void btnGuardar_Producto(object sender, EventArgs e)
@@ -42,19 +41,30 @@ namespace MedicalManagement
             Response.Redirect("AgregarProducto.aspx");
 
         }
-        protected void Grid_Medicamento_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        public void sumar()
         {
+            try
+            {
+                string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
-            //GuardarDiagnosticos();
-            GridView1.PageIndex = e.NewPageIndex;
-            //GridView1.DataBind();
-            LlenarGridMedicamento();
+                SqlConnection cnn;
+                cnn = new SqlConnection(conexion);
+                cnn.Open();
+
+                //string consulta = "select sum(Costo) from Tabla_Catalogo_TicketTemp where Id_Ticket =" + Id_Ticket + "";
+                string consulta = "select sum(Costo) from Tabla_Catalogo_Ticket where No_Tiket = " + Convert.ToInt32(txtBuscar_Medicamento.Text);
+                SqlCommand comando = new SqlCommand(consulta, cnn);
+                //Subtotal = Convert.ToInt32(comando.ExecuteScalar());
+                Subtotal = Convert.ToDecimal(comando.ExecuteScalar());
+                Label1.Text = Subtotal.ToString();
+
+                cnn.Close();
+            }
+            catch { }
+
         }
-
-        protected void Grid_Medicamento_PageIndexChanged(object sender, EventArgs e)//EventArgs
-        {
-
-        }
+            
+            
         public void LlenarGridMedicamento()
         {
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -64,7 +74,7 @@ namespace MedicalManagement
 
             cnn.Open();
 
-            SqlCommand comando = new SqlCommand("SP_Catalogo_ProductosFarmacia", cnn);
+            SqlCommand comando = new SqlCommand("SP_Tabla_Catalogo_Ticket", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
             if (!(txtBuscar_Medicamento.Text == ""))
@@ -76,7 +86,7 @@ namespace MedicalManagement
                 {
                     if (i <= 4)
                     {
-                        string NDescripcion = "@Descripcion" + i;
+                        string NDescripcion = "@NombreMedicamento_" + i;
                         comando.Parameters.AddWithValue(NDescripcion, palabra);
                         i++;
                         Console.WriteLine(palabra);
@@ -86,7 +96,7 @@ namespace MedicalManagement
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion", "");
+                comando.Parameters.AddWithValue("@NombreMedicamento", "");
             }
             /*
                 0  Id_Empresa
@@ -104,11 +114,12 @@ namespace MedicalManagement
             GridView1.Columns[3].Visible = true;
             GridView1.Columns[4].Visible = true;
             GridView1.Columns[5].Visible = true;
-           
-            //GridView1.DataBind();
+
+            GridView1.DataBind();
             ds.Dispose();
             da.Dispose();
             txtBuscar_Medicamento.Focus();
+            sumar();
         }
     }
 }

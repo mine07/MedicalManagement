@@ -10,42 +10,42 @@
 namespace MedicalManagement {
     
     
-    public partial class RegistroMedicamento {
+    public partial class PersonasMorales {
         
         /// <summary>
-        /// Control Guardar.
+        /// Control txtBuscar_Medicamento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Guardar;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Medicamento;
         
         /// <summary>
-        /// Control Alerta.
+        /// Control AgregarMedicamento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell Alerta;
+        protected global::System.Web.UI.WebControls.LinkButton AgregarMedicamento;
         
         /// <summary>
-        /// Control RequiredFieldValidator1.
+        /// Control ImageButton1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.LinkButton ImageButton1;
         
         /// <summary>
-        /// Control Descripcion_Medicamento.
+        /// Control Grid_Medicamento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Descripcion_Medicamento;
+        protected global::System.Web.UI.WebControls.GridView Grid_Medicamento;
     }
 }

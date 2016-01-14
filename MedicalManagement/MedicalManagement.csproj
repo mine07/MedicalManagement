@@ -84,6 +84,8 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Agenda.aspx" />
     <Content Include="AgendaElegirFicha.aspx" />
+    <Content Include="AgregarCliente.aspx" />
+    <Content Include="AgregarProducto.aspx" />
     <Content Include="AnalisisClinico.aspx" />
     <Content Include="AnalisisClinicoPaquetes.aspx" />
     <Content Include="AnalisisConsulta.aspx" />
@@ -168,9 +170,11 @@
     <Content Include="Escolaridad.aspx" />
     <Content Include="EspecialistasInfo.aspx" />
     <Content Include="EstadoCivil.aspx" />
+    <Content Include="Facturar.aspx" />
     <Content Include="FarmaciaProductos.aspx" />
     <Content Include="FichaIdentificacion.aspx" />
     <Content Include="FichaIdentificacion2.aspx" />
+    <Content Include="Historial.aspx" />
     <Content Include="IMG\calendar.png" />
     <Content Include="IMG\Logotipo_i.jpg" />
     <Content Include="IMG\Logotipo_iCh.jpg" />
@@ -195,6 +199,7 @@
     <Content Include="Permisos.aspx" />
     <Content Include="PermisosPerfil.aspx" />
     <Content Include="PermisosPorPerfil.aspx" />
+    <Content Include="PersonasMorales.aspx" />
     <Content Include="Procedimiento.aspx" />
     <Content Include="ProcedimientoEdit.aspx" />
     <Content Include="Prueba.aspx" />
@@ -480,6 +485,20 @@
     <Compile Include="AgendaElegirFicha.aspx.designer.cs">
       <DependentUpon>AgendaElegirFicha.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgregarCliente.aspx.cs">
+      <DependentUpon>AgregarCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarCliente.aspx.designer.cs">
+      <DependentUpon>AgregarCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarProducto.aspx.designer.cs">
+      <DependentUpon>AgregarProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AnalisisClinico.aspx.cs">
       <DependentUpon>AnalisisClinico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -662,6 +681,13 @@
     <Compile Include="EstadoCivil.aspx.designer.cs">
       <DependentUpon>EstadoCivil.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Facturar.aspx.cs">
+      <DependentUpon>Facturar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Facturar.aspx.designer.cs">
+      <DependentUpon>Facturar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FarmaciaProductos.aspx.cs">
       <DependentUpon>FarmaciaProductos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -685,6 +711,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Historial.aspx.cs">
+      <DependentUpon>Historial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Historial.aspx.designer.cs">
+      <DependentUpon>Historial.aspx</DependentUpon>
     </Compile>
     <Compile Include="Imprimir.aspx.cs">
       <DependentUpon>Imprimir.aspx</DependentUpon>
@@ -744,14 +777,17 @@
     </Compile>
     <Compile Include="Models\DTO\AnalisisClinico.cs" />
     <Compile Include="Models\DTO\AnalisisEnPaquetesDTO.cs" />
+    <Compile Include="Models\DTO\ClientesDTO.cs" />
     <Compile Include="Models\DTO\ConsultaDiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\ConsultaMenu.cs" />
     <Compile Include="Models\DTO\ConsultaProcedimientoDTO.cs" />
+    <Compile Include="Models\DTO\IISHandler1.cs" />
     <Compile Include="Models\DTO\ModuloDTO.cs" />
     <Compile Include="Models\DTO\NotaClinicaDTO.cs" />
     <Compile Include="Models\DTO\PaquetesDTO.cs" />
     <Compile Include="Models\DTO\PerfilDTO.cs" />
     <Compile Include="Models\DTO\PermisosDTO.cs" />
+    <Compile Include="Models\DTO\ProductosFarmacia.cs" />
     <Compile Include="Models\DTO\Taba_Receta_Template.cs" />
     <Compile Include="Models\DTO\Tabla_Analisis_Template.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_AnalisisClinico.cs" />
@@ -760,6 +796,8 @@
     <Compile Include="Models\DTO\Tabla_Catalogo_DiagnosticoDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_FichaIdentificacionDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Catalogo_MedicamentoDTO.cs" />
+    <Compile Include="Models\DTO\Tabla_Catalogo_Ticket.cs" />
+    <Compile Include="Models\DTO\Tabla_Catalogo_TicketDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AgendaDTO.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_AnalisisClinicoPaquetes.cs" />
     <Compile Include="Models\DTO\Tabla_Registro_ConsultaConceptoPagoDTO.cs" />
@@ -842,6 +880,13 @@
     </Compile>
     <Compile Include="PermisosPorPerfil.aspx.designer.cs">
       <DependentUpon>PermisosPorPerfil.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonasMorales.aspx.cs">
+      <DependentUpon>PersonasMorales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PersonasMorales.aspx.designer.cs">
+      <DependentUpon>PersonasMorales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Procedimiento.aspx.cs">
       <DependentUpon>Procedimiento.aspx</DependentUpon>

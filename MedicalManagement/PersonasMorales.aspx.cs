@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace MedicalManagement
 {
-    public partial class Medicamento : System.Web.UI.Page
+    public partial class PersonasMorales : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -109,7 +109,7 @@ namespace MedicalManagement
 
         protected void btnAgregarMedicamento_Click(object sender, EventArgs e)
         {
-            Response.Redirect("RegistroMedicamento.aspx");
+            Response.Redirect("AgregarCliente.aspx");
         }
 
 
@@ -128,7 +128,7 @@ namespace MedicalManagement
                     1  Comercial_Nombre_Empresa
                  */
 
-                System.Web.HttpContext.Current.Response.Redirect("RegistroMedicamento.aspx?Id_Medicamento=" + selectedRow.Cells[0].Text);
+                System.Web.HttpContext.Current.Response.Redirect("AgregarCliente.aspx?Id_Clientes=" + selectedRow.Cells[0].Text);
 
 
             }
@@ -157,7 +157,7 @@ namespace MedicalManagement
             LlenarGridMedicamento();
         }
 
-        protected void Eliminar(string Id_Medicamento)
+        protected void Eliminar(string Id_Clientes)
         {
 
             /*SqlConnection cnn = new SqlConnection(ConfigurationManager.AppSettings.Get("strConnection"));*/
@@ -169,16 +169,16 @@ namespace MedicalManagement
             cnn.Open();
 
 
-            SqlCommand command = new SqlCommand("SP_Catalogo_Medicamento", cnn);
+            SqlCommand command = new SqlCommand("SP_Catalogo_Clientes", cnn);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@Opcion", "BAJA");
-            command.Parameters.AddWithValue("@Id_Medicamento", Id_Medicamento);
+            command.Parameters.AddWithValue("@Id_Clientes", Id_Clientes);
             command.ExecuteNonQuery();
             command = null;
 
-            String Registro_Operacion_Btacora = "SP_Catalogo_Medicamento"
+            String Registro_Operacion_Btacora = "SP_Catalogo_Clientes"
                                             + "@Opcion" + " = " + "BAJA"
-                                            + "@Id_Medicamento" + " = " + Convert.ToString(Id_Medicamento).Trim();
+                                            + "@Id_Clientes" + " = " + Convert.ToString(Id_Clientes).Trim();
 
             SqlCommand comandoBitacora = new SqlCommand("SP_Registro_Bitacora", cnn);
             comandoBitacora.CommandType = CommandType.StoredProcedure;
@@ -207,7 +207,7 @@ namespace MedicalManagement
 
             cnn.Open();
 
-            SqlCommand comando = new SqlCommand("SP_Catalogo_Medicamento", cnn);
+            SqlCommand comando = new SqlCommand("SP_Catalogo_Clientes", cnn);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@Opcion", "LISTADO");
             if (!(txtBuscar_Medicamento.Text == ""))
@@ -219,7 +219,7 @@ namespace MedicalManagement
                 {
                     if (i <= 4)
                     {
-                        string NDescripcion = "@Descripcion_Medicamento" + i;
+                        string NDescripcion = "@Nombre" + i;
                         comando.Parameters.AddWithValue(NDescripcion, palabra);
                         i++;
                         Console.WriteLine(palabra);
@@ -229,7 +229,7 @@ namespace MedicalManagement
             }
             else
             {
-                comando.Parameters.AddWithValue("@Descripcion_Medicamento", "");
+                comando.Parameters.AddWithValue("@Nombre", "");
             }
             /*
                 0  Id_Empresa
@@ -243,9 +243,9 @@ namespace MedicalManagement
             Grid_Medicamento.DataSource = ds;
             Grid_Medicamento.Columns[0].Visible = true;
             Grid_Medicamento.Columns[1].Visible = true;
-            //Grid_Medicamento.Columns[2].Visible = true;
-            //Grid_Medicamento.Columns[3].Visible = true;
-            //Grid_Medicamento.Columns[4].Visible = true;
+            Grid_Medicamento.Columns[2].Visible = true;
+            Grid_Medicamento.Columns[3].Visible = true;
+            Grid_Medicamento.Columns[4].Visible = true;
             Grid_Medicamento.DataBind();
             ds.Dispose();
             da.Dispose();

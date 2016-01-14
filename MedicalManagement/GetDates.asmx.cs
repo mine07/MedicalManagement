@@ -79,6 +79,21 @@ group by CAST(FLOOR(CAST(Inicio_Agenda as FLOAT)) as DateTime)";
             string json = JsonConvert.SerializeObject(lMed);
             return json;
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetMedicamentoFarmacia(string search)
+        {
+            List<string> lSearch = search.Split(new char[] { ' ' }).ToList();
+            var oneMedicamento = new ProductosFarmacia();
+            oneMedicamento.Descripcion = "%" + search.Trim() + "%";
+            string query =
+                "Select * from Tabla_Catalogo_ProductosFarmacia where Descripcion like @Descripcion and Activo = 1 or Nombre like @Descripcion and Activo = 1";
+            Helpers h = new Helpers();
+            var lMed = h.GetAllParametized(query, oneMedicamento);
+            string json = JsonConvert.SerializeObject(lMed);
+            return json;
+        }
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string GetAnalisisItems(string search)

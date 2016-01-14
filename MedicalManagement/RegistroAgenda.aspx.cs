@@ -28,14 +28,15 @@ namespace MedicalManagement
             bool estatuspermiso = false;
             estatuspermiso = Convert.ToBoolean(Session["estatuspermiso"]);
             int usuario = Convert.ToInt32(Session["inicio"]);
+            //LlenarUsuario();
+            //loadPacientes();
 
-            loadPacientes();
-
-            if (Id_FichaIdentificacion != 0)
-            {
-                ddlUsuarios.SelectedValue = Id_FichaIdentificacion.ToString();
-                loadUsuario();
-            }
+            //if (Id_FichaIdentificacion != 0)
+            //{
+              //  ddlUsuarios.SelectedValue = Id_FichaIdentificacion.ToString();
+              //  loadUsuario();
+                
+          //  }
 
             if (Session["inicio"] == null || usuario == 0)
             {
@@ -89,20 +90,21 @@ namespace MedicalManagement
 
             if (!IsPostBack)
             {
-               // ddlUsuarios.DataSource = FichaDAO.GetAll();
-               // ddlUsuarios.DataBind();
+               ddlUsuarios.DataSource = FichaDAO.GetAll();
+               ddlUsuarios.DataBind();
                // ddlUsuarios.Text = NombreCompleto;
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
-                //DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
-               // DropDownMesComienzo.SelectedIndex = (hoy.Month) - 1;
-                //DropDownAnioComienzo.SelectedValue = hoy.Year.ToString();
+                DropDownDiaComienzo.SelectedValue = hoy.Day.ToString();
+                DropDownMesComienzo.SelectedIndex = (hoy.Month) - 1;
+                DropDownAnioComienzo.SelectedValue = hoy.Year.ToString();
 
                 DropDownDiaFinal.SelectedValue = hoy.Day.ToString();
                 DropDownMesFinal.SelectedIndex = (hoy.Month) - 1;
                 DropDownAnioFinal.SelectedValue = hoy.Year.ToString();
                 rbNormal.Checked = true;
                 LlenarCMBCategoria();
+                
                 if (Id_Agenda != 0)
                 {
                     string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -120,12 +122,12 @@ namespace MedicalManagement
 
                         DateTime inicioagenda = reader.GetDateTime(reader.GetOrdinal("Inicio_Agenda"));
                         txtDiaComienzo.Value = inicioagenda.ToString();
-                        //DropDownDiaComienzo.SelectedValue = inicioagenda.Day.ToString();
-                        //DropDownMesComienzo.SelectedIndex = (inicioagenda.Month) - 1;
-                        //DropDownAnioComienzo.SelectedValue = inicioagenda.Year.ToString();
-                        //DropDownHoraComienzo.SelectedValue = inicioagenda.ToString("%h");
-                        //DropDownMinutoComienzo.SelectedValue = inicioagenda.ToString("mm");
-                        //DropDowndiatardeComienzo.SelectedValue = inicioagenda.ToString("tt");
+                        DropDownDiaComienzo.SelectedValue = inicioagenda.Day.ToString();
+                        DropDownMesComienzo.SelectedIndex = (inicioagenda.Month) - 1;
+                        DropDownAnioComienzo.SelectedValue = inicioagenda.Year.ToString();
+                        DropDownHoraComienzo.SelectedValue = inicioagenda.ToString("%h");
+                        DropDownMinutoComienzo.SelectedValue = inicioagenda.ToString("mm");
+                        DropDowndiatardeComienzo.SelectedValue = inicioagenda.ToString("tt");
 
                         string prioridad = reader.GetString(reader.GetOrdinal("Prioridad_Agenda")).Trim();
 
@@ -154,19 +156,19 @@ namespace MedicalManagement
                         txtasunto.Text = reader.GetString(reader.GetOrdinal("Asunto_Agenda")).ToString().Trim();
                         txtdescripcionagenda.Text = reader.GetString(reader.GetOrdinal("Descripcion_Agenda")).ToString();
                         ddlCategoria.SelectedIndex = reader.GetInt32(reader.GetOrdinal("Id_Categoria"));
-
+                        //ddlUsuarios.SelectedIndex = reader.GetInt32(reader.GetOrdinal("Id_FichaIdentificacion"));
 
 
                     }
                 }
 
 
-                /*if (Id_FichaIdentificacion != 0)
+                if (Id_FichaIdentificacion != 0)
                 {
                     txtidfichaidentificacion.Text = Id_FichaIdentificacion.ToString();
-                    ddlUsuarios.Text = NombreCompleto;
+                    ddlUsuarios.Text = NombreCompleto.ToString();
                     //txtnombrecompleto.Text = Id_FichaIdentificacion.ToString();
-                }*/
+                }
 
             }
             if (txtaltaagenda.Value == "")
@@ -197,6 +199,7 @@ namespace MedicalManagement
 
         public void GrabarAgenda(object sender, EventArgs eventArgs)
         {
+            
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
             SqlConnection cnn;
@@ -251,7 +254,7 @@ namespace MedicalManagement
             comando.Parameters.AddWithValue("@Fecha_Agenda", fecha_actual1);
             comando.Parameters.AddWithValue("@Inicio_Agenda", fechaAgendaComienzo1);
             comando.Parameters.AddWithValue("@Fin_Agenda", fechaAgendaFinal1);
-            comando.Parameters.AddWithValue("@Id_FichaIdentificacion", ddlUsuarios.SelectedItem.Value);
+            comando.Parameters.AddWithValue("@Id_FichaIdentificacion", ddlUsuarios.SelectedValue);
             comando.Parameters.AddWithValue("@Id_Categoria", ddlCategoria.SelectedValue);
             comando.Parameters.AddWithValue("@Descripcion_Agenda", txtdescripcionagenda.Text.Trim());
             comando.Parameters.AddWithValue("@Asunto_Agenda", txtasunto.Text.Trim());
@@ -310,7 +313,7 @@ namespace MedicalManagement
             string query = @"insert into Tabla_Registro_Consulta(Id_Agenda,Fecha_Consulta, Id_FichaIdentificacion)
   values((SELECT top 1 (Id_Agenda) FROM [Tabla_Registro_Agenda] ORDER BY Id_Agenda DESC), (SELECT top 1 (Fecha_Agenda) FROM [Tabla_Registro_Agenda] ORDER BY Id_Agenda DESC), @Id_FichaIdentificacion)";
             Tabla_Registro_ConsultaDTO oneCons = new Tabla_Registro_ConsultaDTO();
-            oneCons.Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedItem.Value);
+            oneCons.Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedValue);
             oneCons.Fecha_Consulta = Convert.ToDateTime(txtaltaagenda.Value);
             Helpers h = new Helpers();
             h.ExecuteNonQueryParam(query, oneCons);
@@ -341,6 +344,30 @@ namespace MedicalManagement
 
         }
 
+        public void LlenarUsuario()
+        {
+            /*SqlConnection cnn = new SqlConnection(ConfigurationManager.AppSettings.Get("strConnection"));*/
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+            SqlCommand objsqlcommand = new SqlCommand("SP_Catalogo_FichaIdentificacion", cnn);
+            objsqlcommand.CommandType = CommandType.StoredProcedure;
+            objsqlcommand.Parameters.AddWithValue("@Opcion", "COMBO");
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(objsqlcommand);
+            DataTable dt = new DataTable();
+            sqlDataAdapter.Fill(dt);
+            ddlUsuarios.DataTextField = "Nombre_FichaIdentificacion";
+            ddlUsuarios.DataValueField = "Id_FichaIdentificacion";
+            ddlUsuarios.DataSource = dt;
+            ddlUsuarios.DataBind();
+            ddlUsuarios.Items.Insert(0, new ListItem("[Seleccionar]", "0"));
+            ddlUsuarios.SelectedIndex = 0;
+            objsqlcommand.ExecuteNonQuery();
+            cnn.Close();
+
+        }
       
         protected void rbNormal_CheckedChanged(object sender, EventArgs e)
         {
@@ -382,15 +409,15 @@ namespace MedicalManagement
         }
 
 
-        protected void changePaciente(object sender, EventArgs e)
-        {
-            Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedItem.Value);
-            var oneFicha =
-                FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
-                {
-                    Id_FichaIdentificacion = Id_FichaIdentificacion
-                });
+      //  protected void changePaciente(object sender, EventArgs e)
+     //   {
+        //    Id_FichaIdentificacion = Convert.ToInt32(ddlUsuarios.SelectedValue);
+         //   var oneFicha =
+          //      FichaDAO.GetOne(new Tabla_Catalogo_FichaIdentificacionDTO
+             //   {
+               //     Id_FichaIdentificacion = Id_FichaIdentificacion
+               // });
             //System.Web.HttpContext.Current.Response.Redirect("RegistroAgenda.aspx?Id_FichaIdentificacion=" +  Id_FichaIdentificacion);
-        }
+        //}
     }
 }

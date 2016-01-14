@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <%--<div class="row">
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 Existencia:
             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Existencia" ErrorMessage="RegularExpressionValidator" ForeColor="Red" ValidationExpression="([0-9]|)*">Ingrese Valores Enteros</asp:RegularExpressionValidator>
@@ -72,7 +72,7 @@
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 <asp:TextBox CssClass="form-control" ID="Minimo" runat="server"></asp:TextBox>
             </div>
-        </div>
+        </div>--%>
     </div>
 
 

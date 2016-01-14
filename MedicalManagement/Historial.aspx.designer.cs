@@ -10,42 +10,51 @@
 namespace MedicalManagement {
     
     
-    public partial class RegistroMedicamento {
+    public partial class Historial {
         
         /// <summary>
-        /// Control Guardar.
+        /// Control txtBuscar_Medicamento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Guardar;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Medicamento;
         
         /// <summary>
-        /// Control Alerta.
+        /// Control Buscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell Alerta;
+        protected global::System.Web.UI.WebControls.LinkButton Buscar;
         
         /// <summary>
-        /// Control RequiredFieldValidator1.
+        /// Control GridView1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// Control Descripcion_Medicamento.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Descripcion_Medicamento;
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// Control SqlDataSource1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }

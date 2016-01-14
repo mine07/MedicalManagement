@@ -23,12 +23,17 @@ namespace MedicalManagement
         string NombreCompleto = Convert.ToString(System.Web.HttpContext.Current.Request.QueryString["NombreCompleto"]);
         int Id_Consulta = Convert.ToInt32(System.Web.HttpContext.Current.Request.QueryString["Id_Consulta"]);
         int Id_ConsultaReceta = 0;
+        public int Id_Ticket = 1;
+        public decimal Subtotal = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
+            TextBox1.Attributes.Add("OnBlur", "sumar()");
+            TextBox3.Attributes.Add("OnBlur", "sumar()");
+            ticket();
             if (!IsPostBack)
             {
                 //Tabla imprimir receta
@@ -36,7 +41,6 @@ namespace MedicalManagement
                 dt.Columns.Add("Nombre");
                 dt.Columns.Add("Fecha");
                 MostrarGridRecetaPrevia();
-
 
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
@@ -59,8 +63,8 @@ namespace MedicalManagement
                     {
 
                         txtmedicamento.Text = reader.GetString(reader.GetOrdinal("Medicamento_ConsultaReceta")).ToString();
-                        txtdosis.Text = reader.GetString(reader.GetOrdinal("Dosis_ConsultaReceta")).ToString().Trim();
-                        txtnotas.Text = reader.GetString(reader.GetOrdinal("Notas_ConsultaReceta")).ToString().Trim();
+                        //txtdosis.Text = reader.GetString(reader.GetOrdinal("Dosis_ConsultaReceta")).ToString().Trim();
+                        //txtnotas.Text = reader.GetString(reader.GetOrdinal("Notas_ConsultaReceta")).ToString().Trim();
 
                     }
                 }
@@ -74,7 +78,7 @@ namespace MedicalManagement
 
                 }
                 cnn.Close();
-
+                sumar();
                 loadTemporal();
                 loadMedicamentos();
             }
@@ -87,7 +91,7 @@ namespace MedicalManagement
                 if (Id_FichaIdentificacion != 0)
                 {
                     loadUsuario();
-                    Label1.Text = NombreCompleto;
+                    //Label1.Text = NombreCompleto;
 
                     SqlConnection cnn;
                     cnn = new SqlConnection(conexion);
@@ -108,8 +112,17 @@ namespace MedicalManagement
             string query = "select * from Tabla_Catalogo_FichaIdentificacion where Id_FichaIdentificacion = @Id_FichaIdentificacion";
             Helpers h = new Helpers();
             var oneFicha = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO { Id_FichaIdentificacion = Id_FichaIdentificacion })[0];
-            Label1.Text = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
+            //Label1.Text = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
             NombreCompleto = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
+        }
+
+        public void ticket()
+        {
+            Helpers h = new Helpers();
+            var oneT = new Tabla_Catalogo_TicketDTO();
+            string queryLast = "SELECT TOP 1 No_Tiket FROM Tabla_Catalogo_Ticket ORDER BY No_Tiket DESC";
+            var lIdTemplate = h.GetAllParametized(queryLast, oneT);
+            lblTicket.Text = (lIdTemplate[0].No_Tiket + 1).ToString();
         }
 
         /////////////////////////////////////////////////////////////////////////
@@ -164,8 +177,8 @@ namespace MedicalManagement
 
             comando.Parameters.AddWithValue("@Id_Consulta", Id_Consulta);
             comando.Parameters.AddWithValue("@Medicamento_ConsultaReceta", txtmedicamento.Text.Trim());
-            comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());
-            comando.Parameters.AddWithValue("@Notas_ConsultaReceta", txtnotas.Text.Trim());
+            //comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());
+            //comando.Parameters.AddWithValue("@Notas_ConsultaReceta", txtnotas.Text.Trim());
 
 
             SqlDataReader reader = comando.ExecuteReader();
@@ -239,8 +252,8 @@ namespace MedicalManagement
                 if (reader.Read())
                 {
                     txtmedicamento.Text = reader.GetString(reader.GetOrdinal("Medicamento_ConsultaReceta")).Trim();
-                    txtdosis.Text = reader.GetString(reader.GetOrdinal("Dosis_ConsultaReceta")).Trim();
-                    txtnotas.Text = reader.GetString(reader.GetOrdinal("Notas_ConsultaReceta")).Trim();
+                    //txtdosis.Text = reader.GetString(reader.GetOrdinal("Dosis_ConsultaReceta")).Trim();
+                    //txtnotas.Text = reader.GetString(reader.GetOrdinal("Notas_ConsultaReceta")).Trim();
                 }
 
                 reader.Close();
@@ -261,10 +274,10 @@ namespace MedicalManagement
             {
                 Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Descripción del Medicamento Receta </p>";
             }
-            else if ((txtdosis.Text.Trim()).Length == 0)
-            {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Descripción de la Dosis de la Receta </p>";
-            }
+            //else if ((txtdosis.Text.Trim()).Length == 0)
+            //{
+            //    Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar la Descripción de la Dosis de la Receta </p>";
+            //}
             else
             {
                 string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
@@ -279,8 +292,8 @@ namespace MedicalManagement
                 comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
                 comando.Parameters.AddWithValue("@Nombre_ConsultaRecetaPrevia", Txtnombrerecetaprevia.Text.Trim());
                 comando.Parameters.AddWithValue("@Medicamento_ConsultaReceta", txtmedicamento.Text.Trim());
-                comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());
-                comando.Parameters.AddWithValue("@Notas_ConsultaReceta", txtnotas.Text.Trim());
+                //comando.Parameters.AddWithValue("@Dosis_ConsultaReceta", txtdosis.Text.Trim());
+                //comando.Parameters.AddWithValue("@Notas_ConsultaReceta", txtnotas.Text.Trim());
 
 
                 SqlDataReader reader = comando.ExecuteReader();
@@ -340,19 +353,23 @@ namespace MedicalManagement
 
         private void loadTemporal()
         {
-            string query = @"select a.*, b.Descripcion_Medicamento as Tem_Medicamento from tabla_temporal_receta a
-                            left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where a.Id_FichaIdentificacion = @Id_FichaIdentificacion and a.Id_Consulta = @Id_Consulta";
-            var oneTemp = new Tabla_Temporal_RecetaDTO();
-            oneTemp.Id_Consulta = Id_Consulta;
-            oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
+            //            string query = @"select a.*, b.Descripcion as Tem_Medicamento from Tabla_Catalogo_TicketTemp a
+//                            left join Tabla_Catalogo_ProductosFarmacia b on b.Id_Productos = a.Id_Medicamento where a.Id_Ticket = @Id_Ticket";
+            string query = @"select a.*, b.Descripcion as Tem_Medicamento from Tabla_Catalogo_TicketTemp a
+                            left join Tabla_Catalogo_ProductosFarmacia b on b.Id_Productos = a.Id_Medicamento";
+            var oneTemp = new Tabla_Catalogo_Ticket();
+            oneTemp.Id_Ticket = 1;
+            //oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
             Helpers h = new Helpers();
             var lTemporal = h.GetAllParametized(query, oneTemp);
             rptTemporal.DataSource = lTemporal;
             rptTemporal.DataBind();
-            string queryTemplate = "select Id_Template, Tem_Nombre from tabla_receta_template group by Id_Template , Tem_Nombre";
-            var lTemplates = h.GetAllParametized(queryTemplate, new Tabla_Receta_TemplateDTO());
-            ddlTemplate.DataSource = lTemplates;
-            ddlTemplate.DataBind();
+            sumar();
+            ////////////
+            //string queryTemplate = "select Id_Template, Tem_Nombre from tabla_receta_template group by Id_Template , Tem_Nombre";
+            //var lTemplates = h.GetAllParametized(queryTemplate, new Tabla_Receta_TemplateDTO());
+            //ddlTemplate.DataSource = lTemplates;
+            //ddlTemplate.DataBind();
             loadTemplate();
         }
 
@@ -363,7 +380,7 @@ namespace MedicalManagement
             string query = @"select  * from Tabla_receta_Template a
             left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where Id_Template = @Id_Template";
             var oneTemp = new Tabla_Receta_TemplateDTO();
-            oneTemp.Id_Template = Convert.ToInt32(ddlTemplate.SelectedItem.Value);
+            //oneTemp.Id_Template = Convert.ToInt32(ddlTemplate.SelectedItem.Value);
             Helpers h = new Helpers();
             var lTemporal = h.GetAllParametized(query, oneTemp);
             rptTemplate.DataSource = lTemporal;
@@ -376,14 +393,102 @@ namespace MedicalManagement
         {
             var linkButton = (LinkButton)sender;
             var Id_Temporal = linkButton.CommandArgument;
-            string query = @"delete Tabla_Temporal_Receta Where Id_Temporal_Receta = @Id_Temporal_Receta ";
-            var oneTemp = new Tabla_Temporal_RecetaDTO();
-            oneTemp.Id_Temporal_Receta = Convert.ToInt32(Id_Temporal);
+            string query = @"delete Tabla_Catalogo_TicketTemp Where Id_Ticket = @Id_Ticket ";
+            var oneTemp = new Tabla_Catalogo_Ticket();
+            oneTemp.Id_Ticket = Convert.ToInt32(Id_Temporal);
             Helpers h = new Helpers();
             h.ExecuteNonQueryParam(query, oneTemp);
+            Label1.Text = "";
             loadTemporal();
         }
 
+        public void pagar(object sender, EventArgs e)
+        {
+            sumar();
+            TextBox1.Focus();
+            if (!(Label1.Text==""))
+            {
+            
+            string script = @"<script type ='text/javascript'>
+                                EjecutarModalDetalles();
+                                </script>";
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+            }
+            else
+            {
+                string script = @"<script type ='text/javascript'>
+                                ValidarMEDI();
+                                </script>";
+                ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+            }
+        }
+        protected void saveToTickets(object sender, EventArgs e)
+        {
+            string queryInv = "";
+ 
+            string query = "select * from Tabla_Catalogo_TicketTemp";
+            Helpers h = new Helpers();
+            var oneTemp = new Tabla_Catalogo_Ticket();
+            var lTemporal = h.GetAllParametized(query, oneTemp);
+            string queryInsert = "insert into Tabla_Catalogo_Ticket (No_Tiket, Id_Medicamento, NombreMedicamento, RazonSocial, Costo, Fecha) values (@No_Tiket, @Id_Medicamento, @NombreMedicamento, @RazonSocial, @Costo, @Fecha)";
+            var oneT = new Tabla_Catalogo_TicketDTO();
+            string queryLast = "SELECT TOP 1 No_Tiket FROM Tabla_Catalogo_Ticket ORDER BY No_Tiket DESC";
+            var lIdTemplate = h.GetAllParametized(queryLast, oneT);
+            if (lIdTemplate.Count == 0)
+            {
+                oneT.No_Tiket = 0;
+            }
+            else
+            {
+                oneT.No_Tiket = lIdTemplate[0].No_Tiket + 1;
+            }
+            foreach (var y in lTemporal)
+            {
+                var oneTemplate = new Tabla_Catalogo_TicketDTO();
+                oneTemplate.Id_Medicamento = y.Id_Medicamento;
+                oneTemplate.No_Tiket = oneT.No_Tiket;
+                oneTemplate.NombreMedicamento = y.NombreMedicamento;
+                oneTemplate.RazonSocial = "";
+                oneTemplate.Costo = y.Costo;
+
+                oneTemplate.Fecha = DateTime.Now;
+
+                h.ExecuteNonQueryParam(queryInsert, oneTemplate);
+
+                queryInv = "update Tabla_Catalogo_ProductosFarmacia set Existencias = Existencias - 1 where Id_Productos = "+y.Id_Medicamento+"";
+                h.ExecuteNonQueryParam(queryInv, oneTemp);
+            }
+
+           // string script = "AlertaGuardar();";
+           // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+            borrar();
+            loadTemporal();
+            ticket();
+
+            if (CheckboxFacturar.Checked == true)
+            {
+                Response.Redirect("Facturar.aspx");
+            }
+            return;
+        }
+        public void borrar()
+        {
+
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            SqlConnection cnn;
+            cnn = new SqlConnection(conexion);
+            cnn.Open();
+
+            //string consulta = "select sum(Costo) from Tabla_Catalogo_TicketTemp where Id_Ticket =" + Id_Ticket + "";
+            string consulta = "delete from Tabla_Catalogo_TicketTemp ";
+            SqlCommand comando = new SqlCommand(consulta, cnn);
+            //Subtotal = Convert.ToInt32(comando.ExecuteScalar());
+            comando.ExecuteScalar();
+            cnn.Close();
+
+            Label1.Text = "";
+        }
         protected void saveTo(object sender, EventArgs e)
         {
             if (!(string.IsNullOrEmpty(txtSearch.Text)))
@@ -401,8 +506,21 @@ namespace MedicalManagement
                 else
 
                 {
+                    if (!EnExistencia(txtSearch.Text))
+                    {
+                        //No hay en existencia
+                        string script = @"<script type ='text/javascript'>
+                                ValidarExistencia();
+                                </script>";
+                        ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
+
+                    }
+                    else
+                    {
+                        InsertarMedicamento();
+                    }
                     //registro si existe
-                    InsertarMedicamento();
+                    
                 }
 
             }
@@ -417,35 +535,36 @@ namespace MedicalManagement
 
         }
 
-        protected void agregraMedi(object sender, EventArgs e)
-        {
-            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+        //protected void agregraMedi(object sender, EventArgs e)
+        //{
+        //    string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
-            SqlConnection cnn;
-            cnn = new SqlConnection(conexion);
-            cnn.Open();
-            SqlCommand comando = new SqlCommand("SP_Catalogo_Medicamento", cnn);
-            comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
-            comando.Parameters.AddWithValue("@Descripcion_Medicamento", txtSearch.Text);
-            SqlDataReader reader = comando.ExecuteReader();
-            reader.Read();
-            reader.Close();
+        //    SqlConnection cnn;
+        //    cnn = new SqlConnection(conexion);
+        //    cnn.Open();
+        //    SqlCommand comando = new SqlCommand("SP_Catalogo_Medicamento", cnn);
+        //    comando.CommandType = CommandType.StoredProcedure;
+        //    comando.Parameters.AddWithValue("@Opcion", "INSERTAR");
+        //    comando.Parameters.AddWithValue("@Descripcion_Medicamento", txtSearch.Text);
+        //    SqlDataReader reader = comando.ExecuteReader();
+        //    reader.Read();
+        //    reader.Close();
 
-            InsertarMedicamento();
+        //    InsertarMedicamento();
 
-        }
+        //}
 
         public bool Existe(string Medicamento)
         {
+
             string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
 
-            string sql = "select count(*)from Tabla_Catalogo_Medicamento where Descripcion_Medicamento=@Descripcion_Medicamento";
+            string sql = "select count(*)from Tabla_Catalogo_ProductosFarmacia where Descripcion = @Descripcion and Activo = 1";
             using (SqlConnection conn = new SqlConnection(conexion))
             {
                 conn.Open();
                 SqlCommand query = new SqlCommand(sql, conn);
-                query.Parameters.AddWithValue("@Descripcion_Medicamento", txtSearch.Text);
+                query.Parameters.AddWithValue("@Descripcion", txtSearch.Text);
 
 
                 int count = Convert.ToInt32(query.ExecuteScalar());
@@ -454,25 +573,87 @@ namespace MedicalManagement
                 else
                     return true;
             }
+            
+        }
+
+        public bool EnExistencia(string Medicamento)
+        {
+
+            string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+            string sql = "select count(*)from Tabla_Catalogo_ProductosFarmacia where Descripcion = @Descripcion and Existencias >= 1";
+            using (SqlConnection conn = new SqlConnection(conexion))
+            {
+                conn.Open();
+                SqlCommand query = new SqlCommand(sql, conn);
+                query.Parameters.AddWithValue("@Descripcion", txtSearch.Text);
+
+
+                int count = Convert.ToInt32(query.ExecuteScalar());
+                if (count == 0)
+                    return false;
+                else
+                    return true;
+            }
+
+        }
+
+        public void sumar()
+        {
+            try
+            {
+                string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+
+                SqlConnection cnn;
+                cnn = new SqlConnection(conexion);
+                cnn.Open();
+
+                //string consulta = "select sum(Costo) from Tabla_Catalogo_TicketTemp where Id_Ticket =" + Id_Ticket + "";
+                string consulta = "select sum(Costo) from Tabla_Catalogo_TicketTemp";
+                SqlCommand comando = new SqlCommand(consulta, cnn);
+                //Subtotal = Convert.ToInt32(comando.ExecuteScalar());
+                Subtotal = Convert.ToDecimal(comando.ExecuteScalar());
+                Label1.Text = Subtotal.ToString();
+                TextBox3.Text = Subtotal.ToString();
+
+                cnn.Close();
+            }
+            catch
+            {
+
+            }
+            
+            
+        }
+
+        public void cambio(object sender, EventArgs e)
+        {
+            
+            decimal suma = Convert.ToDecimal(TextBox1.Text) - Convert.ToDecimal(TextBox3.Text);
+            TextBox2.Text = suma.ToString();
+
+            string script = @"<script type ='text/javascript'>
+                                EjecutarModalDetalles();
+                                </script>";
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "invocafuncion", script, false);
         }
         protected void InsertarMedicamento()
         {
 
-            var oneMedicamento = new Tabla_Catalogo_MedicamentoDTO();
-            oneMedicamento.Descripcion_Medicamento = txtSearch.Text;
-            oneMedicamento = MedicamentoDAO.GetOneByName(oneMedicamento);
+            var oneMedicamento = new ProductosFarmacia();
+            oneMedicamento.Descripcion = txtSearch.Text;
+            oneMedicamento = MedicamentoFarmaciaDAO.GetOneByName(oneMedicamento);
 
-            var oneTemp = new Tabla_Temporal_RecetaDTO();
-            oneTemp.Id_FichaIdentificacion = Id_FichaIdentificacion;
-            oneTemp.Tem_Dosis = txtDos.Value;
-            oneTemp.Tem_Notas = txtNot.Value;
-            oneTemp.Id_Medicamento = oneMedicamento.Id_Medicamento;
-            oneTemp.Id_Consulta = Id_Consulta;
-            string query = "insert into Tabla_Temporal_Receta (Id_FichaIdentificacion, Tem_Dosis, Tem_Notas, Id_Medicamento, Id_Consulta) values (@Id_FichaIdentificacion, @Tem_Dosis, @Tem_Notas, @Id_Medicamento, @Id_Consulta)";
+            var oneTemp = new Tabla_Catalogo_Ticket();
+            oneTemp.Id_Medicamento = oneMedicamento.Id_Productos;
+            oneTemp.RazonSocial = oneMedicamento.Nombre;
+            oneTemp.Costo = oneMedicamento.PrecioVenta;
+            oneTemp.NombreMedicamento = oneMedicamento.Nombre;
+            string query = "insert into Tabla_Catalogo_TicketTemp  (Id_Medicamento, RazonSocial, Costo, NombreMedicamento) values (@Id_Medicamento, @RazonSocial, @Costo, @NombreMedicamento)";
             Helpers h = new Helpers();
             h.ExecuteNonQueryParam(query, oneTemp);
-            txtDos.Value = "";
-            txtNot.Value = "";
+            //txtDos.Value = "";
+            //txtNot.Value = "";
             txtSearch.Text = "";
             ddlMedicamento.SelectedIndex = 0;
             //string script = "AlertaGuardar();";
@@ -508,7 +689,7 @@ namespace MedicalManagement
                 oneTemplate.Id_Medicamento = y.Id_Medicamento;
                 oneTemplate.Tem_Dosis = y.Tem_Dosis;
                 oneTemplate.Tem_Notas = y.Tem_Notas;
-                oneTemplate.Tem_Nombre = txtNombre.Value;
+                //oneTemplate.Tem_Nombre = txtNombre.Value;
                 oneTemplate.Id_Template = oneT.Id_Template;
                 h.ExecuteNonQueryParam(queryInsert, oneTemplate);
             }
@@ -530,11 +711,11 @@ namespace MedicalManagement
 
         protected void saveToUse(object sender, EventArgs e)
         {
-            int Id_Template = Convert.ToInt32(ddlTemplate.SelectedItem.Value);
+            //int Id_Template = Convert.ToInt32(ddlTemplate.SelectedItem.Value);
             string query = @"select  a.*, b.Descripcion_Medicamento as Tem_Medicamento from Tabla_receta_Template a
             left join Tabla_Catalogo_Medicamento b on b.Id_Medicamento = a.Id_Medicamento where Id_Template = @Id_Template";
             var oneTemp = new Tabla_Receta_TemplateDTO();
-            oneTemp.Id_Template = Id_Template;
+            //oneTemp.Id_Template = Id_Template;
             Helpers h = new Helpers();
             var lTemporal = h.GetAllParametized(query, oneTemp);
             string queryInsert = "insert into Tabla_Temporal_Receta (Id_FichaIdentificacion, Tem_Dosis, Tem_Notas, Id_Medicamento, Id_Consulta) values (@Id_FichaIdentificacion, @Tem_Dosis, @Tem_Notas, @Id_Medicamento, @Id_Consulta)";

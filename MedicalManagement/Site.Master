@@ -178,7 +178,10 @@
                         <ul id="ddVentas" class="collapse">
                             <li class="divider"></li>
                             <li>
-                                <a href="Ventas.aspx"><i class="fa fa-fw fa-user"></i> Farmacia</a>
+                                <a href="Ventas.aspx"><i class="fa fa-fw fa-usd"></i> Farmacia</a>
+                            </li>
+                            <li>
+                                <a href="Historial.aspx"><i class="fa fa-fw fa-history"></i> Historial</a>
                             </li>
                         </ul>
                     </li>
@@ -211,7 +214,10 @@
                         <ul id="ddCatalogos" class="collapse">
                             <li class="divider"></li>
                             <li>
-                                <a href="FarmaciaProductos.aspx"><i class="fa fa-fw fa-heartbeat"></i> Productos Farmacia</a>
+                                <a href="PersonasMorales.aspx"><i class="fa fa-fw fa-users"></i> Personas Morales</a>
+                            </li>
+                            <li>
+                                <a href="FarmaciaProductos.aspx"><i class="fa fa-fw fa-check-square-o"></i> Productos Farmacia</a>
                             </li>
                             <li>
                                 <a href="ConsultaDiagnostico.aspx"><i class="fa fa-fw fa-heartbeat"></i> Diagnosticos</a>

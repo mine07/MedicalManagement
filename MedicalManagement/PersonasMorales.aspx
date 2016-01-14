@@ -1,10 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Medicamento.aspx.cs" Inherits="MedicalManagement.Medicamento" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PersonasMorales.aspx.cs" Inherits="MedicalManagement.PersonasMorales" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>Medicamento</h3>
+<h3>Clientes </h3>
     <hr />
      <asp:ScriptManager runat="server" />
     <asp:UpdatePanel runat="server">
@@ -32,13 +30,23 @@
 
         <Columns>
 
-            <asp:BoundField DataField="Id_Medicamento" HeaderText="Id" 
-                SortExpression="Id_Medicamento" ItemStyle-Width="5%"/>
+            <asp:BoundField DataField="Id_Clientes" HeaderText="Id" 
+                SortExpression="Id_Cliente" ItemStyle-Width="5%"/>
 
 
-            <asp:BoundField DataField="Descripcion_Medicamento" HeaderText="Descripcion Medicamento" 
-                SortExpression="Descripcion_Medicamento" ItemStyle-Width="45%"/> 
-               
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre" 
+                SortExpression="Nombre" ItemStyle-Width="10%"/> 
+
+            <asp:BoundField DataField="RFC" HeaderText="RFC" 
+                SortExpression="RFC" ItemStyle-Width="10%"/>
+
+            <asp:BoundField DataField="Telefono" HeaderText="Descripcion Medicamento" 
+                SortExpression="Telefono" ItemStyle-Width="10%"/>
+            
+              
+            <asp:BoundField DataField="CorreoElectronico" HeaderText="Correo Electronico" 
+                SortExpression="CorreoElectronico" ItemStyle-Width="10%"/>
+             
             <%--<asp:BoundField DataField="Existencia" HeaderText="Exixtencia" 
                 SortExpression="Existencia" ItemStyle-Width="10%"/> 
 
@@ -79,20 +87,20 @@
     <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <script src="Scripts/jquery.quicksearch.js" type="text/javascript"></script> 
     <script type="text/javascript">
-          
-          // $(document).keyup(function (event) {
-           // Actualizar();
-       // });
+
+        // $(document).keyup(function (event) {
+        // Actualizar();
+        // });
 
         $(document).keyup(function (tecla) {
-            if (tecla.keyCode == 32||tecla.keyCode==8||tecla.keyCode==13) {
+            if (tecla.keyCode == 32 || tecla.keyCode == 8 || tecla.keyCode == 13) {
                 //alert('Tecla X presionada');
                 Actualizar();
             }
         });
 
-          function Actualizar() {
-              var boton = document.getElementById('<%=ImageButton1.ClientID%>');
+        function Actualizar() {
+            var boton = document.getElementById('<%=ImageButton1.ClientID%>');
               boton.click();
               return;
           }

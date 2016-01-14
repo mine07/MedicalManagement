@@ -34,8 +34,9 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                        <asp:DropDownList runat="Server" ID="ddlUsuarios"/>
-                        <%--<asp:DropDownList runat="Server" CssClass="combobox form-control" OnSelectedIndexChanged="changePaciente" ID="ddlUsuarios" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" />--%>
+                        <asp:DropDownList runat="Server" CssClass="combobox form-control" ID="ddlUsuarios" DataTextField="_NombreCompleto" DataValueField="Id_FichaIdentificacion" />
+                         <%--<asp:DropDownList ID="ddlUsuarios" CssClass="form-control" runat="server" >   --%> 
+                        
                     </div>
 
                 </div>

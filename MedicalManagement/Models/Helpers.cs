@@ -106,7 +106,8 @@ namespace MedicalManagement.Models
                         {
                             var x = dr.GetDateTime(i);
                             t.SetPropertyValue(y.Nombre, x);
-                        } 
+                        }
+                       
                        
                     }
                 }
@@ -185,6 +186,8 @@ namespace MedicalManagement.Models
                             var x = dr.GetBoolean(i);
                             t.SetPropertyValue(y.Nombre, x);
                         }
+
+                        
                     }
                 }
                 lT.Add(t);
@@ -236,6 +239,8 @@ namespace MedicalManagement.Models
                             var x = dr.GetDateTime(i);
                             t.SetPropertyValue(y.Nombre, x);
                         }
+
+                       
                     }
                 }
             }

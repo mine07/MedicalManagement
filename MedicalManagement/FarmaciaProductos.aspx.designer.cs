@@ -13,31 +13,22 @@ namespace MedicalManagement {
     public partial class FarmaciaProductos {
         
         /// <summary>
-        /// Control txtBuscar_Diagnostico.
+        /// Control txtBuscar_Medicamento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Diagnostico;
+        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Medicamento;
         
         /// <summary>
-        /// Control txtBuscar_Diagnostico2.
+        /// Control Buscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBuscar_Diagnostico2;
-        
-        /// <summary>
-        /// Control ImageRegresar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageRegresar;
+        protected global::System.Web.UI.WebControls.LinkButton Buscar;
         
         /// <summary>
         /// Control GridView1.

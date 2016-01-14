@@ -90,10 +90,10 @@ namespace MedicalManagement
                     if (reader.Read())
                     {
                         Descripcion_Medicamento.Text = reader.GetString(reader.GetOrdinal("Descripcion_Medicamento")).Trim();
-                        Existencia.Text = reader.GetInt32(reader.GetOrdinal("Existencia")).ToString();
-                        PrecioCosto.Text = reader.GetDouble(reader.GetOrdinal("PrecioCosto")).ToString();
-                        PrecioVenta.Text = reader.GetDouble(reader.GetOrdinal("PrecioVenta")).ToString();
-                        Minimo.Text = reader.GetInt32(reader.GetOrdinal("Minimo")).ToString();
+                        //Existencia.Text = reader.GetInt32(reader.GetOrdinal("Existencia")).ToString();
+                        //PrecioCosto.Text = reader.GetDouble(reader.GetOrdinal("PrecioCosto")).ToString();
+                        //PrecioVenta.Text = reader.GetDouble(reader.GetOrdinal("PrecioVenta")).ToString();
+                        //Minimo.Text = reader.GetInt32(reader.GetOrdinal("Minimo")).ToString();
 
                     }
 
@@ -133,10 +133,10 @@ namespace MedicalManagement
                 comando.Parameters.AddWithValue("@Id_Medicamento", Id_Medicamento);
             }
             comando.Parameters.AddWithValue("@Descripcion_Medicamento", Descripcion_Medicamento.Text);
-            comando.Parameters.AddWithValue("@Existencia", Existencia.Text);
-            comando.Parameters.AddWithValue("@PrecioCosto", PrecioCosto.Text);
-            comando.Parameters.AddWithValue("@PrecioVenta", PrecioVenta.Text);
-            comando.Parameters.AddWithValue("@Minimo", Minimo.Text);
+            //comando.Parameters.AddWithValue("@Existencia", Existencia.Text);
+            //comando.Parameters.AddWithValue("@PrecioCosto", PrecioCosto.Text);
+            //comando.Parameters.AddWithValue("@PrecioVenta", PrecioVenta.Text);
+            //comando.Parameters.AddWithValue("@Minimo", Minimo.Text);
 
             SqlDataReader reader = comando.ExecuteReader();
             reader.Read();
