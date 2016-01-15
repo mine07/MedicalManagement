@@ -29,7 +29,7 @@
             <%--<asp:BoundField DataField="Id_Ticket" HeaderText="Id_Ticket" InsertVisible="False" ReadOnly="True" SortExpression="Id_Ticket" />--%>
             <asp:BoundField DataField="No_Tiket" HeaderText="No Tiket" SortExpression="No_Tiket" ItemStyle-Width="10%"/>
            <%-- <asp:BoundField DataField="Id_Medicamento" HeaderText="Id_Medicamento" SortExpression="Id_Medicamento" />--%>
-            <asp:BoundField DataField="NombreMedicamento" HeaderText="NombreMedicamento" SortExpression="NombreMedicamento" ItemStyle-Width="25%" />
+            <asp:BoundField DataField="NombreMedicamento" HeaderText="Descripcion" SortExpression="NombreMedicamento" ItemStyle-Width="25%" />
             <asp:BoundField DataField="RazonSocial" HeaderText="RazonSocial" SortExpression="RazonSocial" ItemStyle-Width="25%"/>
             <asp:BoundField DataField="Costo" HeaderText="Costo" SortExpression="Costo" ItemStyle-Width="10%" />
             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" ItemStyle-Width="30%" />
@@ -53,11 +53,11 @@
             </th>
                 </tr>
                 <tr >
-                    <th style ="width:10%">a</th>
-                    <th style ="width:25%">b</th>
+                    <th style ="width:10%"></th>
+                    <th style ="width:25%"></th>
                     <th style ="width:25%">Total:</th>
                     <th style ="width:10%">$<asp:Label ID="Label1" runat="server" Text=""></asp:Label></th>
-                    <th style ="width:30%" >c</th>
+                    <th style ="width:30%" ></th>
                 </tr>
             </table>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ApplicationServices %>" 

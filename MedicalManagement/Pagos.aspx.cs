@@ -206,7 +206,28 @@ namespace MedicalManagement
             ViewState.Clear();
             Response.Redirect(Request.RawUrl);
         }
+        protected void addConcepto(object sender, EventArgs e)
+        {
+            try
+            {
+                Helpers h = new Helpers();
+                string query = "insert into Tabla_Catalogo_ConceptoPago (Descripcion_ConceptoPago, NombreCorto_ConceptoPago, Estatus_ConceptoPago, PrecioUnitario) VALUES (@Descripcion_ConceptoPago, @NombreCorto_ConceptoPago, @Estatus_ConceptoPago, @PrecioUnitario)";
+                //string query = "insert into Tabla_Catalogo_ConceptoPago (Descripcion_ConceptoPago, NombreCorto_ConceptoPago, Estatus_ConceptoPago, PrecioUnitario) VALUES (1, 1, 1, 1)";
+                var PagoUp = new Tabla_Catalogo_ConceptoPagoDTO();
+                PagoUp.Descripcion_ConceptoPago = txtDescripcion.Text;
+                PagoUp.NombreCorto_ConceptoPago = txtNombreCorto.Text;
+                PagoUp.Estatus_ConceptoPago = checkEstatus.Checked;
+                PagoUp.PrecioUnitario = txtPrecioPredef.Text;
 
+                h.ExecuteNonQueryParam(query, PagoUp);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Alert", "alert('ERROR,'" + ex + "')", true);
+            }
+            ViewState.Clear();
+            Response.Redirect(Request.RawUrl);
+        }
 
         protected void btnClean_Click(object sender, EventArgs e) {
             

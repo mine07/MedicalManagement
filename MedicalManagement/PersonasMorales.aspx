@@ -10,7 +10,7 @@
             <triggers>
                 <div class="col-xs-12 col-md-8 col-lg-8 col-sm-8">            
                     <asp:TextBox CssClass="form-control" runat="server" ID="txtBuscar_Medicamento" Columns="100" OnTextChanged="txt_OnTextChanged" placeholder="Buscar..." autocomplete="off" onfocus="ponerAlfinal(this);"></asp:TextBox>&nbsp;     
-                    <asp:LinkButton ID = "AgregarMedicamento" runat="server" OnClick="btnAgregarMedicamento_Click" ToolTip = "Agregar Medicamento" Text='<label class="fa-margin-right label pull-right label label-primary"><i class="fa fa-margin-left fa-plus-circle"></i></label>' BackColor="#3333FF"></asp:LinkButton>
+                    <asp:LinkButton ID = "AgregarMedicamento" runat="server" OnClick="btnAgregarMedicamento_Click" ToolTip = "Agregar RFC" Text='<label class="fa-margin-right label pull-right label label-primary"><i class="fa fa-margin-left fa-plus-circle"></i></label>' BackColor="#3333FF"></asp:LinkButton>
                     <asp:LinkButton ID = "ImageButton1" runat="server" OnClick ="txt_OnTextChanged" ToolTip = "Buscar" Text='<label class="fa-margin-right label pull-right label-success label-button"><i class="fa fa-margin-left fa-search"></i></label>'></asp:LinkButton> 
                     <hr />  
                 </div>

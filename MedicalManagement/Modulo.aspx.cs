@@ -44,6 +44,8 @@ namespace MedicalManagement
             ModuloDAO Update = new ModuloDAO();
             Update.Edit(oneModulo);
             loadModulo();
+            
+            
         }
 
         protected void delete(object sender, EventArgs e)
@@ -63,6 +65,8 @@ namespace MedicalManagement
             ModuloDAO Insert = new ModuloDAO();
             Insert.Insert(oneModulo);
             loadModulo();
+            txtNombre.Value = "";
+            txtDireccion.Value = "";
         }
     }
 }

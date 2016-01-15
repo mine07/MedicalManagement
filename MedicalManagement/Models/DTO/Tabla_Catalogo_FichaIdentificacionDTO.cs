@@ -47,7 +47,7 @@ namespace MedicalManagement.Models.DTO
     {
         public static List<Tabla_Catalogo_FichaIdentificacionDTO> GetAll()
         {
-            Helpers h = new Helpers();
+            Helpers h = new Helpers(); 
             string query = "select * from Tabla_Catalogo_FichaIdentificacion";
             var lFichas = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO());
             foreach (var y in lFichas)

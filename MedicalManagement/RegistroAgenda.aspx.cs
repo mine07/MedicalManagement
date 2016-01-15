@@ -90,8 +90,9 @@ namespace MedicalManagement
 
             if (!IsPostBack)
             {
-               ddlUsuarios.DataSource = FichaDAO.GetAll();
-               ddlUsuarios.DataBind();
+                ddlUsuarios.DataSource = FichaDAO.GetAll();
+                ddlUsuarios.DataBind();
+               
                // ddlUsuarios.Text = NombreCompleto;
                 DateTime hoy = DateTime.Now;
                 fecha_actual = hoy.ToString("dd-MM-yyyy HH:mm:ss");
@@ -107,6 +108,7 @@ namespace MedicalManagement
                 
                 if (Id_Agenda != 0)
                 {
+                    
                     string conexion = ConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
                     SqlConnection cnn;
                     cnn = new SqlConnection(conexion);
@@ -165,8 +167,12 @@ namespace MedicalManagement
 
                 if (Id_FichaIdentificacion != 0)
                 {
-                    txtidfichaidentificacion.Text = Id_FichaIdentificacion.ToString();
-                    ddlUsuarios.Text = NombreCompleto.ToString();
+
+                    ddlUsuarios.SelectedValue = Id_FichaIdentificacion.ToString();
+                    
+                    ////txtidfichaidentificacion.Text = Id_FichaIdentificacion.ToString();
+                    //ddlUsuarios.Text = NombreCompleto.ToString();
+                    //ddlUsuarios.SelectedIndex = Id_FichaIdentificacion;
                     //txtnombrecompleto.Text = Id_FichaIdentificacion.ToString();
                 }
 
@@ -195,6 +201,7 @@ namespace MedicalManagement
             var oneFicha = h.GetAllParametized(query, new Tabla_Catalogo_FichaIdentificacionDTO { Id_FichaIdentificacion = Id_FichaIdentificacion })[0];
 
             NombreCompleto = oneFicha.Nombre_FichaIdentificacion.Trim() + " " + oneFicha.ApPaterno_FichaIdentificacion.Trim() + " " + oneFicha.ApMaterno_FichaIdentificacion.Trim();
+            
         }
 
         public void GrabarAgenda(object sender, EventArgs eventArgs)

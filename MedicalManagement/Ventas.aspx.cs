@@ -42,6 +42,9 @@ namespace MedicalManagement
                 dt.Columns.Add("Fecha");
                 MostrarGridRecetaPrevia();
 
+                ddlConsulta.DataSource = ConseptoPagoDAO.GetAll();
+                ddlConsulta.DataBind();
+
                 SqlConnection cnn;
                 cnn = new SqlConnection(conexion);
                 cnn.Open();
@@ -467,7 +470,7 @@ namespace MedicalManagement
 
             if (CheckboxFacturar.Checked == true)
             {
-                Response.Redirect("Facturar.aspx");
+                Response.Redirect("Facturar.aspx?No_Tiket="+oneT.No_Tiket);
             }
             return;
         }
@@ -655,7 +658,6 @@ namespace MedicalManagement
             //txtDos.Value = "";
             //txtNot.Value = "";
             txtSearch.Text = "";
-            ddlMedicamento.SelectedIndex = 0;
             //string script = "AlertaGuardar();";
             // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
@@ -705,8 +707,7 @@ namespace MedicalManagement
             string query = "select * from Tabla_Catalogo_Medicamento where Estatus_Medicamento = 1";
             Helpers h = new Helpers();
             var lMeds = h.GetAllParametized(query, new Tabla_Catalogo_MedicamentoDTO());
-            ddlMedicamento.DataSource = lMeds;
-            ddlMedicamento.DataBind();
+           
         }
 
         protected void saveToUse(object sender, EventArgs e)
@@ -784,6 +785,29 @@ namespace MedicalManagement
             {
                 Response.Write(ex.ToString());
             }
+        }
+        protected void saveToConsulta(object sender, EventArgs e)
+        {
+            var oneConsulta = new Tabla_Catalogo_ConceptoPagoDTO();
+            oneConsulta.Id_ConceptoPago = Convert.ToInt32(ddlConsulta.SelectedValue);
+            oneConsulta = ConseptoPagoDAO.GetOne(oneConsulta);
+
+            var oneTemp = new Tabla_Catalogo_Ticket();
+            oneTemp.Id_Medicamento = oneConsulta.Id_ConceptoPago;
+            oneTemp.RazonSocial = "";
+            oneTemp.Costo = Convert.ToInt32(oneConsulta.PrecioUnitario);
+            oneTemp.NombreMedicamento = oneConsulta.NombreCorto_ConceptoPago;
+            string query = "insert into Tabla_Catalogo_TicketTemp  (Id_Medicamento, RazonSocial, Costo, NombreMedicamento) values (@Id_Medicamento, @RazonSocial, @Costo, @NombreMedicamento)";
+            Helpers h = new Helpers();
+            h.ExecuteNonQueryParam(query, oneTemp);
+            //txtDos.Value = "";
+            //txtNot.Value = "";
+            txtSearch.Text = "";
+            //string script = "AlertaGuardar();";
+            // ScriptManager.RegisterStartupScript(this, GetType(), "ServerControlScript", script, true);
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            //loadTemporal();
+            return;
         }
     }
 }

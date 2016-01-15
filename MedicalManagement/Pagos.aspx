@@ -221,7 +221,7 @@
                                     <label>Descripcion</label>
                                 </div>
                                 <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                                    <input type="text" id="txtDescripcion" class="form-control" />
+                                    <asp:TextBox runat="server" type="text" id="txtDescripcion" class="form-control" />
                                 </div>
                             </div>
                             <hr class="blue-hr" />
@@ -230,7 +230,7 @@
                                     <label>Nombre Corto</label>
                                 </div>
                                 <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                                    <input type="text" id="txtNombreCorto" class="form-control" />
+                                    <asp:TextBox runat="server" type="text" id="txtNombreCorto" class="form-control" />
                                 </div>
                             </div>
                             <hr class="blue-hr" />
@@ -239,7 +239,7 @@
                                     <label>Precio Unitario</label>
                                 </div>
                                 <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                                    <input type="number" id="txtPrecioPredef" class="form-control" />
+                                     <asp:TextBox runat="server" type="number" id="txtPrecioPredef" class="form-control" />
                                 </div>
                             </div>
                             <hr class="blue-hr" />
@@ -248,14 +248,14 @@
                                     <label>Activado</label>
                                 </div>
                                 <div class="col-xs-12 col-md-9 col-sm-9 col-lg-9">
-                                    <input type="checkbox" id="checkEstatus" checked />
+                                     <asp:CheckBox runat="server" type="checkbox" id="checkEstatus" />
                                 </div>
                             </div>
                             <hr class="blue-hr" />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" onclick="addConcepto()">Agregar</button>
+                            <asp:LinkButton OnClick="addConcepto" ID="LinkButton7" runat="server"><label class="btn btn-default">Aceptar</label></asp:LinkButton>
                         </div>
                     </div>
                 </div>

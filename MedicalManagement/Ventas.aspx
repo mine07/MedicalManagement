@@ -130,19 +130,35 @@
                             <hr />
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <label>Medicamento</label>
-                                    <!--<div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-1x fa-search"></i></span>
-                                        <asp:DropDownList runat="server" ID="ddlMedicamento" CssClass="form-control combobox" DataTextField="Descripcion_Medicamento" DataValueField="Id_Medicamento" />
-                                    </div>-->
+
                                     <div >
-                                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Medicamento..." autocomplete="off"></asp:TextBox>
-                                        <hr />
+                                        <asp:TextBox CssClass="form-control" runat="server" ID="txtSearch" placeholder="Buscar Medicamento..." autocomplete="off" Width ="100%"></asp:TextBox>
                                         <div class="container-fluid searchContainer searchProc border-top1-bottom5">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+    
+                            <div class="row" style="padding-top: 5px;">
+                                <div class="col-xs-12">
+                                    
+                                    <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>
+                                    <%--<asp:LinkButton OnClick="btnPrint" ID="LinkButton4" runat="server" Text='<h4><label class="label label-success pull-right label-button">Imprimir<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>--%>
+
+                                </div>
+                            </div>
+
+
+                            <hr />
+                                
+                                     <div class="row">
+                                <div class="col-xs-12">
+                                        <label>Consulta</label>
+                                        <asp:DropDownList runat="Server" CssClass="combobox form-control" ID="ddlConsulta" DataTextField="_NombreConsulta" DataValueField="Id_ConceptoPago"  />
+                                    </div>
+                                         </div>
+                                     
+                            
                             <%--<div class="row">
                                 <div class="col-xs-12">
                                     <label>Dosis</label>
@@ -158,7 +174,7 @@
                             <div class="row" style="padding-top: 5px;">
                                 <div class="col-xs-12">
                                     
-                                    <asp:LinkButton OnClick="saveTo" ID="btnSave" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>
+                                    <asp:LinkButton OnClick="saveToConsulta" ID="btnSaveConsulta" runat="server" Text='<h4><label class="label label-success pull-right label-button">Agregar<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>
                                     <%--<asp:LinkButton OnClick="btnPrint" ID="LinkButton4" runat="server" Text='<h4><label class="label label-success pull-right label-button">Imprimir<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>--%>
 
                                 </div>
@@ -376,11 +392,11 @@
                         <!---->
 
                         Total:
-                        <asp:TextBox ID="TextBox3" Enabled="false" runat="server" Text="0.00" Columns="10" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="TextBox3" Enabled="false" runat="server" Text="0.00"  Width="100%" CssClass="form-control"></asp:TextBox>
                         Pago con:
-                        <asp:TextBox ID="TextBox1" runat="server" Columns="10" Text="0.00" OnTextChanged="cambio" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="TextBox1" runat="server" Width="100%" Text="0.00" OnTextChanged="cambio" CssClass="form-control"></asp:TextBox>
                         Su cambio:
-                        <asp:TextBox ID="TextBox2" Enabled="false" runat="server" Text="0.00" Columns="10" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="TextBox2" Enabled="false" runat="server" Text="0.00" Width="100%" CssClass="form-control"></asp:TextBox>
                         <br />
                         <hr />
 
@@ -532,7 +548,7 @@
         function ValidarExistencia() {
 
             $("#alert").removeClass("hidden");
-            $("#alerta2").text("¡ERROR!, No exixte el Medicamento.");
+            $("#alerta2").text("¡ERROR!, El medicamento se enceuntra agotado.");
         }
 
         function ValidarTexBox() {
@@ -562,6 +578,9 @@
             r = parseFloat(a) + parseFloat(b);           // Convierte en Float y sumar
             document.getElementById('TextBox2').value = r; // El resultado en TextBox resultado
         }
+
+        ///////////////////////////////////////////////////////////////////////
+        /////////////////// BUSCAR CONSULTA //////////////////////////////////
     </script>
 
     <script type="text/x-jqote-template" id="template">
