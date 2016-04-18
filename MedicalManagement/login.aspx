@@ -1,9 +1,7 @@
 ﻿<%@ Page Title="MedicalManagement" Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="MedicalManagement.login" EnableEventValidation="false"%>
 
-
-
-
 <form id="Form1" runat="server">
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 	<meta charset="utf-8" />

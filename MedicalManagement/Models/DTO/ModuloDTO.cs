@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 namespace MedicalManagement.Models.DTO
-{
+{ 
     public class ModuloDTO
     {
         public int Id_Modulo { get; set; }

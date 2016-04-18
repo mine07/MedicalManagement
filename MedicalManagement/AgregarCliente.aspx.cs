@@ -233,7 +233,7 @@ namespace MedicalManagement
 
             else if (txtRFC.Text.Length == 0)
             {
-                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el Apellido Paterno</p>";
+                Alerta.InnerHtml = "<p style=\"color: white;background-color: red\">Cuidado:Favor de Capturar el RFC</p>";
             }
 
             //else if (txtApMaIdent.Text.Length == 0)
@@ -354,8 +354,8 @@ namespace MedicalManagement
             }
             else
             {
-                nombrefila = Session["imagen"].ToString();
-                Session["imagen"] = null;
+                //nombrefila = Session["imagen"].ToString();
+                //Session["imagen"] = null;
             }
 
 
@@ -456,12 +456,12 @@ namespace MedicalManagement
             comandoBitacora = null;
 
             cnn.Close();
-            var oneFicha = ClientesDAO.GetLast();
-            string pathToCreate = "~/Pacientes/" + oneFicha.Id_Clientes;
-            if (!Directory.Exists(Server.MapPath(pathToCreate)))
-            {
-                Directory.CreateDirectory(Server.MapPath(pathToCreate));
-            }
+            //var oneFicha = ClientesDAO.GetLast();
+            //string pathToCreate = "~/Pacientes/" + oneFicha.Id_Clientes;
+            //if (!Directory.Exists(Server.MapPath(pathToCreate)))
+            //{
+            //    Directory.CreateDirectory(Server.MapPath(pathToCreate));
+            //}
             Response.Redirect("PersonasMorales.aspx");
         }
 

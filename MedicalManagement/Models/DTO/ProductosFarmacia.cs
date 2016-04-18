@@ -14,7 +14,7 @@ namespace MedicalManagement.Models.DTO
 {
     public class ProductosFarmacia
     {
-       
+        
 
       public int Id_Productos {get; set;}
       public string Nombre {get; set;}

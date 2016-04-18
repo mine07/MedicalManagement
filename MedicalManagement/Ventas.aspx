@@ -79,14 +79,12 @@
         </div>
     </div>
 
-
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
     <triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" />
             <asp:AsyncPostBackTrigger ControlID="rptTemporal" />
         </triggers>
-    <contenttemplate>
-
-            
+    <ContentTemplate>
             <div class="container-fluid border-top1-bottom5 no-radius no-vertical-padding gray-border">
                 <div class="row">
                     <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4 left-panel">
@@ -192,10 +190,12 @@
                             
                             <div class="gray-container" style="max-height: 450px;">
                                 
-                                <table width="100%" border="0">
+                                <table width="100%" border="0" >
                                             <tr>
-                                                <th><label class="h5">Medicamento</label></th>
-                                                <th><label class="h5">Costo</label></th> 
+                                                <th><label class="h5">Cantidad</label></th>
+                                                <th><label class="h5">Descripcion</label></th>
+                                                <th><label class="h5">P. Unitario</label></th>
+                                                <th><label class="h5">Importe</label></th> 
                                                 
                                             </tr>
                                     
@@ -205,49 +205,66 @@
                                     <ItemTemplate>
                                         
                                             <tr>
+                                                <th >
+                                                    1
+                                                </th>
                                                 <th>
                                                     
                                                     <label><%# Eval("NombreMedicamento") %></label>
                                                 </th>
                                                 <th>
-                                                    
                                                     <label><%# Eval("Costo") %></label>
-                                                    
+                                                </th>
+                                                <th>
+                                                    <label><%# Eval("Costo") %></label>
                                                     <asp:LinkButton ID="btnRemove" runat="server" Text='<i class="fa fa-remove fa-1x pull-right remove-icon"></i>' OnClick="RemoveTemporal" CommandArgument='<%# Eval("Id_Ticket") %>' />
-                                                
                                                 </th>
                                                 <%--<th>
                                                     <%# String.Format("{0:f2}",DataBinder.Eval(Container.DataItem, "costo"))%>
                                                     </th>--%>
-                                            
-                                            </tr>                                                    
-                                         
-                                                                                        
+                                            </tr>                                                                                           
                                     </ItemTemplate>
                                 </asp:Repeater>
-                                    
+                                    <tr>
+                                        
+                                        <th>
+                                            <div><hr /></div>
+                                        </th> 
+                                        <th>
+                                        </th>
+                                        <th>     
+                                            <label class="h5">Subtotal</label>
+                                        </th>
+                                        <th> 
+                                            
+                                            <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                                        </th>  
+                                    </tr>
+
                                     <tr>
                                         <hr>
-                                                <th>
-                                                    <hr>
-                                                    <label class="h5">Total</label>
-
-                                                </th>
-                                                <th> <hr>
-                                                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-                                                   
-                                                </th> 
-                                                
-                                            </tr>
-                                    </table>
+                                        <th>
+                                        </th> 
+                                        <th>
+                                        </th>
+                                        <th>     
+                                            <hr>
+                                            <label class="h5">Total</label>
+                                        </th>
+                                        <th> 
+                                            <hr>
+                                            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                                        </th>  
+                                    </tr>
+                                </table>
                             </div>
                             <hr />               
                         </div>
                     </div>
                 </div>
             </div>
-        </contenttemplate>
-
+        </ContentTemplate>
+        </asp:UpdatePanel>
 
     <%--<a  href='<%= "ImprimirReceta.aspx?Id_Agenda="+ Id_Agenda +"&Id_FichaIdentificacion=" + Id_FichaIdentificacion%>'><h4><label class="label label-success pull-right label-button">Pagar<i class="fa fa-margin-left fa-eye"></i></label></h4></a>--%>
     <%--<asp:LinkButton OnClick="saveToTickets" ID="LinkButton5" runat="server" Text='<h4><label class="label label-success pull-right label-button">Pagar<i class="fa fa-arrow-circle-right"></i></label></h4>' ></asp:LinkButton>--%>
@@ -255,11 +272,11 @@
         <tr>
             <td style="width: 50%"></td>
         </tr>
-    </table>  
+    </table>
     <br />
-        
-        <asp:LinkButton OnClick="pagar" ID="LinkButton7" runat="server" Text='<h4><label class="label label-success pull-right label-button">Pagar<i class="fa fa-arrow-circle-right"></i></label></h4>'></asp:LinkButton>
-    
+
+    <asp:LinkButton OnClick="pagar" ID="LinkButton7" runat="server" Text='<h4><label class="label label-success pull-right label-button">Pagar<i class="fa fa-arrow-circle-right"></i></label></h4>'></asp:LinkButton>
+
 
     <%-- <a  href='<%= "ImprimirReceta.aspx?Id_Agenda="+ Id_Agenda +"&Id_FichaIdentificacion=" + Id_FichaIdentificacion%>'><h4><label class="label label-success pull-right label-button">Facturar<i class="fa fa-margin-left fa-eye"></i></label></h4></a>--%>
     <%--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -333,7 +350,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <asp:LinkButton data-dismiss="modal" ID="LinkButton3" runat="server" Text='<h4><label class="label label-success pull-right label-button">Aceptar<i class="fa fa-check"></i></label></h4>' />
                 </div>
             </div>
@@ -392,7 +409,7 @@
                         <!---->
 
                         Total:
-                        <asp:TextBox ID="TextBox3" Enabled="false" runat="server" Text="0.00"  Width="100%" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="TextBox3" Enabled="false" runat="server" Text="0.00" Width="100%" CssClass="form-control"></asp:TextBox>
                         Pago con:
                         <asp:TextBox ID="TextBox1" runat="server" Width="100%" Text="0.00" OnTextChanged="cambio" CssClass="form-control"></asp:TextBox>
                         Su cambio:
@@ -406,7 +423,7 @@
                 <div class="modal-footer">
                     <label class="checkbox-inline label label-success label-button">
                         Facturar &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-                        <asp:Checkbox id="CheckboxFacturar" runat="server"/>
+                        <asp:CheckBox ID="CheckboxFacturar" runat="server" />
                     </label>
 
                     <asp:LinkButton ID="Buscar" runat="server" OnClick="cambio" ToolTip="Calcular" Text=""></asp:LinkButton>

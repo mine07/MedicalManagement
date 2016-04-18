@@ -46,7 +46,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:33</publishTime>
     </File>
     <File Include="AnalisisConsulta.aspx">
-      <publishTime>12/08/2015 17:15:11</publishTime>
+      <publishTime>08/12/2015 17:15:11</publishTime>
     </File>
     <File Include="Aseguradora.aspx">
       <publishTime>10/16/2015 15:31:33</publishTime>
@@ -55,10 +55,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:35</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
-      <publishTime>06/05/2014 19:35:11</publishTime>
+      <publishTime>05/06/2014 19:35:11</publishTime>
     </File>
     <File Include="bin/MedicalManagement.dll">
-      <publishTime>01/12/2016 16:39:04</publishTime>
+      <publishTime>01/19/2016 02:08:44</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>10/16/2015 15:31:35</publishTime>
@@ -94,7 +94,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/13/2015 13:09:16</publishTime>
     </File>
     <File Include="ConsultaMenu.aspx">
-      <publishTime>12/03/2015 11:36:27</publishTime>
+      <publishTime>03/12/2015 11:36:27</publishTime>
     </File>
     <File Include="ConsultaProcedimiento.aspx">
       <publishTime>10/16/2015 15:31:33</publishTime>
@@ -295,7 +295,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:33</publishTime>
     </File>
     <File Include="Diagnosticos.aspx">
-      <publishTime>11/05/2015 13:48:16</publishTime>
+      <publishTime>05/11/2015 13:48:16</publishTime>
     </File>
     <File Include="EmpresaConvenio.aspx">
       <publishTime>10/16/2015 15:31:33</publishTime>
@@ -307,13 +307,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:33</publishTime>
     </File>
     <File Include="EspecialistasInfo.aspx">
-      <publishTime>12/08/2015 18:16:55</publishTime>
+      <publishTime>08/12/2015 18:16:55</publishTime>
     </File>
     <File Include="EstadoCivil.aspx">
       <publishTime>10/16/2015 15:31:33</publishTime>
     </File>
+    <File Include="Facturar.aspx">
+      <publishTime>01/16/2016 14:47:58</publishTime>
+    </File>
     <File Include="FarmaciaProductos.aspx">
-      <publishTime>01/08/2016 23:41:05</publishTime>
+      <publishTime>01/13/2016 15:34:57</publishTime>
     </File>
     <File Include="FichaIdentificacion.aspx">
       <publishTime>11/17/2015 11:38:15</publishTime>
@@ -328,7 +331,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:33</publishTime>
     </File>
     <File Include="Historial.aspx">
-      <publishTime>01/12/2016 16:24:21</publishTime>
+      <publishTime>01/14/2016 21:25:55</publishTime>
     </File>
     <File Include="IMG/calendar.png">
       <publishTime>10/16/2015 15:31:34</publishTime>
@@ -352,13 +355,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/26/2015 15:16:27</publishTime>
     </File>
     <File Include="ImprimirNotaClinica.aspx">
-      <publishTime>11/04/2015 15:31:20</publishTime>
+      <publishTime>04/11/2015 15:31:20</publishTime>
     </File>
     <File Include="ImprimirReceta.aspx">
-      <publishTime>12/03/2015 09:49:02</publishTime>
+      <publishTime>03/12/2015 09:49:02</publishTime>
     </File>
     <File Include="login.aspx">
-      <publishTime>12/08/2015 13:40:46</publishTime>
+      <publishTime>01/19/2016 01:32:42</publishTime>
     </File>
     <File Include="login2.aspx">
       <publishTime>10/16/2015 15:31:35</publishTime>
@@ -385,7 +388,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:35</publishTime>
     </File>
     <File Include="Pagos.aspx">
-      <publishTime>12/19/2015 13:28:15</publishTime>
+      <publishTime>01/14/2016 16:03:48</publishTime>
     </File>
     <File Include="PagosIndividuales.aspx">
       <publishTime>10/16/2015 15:31:34</publishTime>
@@ -409,13 +412,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:34</publishTime>
     </File>
     <File Include="PersonasMorales.aspx">
-      <publishTime>01/09/2016 01:59:39</publishTime>
+      <publishTime>01/13/2016 21:43:59</publishTime>
     </File>
     <File Include="Procedimiento.aspx">
       <publishTime>11/14/2015 21:22:23</publishTime>
     </File>
     <File Include="ProcedimientoEdit.aspx">
-      <publishTime>11/03/2015 13:48:22</publishTime>
+      <publishTime>03/11/2015 13:48:22</publishTime>
     </File>
     <File Include="Prueba.aspx">
       <publishTime>11/13/2015 12:59:39</publishTime>
@@ -427,7 +430,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:34</publishTime>
     </File>
     <File Include="RegistroAgenda.aspx">
-      <publishTime>12/31/2015 13:15:26</publishTime>
+      <publishTime>01/14/2016 16:47:50</publishTime>
     </File>
     <File Include="RegistroAnalisisClinico.aspx">
       <publishTime>10/16/2015 15:31:34</publishTime>
@@ -442,10 +445,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:34</publishTime>
     </File>
     <File Include="RegistroConsulta.aspx">
-      <publishTime>12/08/2015 17:10:19</publishTime>
+      <publishTime>08/12/2015 17:10:19</publishTime>
     </File>
     <File Include="RegistroDiagnostico.aspx">
-      <publishTime>11/05/2015 15:34:14</publishTime>
+      <publishTime>05/11/2015 15:34:14</publishTime>
     </File>
     <File Include="RegistroEmpresaConvenio.aspx">
       <publishTime>10/16/2015 15:31:34</publishTime>
@@ -1009,7 +1012,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/16/2015 15:31:35</publishTime>
     </File>
     <File Include="Styles/bootstrap.css">
-      <publishTime>12/16/2015 14:22:00</publishTime>
+      <publishTime>01/14/2016 16:52:24</publishTime>
     </File>
     <File Include="Styles/bootstrap.css.map">
       <publishTime>10/16/2015 15:31:35</publishTime>
@@ -1060,16 +1063,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/12/2015 16:34:50</publishTime>
     </File>
     <File Include="TemplateImprimirReceta.aspx">
-      <publishTime>12/04/2015 15:42:36</publishTime>
+      <publishTime>04/12/2015 15:42:36</publishTime>
     </File>
     <File Include="Usuarios.aspx">
       <publishTime>11/13/2015 13:09:16</publishTime>
     </File>
     <File Include="Ventas.aspx">
-      <publishTime>01/12/2016 13:52:05</publishTime>
+      <publishTime>01/16/2016 14:03:15</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/12/2016 16:39:13</publishTime>
+      <publishTime>01/19/2016 02:08:48</publishTime>
     </File>
     <File Include="WebPrueba.aspx">
       <publishTime>10/16/2015 15:31:35</publishTime>

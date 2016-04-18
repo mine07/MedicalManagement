@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts\imagen.js">
+    <script type="text/javascript" src="Scripts\imagen.js"></script>
 
     <script type="text/javascript" src="Scripts/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="Scripts/imagen.js"></script>

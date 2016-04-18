@@ -144,7 +144,7 @@
                         <hr />
                     </li>
                      <li class="li-main">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#ddFast" class="dropdown-title"><i class="fa fa-fw fa-flash"></i> Accesos Rapidos</a>
+                        <a href="javascript:;" class="dropdown-title"><i class="fa fa-fw fa-flash"></i> Accesos Rapidos</a>
                         <ul id="ddFast" class="collaps in">
                             <li class="divider"></li>
                             <li>
